@@ -1,1 +1,20 @@
-README
+Readme
+------------------------------------------------------------------------
+This file contains a description of the repository and other important
+information, as descrition of the implementations.
+
+
+Structure of the project
+------------------------------------------------------------------------
+The project is structured in 3 ways:
+- branches: basic and non-validated implementations (there is one branch
+by content
+- trunk: validated implementations (branch master)
+- tags: releases of the library
+
+
+Library Contents
+------------------------------------------------------------------------
+- clonalg_gpu (C++)
+- eg_initialization (C++) 
+- eg_gpu (C++)
