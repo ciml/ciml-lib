@@ -18,3 +18,5 @@ Library Contents
 - clonalg_gpu (C++)
 - eg_initialization (C++) 
 - eg_gpu (C++)
+- ggp_mo (C++)
+
