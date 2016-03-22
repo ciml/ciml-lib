@@ -92,8 +92,7 @@ void Search::doMonoSearch(){
         pop[i] = new Subject(gram->criaArvExp());
     }
 
-    for(int i = 0; i < conf->popSize; i++)  //Calcula primeira vez
-    {
+    for(int i = 0; i < conf->popSize; i++){  //Calcula primeira vez
         calcFitnessLS(pop[i]);
     }
 
@@ -101,21 +100,18 @@ void Search::doMonoSearch(){
 
     for(int it = 0; it < conf->iterations; it++){
         Operate();
-        sort(pop, pop + conf->popSize, sortFit);
+
         sort(pop + conf->popSize, pop + conf->popSize * 2, sortFit);
 
+        int j = 0;
+        for(int i = conf->popSize * conf->elitism; i < conf->popSize; i++, j++)
+            swap(pop[i], pop[j]);
+
         sort(pop, pop + conf->popSize + size, sortFit);
-        for(int i = conf->popSize; i < conf->popSize * 2; i++) tá errado aqui
+
+        for(int i = conf->popSize; i < conf->popSize * 2; i++)
             delete pop[i];
         convergence[it] = pop[0]->fitnessLS;
-
-//        cout << it << endl;
-//        if(it > (int)(conf->iterations * 0.00005))
-//            cout << convergence[it]/convergence[(int)(it - conf->iterations * 0.00005)] << endl;
-//        if(it > (int)(conf->iterations * 0.00005) && convergence[it] > (convergence[(int)(it - conf->iterations * 0.00005)] - convergence[(int)(it - conf->iterations * 0.00005)] * 0.00000000001)){
-//            cout << "Stopped Converging on " << it << "!" << endl;
-//            break;
-//        }
     }
 
     for(int i = 0; i < conf->popSize; i++){
@@ -133,6 +129,7 @@ void Search::doMonoSearch(){
     for(int i = 0; i < conf->popSize; i++){
         cout << pop[i]->ranking << ", "
              << pop[i]->tree->high << ", "
+             << pop[i]->tree->terminals << ", "
              << pop[i]->fitnessLS << ", "
              << pop[i]->fitnessTestLS << ", "
              << pop[i]->fitnessValidLS << ", "
@@ -140,19 +137,6 @@ void Search::doMonoSearch(){
              pop[i]->tree->printAlphas();
              cout << endl;
     }
-
-//    double diff = abs(convergence[conf->iterations - 1]) + 1;
-//    double max = convergence[conf->iterations - 1] < 0 ? convergence[0] + convergence[conf->iterations - 1] : convergence[0];
-//    cout << diff << " " << max << endl;
-//    cin.get();
-//
-//    for(int i = 0; i < conf->iterations; i += conf->iterations * .1){
-//        cout << convergence[i] << endl;
-////        for(int j = 0; j < convergence[i] + diff; j += max * .1){
-////            cout << "-";
-////        }
-////        cout << "." << endl;
-//    }
 };
 
 void Search::doMultiSearch()
@@ -622,121 +606,121 @@ void Search::calcFitnessLS(Subject* s){
 
     s->tt = s->tf = s->ft = s->ff = 0;
 
-    //classification
-
-    double total = 0;
-
-    for(int i = 0; i < lines ; i++){
-        double res = (s->tree->treeResult(data->values[data->training[i]], alpha, dimension));
-        if (data->results[data->training[i]] == 0 ) {
-            total += conf->peso0;
-        } else {
-            total += conf->peso1;
-        }
-        if(res != data->results[data->training[i]]) {
-            if ( data->results[data->training[i]] == 0 ) {
-                fitness += conf->peso0;
-                s->ft++;
-            } else {
-                fitness += conf->peso1;
-                s->ff++;
-            }
-        }
-        else{
-            if ( data->results[data->training[i]] == 0 ) {
-                s->tt++;
-            } else {
-                s->tf;
-            }
-        }
-    }
-
-    s->fitnessLS = (fitness/total) * 100;
-
-//    //regression
-//    if(conf->leastSquare == 1){
-//        dimension = columns;
-//        subMat = new double*[lines];
-//        for(int i = 0; i < lines; i++)
-//            subMat[i] = new double[columns];
+//    //classification
 //
-//        //Avalia cada subExp
-//        for(int i = 0; i < columns; i++)
-//        {
-//            double* exp = &s->tree->sub.at(i).at(0);
-//            int sizeExp = s->tree->sub.at(i).size();
-//            for(int j = 0; j < lines; j++)
-//            {
-//                double* a = new double[sizeExp];
-//                double* var = data->values[data->training[j]];
-//                for(int k = 0; k < sizeExp; k += 2)
-//                {
-//                    a[k] = exp[k];
-//                    a[k + 1] = exp[k + 1];
-//                    if(a[k] == 3.0)
-//                    {
-//                        a[k] = 0.0;
-//                        a[k + 1] = var[(int)a[k + 1]];
-//                    }
-//                    if(a[k] == 5.0)
-//                    {
-//                        a[k] = 0.0;
-//                    }
-//                }
-//
-//                subMat[j][i] = Avalia(a, sizeExp);
-//                delete [] a;
-//            }
-//        }
-//
-//
-//        QRDecomposition* qrDec = new QRDecomposition(subMat, lines, columns);
-//        double* b = new double[lines];
-//        for(int i = 0; i < lines; i++)
-//        {
-//            b[i] = data->results[data->training[i]];
-//        }
-////        se tem algo lá, apagar
-//        alpha = s->tree->alpha;
-//        if(alpha != NULL)
-//            delete [] alpha;
-////        novos coeficientes
-//        alpha = s->tree->alpha = qrDec->solveLeastSquares(b, lines);
-//
-//        if(alpha == NULL){
-//            dimension = 0;
-//        }
-//
-//        for(int i = 0; i < lines; i++)
-//            delete [] subMat[i];
-//        delete [] subMat;
-//        delete [] b;
-//        delete qrDec;
-//    }
+//    double total = 0;
 //
 //    for(int i = 0; i < lines ; i++){
 //        double res = (s->tree->treeResult(data->values[data->training[i]], alpha, dimension));
-//
-////        for(int j = 0; j < data->countVar; j++)
-////            cout << data->values[data->training[i]][j] << " ";
-////        if(s->tree->infixPrint() == "(a + ((c * b) + (d / e)))"){
-////            cout << data->results[data->training[i]] << " " << res << " " << data->results[data->training[i]] - res << " " << pow(data->results[data->training[i]] - res, 2) << endl;
-////            cin.get();
-////        }
-//
-//        res = pow(data->results[data->training[i]] - res, 2);
-//
-//        if(res == INFINITY){
-//            fitness = INFINITY;
-//            break;
+//        if (data->results[data->training[i]] == 0 ) {
+//            total += conf->peso0;
+//        } else {
+//            total += conf->peso1;
 //        }
-//        if(res == NAN){
-//            fitness = INFINITY;
-//            break;
+//        if(res != data->results[data->training[i]]) {
+//            if ( data->results[data->training[i]] == 0 ) {
+//                fitness += conf->peso0;
+//                s->ft++;
+//            } else {
+//                fitness += conf->peso1;
+//                s->ff++;
+//            }
 //        }
-//        fitness += res;
+//        else{
+//            if ( data->results[data->training[i]] == 0 ) {
+//                s->tt++;
+//            } else {
+//                s->tf;
+//            }
+//        }
 //    }
-//    s->fitnessLS = fitness/lines;
+//
+//    s->fitnessLS = (fitness/total) * 100;
+
+    //regression
+    if(conf->leastSquare == 1){
+        dimension = columns;
+        subMat = new double*[lines];
+        for(int i = 0; i < lines; i++)
+            subMat[i] = new double[columns];
+
+        //Avalia cada subExp
+        for(int i = 0; i < columns; i++)
+        {
+            double* exp = &s->tree->sub.at(i).at(0);
+            int sizeExp = s->tree->sub.at(i).size();
+            for(int j = 0; j < lines; j++)
+            {
+                double* a = new double[sizeExp];
+                double* var = data->values[data->training[j]];
+                for(int k = 0; k < sizeExp; k += 2)
+                {
+                    a[k] = exp[k];
+                    a[k + 1] = exp[k + 1];
+                    if(a[k] == 3.0)
+                    {
+                        a[k] = 0.0;
+                        a[k + 1] = var[(int)a[k + 1]];
+                    }
+                    if(a[k] == 5.0)
+                    {
+                        a[k] = 0.0;
+                    }
+                }
+
+                subMat[j][i] = Avalia(a, sizeExp);
+                delete [] a;
+            }
+        }
+
+
+        QRDecomposition* qrDec = new QRDecomposition(subMat, lines, columns);
+        double* b = new double[lines];
+        for(int i = 0; i < lines; i++)
+        {
+            b[i] = data->results[data->training[i]];
+        }
+//        se tem algo lá, apagar
+        alpha = s->tree->alpha;
+        if(alpha != NULL)
+            delete [] alpha;
+//        novos coeficientes
+        alpha = s->tree->alpha = qrDec->solveLeastSquares(b, lines);
+
+        if(alpha == NULL){
+            dimension = 0;
+        }
+
+        for(int i = 0; i < lines; i++)
+            delete [] subMat[i];
+        delete [] subMat;
+        delete [] b;
+        delete qrDec;
+    }
+
+    for(int i = 0; i < lines ; i++){
+        double res = (s->tree->treeResult(data->values[data->training[i]], alpha, dimension));
+
+//        for(int j = 0; j < data->countVar; j++)
+//            cout << data->values[data->training[i]][j] << " ";
+//        if(s->tree->infixPrint() == "(a + ((c * b) + (d / e)))"){
+//            cout << data->results[data->training[i]] << " " << res << " " << data->results[data->training[i]] - res << " " << pow(data->results[data->training[i]] - res, 2) << endl;
+//            cin.get();
+//        }
+
+        res = pow(data->results[data->training[i]] - res, 2);
+
+        if(res == INFINITY){
+            fitness = INFINITY;
+            break;
+        }
+        if(res == NAN){
+            fitness = INFINITY;
+            break;
+        }
+        fitness += res;
+    }
+    s->fitnessLS = fitness/lines;
 };
 
 void Search::calcFitnessTestLS(Subject* s){
@@ -752,53 +736,53 @@ void Search::calcFitnessTestLS(Subject* s){
     s->tt = s->tf = s->ft = s->ff = 0;
 
     //classification
-    double total = 0;
-
-    for(int i = 0; i < lines ; i++){
-        double res = (s->tree->treeResult(data->values[data->test[i]], alpha, dimension));
-        if ( data->results[data->test[i]] == 0 ) {
-            total += conf->peso0;
-        } else {
-            total += conf->peso1;
-        }
-        if(res != data->results[data->test[i]]) {
-            if ( data->results[data->test[i]] == 0 ) {
-                fitness += conf->peso0;
-                s->ft++;
-            } else {
-                fitness += conf->peso1;
-                s->ff++;
-            }
-        }
-        else{
-            if ( data->results[data->training[i]] == 0 ) {
-                s->tt++;
-            } else {
-                s->tf;
-            }
-        }
-    }
-
-    s->fitnessTestLS = (fitness/total) * 100;
-
-//    //regression
-//    for(int i = 0; i < lines ; i++)
-//    {
+//    double total = 0;
+//
+//    for(int i = 0; i < lines ; i++){
 //        double res = (s->tree->treeResult(data->values[data->test[i]], alpha, dimension));
-//        res = pow(data->results[data->test[i]] - res, 2);
-//        if(res == INFINITY)
-//        {
-//            fitness = INFINITY;
-//            break;
+//        if ( data->results[data->test[i]] == 0 ) {
+//            total += conf->peso0;
+//        } else {
+//            total += conf->peso1;
 //        }
-//        if(res == NAN)
-//        {
-//            fitness = INFINITY;
-//            break;
+//        if(res != data->results[data->test[i]]) {
+//            if ( data->results[data->test[i]] == 0 ) {
+//                fitness += conf->peso0;
+//                s->ft++;
+//            } else {
+//                fitness += conf->peso1;
+//                s->ff++;
+//            }
 //        }
-//        fitness += res;
+//        else{
+//            if ( data->results[data->training[i]] == 0 ) {
+//                s->tt++;
+//            } else {
+//                s->tf;
+//            }
+//        }
 //    }
-//    s->fitnessTestLS = fitness/lines;
+//
+//    s->fitnessTestLS = (fitness/total) * 100;
+
+    //regression
+    for(int i = 0; i < lines ; i++)
+    {
+        double res = (s->tree->treeResult(data->values[data->test[i]], alpha, dimension));
+        res = pow(data->results[data->test[i]] - res, 2);
+        if(res == INFINITY)
+        {
+            fitness = INFINITY;
+            break;
+        }
+        if(res == NAN)
+        {
+            fitness = INFINITY;
+            break;
+        }
+        fitness += res;
+    }
+    s->fitnessTestLS = fitness/lines;
 };
 
 void Search::calcFitnessValidLS(Subject* s){
@@ -813,54 +797,54 @@ void Search::calcFitnessValidLS(Subject* s){
 
     s->tt = s->tf = s->ft = s->ff = 0;
 
-    //classification
-    double total = 0;
-
-    for(int i = 0; i < lines ; i++){
-        double res = (s->tree->treeResult(data->values[data->validation[i]], alpha, dimension));
-        if ( data->results[data->validation[i]] == 0 ) {
-            total += conf->peso0;
-        } else {
-            total += conf->peso1;
-        }
-        if(res != data->results[data->validation[i]]) {
-            if ( data->results[data->validation[i]] == 0 ) {
-                fitness += conf->peso0;
-                s->ft++;
-            } else {
-                fitness += conf->peso1;
-                s->ff++;
-            }
-        }
-        else{
-            if ( data->results[data->training[i]] == 0 ) {
-                s->tt++;
-            } else {
-                s->tf;
-            }
-        }
-    }
-
-    s->fitnessValidLS = (fitness/total) * 100;
-
-//      //regression
-//    for(int i = 0; i < lines ; i++)
-//    {
+//    //classification
+//    double total = 0;
+//
+//    for(int i = 0; i < lines ; i++){
 //        double res = (s->tree->treeResult(data->values[data->validation[i]], alpha, dimension));
-//        res = pow(data->results[data->validation[i]] - res, 2);
-//        if(res == INFINITY)
-//        {
-//            fitness = INFINITY;
-//            break;
+//        if ( data->results[data->validation[i]] == 0 ) {
+//            total += conf->peso0;
+//        } else {
+//            total += conf->peso1;
 //        }
-//        if(res == NAN)
-//        {
-//            fitness = INFINITY;
-//            break;
+//        if(res != data->results[data->validation[i]]) {
+//            if ( data->results[data->validation[i]] == 0 ) {
+//                fitness += conf->peso0;
+//                s->ft++;
+//            } else {
+//                fitness += conf->peso1;
+//                s->ff++;
+//            }
 //        }
-//        fitness += res;
+//        else{
+//            if ( data->results[data->training[i]] == 0 ) {
+//                s->tt++;
+//            } else {
+//                s->tf;
+//            }
+//        }
 //    }
-//    s->fitnessValidLS = fitness/lines;
+//
+//    s->fitnessValidLS = (fitness/total) * 100;
+
+      //regression
+    for(int i = 0; i < lines ; i++)
+    {
+        double res = (s->tree->treeResult(data->values[data->validation[i]], alpha, dimension));
+        res = pow(data->results[data->validation[i]] - res, 2);
+        if(res == INFINITY)
+        {
+            fitness = INFINITY;
+            break;
+        }
+        if(res == NAN)
+        {
+            fitness = INFINITY;
+            break;
+        }
+        fitness += res;
+    }
+    s->fitnessValidLS = fitness/lines;
 };
 
 void Search::Replace(){
@@ -871,3 +855,4 @@ void Search::Replace(){
 Search::~Search(){
     delete [] pop;
 };
+

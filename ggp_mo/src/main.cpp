@@ -37,22 +37,34 @@ int main(int argc, char* args[]){
     conf->iterations = geracoes;
     conf->leastSquare = 1;
     conf->elitism = 0.1;
-    conf->mono = 1;
+    conf->mono = 0;
     conf->complexity = complexidade; // 0 = high 1 = terminals
 
     //gramatica
 //    gram = new Gramatica("read/gram5.txt");
+
+/** Juliana e Rogério **/
     gram = new Gramatica(gramatica);
+    gram->imprimeGramatica(); // estrutura da gramática
+    // Mostra cada valor encontrado no arquivo com seu tipo, valor e máscara
+
+    gram->imprimeMapa(); // elementos encontrados
+    // Mostra os elementos identificados na gramática que não são pré definidos
+
+    gram->imprimeProfs(); // Profundidades
+    // Mostra a profundidade mínima necessária para cada produção, permitindo a esolha da mais formidável
+/**                 **/
     //operadores
-    op = new Operators();
+//    op = new Operators();
 
     //dados
 //    data = new Database("read/base5.txt", "read/grupo5.txt");
-    data = new Database(dados, grupo);
+//    data = new Database(dados, grupo);
+//    data->print();
 
     //busca
-    Search* s = new Search();
-    delete s;
+//    Search* s = new Search();
+//    delete s;
 
     /************************************
             No Args
@@ -139,3 +151,4 @@ int main(int argc, char* args[]){
 
     return 0;
 }
+
