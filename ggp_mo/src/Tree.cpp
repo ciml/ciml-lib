@@ -358,7 +358,7 @@ void Tree::getExp(No* n){
 };
 
 double Tree::treeResult(double* var, double* alpha, int alphaSize){
-    if(alphaSize != 0){
+    if(conf->leastSquare == 1){
         double result = 0;
         for(int i = 0; i < subCounter; i++){
             double* a = new double[sub.at(i).size()];
