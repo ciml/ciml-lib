@@ -19,4 +19,6 @@ Library Contents
 - eg_initialization (C++) 
 - eg_gpu (C++)
 - ggp_mo (C++)
+- cgp_circuits_matlab (Matlab)
+- cgp_circuits_c (C/C++)
 
