@@ -1,0 +1,7 @@
+1	//numero de individuos
+6	//numero de colunas
+1	//numero de linhas
+3	//retorno
+4	//entradas
+4	//saidas
+0	//tipo (0: multiplicacao, 1: soma)
