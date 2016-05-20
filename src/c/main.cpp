@@ -2,11 +2,15 @@
 #include <math.h>
 #include <fstream>
 #include <string>
+#include <../No.h>
 #include <../include/Individuo.h>
 #include <cstdlib>
 #include <stdlib.h>
 #include <time.h>
 using namespace std;
+
+#define MAX_IT 1000
+#define tipos 3
 
 void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno,int *num_entradas,int *num_saidas,int *tipo){
     ifstream arquivo;
@@ -40,15 +44,16 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
     Individuo **lista = new Individuo*[num_individuos];
     int random, ind_coluna, ind_linha, entradas_no, j;
     No *aux;
-    srand (time(NULL));
+    //srand (time(NULL));
     for(int i = 0; i<num_individuos; i++){
         lista[i] = new Individuo(num_linhas, num_colunas, num_entradas, num_saidas);
         for(j = 0; j<num_colunas; j++){
             for(int k = 0; k<num_linhas; k++){
                 do{
-                random = rand() % 9; //tipos
+                random = rand() % tipos; //tipos
                 try{
                     aux = new No(random, k, j);
+
                     lista[i]->matrizNo[k][j] = aux;
                     for(int l = 0; l<aux->num_entradas; l++){
                         ind_coluna = rand()%(retorno+1);
@@ -86,9 +91,9 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
 
 int main()
 {
-    int num_individuos, num_colunas, num_linhas, retorno, num_entradas, num_saidas, tipo;
-    leArquivo(&num_individuos, &num_colunas, &num_linhas, &retorno, &num_entradas, &num_saidas, &tipo);
-
+    int num_individuos, num_filhos, num_colunas, num_linhas, retorno, num_entradas, num_saidas, tipo;
+    leArquivo(&num_filhos, &num_colunas, &num_linhas, &retorno, &num_entradas, &num_saidas, &tipo);
+    num_individuos = 1;
     //cria tabelas.
     int linhas = pow(2,num_entradas);
     bool **tabela_target, **tabela_entrada;
@@ -164,7 +169,23 @@ int main()
     //Inicializar população
     Individuo **lista_ind = init_pop(num_individuos, num_colunas, num_linhas, num_entradas, num_saidas, retorno);
     lista_ind[0]->imprime();
+
+
     lista_ind[0]->avalia(tabela_entrada, tabela_target);
     cout << lista_ind[0]->pontuacao;
+    //populacao inicializada.
+
+    //Inicio ag
+    Individuo *aux_ind;
+    for(int it=1;it<=MAX_IT;it++){
+        aux_ind = new Individuo(lista_ind[0]); //copia
+        aux_ind->mutation();
+        aux_ind->avalia(tabela_entrada, tabela_target);
+        cout << "Filho: " << aux_ind->pontuacao << ". Pai: " <<lista_ind[0]->pontuacao << endl;
+        if(aux_ind->pontuacao >= lista_ind[0]->pontuacao){
+            lista_ind[0]->~Individuo(); //destroi
+            lista_ind[0] = aux_ind;
+        }
+    }
     return 0;
 }

@@ -1,8 +1,10 @@
 
+class Individuo;
 class No
 {
     public:
         No(int tipo, int j, int k);
+        No(No* copia, Individuo *ind);
         virtual ~No();
         int num_entradas;
         int custo;
@@ -14,18 +16,5 @@ class No
 
 };
 
-class Entrada : public No {
-    public:
-        Entrada(bool entrada);
-        bool entrada;
-        bool getSaida();
-};
 
-class And : public No {
-    public:
-
-        And(No **ind_entradas);
-        virtual ~And();
-        bool getSaida();
-};
 

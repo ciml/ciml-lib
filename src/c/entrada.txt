@@ -1,5 +1,5 @@
-1	//numero de individuos
-6	//numero de colunas
+4	//numero de filhos
+30	//numero de colunas
 1	//numero de linhas
 3	//retorno
 4	//entradas
