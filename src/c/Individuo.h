@@ -1,6 +1,6 @@
 #ifndef INDIVIDUO_H
 #define INDIVIDUO_H
-#include "../No.h"
+class No;
 #include <cstdlib>
 #include <iostream>
 #include <math.h>
@@ -9,6 +9,7 @@ class Individuo
 {
     public:
         Individuo(int lin, int col, int num_entradas, int num_saidas);
+        Individuo(Individuo *copia);
         virtual ~Individuo();
         No ***matrizNo;
         No **entradas, **saidas;
@@ -16,6 +17,7 @@ class Individuo
         int qtdLigantes;
         int num_linhas, num_colunas, num_saidas, num_entradas;
         void imprime();
+        void mutation();
         void avalia(bool **tabela_entrada, bool **tabela_saida);
 
     protected:
