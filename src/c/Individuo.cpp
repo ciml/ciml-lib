@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <time.h>
-#define tipos 3
+#define tipos 1
 Individuo::Individuo(int lin, int col, int num_entradas, int num_saidas)
 {
     //ctor
@@ -61,7 +61,7 @@ void Individuo::avalia(bool **tabela_entrada, bool **tabela_target){
 void Individuo::imprime(){
     for(int i=0;i<num_linhas;i++){
         for(int j=0;j<num_colunas;j++){
-            cout << matrizNo[i][j]->entradas[0]->linha << "; " << matrizNo[i][j]->entradas[0]->coluna <<".  "<< matrizNo[i][j]->entradas[1]->linha << "; " << matrizNo[i][j]->entradas[1]->coluna<<"...  ";
+            cout << matrizNo[i][j]->entradas[0].linha << "; " << matrizNo[i][j]->entradas[0].coluna <<".: "<< matrizNo[i][j]->tipo <<".   "<< matrizNo[i][j]->entradas[1].linha << "; " << matrizNo[i][j]->entradas[1].coluna<<"...  ";
 
         }
         cout << endl;
@@ -87,26 +87,41 @@ void Individuo::mutation(){
             saidas[rand()%num_saidas] = matrizNo[lin][col];
             break;
         }
-        random = rand() % (num_entradas + 1);
-        if(random == num_entradas){ //muda tipo
-            p->tipo = rand() % tipos;
+        random = rand() % (p->num_entradas + 1);
+        if(random == p->num_entradas){ //muda tipo
+            p->mudaTipo(rand() % tipos);
         } else {
             col = (rand()%(col+1))-1;
             if(col == -1){ //camada entrada
-                p->entradas[random] = entradas[rand()%num_entradas];
+                //p->entradas.erase(p->entradas.begin() + random);
+                p->entradas[random] = (*entradas[rand()%num_entradas]);
+                //p->entradas.push_back(*entradas[rand()%p->num_entradas]);
             } else {
-                p->entradas[random] = matrizNo[rand() % num_linhas][col];
+                p->entradas[random] = (*matrizNo[rand() % num_linhas][col]);
+               // p->entradas.erase(p->entradas.begin() + random);
+                //p->entradas.push_back(*matrizNo[rand() % num_linhas][col]);
             }
         }
         //cout << p->isLigante << endl;
     }while(!p->isLigante);
-    if(p != NULL)
-        p->isLigante = false;
+    for(int i =0; i<num_linhas; i++){
+        for(int j = 0; j<num_colunas; j++){
+            matrizNo[i][j]->isLigante = false;
+        }
+    }
 
 }
 
 Individuo::~Individuo()
 {
     //dtor
-    free(matrizNo);
+    for(int i = 0; i < num_linhas; i++){
+        for(int j = 0; j< num_colunas; j++){
+            delete matrizNo[i][j];
+        }
+        delete[] matrizNo[i];
+    }
+    delete[] matrizNo;
+    delete[] entradas;
+    delete[] saidas;
 }

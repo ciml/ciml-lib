@@ -7,10 +7,11 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <time.h>
+#include <vector>
 using namespace std;
 
-#define MAX_IT 1000
-#define tipos 3
+#define MAX_IT 100000
+#define tipos 1
 
 void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno,int *num_entradas,int *num_saidas,int *tipo){
     ifstream arquivo;
@@ -62,10 +63,10 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
 
                         if(ind_coluna == 0){ //camada entrada
                             ind_linha = rand()%num_entradas;
-                            aux->entradas[l] = lista[i]->entradas[ind_linha];
+                            aux->entradas.push_back(*lista[i]->entradas[ind_linha]);
                         } else {
                             ind_linha = rand()%num_linhas;
-                            aux->entradas[l] = lista[i]->matrizNo[ind_linha][j-ind_coluna];
+                            aux->entradas.push_back(*lista[i]->matrizNo[ind_linha][j-ind_coluna]);
                         }
 
                     }
@@ -172,20 +173,42 @@ int main()
 
 
     lista_ind[0]->avalia(tabela_entrada, tabela_target);
-    cout << lista_ind[0]->pontuacao;
+    cout << lista_ind[0]->pontuacao << endl;
     //populacao inicializada.
 
     //Inicio ag
-    Individuo *aux_ind;
+    Individuo *aux_ind[num_filhos];
+    Individuo *melhor_filho;
+    int melhor_pontuacao = 0;
     for(int it=1;it<=MAX_IT;it++){
-        aux_ind = new Individuo(lista_ind[0]); //copia
-        aux_ind->mutation();
-        aux_ind->avalia(tabela_entrada, tabela_target);
-        cout << "Filho: " << aux_ind->pontuacao << ". Pai: " <<lista_ind[0]->pontuacao << endl;
-        if(aux_ind->pontuacao >= lista_ind[0]->pontuacao){
+        melhor_pontuacao = 0;
+        for(int filho = 0; filho < num_filhos; filho++){
+            aux_ind[filho] = new Individuo(lista_ind[0]); //copia
+            aux_ind[filho]->mutation();
+            aux_ind[filho]->avalia(tabela_entrada, tabela_target);
+            if(aux_ind[filho]->pontuacao > melhor_pontuacao){
+                melhor_filho = aux_ind[filho];
+                melhor_pontuacao = aux_ind[filho]->pontuacao;
+            }
+            //cout << "Filho " << filho << ": " << aux_ind[filho]->pontuacao <<", ";
+        }
+        //cout << endl;
+        //cout << "Filho: " << melhor_filho->pontuacao << ". Pai: " <<lista_ind[0]->pontuacao << endl;
+        if(melhor_filho->pontuacao >= lista_ind[0]->pontuacao){
             lista_ind[0]->~Individuo(); //destroi
-            lista_ind[0] = aux_ind;
+            lista_ind[0] = melhor_filho;
+            for(int filho = 0; filho < num_filhos; filho++){
+                if(aux_ind[filho] != melhor_filho){
+                    aux_ind[filho]->~Individuo();
+                }
+            }
+        } else {
+            for(int filho = 0; filho < num_filhos; filho++){
+                    aux_ind[filho]->~Individuo();
+            }
         }
     }
+    cout << " Pai: " <<lista_ind[0]->pontuacao << endl;
+    lista_ind[0]->~Individuo();
     return 0;
 }

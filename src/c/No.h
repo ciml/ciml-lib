@@ -1,4 +1,4 @@
-
+#include <vector>
 class Individuo;
 class No
 {
@@ -9,9 +9,9 @@ class No
         int num_entradas;
         int custo;
         int tipo, linha, coluna;
-        No **entradas;
+        std::vector<No> entradas;
         bool isLigante;
-
+        void mudaTipo(int tipo);
         bool getSaida(int j, bool **tabela_entrada);
 
 };
