@@ -9,12 +9,19 @@
 #define OBJECTIVEFUNCTION_H_
 
 #include "representacao.h"
+#include <string>
+
+using namespace std;
 
 class ObjectiveFunction {
 public:
 	ObjectiveFunction(int vectorLength);
 	virtual ~ObjectiveFunction();
-	virtual float Evaluate(int *v) = 0;
+	virtual float Evaluate(int *v)=0;
+	virtual float EvaluateFloat(float *v)=0;
+	virtual string getName() = 0;
+	virtual string getFormula() = 0;
+	virtual string getSumLimit() = 0;
 protected:
 	int m_vectorLength;
 };

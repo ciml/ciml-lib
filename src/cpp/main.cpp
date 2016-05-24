@@ -8,7 +8,9 @@
 typedef struct{
 	int generations,
 		popsize,
+		optimizationProblem,
 		problemDimension,
+		bitsPerDimension,
 		nclones,
 		randomInsertion;
 	float mutationFactor,
@@ -16,9 +18,18 @@ typedef struct{
 		  lowerLim;
 	bool parallel;
 	int gpus;
+	int cpus;
+	float gpuRatio;
 }t_parameters;
 
 void GetArgs(int argc, char **argv, t_parameters * parameters);
+
+/*double getRealTime()
+{
+    struct timeval tv;
+    gettimeofday(&tv,0);
+    return (double)tv.tv_sec + 1.0e-6*(double)tv.tv_usec;
+}*/
 
 int main(int argc, char **argv) {
 
@@ -27,26 +38,24 @@ int main(int argc, char **argv) {
 	GetArgs(argc, argv, &p);
 
 	double start = getRealTime();
-	srand(0);
+	srand(time(NULL));
 
-    if(!p.parallel){
+   if(!p.parallel){
 
-        BaseClonalg *clonalg = new Clonalg(p.generations, p.popsize, p.problemDimension,
-        								  1, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim);
+        BaseClonalg *clonalg = new Clonalg(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
+        								  p.bitsPerDimension, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim);
         clonalg->Search();
 
-    	//cout << "Parallel\tPopSize\t" << "Dimensions\tGPUS\n" << "Total time\t" << endl;
-    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.problemDimension <<"\t0\t" << getRealTime() - start << endl;
+    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" <<  p.problemDimension <<"\t0\t" << getRealTime() - start << endl;
 
     	delete clonalg;
     }
-    else{
-        BaseClonalg *clonalgCL = new ClonalgCL(p.generations, p.popsize, p.problemDimension,
-    			  1, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim, p.gpus);
+   else{
+        BaseClonalg *clonalgCL = new ClonalgCL(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
+        		p.bitsPerDimension, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim, p.gpus, p.cpus, p.gpuRatio);
 
     	double elapsed = clonalgCL->Search();
-    	//cout << "Parallel\tPopSize\t" << "Dimensions\tGPUS\n" << "Total time\t" << "Algorithm time" << endl;
-    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.problemDimension <<"\t" << p.gpus << "\t" << getRealTime() - start << "\t" <<  elapsed<< endl;
+    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" << p.problemDimension <<"\t" << p.gpus << "\t" << getRealTime() - start << "\t" <<  elapsed<< endl;
 
     	delete clonalgCL;
 	}
@@ -56,52 +65,47 @@ int main(int argc, char **argv) {
 
 void GetArgs(int argc, char **argv, t_parameters * p){
 
+	p->lowerLim = 0;
+	p->upperLim = 1;
+	p->bitsPerDimension = 1;
+	p->optimizationProblem = 1;
+
 	if(argc == 1){
-		cout << "Usage: ./clonalg generations popsize problemDimension nclones randomInsertion mutationFactor upperLim lowerLim parallel gpus" << endl;
+		cout << "Usage: ./clonalg generations popsize problemDimension nclones randomInsertion mutationFactor upperLim lowerLim parallel gpus cpus" << endl;
 		//exit(0);
 
 		cout << "using default values" << endl;
 
 		p->generations = 100;
-		p->popsize = 32;
-		p->problemDimension = 512;
-		p->nclones = 10;
-		p->randomInsertion = 0;
+		p->popsize = 1024;
+		p->problemDimension = 1024;
+		p->nclones = 2;
+		p->randomInsertion = 1;
 		p->mutationFactor = 5.0;
-		p->upperLim = 1.0f;
-		p->lowerLim = -1.0f;
-		p->parallel = false;
+		p->parallel = true;
 		p->gpus = 1;
-	}
-	else if(argc == 6){
-		p->generations = atoi(argv[1]);
-		p->popsize = atoi(argv[2]);
-		p->problemDimension = atoi(argv[3]);
-		p->parallel = atoi(argv[4]);
-		p->nclones = 10;
-		p->randomInsertion = 0;
-		p->mutationFactor = 8.5;
-		p->upperLim = 1.0f;
-		p->lowerLim = -1.0f;
-		p->gpus = atoi(argv[5]);
+		p->cpus = 0;
+		p->gpuRatio = 0;
 	}
 	else{
 
-		if(argc < 11){
-			cout << "Usage: ./clonalg generations popsize problemDimension nclones randomInsertion mutationFactor upperLim lowerLim parallel gpus" << endl;
+		if(argc < 13){
+			cout << "Usage: ./clonalg generations popsize optimizationProblem problemDimension bitsPerDimension nclones randomInsertion mutationFactor upperLim lowerLim parallel gpus cpus" << endl;
 			exit(0);
 		}
 
 		p->generations = atoi(argv[1]);
 		p->popsize = atoi(argv[2]);
-		p->problemDimension = atoi(argv[3]);
-		p->nclones = atoi(argv[4]);
-		p->randomInsertion = atoi(argv[5]);
-		p->mutationFactor = atof(argv[6]);
-		p->upperLim = atof(argv[7]);
-		p->lowerLim = atof(argv[8]);
-		p->parallel = atoi(argv[9]);
-		p->gpus = atoi(argv[10]);
-
+		p->optimizationProblem = atoi(argv[3]);
+		p->problemDimension = atoi(argv[4]);
+		p->bitsPerDimension = atoi(argv[5]);
+		p->nclones = atoi(argv[6]);
+		p->randomInsertion = atoi(argv[7]);
+		p->mutationFactor = atof(argv[8]);
+		p->upperLim = atof(argv[9]);
+		p->lowerLim = atof(argv[10]);
+		p->parallel = atoi(argv[11]);
+		p->gpus = atoi(argv[12]);
+		p->cpus = atoi(argv[13]);
 	}
 }

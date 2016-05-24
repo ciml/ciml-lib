@@ -15,20 +15,24 @@ using namespace cl;
 class ClonalgCL: public BaseClonalg {
 public:
 	ClonalgCL(int generations,
-				 int popsize,
-				 int dimensions,
-				 int bitsperdimension,
-				 int bitsperparameter,
-				 float mutationfactor,
-				 float cloningfactor,
-				 int numclones,
-				 int randominsertion,
-				 float upperlim,
-				 float lowerlim,
-				 int gpucount);
+			 int popsize,
+			 int optimizationProblem,
+			 int dimensions,
+			 int bitsperdimension,
+			 int bitsperparameter,
+			 float mutationfactor,
+			 float cloningfactor,
+			 int numclones,
+			 int randominsertion,
+			 float upperlim,
+			 float lowerlim,
+			 int gpucount,
+			 int cpucount,
+			 float gpuratio);
 
 	ClonalgCL(int generations,
 					 int popsize,
+					 int optimizationProblem,
 					 int dimensions,
 					 int bitsperdimension,
 					 int bitsperparameter,
@@ -66,6 +70,12 @@ protected:
 				*fitnessNormBuffer,
 				*fitnessCloneBuffer;
 
+	// Indicates how many individuals will be evolved within each island
+	int *m_pop_size_per_queue;
+
+	static const int m_workGroupSize_hypermutation = 128;
+
+
 
 	/*vector<Buffer> popBuffer,
 				   seedBuffer,
@@ -75,18 +85,21 @@ protected:
 				   fitnessNormBuffer,
 				   fitnessCloneBuffer;*/
 
-	CommandQueue queue;
-	CommandQueue *GPUQueues,
-				 *CPUQueues;
-	int GPUCount,
-		CPUCount;
+	CommandQueue m_queue;
+	CommandQueue *m_gpu_queues,
+				 *m_cpu_queues;
+	int m_gpu_count,
+		m_cpu_count;
+
+	// GPU computing ratio (in respect to CPU)
+	float m_gpu_ratio;
 
 	t_stats *m_stats;
 
 	void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm, int threadID);
 	inline void EvaluatePop(unsigned * pop, float * fitness, int threadID);
 	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm, int threadID);
-	void RandomInsertion(unsigned * pop, float * fitness);
+	void RandomInsertion(unsigned * pop, float * fitness, int threadID);
 	void CalculateAffinity(unsigned * pop, float * fitness, float * fitnessNorm, int threadID);
 	void FindBestAndWorst(int threadID);
 	void Statistics(unsigned * pop, float * fitness, int iterationNumber);
@@ -99,8 +112,9 @@ protected:
 	float Evaluate(unsigned * individual);
 	void Mutate(unsigned int * clone, float mutationRate);
 	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm);
-	//void RandomInsertion(unsigned int * pop, float *fitness) ;
+	//void RandomInsertion(unsigned int * pop, float *fitness);
 
+	Program CreateProgramFromSouce(Context context, vector<Device> devices, const char* fileName);
 };
 
 #endif /* CLONALGCL_H_ */

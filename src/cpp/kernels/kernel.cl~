@@ -326,7 +326,7 @@ __kernel void iteracaoClonalg(__global unsigned *pop,
 		    
             #ifdef ONEMAX
 
-		        __local int partial[128];
+		        __local int partial[64];
 			    partial[lid] = 0;
 			    int idx, m;
 			    unsigned aux, shift;
@@ -359,7 +359,7 @@ __kernel void iteracaoClonalg(__global unsigned *pop,
 
             #ifndef ONEMAX
 				
-			    __local float partial[128];
+			    __local float partial[64];
 			    __local float phenotype[1024];
 			
 			    partial[lid] = 0;		

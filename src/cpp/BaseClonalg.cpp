@@ -2,6 +2,7 @@
 
 BaseClonalg::BaseClonalg(int generations,
 				 int popsize,
+				 int optimizationProblem,
 				 int dimensions,
 				 int bitsperdimension,
 				 int bitsperparameter,
@@ -14,6 +15,7 @@ BaseClonalg::BaseClonalg(int generations,
 {
 	m_generations = generations;
 	m_popsize = popsize;
+	m_optimizationProblem = optimizationProblem;
 	m_dimensions = dimensions;
 	m_bitsperdimension = bitsperdimension;
 	m_bitsperparameter = bitsperparameter;
@@ -27,8 +29,33 @@ BaseClonalg::BaseClonalg(int generations,
 	m_cromLen = m_dimensions * m_bitsperdimension;
 	m_realLen = ceil(m_cromLen/BITS_PER_WORD);
 
-	//TODO: Factory class for creating the objective function 
-	m_objective = new OneMaxProblem(m_dimensions);
+#ifdef VERBOSE
+	cout << "m_upperlim: " << m_upperlim << endl;
+	cout << "m_lowerlim: " << m_lowerlim << endl;
+	cout << "m_dimensions: " << m_dimensions << endl;
+	cout << "m_bitsperdimension: " << m_bitsperdimension << endl;
+	cout << "m_cromLen len: " << m_cromLen << endl;
+	cout << "Real len: " << m_realLen << endl;
+#endif
+
+	//TODO: Factory class for creating the objective function evaluator
+
+	//cout <<"Optimiztion problem: " << m_optimizationProblem << endl;
+
+	switch (m_optimizationProblem) {
+		case 1:
+			m_objective = new OneMaxProblem(m_dimensions);
+			break;
+		case 2:
+			m_objective = new ElipsoidalObjectiveFunction(m_dimensions);
+			break;
+		case 3:
+			m_objective = new RosenbrockObjectiveFunction(m_dimensions);
+			break;
+		default:
+			m_objective = new OneMaxProblem(m_dimensions);
+			break;
+	}
 
 #ifdef verbose
 	cout << "------------------------------------------------" << endl;
@@ -83,18 +110,15 @@ void BaseClonalg::Decode(unsigned int *pop, int id, int *v)
 
 */
 
-void BaseClonalg::Decode(unsigned int *individual, int *v)
-{
-	int count=0;
 
-	for(int i=0; i < m_realLen; i++){
+int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end){
 
-		unsigned val = individual[i];
+    int i, n=1, decimal=0;
 
-		for(int j=0; j < BITS_PER_WORD; j++){
-			v[count++] = (val & ( 1 << j)) != 0;
-		}
-	}
+    for(i=end-1; i>=begin; i--, n=n<<1){
+    	decimal += n*binary[i];
+    }
+    return decimal;
 }
 
 
@@ -126,7 +150,6 @@ void BaseClonalg::PrintPop(){
 
 			//unsigned val = m_pop[m_realLen*i + j];
 			unsigned val = GetWord(m_pop, i,j);
-
 			for(int k = 0; k < BITS_PER_WORD; k++){
 				cout << BIT_CHECK(val,k)/ pow(2,k);
 			}

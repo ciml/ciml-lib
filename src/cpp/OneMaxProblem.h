@@ -15,6 +15,10 @@ public:
 	OneMaxProblem(int vectorLength);
 	virtual ~OneMaxProblem();
 	float Evaluate(int *v);
+	float EvaluateFloat(float *v);
+	string getName();
+	string getFormula();
+	string getSumLimit();
 };
 
 #endif /* ONEMAXPROBLEM_H_ */

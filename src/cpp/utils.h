@@ -64,7 +64,7 @@ double getRealTime();
 char * leArquivo(char * nomeArquivo);
 
 
-float getTempoDecorrido(cl_event event);
+//float getTempoDecorrido(cl_event event);
 
 
 

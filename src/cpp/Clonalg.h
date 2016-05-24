@@ -8,6 +8,7 @@ class Clonalg : public BaseClonalg{
 public:
 	Clonalg(int generations,
 			 int popsize,
+			 int optimizationProblem,
 			 int dimensions,
 			 int bitsperdimension,
 			 int bitsperparameter,
@@ -41,7 +42,13 @@ protected:
 	void FindBestAndWorst();
 	void Statistics(unsigned * pop, float * fitness, int iterationNumber);
 
-	int *m_v;
+	void Decode(unsigned int * pop, float *v);
+
+	float *m_v;
+	int *m_aux_binary;
+private:
+	unsigned *m_clone,
+			 *m_bestClone;
 };
 
 #endif /* CLONALGC_H_ */

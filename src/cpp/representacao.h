@@ -23,11 +23,13 @@ typedef struct {
 
 typedef struct KernelParameters{
 	int POP_SIZE;
-	unsigned char NCLON;
+	int NCLON;
 	int CHROM_LEN;
 	int REAL_LEN;
 	float MUTATION_FACTOR;
 	float CLONING_FACTOR;
+	int BITS_PER_DIMENSION;
+	int DIMENSIONS;
 	float UPPER_LIM;
 	float LOWER_LIM;
 } KernelParameters;
