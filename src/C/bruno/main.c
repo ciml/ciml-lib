@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_INDIV 50
-#define MUT_PROB 0.5
-#define CROSS_PROB 1
+#define NUM_INDIV 10
+#define MUT_PROB 0.3
+#define CROSS_PROB 0.7
 
 void inicializaPopulacao(float pop[], int tam){
     int i;
@@ -87,6 +87,8 @@ void evolucao(float pop[], float fpop[], int tam){
     float popfilhos[NUM_INDIV];
     float fpopfilhos[NUM_INDIV];
 
+    float j;
+
     int i;
     int indiceAtual = 0;
 
@@ -96,18 +98,19 @@ void evolucao(float pop[], float fpop[], int tam){
     while(indiceAtual < NUM_INDIV){
         indAleatorio1 = rand()%NUM_INDIV;
         indAleatorio2 = rand()%NUM_INDIV;
-        printf("\n%d----%d\n", indAleatorio1, indAleatorio2);
+
         crossOver(pop[indAleatorio1], pop[indAleatorio2], popfilhos, &indiceAtual);
     }
 
-    avaliaFilhos(popfilhos, fpopfilhos, NUM_INDIV);
 
-    indAleatorio1 = rand()%NUM_INDIV;
-
-    float j = (float)(rand())/(float)(RAND_MAX);
-    if(j <= MUT_PROB){
-        mutacao(popfilhos, indAleatorio1);
+    for(i = 0; i < NUM_INDIV; i++){
+        j = (float)(rand())/(float)(RAND_MAX);
+        if(j <= MUT_PROB){
+            mutacao(popfilhos, i);
+        }
     }
+
+    avaliaFilhos(popfilhos, fpopfilhos, NUM_INDIV);
 
     float elitePais = selecionaElite(pop, fpop, tam);
 
@@ -150,11 +153,10 @@ int main()
 
     avaliaIndiv(populacao, fpopulacao, NUM_INDIV, iteracoes);
 
-    while(iteracoes < 50){
+    while(iteracoes < 200){
         evolucao(populacao, fpopulacao, NUM_INDIV);
         avaliaIndiv(populacao, fpopulacao, NUM_INDIV, iteracoes);
         melhor = selecionaElite(populacao, fpopulacao, NUM_INDIV);
-        //passar populaçao corrente (pop) e pegar a nova populaçao de filhos (filhos)
 
         printf("Melhor valor x = %f \n", melhor);
         iteracoes++;
