@@ -8,6 +8,7 @@
 #define __CL_ENABLE_EXCEPTIONS
 #include "CL/cl.h"
 #include "BaseClonalg.h"
+#include "OpenCLUtils.h"
 
 using namespace std;
 using namespace cl;
@@ -47,14 +48,6 @@ public:
 	float Search();
 
 protected:
-
-	/*vector<Kernel> initKernel,
-				   hipermutationKernel,
-				   randomInsertionKernel,
-				   statisticsKernel,
-				   fitnessKernel,
-				   calculateAffinityKernel;*/
-
 	Kernel   *initKernel,
 		     *hipermutationKernel,
 		     *randomInsertionKernel,
@@ -75,15 +68,7 @@ protected:
 
 	static const int m_workGroupSize_hypermutation = 128;
 
-
-
-	/*vector<Buffer> popBuffer,
-				   seedBuffer,
-				   statisticsBuffer,
-				   parameterBuffer,
-				   fitnessBuffer,
-				   fitnessNormBuffer,
-				   fitnessCloneBuffer;*/
+	int host_Seeds[64*16384];
 
 	CommandQueue m_queue;
 	CommandQueue *m_gpu_queues,
@@ -95,6 +80,7 @@ protected:
 	float m_gpu_ratio;
 
 	t_stats *m_stats;
+	OpenCLUtils clUtils;
 
 	void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm, int threadID);
 	inline void EvaluatePop(unsigned * pop, float * fitness, int threadID);
@@ -113,8 +99,6 @@ protected:
 	void Mutate(unsigned int * clone, float mutationRate);
 	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm);
 	//void RandomInsertion(unsigned int * pop, float *fitness);
-
-	Program CreateProgramFromSouce(Context context, vector<Device> devices, const char* fileName);
 };
 
 #endif /* CLONALGCL_H_ */

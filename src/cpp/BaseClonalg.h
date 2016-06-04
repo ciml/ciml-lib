@@ -56,18 +56,10 @@ protected:
 
 	ObjectiveFunction *m_objective;
 
-	/*virtual void InitPopulation(anticorpo ** pop) = 0;
-	virtual void Evaluate(anticorpo * individual) = 0;
-	virtual void Mutate(anticorpo * clone, float mutationRate) = 0;
-	virtual void CloneAndHypermutate(anticorpo * pop) = 0;
-	virtual void RandomInsertion(anticorpo * pop) = 0;
-	virtual void Statistics(anticorpo * pop, int iterationNumber) = 0;*/
-
 	virtual void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm) = 0;
 	virtual float Evaluate(unsigned * individual) = 0;
 	virtual void Mutate(unsigned int * clone, float mutationRate) = 0;
 	virtual void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm) = 0;
-	//virtual void RandomInsertion(unsigned int * pop, float *fitness) = 0;
 	virtual void Statistics(unsigned * pop, float * fitness, int iterationNumber) = 0;
 
 	/* Returns the jth word from ith individual*/

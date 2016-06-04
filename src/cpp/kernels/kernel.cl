@@ -23,7 +23,7 @@ __kernel void initPopulation(__global unsigned *pop,
 	    
 	    for(uint j=0; j < BITS_PER_WORD; j++){
 	        
-        	word = word << 1;      	
+        	word = word << 1;     	
   			
   			if(u_rand(&seed) <= 0.5){
   				word = word | 1;
@@ -48,7 +48,7 @@ int BinaryToDecimal(__local int *binary, int begin, int end, __local float *part
 
 float EvaluateIndividual_local(__local unsigned *individual, int lid, int localSize, __constant struct KernelParameters* parameters)
 {
-    __local float partial[128];		
+    __local float partial[128];
     partial[lid] = 0;
 
     int i,j;
@@ -188,9 +188,9 @@ __kernel void Fitness(__global unsigned *pop,
 		    phenotype[k] = 0;
 
 		    int index = (k * parameters->BITS_PER_DIMENSION) / BITS_PER_WORD;
-		    int val = pop[gid*parameters->REAL_LEN + index];		  
+		    int val   = pop[gid*parameters->REAL_LEN + index];		  
 		    int start = k * parameters->BITS_PER_DIMENSION;
-		    int stop = start + parameters->BITS_PER_DIMENSION;
+		    int stop  = start + parameters->BITS_PER_DIMENSION;
 		    float bitpow;
 
 		    int tp = val >> start;
@@ -604,8 +604,7 @@ __kernel void randomInsertion(__global unsigned int *pop,
     D_seeds[tid] = seed;
 
     barrier(CLK_LOCAL_MEM_FENCE);
-    //avaliaAnticorpo_l(&novo, 0, lid, localSize);    
-    
+    //avaliaAnticorpo_l(&novo, 0, lid, localSize);
     
     fitness[posicao[0]] = EvaluateIndividual_local(new, lid, localSize, p);    
     if(lid==0)
