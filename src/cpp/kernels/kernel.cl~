@@ -1,14 +1,8 @@
-/*#define ONEMAX(idx, phenotype) phenotype[idx]
-#define ELIPSOIDAL(idx, phenotype) idx*phenotype[idx]*phenotype[idx]
-#define OBJECTIVE_FUNCTION ONEMAX
-*/
-
-#include "./src/parametros.h"
-#include "./src/representacao.h"
+#include "./src/parameters.h"
+#include "./src/representation.h"
 #include "./src/kernels/utils.cl"
 
 //#pragma OPENCL EXTENSION cl_khr_fp64: enable
-typedef anticorpo data_t;
 
 __kernel void initPopulation(__global unsigned *pop, 
 						     __global int * D_seeds, 
@@ -604,8 +598,7 @@ __kernel void randomInsertion(__global unsigned int *pop,
     D_seeds[tid] = seed;
 
     barrier(CLK_LOCAL_MEM_FENCE);
-    //avaliaAnticorpo_l(&novo, 0, lid, localSize);    
-    
+    //avaliaAnticorpo_l(&novo, 0, lid, localSize);
     
     fitness[posicao[0]] = EvaluateIndividual_local(new, lid, localSize, p);    
     if(lid==0)

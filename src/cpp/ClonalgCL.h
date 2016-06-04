@@ -20,7 +20,6 @@ public:
 			 int optimizationProblem,
 			 int dimensions,
 			 int bitsperdimension,
-			 int bitsperparameter,
 			 float mutationfactor,
 			 float cloningfactor,
 			 int numclones,
@@ -36,7 +35,6 @@ public:
 					 int optimizationProblem,
 					 int dimensions,
 					 int bitsperdimension,
-					 int bitsperparameter,
 					 float mutationfactor,
 					 float cloningfactor,
 					 int numclones,
@@ -82,23 +80,21 @@ protected:
 	t_stats *m_stats;
 	OpenCLUtils clUtils;
 
-	void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm, int threadID);
-	inline void EvaluatePop(unsigned * pop, float * fitness, int threadID);
-	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm, int threadID);
-	void RandomInsertion(unsigned * pop, float * fitness, int threadID);
-	void CalculateAffinity(unsigned * pop, float * fitness, float * fitnessNorm, int threadID);
-	void FindBestAndWorst(int threadID);
-	void Statistics(unsigned * pop, float * fitness, int iterationNumber);
 	void OpenCLInit();
+	void InitPopulation(unsigned **pop, float **fitness, float **fitnessNorm, int threadID);
+	inline void EvaluatePop(unsigned *pop, float *fitness, int threadID);
+	void CloneAndHypermutate(unsigned *pop, float *fitness, float *fitnessNorm, int threadID);
+	void RandomInsertion(unsigned *pop, float *fitness, int threadID);
+	void CalculateAffinity(unsigned *pop, float *fitness, float *fitnessNorm, int threadID);
+	void FindBestAndWorst(int threadID);
+	void Statistics(unsigned *pop, float *fitness, int iterationNumber);
 	void LoadSeeds(int threadID);
 	void LoadParameters(int threadID);
-	double getElapsedTime(Event evt);
 
-	void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm);
-	float Evaluate(unsigned * individual);
-	void Mutate(unsigned int * clone, float mutationRate);
-	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm);
-	//void RandomInsertion(unsigned int * pop, float *fitness);
+	void InitPopulation(unsigned **pop, float **fitness, float **fitnessNorm);
+	float Evaluate(unsigned *individual);
+	void Mutate(unsigned int *clone, float mutationRate);
+	void CloneAndHypermutate(unsigned *pop, float *fitness, float *fitnessNorm);
 };
 
 #endif /* CLONALGCL_H_ */

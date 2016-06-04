@@ -143,3 +143,12 @@ void OpenCLUtils::ShowDeviceInfo(Device device)
 	std::cout << "Device Local Memory: " << device.getInfo<CL_DEVICE_LOCAL_MEM_SIZE>() << std::endl;
 	std::cout << "Device Available: " << device.getInfo< CL_DEVICE_AVAILABLE>() << std::endl;
 }
+
+
+double OpenCLUtils::getElapsedTime(Event evt){
+
+	double elapsed = evt.getProfilingInfo<CL_PROFILING_COMMAND_END>() -
+	            evt.getProfilingInfo<CL_PROFILING_COMMAND_START>();
+
+    return (double)(elapsed)/1000000000.0;
+}

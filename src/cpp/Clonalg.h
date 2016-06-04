@@ -11,7 +11,6 @@ public:
 			 int optimizationProblem,
 			 int dimensions,
 			 int bitsperdimension,
-			 int bitsperparameter,
 			 float mutationfactor,
 			 float cloningfactor,
 			 int numclones,

@@ -7,7 +7,6 @@ Clonalg::Clonalg(int generations,
 				 int optimizationProblem,
 				 int dimensions,
 				 int bitsperdimension,
-				 int bitsperparameter,
 				 float mutationfactor,
 				 float cloningfactor,
 				 int numclones,
@@ -19,7 +18,6 @@ Clonalg::Clonalg(int generations,
 						 optimizationProblem,
 						 dimensions,
 						 bitsperdimension,
-						 bitsperparameter,
 						 mutationfactor,
 						 cloningfactor,
 						 numclones,
@@ -76,8 +74,6 @@ void Clonalg::InitPopulation(unsigned ** population, float ** fitness, float ** 
 /*
  RealValue = infLimit + (supLimit - infLimit)/(2^k - 1) * IntegerValue
  */
-
-
 void Clonalg::Decode(unsigned int *individual, float *v)
 {
 
@@ -208,7 +204,7 @@ void Clonalg::CalculateAffinity(unsigned *pop, float *fitness, float *fitnessNor
 		}
 		else{
 			float n = (fitness[i]- min) / (max-min);
-			n = (MAXIMIZACAO == 0) ? 1-n : n;
+			n = 1-n;
 			fitnessNorm[i] = n;
 		}
 	}

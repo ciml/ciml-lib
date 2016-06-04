@@ -30,6 +30,7 @@ public:
 
 	int GetBinarySize(const char *filename, char* &buffer);
 	void ShowDeviceInfo(Device device);
+	double getElapsedTime(Event evt);
 };
 
 #endif /* OPENCLUTILS_H_ */

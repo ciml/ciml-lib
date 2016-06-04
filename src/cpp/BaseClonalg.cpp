@@ -5,7 +5,6 @@ BaseClonalg::BaseClonalg(int generations,
 				 int optimizationProblem,
 				 int dimensions,
 				 int bitsperdimension,
-				 int bitsperparameter,
 				 float mutationfactor,
 				 float cloningfactor,
 				 int numclones,
@@ -18,7 +17,6 @@ BaseClonalg::BaseClonalg(int generations,
 	m_optimizationProblem = optimizationProblem;
 	m_dimensions = dimensions;
 	m_bitsperdimension = bitsperdimension;
-	m_bitsperparameter = bitsperparameter;
 	m_mutationfactor = mutationfactor;
 	m_cloningfactor  = cloningfactor;
 	m_numclones = numclones;
@@ -29,35 +27,11 @@ BaseClonalg::BaseClonalg(int generations,
 	m_cromLen = m_dimensions * m_bitsperdimension;
 	m_realLen = ceil(m_cromLen/BITS_PER_WORD);
 
+	m_objective = ProblemFactory::CreateProblem(m_optimizationProblem, m_dimensions);
+
+	m_pop = NULL;
+
 #ifdef VERBOSE
-	cout << "m_upperlim: " << m_upperlim << endl;
-	cout << "m_lowerlim: " << m_lowerlim << endl;
-	cout << "m_dimensions: " << m_dimensions << endl;
-	cout << "m_bitsperdimension: " << m_bitsperdimension << endl;
-	cout << "m_cromLen len: " << m_cromLen << endl;
-	cout << "Real len: " << m_realLen << endl;
-#endif
-
-	//TODO: Factory class for creating the objective function evaluator
-
-	//cout <<"Optimiztion problem: " << m_optimizationProblem << endl;
-
-	switch (m_optimizationProblem) {
-		case 1:
-			m_objective = new OneMaxProblem(m_dimensions);
-			break;
-		case 2:
-			m_objective = new ElipsoidalObjectiveFunction(m_dimensions);
-			break;
-		case 3:
-			m_objective = new RosenbrockObjectiveFunction(m_dimensions);
-			break;
-		default:
-			m_objective = new OneMaxProblem(m_dimensions);
-			break;
-	}
-
-#ifdef verbose
 	cout << "------------------------------------------------" << endl;
 	cout << "Parameters:" << endl;
 	cout << "generations:" << "\t" << m_generations  << endl;
@@ -110,7 +84,6 @@ void BaseClonalg::Decode(unsigned int *pop, int id, int *v)
 
 */
 
-
 int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end){
 
     int i, n=1, decimal=0;
@@ -121,24 +94,7 @@ int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end){
     return decimal;
 }
 
-
-int BaseClonalg::CompareIndividuals(const void* a, const void* b){
-    anticorpo* a1 = (anticorpo*)a;
-    anticorpo* a2 = (anticorpo*)b;
-
-    return a1->afinidade < a2->afinidade;
-}
-
-/*void BaseClonalg::Sort(anticorpo *pop){
-	//vector<anticorpo> myvector (pop, pop+8);
-	//sort (pop.begin(), pop.end(), CompareIndividuals);
-	//qsort(pop, this->m_popsize, sizeof(anticorpo), (int(*)(const void*, const void*))BaseClonalg::CompareIndividuals);
-}*/
-
 void BaseClonalg::Sort(unsigned int *pop){
-	//vector<anticorpo> myvector (pop, pop+8);
-	//sort (pop.begin(), pop.end(), CompareIndividuals);
-	//qsort(pop, this->m_popsize, sizeof(anticorpo), (int(*)(const void*, const void*))BaseClonalg::CompareIndividuals);
 }
 
 void BaseClonalg::PrintPop(){
@@ -148,7 +104,6 @@ void BaseClonalg::PrintPop(){
 		cout << "#" << i << ": " << m_fitness[i] << endl;
 		for(int j = 0; j< m_realLen; j++){
 
-			//unsigned val = m_pop[m_realLen*i + j];
 			unsigned val = GetWord(m_pop, i,j);
 			for(int k = 0; k < BITS_PER_WORD; k++){
 				cout << BIT_CHECK(val,k)/ pow(2,k);

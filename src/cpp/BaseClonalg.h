@@ -4,10 +4,8 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-#include "representacao.h"
-#include "OneMaxProblem.h"
-#include "ElipsoidalObjectiveFunction.h"
-#include "RosenbrockObjectiveFunction.h"
+#include "ProblemFactory.h"
+#include "representation.h"
 
 using namespace std;
 
@@ -19,7 +17,6 @@ public:
 			int optimizationProblem,
 			int dimensions,
 			int bitsperdimension,
-			int bitsperparameter,
 			float mutationfactor,
 			float cloningfactor,
 			int numclones,
@@ -47,8 +44,6 @@ protected:
 	int m_cromLen;
 	int m_realLen;
 
-
-	//anticorpo * m_pop;
 	unsigned * m_pop;
 	float * m_fitness;
 	float * m_fitnessNorm;

@@ -3,7 +3,7 @@
 #include "Clonalg.h"
 #include "ClonalgCL.h"
 #include <sys/time.h>
-#include "utils.h"
+#include "TimeUtils.h"
 
 typedef struct{
 	int generations,
@@ -24,43 +24,36 @@ typedef struct{
 
 void GetArgs(int argc, char **argv, t_parameters * parameters);
 
-/*double getRealTime()
-{
-    struct timeval tv;
-    gettimeofday(&tv,0);
-    return (double)tv.tv_sec + 1.0e-6*(double)tv.tv_usec;
-}*/
-
 int main(int argc, char **argv) {
 
 	t_parameters p;
+	BaseClonalg *clonalg;
 
 	GetArgs(argc, argv, &p);
 
-	double start = getRealTime();
+	double start = TimeUtils::getRealTime();
 	srand(time(NULL));
 
-   if(!p.parallel){
+	if(!p.parallel){
 
-        BaseClonalg *clonalg = new Clonalg(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
-        								  p.bitsPerDimension, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim);
-        clonalg->Search();
+		clonalg = new Clonalg(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
+										  p.bitsPerDimension, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim);
+		clonalg->Search();
 
-    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" <<  p.problemDimension <<"\t0\t" << getRealTime() - start << endl;
+		cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" <<  p.problemDimension <<"\t0\t" << TimeUtils::getRealTime() - start << endl;
+	}
+	else{
+		clonalg = new ClonalgCL(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
+			p.bitsPerDimension, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim, p.gpus, p.cpus, p.gpuRatio);
 
-    	delete clonalg;
-    }
-   else{
-        BaseClonalg *clonalgCL = new ClonalgCL(p.generations, p.popsize, p.optimizationProblem, p.problemDimension,
-        		p.bitsPerDimension, 8, p.mutationFactor, 0.1, p.nclones,p.randomInsertion, p.upperLim, p.lowerLim, p.gpus, p.cpus, p.gpuRatio);
+		double elapsed = clonalg->Search();
+		cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" << p.problemDimension <<"\t" << p.gpus << "\t" << TimeUtils::getRealTime() - start << "\t" <<  elapsed<< endl;
 
-    	double elapsed = clonalgCL->Search();
-    	cout << p.parallel << "\t"<<p.popsize <<"\t" << p.optimizationProblem << "\t" << p.problemDimension <<"\t" << p.gpus << "\t" << getRealTime() - start << "\t" <<  elapsed<< endl;
-
-    	delete clonalgCL;
 	}
 
-	return EXIT_SUCCESS;
+   delete clonalg;
+
+   return EXIT_SUCCESS;
 }
 
 void GetArgs(int argc, char **argv, t_parameters * p){

@@ -8,8 +8,8 @@
 #ifndef OBJECTIVEFUNCTION_H_
 #define OBJECTIVEFUNCTION_H_
 
-#include "representacao.h"
 #include <string>
+#include "representation.h"
 
 using namespace std;
 

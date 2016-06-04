@@ -3,6 +3,7 @@
 #include <math.h>
 #include <omp.h>
 #include <string>
+#include "TimeUtils.h"
 
 using namespace std;
 
@@ -11,35 +12,6 @@ ClonalgCL::ClonalgCL(int generations,
 				 int optimizationProblem,
 				 int dimensions,
 				 int bitsperdimension,
-				 int bitsperparameter,
-				 float mutationfactor,
-				 float cloningfactor,
-				 int numclones,
-				 int randominsertion,
-				 float upperlim,
-				 float lowerlim)
-				 : BaseClonalg(generations,
-						 popsize,
-						 optimizationProblem,
-						 dimensions,
-						 bitsperdimension,
-						 bitsperparameter,
-						 mutationfactor,
-						 cloningfactor,
-						 numclones,
-						 randominsertion,
-						 upperlim,
-						 lowerlim
-						 )
-
-{}
-
-ClonalgCL::ClonalgCL(int generations,
-				 int popsize,
-				 int optimizationProblem,
-				 int dimensions,
-				 int bitsperdimension,
-				 int bitsperparameter,
 				 float mutationfactor,
 				 float cloningfactor,
 				 int numclones,
@@ -54,7 +26,6 @@ ClonalgCL::ClonalgCL(int generations,
 						 optimizationProblem,
 						 dimensions,
 						 bitsperdimension,
-						 bitsperparameter,
 						 mutationfactor,
 						 cloningfactor,
 						 numclones,
@@ -110,7 +81,7 @@ ClonalgCL::~ClonalgCL() {
 float ClonalgCL::Search(){
 
 	try{
-		double start = getRealTime();
+		double start = TimeUtils::getRealTime();
 
 		omp_set_num_threads(m_gpu_count + m_cpu_count);
 
@@ -150,7 +121,7 @@ float ClonalgCL::Search(){
 			m_gpu_queues[threadID].finish();
 		}
 
-		double elapsedTime =  getRealTime()-start;
+		double elapsedTime =  TimeUtils::getRealTime()-start;
 
 		Statistics(m_pop, m_fitness, m_generations);
 
@@ -284,7 +255,7 @@ void ClonalgCL::OpenCLInit(){
 				//cout << "m_pop_size_per_queue[" << i << "]:" << m_pop_size_per_queue[i] << endl;
 			}
 
-			// Make the kernels
+			// Create kernels
 			initKernel[i] = Kernel(programs[i], "initPopulation");
 			hipermutationKernel[i] = Kernel(programs[i], "iteracaoClonalg");
 			fitnessKernel[i] = Kernel(programs[i], "Fitness");
@@ -378,7 +349,6 @@ void ClonalgCL::CloneAndHypermutate(unsigned * pop, float * fitness, float * fit
 		NDRange global(m_pop_size_per_queue[threadID] * local[0]);
 		//queue.enqueueNDRangeKernel(hipermutationKernel[i], NullRange, global, local, NULL, &evt);
 		m_gpu_queues[threadID].enqueueNDRangeKernel(hipermutationKernel[threadID], NullRange, global, local, NULL, &evt);
-
 	}
 }
 
@@ -502,14 +472,6 @@ void ClonalgCL::FindBestAndWorst(int threadID)
 		cout << "Error in statisticsBuffer." << endl;
 		exit(1);
 	}
-}
-
-double ClonalgCL::getElapsedTime(Event evt){
-
-	double elapsed = evt.getProfilingInfo<CL_PROFILING_COMMAND_END>() -
-	            evt.getProfilingInfo<CL_PROFILING_COMMAND_START>();
-
-    return (double)(elapsed)/1000000000.0;
 }
 
 float ClonalgCL::Evaluate(unsigned  * individual)

@@ -1,14 +1,8 @@
-/*#define ONEMAX(idx, phenotype) phenotype[idx]
-#define ELIPSOIDAL(idx, phenotype) idx*phenotype[idx]*phenotype[idx]
-#define OBJECTIVE_FUNCTION ONEMAX
-*/
-
-#include "./src/parametros.h"
-#include "./src/representacao.h"
+#include "./src/parameters.h"
+#include "./src/representation.h"
 #include "./src/kernels/utils.cl"
 
 //#pragma OPENCL EXTENSION cl_khr_fp64: enable
-typedef anticorpo data_t;
 
 __kernel void initPopulation(__global unsigned *pop, 
 						     __global int * D_seeds, 
@@ -254,7 +248,7 @@ __kernel void CalculateAffinity(__global float * fitness,
 		}
 		else{
 			float n = (fitness[tid]- min) / (max-min);
-			n = (MAXIMIZACAO == 0) ? 1.0f-n : n;
+			n = 1.0f-n;
 			fitnessNorm[tid] = n;
 		}	
 	}
