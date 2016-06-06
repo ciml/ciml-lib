@@ -22,32 +22,22 @@ public:
 	virtual ~Clonalg();
 
 protected:
-	/*void InitPopulation(anticorpo ** pop);
-	void Evaluate(anticorpo * individual);
-	inline void EvaluatePop(anticorpo * individual);
-	void Mutate(anticorpo * clone, float mutationRate);
-	void CloneAndHypermutate(anticorpo * pop);
-	void RandomInsertion(anticorpo * pop);
-	void CalculateAffinity(anticorpo * pop);
-	void Statistics(anticorpo * pop, int iterationNumber);*/
-
-	void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm);
-	float Evaluate(unsigned * individual);
-	inline void EvaluatePop(unsigned * pop);
+	void InitPopulation(unsigned ** pop, float **fitness, float **fitnessNorm);
+	float Evaluate(unsigned *individual);
+	inline void EvaluatePop(unsigned *pop);
 	void Mutate(unsigned * clone, float mutationRate);
-	void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm);
-	void RandomInsertion(unsigned * pop, float * fitness);
-	void CalculateAffinity(unsigned * pop, float * fitness, float * fitnessNorm);
+	void CloneAndHypermutate(unsigned *pop, float * fitness, float *fitnessNorm);
+	void RandomInsertion(unsigned *pop, float *fitness);
+	void CalculateAffinity(unsigned *pop, float *fitness, float *fitnessNorm);
 	void FindBestAndWorst();
-	void Statistics(unsigned * pop, float * fitness, int iterationNumber);
+	void Statistics(unsigned *pop, float *fitness, int iterationNumber);
+	void Decode(unsigned int *pop, float *v);
 
-	void Decode(unsigned int * pop, float *v);
-
-	float *m_v;
-	int *m_aux_binary;
 private:
 	unsigned *m_clone,
 			 *m_bestClone;
+	float *m_v;
+	int *m_aux_binary;
 };
 
 #endif /* CLONALGC_H_ */

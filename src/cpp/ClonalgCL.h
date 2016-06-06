@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <fstream>
-//#include <vector>
 #define __NO_STD_VECTOR // Use cl::vector instead of STL version
 #define __CL_ENABLE_EXCEPTIONS
 #include "CL/cl.h"
@@ -30,18 +29,6 @@ public:
 			 int cpucount,
 			 float gpuratio);
 
-	ClonalgCL(int generations,
-					 int popsize,
-					 int optimizationProblem,
-					 int dimensions,
-					 int bitsperdimension,
-					 float mutationfactor,
-					 float cloningfactor,
-					 int numclones,
-					 int randominsertion,
-					 float upperlim,
-					 float lowerlim);
-
 	virtual ~ClonalgCL();
 	float Search();
 
@@ -61,14 +48,13 @@ protected:
 				*fitnessNormBuffer,
 				*fitnessCloneBuffer;
 
-	// Indicates how many individuals will be evolved within each island
+	// Stores how many individuals will be evolved within each island
 	int *m_pop_size_per_queue;
 
 	static const int m_workGroupSize_hypermutation = 128;
 
 	int host_Seeds[64*16384];
 
-	CommandQueue m_queue;
 	CommandQueue *m_gpu_queues,
 				 *m_cpu_queues;
 	int m_gpu_count,

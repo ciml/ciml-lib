@@ -240,8 +240,8 @@ __kernel void CalculateAffinity(__global float * fitness,
 	
 	if(tid < parameters->POP_SIZE){	
 	
-		float max = est->afinidadeMelhor,
-			  min = est->afinidadePior;
+		float max = est->affinityBest,
+			  min = est->affinityWorst;
 			  
 	  	if(max-min == 0.0){
 			fitnessNorm[tid] = 0.0f;
@@ -255,7 +255,7 @@ __kernel void CalculateAffinity(__global float * fitness,
 }
 
 
-__kernel void iteracaoClonalg(__global unsigned *pop, 
+__kernel void cloneAndHypermutation(__global unsigned *pop, 
 							  __global float * fitness,
   							  __global float * fitnessNorm,
                               __global int * D_seeds,
@@ -292,14 +292,14 @@ __kernel void iteracaoClonalg(__global unsigned *pop,
 		
 		for(uint i = 0; i < parameters->NCLON; i++) {
 
-			//Clonagem
+			//Clone
 			for(uint k = lid; k < REAL_LEN; k+=localSize){
 			 	clone[k] = pop[gid*REAL_LEN + k];
 			}	
 			
 			barrier(CLK_LOCAL_MEM_FENCE);
 			
-		    //Mutação
+		    //Mutation
 		    for(j = lid; j < REAL_LEN; j+=localSize){
 		          
 		        word = clone[j];
@@ -316,7 +316,7 @@ __kernel void iteracaoClonalg(__global unsigned *pop,
 		    barrier(CLK_LOCAL_MEM_FENCE);
 		    
 		    //------------------------------------------------------------------
-		    //clone evaluation		    
+		    //Clone evaluation		    
 		    
             #ifdef ONEMAX
 
@@ -459,21 +459,20 @@ __kernel void StatisticsReduction1(__global unsigned *pop,
         
 	int P_POP_SIZE = parameters->POP_SIZE;
      
-	__local float afinidades[64];
-	__local int posicao[64];
+	__local float affinities[64];
+	__local int index[64];
 			
-	afinidades[lid] = fitness[lid];
-	posicao[lid] = lid;
+	affinities[lid] = fitness[lid];
+	index[lid] = lid;
 	   
-	 //Encontra o anticorpo com a maior afinidade
+	 //Looks for the best antibody
 	 if(gid==1){      
 		
-		//Itera por blocos de tamanho localSize (uma comparação por work-item)
 		for (int i=localSize+lid; i < P_POP_SIZE; i+=localSize)
 		{
-			if(fitness[i] > afinidades[lid]){
-				afinidades[lid] = fitness[i];
-				posicao[lid] = i;
+			if(fitness[i] > affinities[lid]){
+				affinities[lid] = fitness[i];
+				index[lid] = i;
 			}
 		}
 		
@@ -484,50 +483,48 @@ __kernel void StatisticsReduction1(__global unsigned *pop,
 			barrier(CLK_LOCAL_MEM_FENCE);
 			if(lid < s && lid+s < localSize){	 
 				//int value = posicao[lid+s];
-				if(afinidades[lid+s]>afinidades[lid]){
-					afinidades[lid] = afinidades[lid+s];
-					posicao[lid] = posicao[lid+s];        	    
+				if(affinities[lid+s]>affinities[lid]){
+					affinities[lid] = affinities[lid+s];
+					index[lid] = index[lid+s];        	    
 				}
 			}
 		}    
 		barrier(CLK_LOCAL_MEM_FENCE);
 		
 		if(lid==0){
-			est[0].indiceMelhor = posicao[0];
-			est[0].afinidadeMelhor = afinidades[0];
+			est[0].indexBest = index[0];
+			est[0].affinityBest = affinities[0];
 		}
 		
 	 }
-	 //Encontra o anticorpo com a menor afinidade
+	 //Looks for the worst antibody
 	 else{
-	 
-		//Itera por blocos de tamanho localSize (uma comparação por work-item)
 		for (int i=localSize+lid; i< P_POP_SIZE; i+=localSize)
 		{
-			if(fitness[i] < afinidades[lid]){
-				afinidades[lid] = fitness[i];
-				posicao[lid] = i;
+			if(fitness[i] < affinities[lid]){
+				affinities[lid] = fitness[i];
+				index[lid] = i;
 			}
 		}     
 		 
-		//Redução 
+		//Local parallel reduction 
 		int next_power_of_2 = localSize; //(int)native_powr( (float)2.0, (int) ceil( log2( (float) localSize ) ) );
 	
 		for(int s = next_power_of_2/2; s>0; s=s>>1){
 			barrier(CLK_LOCAL_MEM_FENCE);
 			if(lid < s && lid+s < localSize){	 
 				//int value = posicao[lid+s];
-				if(afinidades[lid+s] < afinidades[lid]){
-					afinidades[lid] = afinidades[lid+s];
-					posicao[lid] = posicao[lid+s];        	    
+				if(affinities[lid+s] < affinities[lid]){
+					affinities[lid] = affinities[lid+s];
+					index[lid] = index[lid+s];        	    
 				}
 			}
 		}
 		barrier(CLK_LOCAL_MEM_FENCE);
 		
 		if(lid==0){
-			est[0].indicePior = posicao[0];
-			est[0].afinidadePior = afinidades[0];
+			est[0].indexWorst = index[0];
+			est[0].affinityWorst = affinities[0];
 		}
 	 }
 }
@@ -545,32 +542,30 @@ __kernel void randomInsertion(__global unsigned int *pop,
         
     int seed = D_seeds[tid];
     
-    __local float afinidades[256];
-    __local int posicao[256];
+    __local float affinities[256];
+    __local int index[256];
             
     afinidades[lid] = fitness[lid];
-    posicao[lid] = lid;
+    index[lid] = lid;
        
-    //Encontra o anticorpo com a menor afinidade
-    //Itera por blocos de tamanho localSize (uma comparação por work-item)
     for (int i=localSize+lid;i<p->POP_SIZE;i+=localSize)
     {
-        if(fitness[i] < afinidades[lid]){
-            afinidades[lid] = fitness[i];
-            posicao[lid] = i;
+        if(fitness[i] < affinities[lid]){
+            affinities[lid] = fitness[i];
+            index[lid] = i;
         }
     }     
+
+	//local parallel reduction
      
-    //Redução 
     int next_power_of_2 = localSize; //(int)native_powr( (float) 2.0, (int) ceil( log2( (float) localSize ) ) );
 
     for(int s = next_power_of_2/2; s>0; s=s>>1){
         barrier(CLK_LOCAL_MEM_FENCE);
         if(lid < s && lid+s < localSize){	 
-    	    //int value = posicao[lid+s];
-    	    if(afinidades[lid+s] < afinidades[lid]){
-       	        afinidades[lid] = afinidades[lid+s];
-                posicao[lid] = posicao[lid+s];        	    
+    	    if(affinities[lid+s] < affinities[lid]){
+       	        affinities[lid] = affinities[lid+s];
+                index[lid] = index[lid+s];        	    
     	    }
         }
     }
@@ -597,13 +592,12 @@ __kernel void randomInsertion(__global unsigned int *pop,
     
     D_seeds[tid] = seed;
 
-    barrier(CLK_LOCAL_MEM_FENCE);
-    //avaliaAnticorpo_l(&novo, 0, lid, localSize);
-    
-    fitness[posicao[0]] = EvaluateIndividual_local(new, lid, localSize, p);    
-    if(lid==0)
-    for( uint i = 0; i < p->REAL_LEN; i+=1 )
-    {   
-        pop[posicao[0] * p->REAL_LEN + i] = new[i];    
-    }
+    barrier(CLK_LOCAL_MEM_FENCE);    
+    fitness[index[0]] = EvaluateIndividual_local(new, lid, localSize, p);    
+    if(lid==0){
+	    for( uint i = 0; i < p->REAL_LEN; i+=1 )
+    	{   
+    	    pop[index[0] * p->REAL_LEN + i] = new[i];    
+    	}
+	}
 }

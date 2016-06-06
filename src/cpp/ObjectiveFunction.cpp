@@ -7,10 +7,12 @@
 
 #include "ObjectiveFunction.h"
 
-ObjectiveFunction::ObjectiveFunction(int vectorLength) {
+ObjectiveFunction::ObjectiveFunction(int vectorLength)
+{
 	m_vectorLength = vectorLength;
 }
 
-ObjectiveFunction::~ObjectiveFunction() {
+ObjectiveFunction::~ObjectiveFunction()
+{
 	// TODO Auto-generated destructor stub
 }

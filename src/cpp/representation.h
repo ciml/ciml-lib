@@ -1,18 +1,18 @@
-#ifndef ANTICORPO_H_
-#define ANTICORPO_H_
+#ifndef REPRESENTATION_H_
+#define REPRESENTATION_H_
+
+#include "parameters.h"
 
 #define BIT_SET(a,b) ((a) |= (1<<(b)))
 #define BIT_CLEAR(a,b) ((a) &= ~(1<<(b)))
 #define BIT_FLIP(a,b) ((a) ^= (1<<(b)))
 #define BIT_CHECK(a,b) ((a) & (1<<(b)))
 
-#include "parameters.h"
-
 typedef struct {
-    int indiceMelhor,
-        indicePior;
-    float afinidadeMelhor,
-          afinidadePior;
+    int indexBest,
+        indexWorst;
+    float affinityBest,
+          affinityWorst;
 } t_stats;
 
 typedef struct KernelParameters{
@@ -28,4 +28,4 @@ typedef struct KernelParameters{
 	float LOWER_LIM;
 } KernelParameters;
 
-#endif /* ANTICORPO_H_ */
+#endif /* REPRESENTATION_H_ */

@@ -43,30 +43,31 @@ Clonalg::~Clonalg() {
 	delete [] m_bestClone;
 }
 
-void Clonalg::InitPopulation(unsigned ** population, float ** fitness, float ** fitnessNorm){
-
+void Clonalg::InitPopulation(unsigned **population, float **fitness, float **fitnessNorm)
+{
 	unsigned * pop = new unsigned[m_popsize*m_realLen];
 	*fitness = new float[m_popsize];
 	*fitnessNorm = new float[m_popsize];
 
-	for(int i=0; i < m_popsize; i++){
-
+	for(int i=0; i < m_popsize; i++)
+	{
 		(*fitness)[i] = 0.0f;
 		(*fitnessNorm)[i] = 0.0f;
 
-		for(int l=0; l < m_realLen; l++){
-
+		for(int l=0; l < m_realLen; l++)
+		{
 			unsigned val = 0;
 
-			for(int k=0;k<BITS_PER_WORD;k++){
-				if(rand() % 2){
+			for(int k=0;k<BITS_PER_WORD;k++)
+			{
+				if(rand() % 2)
+				{
 					BIT_SET(val, k);
 				}
 			}
 			pop[i*m_realLen+l] = val;
 		}
 	}
-
 	*population = pop;
 }
 
@@ -89,8 +90,8 @@ void Clonalg::Decode(unsigned int *individual, float *v)
 	}*/
 
 
-	for(int k = 0; k < m_dimensions; k++){
-
+	for(int k = 0; k < m_dimensions; k++)
+	{
 		//cout << "k = " << k << endl;
 
 		v[k] = 0;
@@ -105,17 +106,17 @@ void Clonalg::Decode(unsigned int *individual, float *v)
 		int tp = val >> start;
 		int count = 0, mask = 1;
 
-		for(int j = start; j < stop; j++) {
-
+		for(int j = start; j < stop; j++)
+		{
 			// test for current bit 0 or 1
-			if((tp & mask) == 1) {
+			if((tp & mask) == 1)
+			{
 				bitpow = pow(2.0, (double)(count));
 				v[k] += bitpow;
 			}
 			tp = tp >> 1;
 			count++;
 		}
-
 		//cout << v[k] << " -> ";
 
 		v[k] = m_lowerlim + (((m_upperlim - m_lowerlim)/((pow(2.0f, m_bitsperdimension)-1)))*v[k]);
@@ -130,16 +131,17 @@ float Clonalg::Search()
 	EvaluatePop(m_pop);
 	FindBestAndWorst();
 
-	int gen=0;
-	for(gen=0; gen< m_generations; gen++){
 	//while(m_statistics.afinidadeMelhor < -0.00001){
-
-		//Statistics(m_pop, m_fitness, gen);
+	int gen=0;
+	for(gen=0; gen< m_generations; gen++)
+	{
+		Statistics(m_pop, m_fitness, gen);
 
 		CalculateAffinity(m_pop, m_fitness, m_fitnessNorm);
 		CloneAndHypermutate(m_pop, m_fitness, m_fitnessNorm);
 
-		if(m_randominsertion > 0){
+		if(m_randominsertion > 0)
+		{
 			RandomInsertion(m_pop, m_fitness);
 		}
 		FindBestAndWorst();
@@ -154,35 +156,39 @@ void Clonalg::CloneAndHypermutate(unsigned *pop, float *fitness, float * fitness
 	float mutationRate;
 	float fitnessClone, fitnessBestClone;
 
-	for(int i=0; i < m_popsize; i++){
-
-		for(int k = 0; k < m_realLen; k++){
+	for(int i=0; i < m_popsize; i++)
+	{
+		for(int k = 0; k < m_realLen; k++)
+		{
 			m_bestClone[k] = GetWord(pop, i, k);
 		}
 		fitnessBestClone = fitness[i];
 
 		mutationRate = HipermutationRate(fitnessNorm[i]);
 
-		for(int j=0; j < m_numclones; j++){
-
-			for(int k = 0; k < m_realLen; k++){
+		for(int j=0; j < m_numclones; j++)
+		{
+			for(int k = 0; k < m_realLen; k++)
+			{
 				m_clone[k] = GetWord(pop, i, k);
 			}
 
 		    Mutate(m_clone, mutationRate);
 		    fitnessClone = Evaluate(m_clone);
 
-			if(fitnessClone > fitnessBestClone){
+			if(fitnessClone > fitnessBestClone)
+			{
 				fitnessBestClone = fitnessClone;
 
-				for(int k = 0; k < m_realLen; k++){
+				for(int k = 0; k < m_realLen; k++)
+				{
 					m_bestClone[k] = m_clone[k];
 				}
 			}
 		}
 
-		if(fitnessBestClone > fitness[i]){
-
+		if(fitnessBestClone > fitness[i])
+		{
 			for(int k = 0; k < m_realLen; k++)
 			{
 				pop[i*m_realLen+k] = m_bestClone[k];
@@ -194,15 +200,17 @@ void Clonalg::CloneAndHypermutate(unsigned *pop, float *fitness, float * fitness
 
 void Clonalg::CalculateAffinity(unsigned *pop, float *fitness, float *fitnessNorm)
 {
-	float max = m_statistics.afinidadeMelhor,
-		  min = m_statistics.afinidadePior;
+	float max = m_statistics.affinityBest,
+		  min = m_statistics.affinityWorst;
 
-	for(int i=0; i< m_popsize; i++){
-
-		if(max-min == 0){
+	for(int i=0; i< m_popsize; i++)
+	{
+		if(max-min == 0)
+		{
 			fitnessNorm[i] = 0.0f;
 		}
-		else{
+		else
+		{
 			float n = (fitness[i]- min) / (max-min);
 			n = 1-n;
 			fitnessNorm[i] = n;
@@ -215,17 +223,19 @@ void Clonalg::Mutate(unsigned *clone, float mutationRate)
 	int i,j;
 	unsigned val;
 
-	for(i=0; i < m_realLen; i++){
-
+	for(i=0; i < m_realLen; i++)
+	{
 		val = clone[i];
 
 		int count = 0;
 
-		for(j=0; j< BITS_PER_WORD; j++){
-
+		for(j=0; j< BITS_PER_WORD; j++)
+		{
+			//TODO: class for handling math operations
 			float random = (float)rand()/RAND_MAX;
 
-			if(random < mutationRate){
+			if(random < mutationRate)
+			{
 				BIT_FLIP(val, j);
 				count++;
 			}
@@ -242,7 +252,8 @@ float Clonalg::Evaluate(unsigned *individual)
 
 void Clonalg::EvaluatePop(unsigned *pop)
 {
-	for(int i=0; i< m_popsize; i++){
+	for(int i=0; i< m_popsize; i++)
+	{
 		m_fitness[i] = Evaluate(&pop[i*m_realLen]);
 	}
 }
@@ -252,62 +263,54 @@ void Clonalg::RandomInsertion(unsigned *pop, float * fitness)
 	float worstFitness = fitness[0];
 	int index = 0;
 
-	for(int i = 1; i< m_popsize; i++){
-		if(fitness[i] < worstFitness){
+	for(int i = 1; i< m_popsize; i++)
+	{
+		if(fitness[i] < worstFitness)
+		{
 			worstFitness = fitness[i];
 			index = i;
 		}
 	}
 
-	for(int j=0;j< m_realLen; j++){
-
+	for(int j=0;j< m_realLen; j++)
+	{
 		unsigned val = 0;
 
-		for(int k = 0; k < BITS_PER_WORD; k++){
-			if(rand() % 2){
+		for(int k = 0; k < BITS_PER_WORD; k++)
+		{
+			if(rand() % 2)
+			{
 				BIT_SET(val,k);
 			}
 		}
-
 		pop[index*m_realLen+j] = val;
 	}
-
 	fitness[index] = Evaluate(&pop[index]);
 }
 
 void Clonalg::FindBestAndWorst()
 {
-	m_statistics.afinidadeMelhor = m_fitness[0];
-	m_statistics.indiceMelhor = 0;
-	m_statistics.afinidadePior = m_fitness[0];
-	m_statistics.indicePior = 0;
+	m_statistics.affinityBest = m_fitness[0];
+	m_statistics.indexBest = 0;
+	m_statistics.affinityWorst = m_fitness[0];
+	m_statistics.indexWorst = 0;
 
-	for(int i = 1; i< m_popsize; i++){
-		if(m_fitness[i] > m_statistics.afinidadeMelhor){
-			m_statistics.afinidadeMelhor = m_fitness[i];
-			m_statistics.indiceMelhor = i;
+	for(int i = 1; i< m_popsize; i++)
+	{
+		if(m_fitness[i] > m_statistics.affinityBest)
+		{
+			m_statistics.affinityBest = m_fitness[i];
+			m_statistics.indexBest = i;
 		}
-		else if(m_fitness[i] < m_statistics.afinidadePior){
-			m_statistics.afinidadePior = m_fitness[i];
-			m_statistics.indicePior = i;
+		else if(m_fitness[i] < m_statistics.affinityWorst)
+		{
+			m_statistics.affinityWorst = m_fitness[i];
+			m_statistics.indexWorst = i;
 		}
 	}
 }
 
 void Clonalg::Statistics(unsigned *pop, float * fitness, int iterationNumber)
 {
-	cout << "Best #" << iterationNumber << ": " << m_statistics.afinidadeMelhor << endl;
-
-	/*for(j=0; j<TAMANHO_ANTICORPO; j++){
-		printf("%d ", populacao[0].representacao[j]);
-	}
-	printf("\nBinário:\n");
-
-	short binario[TAMANHO_ANTICORPO];
-	grayParaBinario(populacao[0].representacao, binario);
-
-	for(j=0;j<TAMANHO_ANTICORPO;j++){
-		printf("%d ", binario[j]);
-	}
-	printf("\n");*/
+	cout << "Best #" << iterationNumber << ": " << m_statistics.affinityBest << endl;
 }

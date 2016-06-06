@@ -36,7 +36,8 @@ float ElipsoidalObjectiveFunction::EvaluateFloat(float *v)
 	return -sum;
 }
 
-string ElipsoidalObjectiveFunction::getName() {
+string ElipsoidalObjectiveFunction::getName()
+{
 	return "ELIPSOIDAL";
 }
 

@@ -50,7 +50,8 @@ BaseClonalg::BaseClonalg(int generations,
 
 }
 
-BaseClonalg::~BaseClonalg(){
+BaseClonalg::~BaseClonalg()
+{
 	delete m_objective;
 }
 
@@ -84,8 +85,8 @@ void BaseClonalg::Decode(unsigned int *pop, int id, int *v)
 
 */
 
-int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end){
-
+int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end)
+{
     int i, n=1, decimal=0;
 
     for(i=end-1; i>=begin; i--, n=n<<1){
@@ -94,11 +95,12 @@ int  BaseClonalg::BinaryToDecimal(int *binary, int begin, int end){
     return decimal;
 }
 
-void BaseClonalg::Sort(unsigned int *pop){
+void BaseClonalg::Sort(unsigned int *pop)
+{
 }
 
-void BaseClonalg::PrintPop(){
-
+void BaseClonalg::PrintPop()
+{
 	for(int i = 0; i< m_popsize; i++){
 
 		cout << "#" << i << ": " << m_fitness[i] << endl;

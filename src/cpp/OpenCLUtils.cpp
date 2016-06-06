@@ -8,11 +8,13 @@
 #include "OpenCLUtils.h"
 #define __NO_STD_VECTOR // Use cl::vector instead of STL version
 
-OpenCLUtils::OpenCLUtils() {
+OpenCLUtils::OpenCLUtils()
+{
 	// TODO Auto-generated constructor stub
 }
 
-OpenCLUtils::~OpenCLUtils() {
+OpenCLUtils::~OpenCLUtils()
+{
 	// TODO Auto-generated destructor stub
 }
 
@@ -32,19 +34,20 @@ Program OpenCLUtils::CreateProgramFromSource(Context context, vector<Device> dev
 	Program program = Program(context, source);
 
 	// Build program for these specific devices
-	try{
+	try
+	{
 		program.build(devices, compilerOptions.c_str());
 	}
-	catch (Error error) {
-
-		if(error.err() == CL_BUILD_PROGRAM_FAILURE) {
-
-			for(unsigned i=0;i<devices.size(); i++){
+	catch (Error error)
+	{
+		if(error.err() == CL_BUILD_PROGRAM_FAILURE)
+		{
+			for(unsigned i=0;i<devices.size(); i++)
+			{
 				cout << "Build log:" << endl << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[i]) << endl;
 			}
 		}
 	}
-
 	return program;
 }
 
@@ -62,10 +65,10 @@ int OpenCLUtils::GetBinarySize(const char *filename, char* &buffer)
         is.close();
         return length;
     }
-    catch(...) {
+    catch(...)
+    {
     	//std::cout << "Binary read function failure" << std::endl;
     }
-
     return 0;
 }
 
@@ -145,8 +148,8 @@ void OpenCLUtils::ShowDeviceInfo(Device device)
 }
 
 
-double OpenCLUtils::getElapsedTime(Event evt){
-
+double OpenCLUtils::getElapsedTime(Event evt)
+{
 	double elapsed = evt.getProfilingInfo<CL_PROFILING_COMMAND_END>() -
 	            evt.getProfilingInfo<CL_PROFILING_COMMAND_START>();
 
