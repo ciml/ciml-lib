@@ -51,11 +51,12 @@ protected:
 
 	ObjectiveFunction *m_objective;
 
-	virtual void InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm) = 0;
-	virtual float Evaluate(unsigned * individual) = 0;
-	virtual void Mutate(unsigned int * clone, float mutationRate) = 0;
-	virtual void CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm) = 0;
-	virtual void Statistics(unsigned * pop, float * fitness, int iterationNumber) = 0;
+	/*virtual void InitPopulation(unsigned ** pop, float **affinity, float ** affinityNorm);
+	virtual float Evaluate(unsigned * individual);
+	virtual void Mutate(unsigned int * clone, float mutationRate);
+	virtual void CloneAndHypermutate(unsigned * pop, float * affinity, float * affinityNorm);
+	virtual void Statistics(unsigned * pop, float * affinity, int iterationNumber);
+	*/
 
 	/* Returns the jth word from ith individual*/
 	inline unsigned int GetWord(unsigned int * pop, int id, int j){
@@ -64,10 +65,10 @@ protected:
 
 	float HipermutationRate(float affinity);
 	void Sort(unsigned int * pop);
-	//void Sort(anticorpo * pop);
+
 	static int CompareIndividuals(const void* a, const void* b);
 
-	int  BinaryToDecimal(int *binary, int begin, int end);
+	int BinaryToDecimal(int *binary, int begin, int end);
 
 	void PrintPop();
 };

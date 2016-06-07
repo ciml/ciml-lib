@@ -6,6 +6,12 @@
 
 using namespace std;
 
+/**
+ *  Receives the problem and hardware configurations;
+ *	Creates the memory buffers;
+ *  Compiles the kernels for each device;
+ *  Creates the command queues.
+*/
 ClonalgCL::ClonalgCL(int generations,
 				 int popsize,
 				 int optimizationProblem,
@@ -68,18 +74,25 @@ ClonalgCL::~ClonalgCL()
 	delete[] hipermutationKernel,
 	delete[] randomInsertionKernel,
 	delete[] statisticsKernel,
-	delete[] fitnessKernel,
-	delete[] calculateAffinityKernel;
+	delete[] evaluationKernel,
+	delete[] normalizeAffinityKernel;
 
 	delete[] popBuffer;
 	delete[] seedBuffer;
 	delete[] statisticsBuffer;
-	delete[] parameterBuffer;
-	delete[] fitnessBuffer;
-	delete[] fitnessNormBuffer;
-	delete[] fitnessCloneBuffer;
+	delete[] parametersBuffer;
+	delete[] affinityBuffer;
+	delete[] affinityNormBuffer;
 }
 
+/**
+ * At first, declares a OpenMP parallel block with (m_gpu_count + m_cpu_count) threads.
+ * Then each thread loads the parameters, seeds and initializes their sub populations.
+ * The optimization goes on until m_generations are executed.
+ * The only synchronization among the threads occurs in FindBestAndWorst,
+ *  where is necessary to find the best and worst affinity values of the entire population.
+ * @return The total computing time, without overheads.
+ */
 float ClonalgCL::Search()
 {
 	try
@@ -96,11 +109,9 @@ float ClonalgCL::Search()
 
 			LoadParameters(threadID);
 			LoadSeeds(threadID);
-
 			InitPopulation(&m_pop, &m_fitness, &m_fitnessNorm, threadID);
 
 			EvaluatePop(m_pop, m_fitness, threadID);
-
 			FindBestAndWorst(threadID);
 
 			//while(m_stats[0].afinidadeMelhor < -0.00001){
@@ -109,7 +120,7 @@ float ClonalgCL::Search()
 				#pragma omp single
 				Statistics(m_pop, m_fitness, gen);
 
-				CalculateAffinity(m_pop, m_fitness, m_fitnessNorm, threadID);
+				NormalizeAffinity(m_pop, m_fitness, m_fitnessNorm, threadID);
 				CloneAndHypermutate(m_pop, m_fitness, m_fitnessNorm, threadID);
 
 				if(m_randominsertion > 0)
@@ -128,7 +139,6 @@ float ClonalgCL::Search()
 		Statistics(m_pop, m_fitness, m_generations);
 
 		return elapsedTime;
-
 	}
 	catch(Error & error)
 	{
@@ -138,6 +148,16 @@ float ClonalgCL::Search()
 	return 0;
 }
 
+/**
+ * Perform the necessary initialization steps to use the OpenCL devices: \n
+ * Discovers the platforms; \n
+ * Discovers the gpu and cpu devices available in each platform; \n
+ * Creates a context for each device; \n
+ * Creates a command queue for each device; \n
+ * Compiles the kernels from source for all devices; \n
+ * Creates the kernels, replicated for each device; \n
+ * Creates the memory buffers.
+ */
 void ClonalgCL::OpenCLInit()
 {
 	try
@@ -211,12 +231,12 @@ void ClonalgCL::OpenCLInit()
 
 		for(int k=0; k < m_gpu_count; k++)
 		{
-			programs.push_back(clUtils.CreateProgramFromSource(contexts[k], gpu_devices, compilerOptions, "./src/kernels/kernel.cl"));
+			programs.push_back(clUtils.CreateProgramFromSource(contexts[k], gpu_devices, compilerOptions, "./src/kernels/kernel.cpp"));
 		}
 
 		for(int k=0; k < m_cpu_count; k++)
 		{
-			programs.push_back(clUtils.CreateProgramFromSource(contexts[m_gpu_count+k], cpu_devices, compilerOptions, "./src/kernels/kernel.cl"));
+			programs.push_back(clUtils.CreateProgramFromSource(contexts[m_gpu_count+k], cpu_devices, compilerOptions, "./src/kernels/kernel.cpp"));
 		}
 
 		m_gpu_queues = new CommandQueue[m_gpu_count+m_cpu_count];
@@ -239,17 +259,16 @@ void ClonalgCL::OpenCLInit()
 		popBuffer = new Buffer[total_devices];
 	    seedBuffer = new Buffer[total_devices];
 	    statisticsBuffer = new Buffer[total_devices];
-	    parameterBuffer = new Buffer[total_devices];
-	    fitnessBuffer = new Buffer[total_devices] ;
-	    fitnessNormBuffer = new Buffer[total_devices];
-	    fitnessCloneBuffer = new Buffer[total_devices];
+	    parametersBuffer = new Buffer[total_devices];
+	    affinityBuffer = new Buffer[total_devices] ;
+	    affinityNormBuffer = new Buffer[total_devices];
 
 	    initKernel = new Kernel[total_devices];
 	    hipermutationKernel = new Kernel[total_devices];
 	    randomInsertionKernel = new Kernel[total_devices];
 	    statisticsKernel = new Kernel[total_devices];
-	    fitnessKernel = new Kernel[total_devices];
-	    calculateAffinityKernel = new Kernel[total_devices];
+	    evaluationKernel = new Kernel[total_devices];
+	    normalizeAffinityKernel = new Kernel[total_devices];
 
 		for(int i=0; i<total_devices; i++)
 		{
@@ -269,50 +288,50 @@ void ClonalgCL::OpenCLInit()
 			// Create kernels
 			initKernel[i] = Kernel(programs[i], "initPopulation");
 			hipermutationKernel[i] = Kernel(programs[i], "cloneAndHypermutation");
-			fitnessKernel[i] = Kernel(programs[i], "Fitness");
+			evaluationKernel[i] = Kernel(programs[i], "Evaluation");
 			randomInsertionKernel[i] = Kernel(programs[i], "randomInsertion");
 			statisticsKernel[i] = Kernel(programs[i], "StatisticsReduction1");
-			calculateAffinityKernel[i] = Kernel(programs[i], "CalculateAffinity");
+			normalizeAffinityKernel[i] = Kernel(programs[i], "NormalizeAffinity");
 
 			// Create memory buffers
 			popBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_realLen*m_pop_size_per_queue[i]*sizeof(unsigned));
-			fitnessBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_pop_size_per_queue[i] * sizeof(float));
-			fitnessNormBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_pop_size_per_queue[i] * sizeof(float));
+			affinityBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_pop_size_per_queue[i] * sizeof(float));
+			affinityNormBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_pop_size_per_queue[i] * sizeof(float));
 			seedBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, m_pop_size_per_queue[i]*64*sizeof(int));
 			statisticsBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE, sizeof(t_stats));
-			parameterBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE,  sizeof(KernelParameters));
+			parametersBuffer[i] = Buffer(contexts[i], CL_MEM_READ_WRITE,  sizeof(KernelParameters));
 
 			// Set kernel arguments
 			initKernel[i].setArg(0, popBuffer[i]);
 			initKernel[i].setArg(1, seedBuffer[i]);
-			initKernel[i].setArg(2, parameterBuffer[i]);
+			initKernel[i].setArg(2, parametersBuffer[i]);
 
 			hipermutationKernel[i].setArg(0, popBuffer[i]);
-			hipermutationKernel[i].setArg(1, fitnessBuffer[i]);
-			hipermutationKernel[i].setArg(2, fitnessNormBuffer[i]);
+			hipermutationKernel[i].setArg(1, affinityBuffer[i]);
+			hipermutationKernel[i].setArg(2, affinityNormBuffer[i]);
 			hipermutationKernel[i].setArg(3, seedBuffer[i]);
 			hipermutationKernel[i].setArg(4, statisticsBuffer[i]);
-			hipermutationKernel[i].setArg(5, parameterBuffer[i]);
+			hipermutationKernel[i].setArg(5, parametersBuffer[i]);
 
-			fitnessKernel[i].setArg(0, popBuffer[i]);
-			fitnessKernel[i].setArg(1, fitnessBuffer[i]);
-			fitnessKernel[i].setArg(2, parameterBuffer[i]);
+			evaluationKernel[i].setArg(0, popBuffer[i]);
+			evaluationKernel[i].setArg(1, affinityBuffer[i]);
+			evaluationKernel[i].setArg(2, parametersBuffer[i]);
 
 			statisticsKernel[i].setArg(0, popBuffer[i]);
-			statisticsKernel[i].setArg(1, fitnessBuffer[i]);
+			statisticsKernel[i].setArg(1, affinityBuffer[i]);
 			statisticsKernel[i].setArg(2, statisticsBuffer[i]);
-			statisticsKernel[i].setArg(3, parameterBuffer[i]);
+			statisticsKernel[i].setArg(3, parametersBuffer[i]);
 
-			calculateAffinityKernel[i].setArg(0, fitnessBuffer[i]);
-			calculateAffinityKernel[i].setArg(1, fitnessNormBuffer[i]);
-			calculateAffinityKernel[i].setArg(2, statisticsBuffer[i]);
-			calculateAffinityKernel[i].setArg(3, parameterBuffer[i]);
+			normalizeAffinityKernel[i].setArg(0, affinityBuffer[i]);
+			normalizeAffinityKernel[i].setArg(1, affinityNormBuffer[i]);
+			normalizeAffinityKernel[i].setArg(2, statisticsBuffer[i]);
+			normalizeAffinityKernel[i].setArg(3, parametersBuffer[i]);
 
 			randomInsertionKernel[i].setArg(0, popBuffer[i]);
-			randomInsertionKernel[i].setArg(1, fitnessBuffer[i]);
+			randomInsertionKernel[i].setArg(1, affinityBuffer[i]);
 			randomInsertionKernel[i].setArg(2, statisticsBuffer[i]);
 			randomInsertionKernel[i].setArg(3, seedBuffer[i]);
-			randomInsertionKernel[i].setArg(4, parameterBuffer[i]);
+			randomInsertionKernel[i].setArg(4, parametersBuffer[i]);
 		}
 	}
 	catch(Error &error)
@@ -322,7 +341,7 @@ void ClonalgCL::OpenCLInit()
 	}
 }
 
-void ClonalgCL::InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm, int threadID)
+void ClonalgCL::InitPopulation(unsigned **pop, float **affinities, float **affinitiesNorm, int threadID)
 {
 	Event evt;
 	int stat;
@@ -340,7 +359,7 @@ void ClonalgCL::InitPopulation(unsigned ** pop, float **fitness, float ** fitnes
 	}
 }
 
-void ClonalgCL::CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm, int threadID)
+void ClonalgCL::CloneAndHypermutate(unsigned * pop, float * affinities, float * affinitiesNorm, int threadID)
 {
 	Event evt;
 
@@ -362,7 +381,7 @@ void ClonalgCL::CloneAndHypermutate(unsigned * pop, float * fitness, float * fit
 	}
 }
 
-void ClonalgCL::RandomInsertion(unsigned * pop, float * fitness, int threadID)
+void ClonalgCL::RandomInsertion(unsigned * pop, float * affinities, int threadID)
 {
 	vector<Event> events;
 
@@ -423,7 +442,7 @@ void ClonalgCL::LoadParameters(int threadID)
 	par.BITS_PER_DIMENSION = m_bitsperdimension;
 	par.DIMENSIONS = m_dimensions;
 
-	m_gpu_queues[threadID].enqueueWriteBuffer(parameterBuffer[threadID], CL_FALSE, 0,
+	m_gpu_queues[threadID].enqueueWriteBuffer(parametersBuffer[threadID], CL_FALSE, 0,
 			sizeof(KernelParameters), &par, NULL, &loadEvent);
 	m_gpu_queues[threadID].finish();
 }
@@ -460,17 +479,20 @@ void ClonalgCL::FindBestAndWorst(int threadID)
 		best = m_stats[0].affinityBest;
 		worst   = m_stats[0].affinityWorst;
 
-		for(int i=1; i < m_gpu_count+m_cpu_count; i++){
-
-			if(m_stats[i].affinityBest > best){
+		for(int i=1; i < m_gpu_count+m_cpu_count; i++)
+		{
+			if(m_stats[i].affinityBest > best)
+			{
 				best = m_stats[i].affinityBest;
 			}
-			if(m_stats[i].affinityWorst < worst){
+			if(m_stats[i].affinityWorst < worst)
+			{
 				worst = m_stats[i].affinityWorst;
 			}
 		}
 
-		for(int i=0; i< m_gpu_count+m_cpu_count; i++){
+		for(int i=0; i< m_gpu_count+m_cpu_count; i++)
+		{
 			m_stats[i].affinityBest = best;
 			m_stats[i].affinityWorst   = worst;
 		}
@@ -488,29 +510,21 @@ void ClonalgCL::FindBestAndWorst(int threadID)
 	}
 }
 
-float ClonalgCL::Evaluate(unsigned  * individual)
-{
-}
-
-void ClonalgCL::EvaluatePop(unsigned  * pop, float * fitness, int threadID)
+void ClonalgCL::EvaluatePop(unsigned  *pop, float * affinities, int threadID)
 {
 	Event evt;
 
 	NDRange local(std::min(m_workGroupSize_hypermutation, m_dimensions));
 	NDRange global(m_pop_size_per_queue[threadID]*local[0]);
-	m_gpu_queues[threadID].enqueueNDRangeKernel(fitnessKernel[threadID], NullRange, global, local, NULL, &evt);
+	m_gpu_queues[threadID].enqueueNDRangeKernel(evaluationKernel[threadID], NullRange, global, local, NULL, &evt);
 }
 
-void ClonalgCL::CalculateAffinity(unsigned *pop, float *fitness, float *fitnessNorm, int threadID)
+void ClonalgCL::NormalizeAffinity(unsigned *pop, float *affinities, float *affinitiesNorm, int threadID)
 {
 	Event evt;
 
 	NDRange local(32);
 	int gsize = ceil((m_pop_size_per_queue[threadID]/(float)local[0]))*local[0];
 	NDRange global(gsize);
-	m_gpu_queues[threadID].enqueueNDRangeKernel(calculateAffinityKernel[threadID], NullRange, global, local, NULL, &evt);
+	m_gpu_queues[threadID].enqueueNDRangeKernel(normalizeAffinityKernel[threadID], NullRange, global, local, NULL, &evt);
 }
-
-void ClonalgCL::InitPopulation(unsigned ** pop, float **fitness, float ** fitnessNorm){}
-void ClonalgCL::CloneAndHypermutate(unsigned * pop, float * fitness, float * fitnessNorm){}
-void ClonalgCL::Mutate(unsigned  * clone, float mutationRate){}

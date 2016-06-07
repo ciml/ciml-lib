@@ -77,7 +77,7 @@ void GetArgs(int argc, char **argv, t_parameters &p)
 		p.nclones = 2;
 		p.randomInsertion = 1;
 		p.mutationFactor = 5.0;
-		p.parallel = true;
+		p.parallel = false;
 		p.gpus = 1;
 		p.cpus = 0;
 		p.gpuRatio = 0;

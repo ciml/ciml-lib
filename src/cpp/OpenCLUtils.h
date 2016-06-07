@@ -10,7 +10,6 @@
 
 #include <iostream>
 #include <fstream>
-//#include <vector>
 #define __NO_STD_VECTOR // Use cl::vector instead of STL version
 #define __CL_ENABLE_EXCEPTIONS
 #include "CL/cl.h"
@@ -19,6 +18,12 @@
 using namespace std;
 using namespace cl;
 
+/**
+ * \brief Class for handling OpenCL common operations.
+ *
+ * This class is able to compile/create OpenCL kernels from source or binary,
+ * and to show the properties of the devices being used.
+ */
 class OpenCLUtils {
 public:
 	OpenCLUtils();

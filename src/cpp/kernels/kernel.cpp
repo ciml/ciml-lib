@@ -1,6 +1,6 @@
 #include "./src/parameters.h"
 #include "./src/representation.h"
-#include "./src/kernels/utils.cl"
+#include "./src/kernels/utils.cpp"
 
 //#pragma OPENCL EXTENSION cl_khr_fp64: enable
 
@@ -137,8 +137,7 @@ float EvaluateIndividual_local(__local unsigned *individual, int lid, int localS
 }
 
 
-
-__kernel void Fitness(__global unsigned *pop,
+__kernel void Evaluation(__global unsigned *pop,
 					  __global float *fitness, 
 					  __constant struct KernelParameters *parameters){
 	
@@ -231,7 +230,7 @@ __kernel void Fitness(__global unsigned *pop,
 		fitness[gid] = -partial[0];	
 }
 
-__kernel void CalculateAffinity(__global float * fitness,
+__kernel void NormalizeAffinity(__global float * fitness,
 								__global float * fitnessNorm,
 								__global t_stats *est,
 								__constant struct KernelParameters *parameters){
@@ -545,7 +544,7 @@ __kernel void randomInsertion(__global unsigned int *pop,
     __local float affinities[256];
     __local int index[256];
             
-    afinidades[lid] = fitness[lid];
+    affinities[lid] = fitness[lid];
     index[lid] = lid;
        
     for (int i=localSize+lid;i<p->POP_SIZE;i+=localSize)
