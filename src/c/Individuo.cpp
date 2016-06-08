@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <stdlib.h>
 #include <time.h>
-#define tipos 1
+#define tipos 7
 Individuo::Individuo(int lin, int col, int num_entradas, int num_saidas)
 {
     //ctor
@@ -24,12 +24,13 @@ Individuo::Individuo(int lin, int col, int num_entradas, int num_saidas)
     }
 
 
-    pontuacao = 0;
+    //pontuacao = 0;
     qtdLigantes = 0;
 }
 
 Individuo::Individuo(Individuo *copia) : Individuo(copia->num_linhas, copia->num_colunas, copia->num_entradas, copia->num_saidas){
     int i, j;
+    pontuacao = copia->pontuacao;
     for(i = 0; i < num_colunas; i++){
         for(j = 0; j < num_linhas; j++){
 
@@ -46,11 +47,12 @@ void Individuo::avalia(bool **tabela_entrada, bool **tabela_target){
     int i, j;
     No *p;
     bool saida;
-    for(i = 0; i< num_saidas; i++){
-        //cout << "Saida " << i+1 << endl;
+    pontuacao = 0;
+    for(i = 3; i< num_saidas; i++){
+        cout << "Saida " << i << endl;
         for(j=0;j < pow(2,num_entradas); j++){
             saida = saidas[i]->getSaida(j, tabela_entrada);
-            //cout << saida << " : " << tabela_target[j][i] << endl;
+            cout << saida << " : " << tabela_target[j][i] << endl;
             if(saida == tabela_target[j][i])
                 pontuacao++;
         }
@@ -69,6 +71,7 @@ void Individuo::imprime(){
     for(int i = 0; i<num_saidas; i++){
         cout<< saidas[i]->linha <<";"<<saidas[i]->coluna << endl;
     }
+    cout << "Pontuacao: " << pontuacao << endl;
 }
 
 void Individuo::mutation(){
@@ -78,28 +81,30 @@ void Individuo::mutation(){
     No *p = NULL;
     do{
         lin = rand() % num_linhas;
-        col = rand() % (num_colunas+1);
+        col = rand() % (num_colunas);
+        cout << "Linha e coluna a serem mutados: " << lin << ";" << col <<endl;
         if(col < num_colunas){
             p = matrizNo[lin][col];
         } else {
-            lin = rand() % num_linhas;
             col = rand() % num_colunas;
-            saidas[rand()%num_saidas] = matrizNo[lin][col];
+            lin = rand() % num_linhas;
+            cout << "Saida mutada: " << lin << ";" << col <<endl;
+            saidas[rand() % num_saidas] = matrizNo[lin][col];
             break;
         }
         random = rand() % (p->num_entradas + 1);
         if(random == p->num_entradas){ //muda tipo
+            cout << "Tipo mutado" << endl;
             p->mudaTipo(rand() % tipos);
         } else {
             col = (rand()%(col+1))-1;
+            cout << "Entrada mutada para col: " << col <<endl;
             if(col == -1){ //camada entrada
-                //p->entradas.erase(p->entradas.begin() + random);
                 p->entradas[random] = (*entradas[rand()%num_entradas]);
-                //p->entradas.push_back(*entradas[rand()%p->num_entradas]);
+
             } else {
                 p->entradas[random] = (*matrizNo[rand() % num_linhas][col]);
-               // p->entradas.erase(p->entradas.begin() + random);
-                //p->entradas.push_back(*matrizNo[rand() % num_linhas][col]);
+
             }
         }
         //cout << p->isLigante << endl;

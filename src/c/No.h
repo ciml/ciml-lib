@@ -13,6 +13,8 @@ class No
         bool isLigante;
         void mudaTipo(int tipo);
         bool getSaida(int j, bool **tabela_entrada);
+        bool saida_cache;
+        int linha_cache;
 
 };
 
