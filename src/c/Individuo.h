@@ -13,9 +13,10 @@ class Individuo
         virtual ~Individuo();
         No ***matrizNo;
         No **entradas, **saidas;
-        int pontuacao;
+        double pontuacao;
         int qtdLigantes;
         int num_linhas, num_colunas, num_saidas, num_entradas;
+        bool isFact;
         void imprime();
         void mutation();
         void avalia(bool **tabela_entrada, bool **tabela_saida);

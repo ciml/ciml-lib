@@ -10,10 +10,9 @@
 #include <vector>
 using namespace std;
 
-#define MAX_IT 100000
 #define tipos 7
 
-void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno,int *num_entradas,int *num_saidas,int *tipo){
+void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno,int *num_entradas,int *num_saidas, int *tipo, int *max_it){
     ifstream arquivo;
     std::string line;
     int i = 0;
@@ -30,6 +29,7 @@ void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno
                 case 4: *num_entradas = stoi(line); break;
                 case 5: *num_saidas = stoi(line); break;
                 case 6: *tipo = stoi(line); break;
+                case 7: *max_it = stoi(line); break;
                 default: break;
             }
             i++;
@@ -48,6 +48,7 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
     srand (time(NULL));
     for(int i = 0; i<num_individuos; i++){
         lista[i] = new Individuo(num_linhas, num_colunas, num_entradas, num_saidas);
+        lista[i]->isFact = false;
         for(j = 0; j<num_colunas; j++){
             for(int k = 0; k<num_linhas; k++){
                 do{
@@ -92,9 +93,11 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
 
 int main()
 {
-    int num_individuos, num_filhos, num_colunas, num_linhas, retorno, num_entradas, num_saidas, tipo;
-    leArquivo(&num_filhos, &num_colunas, &num_linhas, &retorno, &num_entradas, &num_saidas, &tipo);
+    int num_individuos, num_filhos, num_colunas, num_linhas, retorno, num_entradas, num_saidas, tipo, max_it;
+    leArquivo(&num_filhos, &num_colunas, &num_linhas, &retorno, &num_entradas, &num_saidas, &tipo, &max_it);
     num_individuos = 1;
+
+
     //cria tabelas.
     int linhas = pow(2,num_entradas);
     bool **tabela_target, **tabela_entrada;
@@ -177,10 +180,19 @@ int main()
     //Inicio ag
     Individuo *aux_ind[num_filhos];
     Individuo *melhor_filho;
-    int melhor_pontuacao = 0;
-    for(int it=1;it<=MAX_IT;it++){
-        melhor_pontuacao = 0;
-        //cout << ">>>PAI<<<"<< " Pontuacao: " << lista_ind[0]->pontuacao << endl;
+    double melhor_pontuacao = 0.0;
+    bool fact = false;
+    //cout.precision(3);
+    for(int it=1;it<=max_it;it++){
+        melhor_pontuacao = 0.0;
+        if(!fact){
+            if(lista_ind[0]->isFact){
+                fact = true;
+                cout << ">>>Encontrou Factível<<<"<<endl<<"Geração: "<< it-1 << " Pontuacao: " << lista_ind[0]->pontuacao << " Qtd Ligantes: " << lista_ind[0]->qtdLigantes <<endl;
+            }
+        }
+        if(!(it%1000))
+            cout << ">>>Geração " << it << "<<<" << " Pontuacao: " << lista_ind[0]->pontuacao << " Qtd Ligantes: " << lista_ind[0]->qtdLigantes <<endl;
         for(int filho = 0; filho < num_filhos; filho++){
             aux_ind[filho] = new Individuo(lista_ind[0]); //copia
             aux_ind[filho]->mutation();

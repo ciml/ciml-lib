@@ -79,46 +79,49 @@ No::~No()
 
 }
 
-bool No::getSaida(int j, bool **tabela_entrada){
-    isLigante = true;
-    bool entrada0, entrada1;
+bool No::getSaida(int j, bool **tabela_entrada, int *qtd_ligantes){
     if(this->linha_cache == j){
         return saida_cache;
     }
+    if(!isLigante){
+        isLigante = true;
+        *qtd_ligantes = *qtd_ligantes +1;
+    }
+    bool entrada0, entrada1;
     this->linha_cache = j;
 
     switch(tipo){
         case 0: //and
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
-            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache = entrada0 and entrada1;
             break;
         case 1: //or
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
-            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  entrada0 or entrada1;
             break;
         case 2: //n-and
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
-            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  !(entrada0 and entrada1);
             break;
         case 3: //nor
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
-            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  !(entrada0 or entrada1);
             break;
         case 4: //not
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  !(entrada0);
             break;
         case 5: //ID
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  (entrada0);
             break;
         case 6: //xor
-            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
-            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada, qtd_ligantes);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada, qtd_ligantes);
             saida_cache =  (entrada0 and !entrada1)or(!entrada0 and entrada1);
             break;
         case -1:

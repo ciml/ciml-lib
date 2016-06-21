@@ -12,7 +12,7 @@ class No
         No* entradas[2];
         bool isLigante;
         void mudaTipo(int tipo);
-        bool getSaida(int j, bool **tabela_entrada);
+        bool getSaida(int j, bool **tabela_entrada, int *qtd_ligantes);
         bool saida_cache;
         int linha_cache;
 

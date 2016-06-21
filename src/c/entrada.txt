@@ -1,7 +1,8 @@
 4	//numero de filhos
-30	//numero de colunas
+1000	//numero de colunas
 1	//numero de linhas
-3	//retorno
-4	//entradas
-4	//saidas
+1000	//retorno
+8	//entradas
+8	//saidas
 0	//tipo (0: multiplicacao, 1: soma)
+1000000	//numero de iterações

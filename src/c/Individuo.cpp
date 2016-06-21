@@ -25,7 +25,7 @@ Individuo::Individuo(int lin, int col, int num_entradas, int num_saidas)
 
 
     //pontuacao = 0;
-    qtdLigantes = 0;
+    //qtdLigantes = 0;
 }
 
 Individuo::Individuo(Individuo *copia) : Individuo(copia->num_linhas, copia->num_colunas, copia->num_entradas, copia->num_saidas){
@@ -45,20 +45,41 @@ Individuo::Individuo(Individuo *copia) : Individuo(copia->num_linhas, copia->num
 
 void Individuo::avalia(bool **tabela_entrada, bool **tabela_target){
     int i, j;
-    No *p;
-    bool saida, fact = true;
+    bool saida;
 
-    pontuacao = 0;
-    for(i = 0; i< num_saidas; i++){
-        //cout << "Saida " << i << endl;
-        for(j=0;j < pow(2,num_entradas); j++){
-            saida = saidas[i]->getSaida(j, tabela_entrada);
+    //isFact = false;
+    qtdLigantes = 0;
+    pontuacao = 0.0;
+   /* int pont_saida[num_saidas];
+    for(i=0; i< num_saidas; i++){
+        pont_saida[i] = 0;
+    }
+
+*/
+    for(j=0;j < pow(2,num_entradas); j++){
+        for(i = 0; i< num_saidas; i++){
+            saida = saidas[i]->getSaida(j, tabela_entrada, &qtdLigantes);
             //cout << saida << " : " << tabela_target[j][i] << endl;
             if(saida == tabela_target[j][i]){
                 pontuacao++;
+                //pont_saida[i]++;
+            } else if(isFact){
+                pontuacao = 0;
+                isFact = false;
+                return;
             }
+
         }
        // cout << endl;
+    }
+   /* for(i=0; i< num_saidas; i++){
+        cout << "Saida " << i <<": " << pont_saida[i]<< endl;
+    }
+    cout << endl;
+    */
+    if(pontuacao == pow(2,num_entradas) * num_saidas){
+        isFact = true;
+        pontuacao = pontuacao + (1.0/qtdLigantes);
     }
 }
 
@@ -73,7 +94,7 @@ void Individuo::imprime(){
     for(int i = 0; i<num_saidas; i++){
         cout<< saidas[i]->linha <<";"<<saidas[i]->coluna << endl;
     }
-    cout << "Pontuacao: " << pontuacao << endl;
+    cout << "Pontuacao: " << pontuacao << " Qtd Ligantes: " << qtdLigantes << endl;
 }
 
 void Individuo::mutation(){
