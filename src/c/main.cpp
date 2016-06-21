@@ -10,7 +10,7 @@
 #include <vector>
 using namespace std;
 
-#define MAX_IT 100
+#define MAX_IT 100000
 #define tipos 7
 
 void leArquivo(int *num_individuos,int *num_colunas,int *num_linhas,int *retorno,int *num_entradas,int *num_saidas,int *tipo){
@@ -45,7 +45,7 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
     Individuo **lista = new Individuo*[num_individuos];
     int random, ind_coluna, ind_linha, entradas_no, j;
     No *aux;
-    srand (4);
+    srand (time(NULL));
     for(int i = 0; i<num_individuos; i++){
         lista[i] = new Individuo(num_linhas, num_colunas, num_entradas, num_saidas);
         for(j = 0; j<num_colunas; j++){
@@ -63,10 +63,10 @@ Individuo ** init_pop(int num_individuos, int num_colunas, int num_linhas, int n
 
                         if(ind_coluna == 0){ //camada entrada
                             ind_linha = rand()%num_entradas;
-                            aux->entradas.push_back(*lista[i]->entradas[ind_linha]);
+                            aux->entradas[l] = lista[i]->entradas[ind_linha];
                         } else {
                             ind_linha = rand()%num_linhas;
-                            aux->entradas.push_back(*lista[i]->matrizNo[ind_linha][j-ind_coluna]);
+                            aux->entradas[l] = lista[i]->matrizNo[ind_linha][j-ind_coluna];
                         }
 
                     }
@@ -169,11 +169,9 @@ int main()
     //Fim de criar tabelas...
     //Inicializar população
     Individuo **lista_ind = init_pop(num_individuos, num_colunas, num_linhas, num_entradas, num_saidas, retorno);
-    lista_ind[0]->imprime();
-
-
+    //Print primeiro Ind
     lista_ind[0]->avalia(tabela_entrada, tabela_target);
-    cout << lista_ind[0]->pontuacao << endl;
+    lista_ind[0]->imprime();
     //populacao inicializada.
 
     //Inicio ag
@@ -182,16 +180,15 @@ int main()
     int melhor_pontuacao = 0;
     for(int it=1;it<=MAX_IT;it++){
         melhor_pontuacao = 0;
+        //cout << ">>>PAI<<<"<< " Pontuacao: " << lista_ind[0]->pontuacao << endl;
         for(int filho = 0; filho < num_filhos; filho++){
             aux_ind[filho] = new Individuo(lista_ind[0]); //copia
-            cout << ">>>FILHO<<<"<< endl;
-            aux_ind[filho]->imprime();
             aux_ind[filho]->mutation();
 
             aux_ind[filho]->avalia(tabela_entrada, tabela_target);
-            cout << ">>>FILHO MUTADO "<< filho << "<<<"<<endl;
-            aux_ind[filho]->imprime();
-            if(aux_ind[filho]->pontuacao > melhor_pontuacao){
+            //cout << ">>>FILHO MUTADO "<< filho << "<<<"<< " Pontuacao: " << aux_ind[filho]->pontuacao << endl;
+            //aux_ind[filho]->imprime();
+            if(aux_ind[filho]->pontuacao >= melhor_pontuacao){
                 melhor_filho = aux_ind[filho];
                 melhor_pontuacao = aux_ind[filho]->pontuacao;
             }

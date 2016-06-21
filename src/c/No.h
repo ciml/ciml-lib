@@ -9,7 +9,7 @@ class No
         int num_entradas;
         int custo;
         int tipo, linha, coluna;
-        std::vector<No> entradas;
+        No* entradas[2];
         bool isLigante;
         void mudaTipo(int tipo);
         bool getSaida(int j, bool **tabela_entrada);

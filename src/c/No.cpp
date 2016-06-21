@@ -64,10 +64,10 @@ No::No(No *copia, Individuo *ind) : No(copia->tipo, copia->linha, copia->coluna)
     isLigante = copia->isLigante;
     //pontuacao = 0;
     for(int i=0;i<num_entradas;i++){
-        if(copia->entradas[i].coluna == -1){
-            entradas.push_back(*ind->entradas[copia->entradas[i].linha]);
+        if(copia->entradas[i]->coluna == -1){
+            entradas[i] = ind->entradas[copia->entradas[i]->linha];
         } else {
-            entradas.push_back(*ind->matrizNo[copia->entradas[i].linha][copia->entradas[i].coluna]);
+            entradas[i] = ind->matrizNo[copia->entradas[i]->linha][copia->entradas[i]->coluna];
         }
 
     }
@@ -82,39 +82,43 @@ No::~No()
 bool No::getSaida(int j, bool **tabela_entrada){
     isLigante = true;
     bool entrada0, entrada1;
-    if(linha_cache == j)
+    if(this->linha_cache == j){
         return saida_cache;
-    linha_cache = j;
-    if(tipo != -1){
-        entrada0 = entradas[0].getSaida(j, tabela_entrada);
-        entrada1 = entradas[1].getSaida(j, tabela_entrada);
-        cout << "Entrada 0: Linha " << entradas[0].linha << " Coluna " << entradas[0].coluna << endl;
-        cout << "Entrada 1: Linha " << entradas[1].linha << " Coluna " << entradas[1].coluna << endl;
-        cout << "linha: "<< j<< " Tipo: " << this->tipo <<" Entrada 0: " << entrada0 << " Entrada 1: " << entrada1 << endl;
     }
+    this->linha_cache = j;
 
     switch(tipo){
         case 0: //and
-
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
             saida_cache = entrada0 and entrada1;
             break;
         case 1: //or
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
             saida_cache =  entrada0 or entrada1;
             break;
         case 2: //n-and
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
             saida_cache =  !(entrada0 and entrada1);
             break;
         case 3: //nor
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
             saida_cache =  !(entrada0 or entrada1);
             break;
         case 4: //not
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
             saida_cache =  !(entrada0);
             break;
         case 5: //ID
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
             saida_cache =  (entrada0);
             break;
         case 6: //xor
-
+            entrada0 = entradas[0]->getSaida(j, tabela_entrada);
+            entrada1 = entradas[1]->getSaida(j, tabela_entrada);
             saida_cache =  (entrada0 and !entrada1)or(!entrada0 and entrada1);
             break;
         case -1:
@@ -124,6 +128,11 @@ bool No::getSaida(int j, bool **tabela_entrada){
             return 0;
             break;
     }
+   /* if(tipo != -1){
+        cout << "Entrada 0: Linha " << entradas[0]->linha << " Coluna " << entradas[0]->coluna << endl;
+        cout << "Entrada 1: Linha " << entradas[1]->linha << " Coluna " << entradas[1]->coluna << endl;
+        cout << " Entrada 0: " << entrada0 << " Entrada 1: " << entrada1 << " Saida: " << saida_cache << endl;
+    } */
     return saida_cache;
 }
 
@@ -131,9 +140,10 @@ void No::mudaTipo(int tipo){
     this->tipo = tipo;
     switch(tipo){
         case 4:
-            num_entradas = 2;
+        case 5:
+            num_entradas = 1;
             break;
-            default:
+        default:
             num_entradas = 2;
             break;
     }
