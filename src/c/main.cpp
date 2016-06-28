@@ -179,6 +179,10 @@ int main()
 
     //Inicio ag
     Individuo *aux_ind[num_filhos];
+    for(int i = 0; i<num_filhos; i++){
+        aux_ind[i] = new Individuo(lista_ind[0]);
+    }
+
     Individuo *melhor_filho;
     double melhor_pontuacao = 0.0;
     bool fact = false;
@@ -191,12 +195,12 @@ int main()
                 cout << ">>>Encontrou Factível<<<"<<endl<<"Geração: "<< it-1 << " Pontuacao: " << lista_ind[0]->pontuacao << " Qtd Ligantes: " << lista_ind[0]->qtdLigantes <<endl;
             }
         }
-        if(!(it%1000))
+        if(!(it%1000)){
             cout << ">>>Geração " << it << "<<<" << " Pontuacao: " << lista_ind[0]->pontuacao << " Qtd Ligantes: " << lista_ind[0]->qtdLigantes <<endl;
+        }
         for(int filho = 0; filho < num_filhos; filho++){
-            aux_ind[filho] = new Individuo(lista_ind[0]); //copia
+            aux_ind[filho]->recebe_copia(lista_ind[0]); //copia
             aux_ind[filho]->mutation();
-
             aux_ind[filho]->avalia(tabela_entrada, tabela_target);
             //cout << ">>>FILHO MUTADO "<< filho << "<<<"<< " Pontuacao: " << aux_ind[filho]->pontuacao << endl;
             //aux_ind[filho]->imprime();
@@ -209,22 +213,13 @@ int main()
         //cout << endl;
         //cout << "Filho: " << melhor_filho->pontuacao << ". Pai: " <<lista_ind[0]->pontuacao << endl;
         if(melhor_filho->pontuacao >= lista_ind[0]->pontuacao){
-            lista_ind[0]->~Individuo(); //destroi
-            lista_ind[0] = melhor_filho;
-            for(int filho = 0; filho < num_filhos; filho++){
-                if(aux_ind[filho] != melhor_filho){
-                    aux_ind[filho]->~Individuo();
-                }
-            }
-        } else {
-            for(int filho = 0; filho < num_filhos; filho++){
-                    aux_ind[filho]->~Individuo();
-            }
+            lista_ind[0]->recebe_copia(melhor_filho);
         }
     }
     cout << " FIM: " << endl;
-    //lista_ind[0]->avalia(tabela_entrada, tabela_target);
     lista_ind[0]->imprime();
+    for(int filho = 0; filho < num_filhos; filho++)
+            aux_ind[filho]->~Individuo();
     lista_ind[0]->~Individuo();
     return 0;
 }

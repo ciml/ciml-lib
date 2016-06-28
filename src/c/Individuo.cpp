@@ -138,6 +138,33 @@ void Individuo::mutation(){
 
 }
 
+void Individuo::recebe_copia(Individuo *copia){
+    int i, j;
+    pontuacao = copia->pontuacao;
+    isFact = copia->isFact;
+    qtdLigantes = copia->qtdLigantes;
+    for(i = 0; i < num_colunas; i++){
+        for(j = 0; j < num_linhas; j++){ //copia nos;
+            if(copia->matrizNo[j][i]->entradas[0]->coluna == -1)
+                matrizNo[j][i]->entradas[0] = entradas[copia->matrizNo[j][i]->entradas[0]->linha];
+            else
+                matrizNo[j][i]->entradas[0] = matrizNo[copia->matrizNo[j][i]->entradas[0]->linha][copia->matrizNo[j][i]->entradas[0]->coluna];
+
+            if(copia->matrizNo[j][i]->entradas[1]->coluna == -1)
+                matrizNo[j][i]->entradas[1] = entradas[copia->matrizNo[j][i]->entradas[1]->linha];
+            else
+                matrizNo[j][i]->entradas[1] = matrizNo[copia->matrizNo[j][i]->entradas[1]->linha][copia->matrizNo[j][i]->entradas[1]->coluna];
+
+            matrizNo[j][i]->tipo = copia->matrizNo[j][i]->tipo;
+            matrizNo[j][i]->isLigante = copia->matrizNo[j][i]->isLigante;
+            matrizNo[j][i]->linha_cache = -1;
+        }
+    }
+    for(i = 0; i < num_saidas; i++){
+        saidas[i] = matrizNo[copia->saidas[i]->linha][copia->saidas[i]->coluna];
+    }
+}
+
 Individuo::~Individuo()
 {
     //dtor

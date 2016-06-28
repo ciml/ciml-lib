@@ -139,6 +139,7 @@ bool No::getSaida(int j, bool **tabela_entrada, int *qtd_ligantes){
     return saida_cache;
 }
 
+
 void No::mudaTipo(int tipo){
     this->tipo = tipo;
     switch(tipo){

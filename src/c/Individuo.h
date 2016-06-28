@@ -17,10 +17,12 @@ class Individuo
         int qtdLigantes;
         int num_linhas, num_colunas, num_saidas, num_entradas;
         bool isFact;
+
+
         void imprime();
         void mutation();
         void avalia(bool **tabela_entrada, bool **tabela_saida);
-
+        void recebe_copia(Individuo *copia);
     protected:
     private:
 };
