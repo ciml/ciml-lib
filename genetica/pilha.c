@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 #include"pilha.h"
 #include<stdio.h>
 #include<stdlib.h>
@@ -25,6 +19,7 @@ void empilha(Pilha *p, int valorEmp){
     }
     else{
         printf("pilha cheia");
+        exit(1);
         p->numero--;
     }
 }
@@ -36,15 +31,17 @@ void desempilha(Pilha * p){
         j=p->carga[p->numero];
                 p->numero--;
         //return j;
-    }else
+    }else{
         printf("pilha vazia");
+        exit(1);
+    }
 }
 
 int topoPilha(Pilha *p){
     if(p->numero!=-1){
         return p->carga[p->numero];
     }else
-        printf("pilha vazia");
+        printf("topo da pilha vazia");
 }
 
 void printPilha(Pilha *p){
