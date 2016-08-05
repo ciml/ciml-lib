@@ -1,31 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   main.c
- * Author: gabriel
- *
- * Created on 8 de Julho de 2016, 09:17
- */
-
-#include "fila.h"
-#include "pilha.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include "arvlin.h"
 
-/*
- * 
- */
 int main(int argc, char** argv) {
+    srand(9);
+    printf("inciando programa...\n");
     Arvlin *arv=arvTest();
+    Arvlin a;
+    iniArvore(&a,100);
     //arvTest(&arv);
+    semeadora(&a,4);
+    printf("printando vetor...\n");
     arvPrintVetor(arv);
+    printf("printando arvore...\n");
     printArvore(arv);
     
     return (EXIT_SUCCESS);
 }
-
