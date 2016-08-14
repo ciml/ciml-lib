@@ -8,10 +8,10 @@ int main(int argc, char** argv) {
     Arvlin a;
     iniArvore(&a,100);
     //arvTest(&arv);
-    semeadora(&a,4);
-    printf("printando vetor...\n");
+    //semeadora(&a,4);
+    printf("print vetor...\n");
     arvPrintVetor(arv);
-    printf("printando arvore...\n");
+    printf("print arvore...\n");
     printArvore(arv);
     
     return (EXIT_SUCCESS);
