@@ -3,50 +3,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-/*void semeadora(Arvlin *arv,int nivelMax){//ainda nao funciona...
-    int i=0,aux,nivel;Pilha p;
-    iniPilha(&p,nivelMax);
-    for(i=0,nivel=0;i < arv->max;i++){
-        if(nivel<nivelMax){
-            if(geraArv(arv,i)!=0){
-                empilha(&p,i);
-                nivel++;
-            }else{
-                while(topoPilha(&p)!=2){
-                    if(p.numero != -1)
-                        desempilha(&p);
-                    else
-                        break;
-                    if(p.numero != -1)
-                        desempilha(&p);
-                    nivel--;
-                }
+void semeadora (Arvlin *arv,int Nmax){//geradora de arvores com nivel max
+    int i=0;Pilha p;iniPilha(&p,Nmax);
+    do{
+        if(geraArv(arv,i)!=0){
+            if(p.numero+1!=Nmax-1){
+                empilha(&p,arv->filhos[i]);
+            }else{                
+                arv->filhos[i]=0;
+                arv->elementos[i]=5;//trocar para rand;
+                for(; p.numero!=-1 && topoPilha(&p)==1;desempilha(&p));
+                if(topoPilha(&p)==2)
+                    p.carga[p.numero]=1;
             }
         }else{
-            arv->filhos[i]=0;
-            arv->elementos[i]=rand()%10;
-            while(topoPilha(&p)!=2){
-                if(p.numero != -1)
-                    desempilha(&p);
-                else
-                    break;
-                if(p.numero != -1)
-                        desempilha(&p);
-                nivel--;
-            }
+            for(; p.numero!=-1 && topoPilha(&p)==1;desempilha(&p));
+            if(topoPilha(&p)==2)
+                p.carga[p.numero]=1;            
         }
-    }
+        i++;
+    }while(p.numero!=-1);
+    
     arv->Nfilhos=i;
     descarrega(&p);
 }
-*/
-int geraArv(Arvlin *arv,int indice){//retorna numero de filhos e preenche um no ale...
+
+int geraArv(Arvlin *arv,int indice){//retorna numero de filhos e preenche a arvore No a No
     arv->filhos[indice]=rand()%3;
     arv->elementos[indice]= arv->filhos[indice] == 0 ? rand()%10 : 
         arv->filhos[indice] == 1 ? (rand()%10)+10 : (rand()%10)+20 ;
+    //confere numero convencionado de flag para vetor de elementos
     return arv->filhos[indice];
 }
-
 
 void iniArvore(Arvlin *arv,int N){//gera os vetores dinamicam...
     arv->Nfilhos=0;
