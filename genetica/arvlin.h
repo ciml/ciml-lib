@@ -16,8 +16,8 @@ extern "C" {
     void printNivel(Arvlin *arv,int nivel,int i);
     Arvlin *arvTest();
     void printArvore(Arvlin *arv);
-    void semeadora(Arvlin *arv,int nivelMax);
-    int geraArv(Arvlin *arv,int indice);    
+    //void semeadora(Arvlin *arv,int nivelMax);
+    //int geraArv(Arvlin *arv,int indice);    
 
 #ifdef __cplusplus
 }
