@@ -40,8 +40,10 @@ void desempilha(Pilha * p){
 int topoPilha(Pilha *p){
     if(p->numero!=-1){
         return p->carga[p->numero];
-    }else
-        printf("topo da pilha vazia");
+    }else{
+        //printf("topo da pilha vazia");
+        return -1;
+    } 
 }
 
 void printPilha(Pilha *p){
