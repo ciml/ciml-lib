@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "arvlin.h"
-
+#include <stdio.h>
 int main(int argc, char** argv) {
     srand(9);
     printf("inciando programa...\n");
@@ -8,11 +8,11 @@ int main(int argc, char** argv) {
     Arvlin a;
     iniArvore(&a,100);
     //arvTest(&arv);
-    //semeadora(&a,4);
+    semeadora(&a,5);
     printf("print vetor...\n");
-    arvPrintVetor(arv);
+    arvPrintVetor(&a);
     printf("print arvore...\n");
-    printArvore(arv);
+    printArvore(&a);
     
     return (EXIT_SUCCESS);
 }
