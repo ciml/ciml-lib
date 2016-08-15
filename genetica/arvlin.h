@@ -23,14 +23,16 @@ extern "C" {
     //imprime arvore na forma nivel+++elem
     void semeadora(Arvlin *arv,int nivelMax);
     //gera arvore aleatoria com nivel max
-    int geraArv(Arvlin *arv,int indice);
+    int geraArv(Arvlin *arv,const int* indice);
     //gera os nos da semeadora
     void mutaArv(Arvlin *arv,Arvlin *arvM);
     //insere nova subarvore gerada
-    void skipElemArv(Arvlin *arv,int tamPulo,int onde);
+    void skipElemArv(Arvlin *arv,const int* tamPulo,const int* onde,const int* tamSubArv);
     //desloca elementos da arvore
-    int calcTamSubArv(int *filhosArv,int indice);
+    int calcTamSubArv(int *filhosArv,const int* indice);
     //calcula tamanho de uma subarvore usando o vetor de filhos
+    void copiaSubArv(Arvlin* arv,Arvlin* arv2,int onde1,int onde2);
+    //copia uma subarv na subarv da outra onde sao os indices das subarvores
 
 #ifdef __cplusplus
 }
