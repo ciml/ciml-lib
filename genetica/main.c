@@ -4,15 +4,23 @@
 int main(int argc, char** argv) {
     srand(9);
     printf("inciando programa...\n");
-    Arvlin *arv=arvTest();
-    Arvlin a;
+    //Arvlin *arv=arvTest();
+    Arvlin a,b;
     iniArvore(&a,100);
+    iniArvore(&b,10);
     //arvTest(&arv);
-    semeadora(&a,5);
-    printf("print vetor...\n");
+    semeadora(&a,2);
+    semeadora(&b,3);
+    printf("printando vetor...\n");
     arvPrintVetor(&a);
-    printf("print arvore...\n");
+    arvPrintVetor(&b);
+    printf("printando arvore...\n");
+    //printArvore(arv);   
     printArvore(&a);
-    
+    printArvore(&b);
+    printf("mutaçao");
+    mutaArv(&a,&b);
+    arvPrintVetor(&a);
+    printArvore(&a);
     return (EXIT_SUCCESS);
 }
