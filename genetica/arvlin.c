@@ -2,7 +2,6 @@
 #include "pilha.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 void semeadora (Arvlin *arv,int Nmax){//geradora de arvores com nivel max
     int i=0;Pilha p;iniPilha(&p,Nmax);
     do{
@@ -99,4 +98,45 @@ void printArvore(Arvlin *arv){//print sem uso de marcaçao no 2 e vetor filhos n
         }
     }
     descarrega(&p);
+}
+
+void mutaArv(Arvlin *arv,Arvlin *arvM){
+    int i,tamPulo;
+    int Icol=(rand()%arv->Nfilhos);//indice onde colocar
+    tamPulo = arvM->Nfilhos - calcTamSubArv(arv->filhos,Icol);    
+    printf("==== vou colocar no indice %d, pulando %d ==== \n",Icol,tamPulo);
+
+    if(arv->max >= tamPulo + arv->Nfilhos ){//cabe?
+        skipElemArv(arv,tamPulo,Icol);
+        for(i=0; i < arvM->Nfilhos;Icol++,i++){
+            arv->elementos[Icol]=arvM->elementos[i];
+            arv->filhos[Icol]=arvM->filhos[i];
+        }
+    }else{
+        printf("impossivel realizar mutacao");
+    }
+}
+
+int calcTamSubArv(int *filhosArv,int indice){
+    int i,tamSubArv=1;
+    for(i=indice;tamSubArv!=0;tamSubArv--,i++){
+        tamSubArv+=filhosArv[i];
+    }
+    return i-indice;
+}
+
+void skipElemArv(Arvlin *arv,int tamPulo,int onde){
+    int i;
+    if(tamPulo>=0){
+        for(i=arv->Nfilhos-1;i > onde;i--){
+            arv->elementos[i+tamPulo]=arv->elementos[i];
+            arv->filhos[i+tamPulo]=arv->filhos[i];
+        }
+    }else{
+        for(i=onde;i < arv->Nfilhos;i++){
+            arv->elementos[i+tamPulo]=arv->elementos[i];
+            arv->filhos[i+tamPulo]=arv->filhos[i];
+        }        
+    }
+    arv->Nfilhos+=tamPulo;
 }
