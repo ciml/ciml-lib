@@ -11,29 +11,36 @@ extern "C" {
       int *filhos;
       int max;
     }Arvlin;
-    void iniArvore(Arvlin *arv,int N);
     //aloca arvore, precisa ser modificada para memoria estatica
-    void arvPrintVetor(Arvlin *arv);
+    void iniArvore(Arvlin *arv,int N);
+    //desaloca memoria dinamica dos vetores da arv
+    void lenhador(Arvlin *arv);    
     //imprime na forma linear
-    void printNivel(Arvlin *arv,int nivel,int i);
+    void arvPrintVetor(Arvlin *arv);    
     //formato do output do print arv
-    Arvlin *arvTest();
+    void printNivel(Arvlin *arv,int nivel,int i);    
     //gera arvore modelo
-    void printArvore(Arvlin *arv);
+    Arvlin *arvTest();    
     //imprime arvore na forma nivel+++elem
-    void semeadora(Arvlin *arv,int nivelMax);
+    void printArvore(Arvlin *arv);        
     //gera arvore aleatoria com nivel max
-    int geraArv(Arvlin *arv,const int* indice);
+    void semeadora(Arvlin *arv,int nivelMax);    
     //gera os nos da semeadora
-    void mutaArv(Arvlin *arv,Arvlin *arvM);
-    //insere nova subarvore gerada
-    void skipElemArv(Arvlin *arv,const int* tamPulo,const int* onde,const int* tamSubArv);
+    int geraArv(Arvlin *arv,const int* indice);    
+    //insere nova arvore gerada em alguns lugar aleatorio da arvore
+    void mutaArv(Arvlin *arv);    
     //desloca elementos da arvore
+    void skipElemArv(Arvlin *arv,const int* tamPulo,const int* onde,const int* tamSubArv);
+    //calcula tamanho de uma subarvore usando o vetor de filhospp
     int calcTamSubArv(int *filhosArv,const int* indice);
     //calcula tamanho de uma subarvore usando o vetor de filhos
-    void copiaSubArv(Arvlin* arv,Arvlin* arv2,int onde1,int onde2);
-    //copia uma subarv na subarv da outra onde sao os indices das subarvores
-
+    void copiaSubArv(Arvlin* arv,Arvlin* arv2,int onde1, int onde2,const int* );
+    //copia uma subarv na subarv da outra onde sao os indices das subarvores    
+    void combinacao(Arvlin *arv1,Arvlin *arv2);
+    //copia uma subarvore na outra    
+    void trocaSubArv(Arvlin* arvM,Arvlin* arvm,int *icol1,int *icol2,int tamSubArvMenor);
+    // troca os elementos de uma subarvore menor em outra subarvore 
+   
 #ifdef __cplusplus
 }
 #endif
