@@ -33,3 +33,27 @@
 	<stdlib.h>
 	<math.h>
 
+1473298441 source:c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\main.c
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+
+1473045647 source:c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1472677177 c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\pilha.h
+	"constantes.h"
+
+1473297446 c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\constantes.h
+
+1473297562 c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\arvore.h
+	"pilha.h"
+
+1473297446 source:c:\users\bruno\desktop\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"arvore.h"
+
