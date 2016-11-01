@@ -21,5 +21,6 @@ Library Contents
 - eg_initialization (C++) 
 - ggp_mo (C++)
 - gp_ocl_apu (C)
+- gp_hyper-heuristic (C)
 
 
