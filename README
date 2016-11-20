@@ -19,6 +19,8 @@ Library Contents
 - clonalg_gpu (C++)
 - eg_gpu (C++)
 - eg_initialization (C++) 
+- ggp (C++)
+- ggp_coevolution (C++)
 - ggp_mo (C++)
 - gp_ocl_apu (C)
 - gp_hyper-heuristic (C)
