@@ -22,7 +22,7 @@ Library Contents
 - ggp (C++)
 - ggp_coevolution (C++)
 - ggp_mo (C++)
-- gp_innovization (C++)
+- gp_innovization (C)
 - gp_ocl_apu (C)
 - gp_hyper-heuristic (C)
 
