@@ -1,0 +1,7 @@
+<expr> ::= <base> <base> + | <base>
+<bool> ::= <var> <var> <comp>
+<comp> ::= < | <= | == | >= | > | !=
+<base> ::= <var> <var> <op> | <var>
+<op> ::= + | - | * | / | ^
+<uop> ::= exp | log | sqrt
+<var> ::= x | y | z

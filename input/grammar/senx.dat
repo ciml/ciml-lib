@@ -1,0 +1,6 @@
+<expr> ::= <expr> <expr> ! | <base>
+<base> ::= <base> <base> <op> | <base> <uop> | <var>
+<op> ::= + | - | * | /
+<uop> ::= cos | sin
+<var> ::= x
+<const> ::= 1 | 2 | 3 | <const> <const> <op>

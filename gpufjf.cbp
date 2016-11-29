@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="gpufjf" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/gpufjf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add directory="src" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/gpufjf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++11" />
+					<Add option="-fopenmp" />
+					<Add directory="src" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lgomp -pthread" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-openmp" />
+		</Compiler>
+		<Unit filename="GrammarDictionary.txt" />
+		<Unit filename="inc/LSDerivadasParser.cpp" />
+		<Unit filename="inc/LSDerivadasParser.h" />
+		<Unit filename="inc/LeastSquareParser.cpp" />
+		<Unit filename="inc/LeastSquareParser.h" />
+		<Unit filename="inc/ParserDerivadas.cpp" />
+		<Unit filename="inc/ParserDerivadas.h" />
+		<Unit filename="inc/QRDecomposition.cpp" />
+		<Unit filename="inc/QRDecomposition.h" />
+		<Unit filename="input/data/atrito.dat" />
+		<Unit filename="input/data/atrito.grp" />
+		<Unit filename="input/data/edo.dat" />
+		<Unit filename="input/data/edo1.dat" />
+		<Unit filename="input/data/ita.dat" />
+		<Unit filename="input/data/ita.grp" />
+		<Unit filename="input/data/ls.dat" />
+		<Unit filename="input/data/ls.grp" />
+		<Unit filename="input/data/rk4.dat" />
+		<Unit filename="input/data/rk4.grp" />
+		<Unit filename="input/data/senx.dat" />
+		<Unit filename="input/data/senx.grp" />
+		<Unit filename="input/data/teste.dat" />
+		<Unit filename="input/data/teste.grp" />
+		<Unit filename="input/data/tubo.dat" />
+		<Unit filename="input/data/tubo.grp" />
+		<Unit filename="input/grammar/edogram.txt" />
+		<Unit filename="input/grammar/gram.dat" />
+		<Unit filename="input/grammar/gramatica.dat" />
+		<Unit filename="input/grammar/ita.dat" />
+		<Unit filename="input/grammar/ls.dat" />
+		<Unit filename="input/grammar/rk4.dat" />
+		<Unit filename="input/grammar/senx.dat" />
+		<Unit filename="input/grammar/teste.dat" />
+		<Unit filename="src/Configures.cpp" />
+		<Unit filename="src/Configures.h" />
+		<Unit filename="src/Crossover.cpp" />
+		<Unit filename="src/Crossover.h" />
+		<Unit filename="src/Database.cpp" />
+		<Unit filename="src/Database.h" />
+		<Unit filename="src/Grammar.cpp" />
+		<Unit filename="src/Grammar.h" />
+		<Unit filename="src/IndividuoBuilder.cpp" />
+		<Unit filename="src/IndividuoBuilder.h" />
+		<Unit filename="src/Mutation.cpp" />
+		<Unit filename="src/Mutation.h" />
+		<Unit filename="src/No.cpp" />
+		<Unit filename="src/No.h" />
+		<Unit filename="src/Parser.cpp" />
+		<Unit filename="src/Parser.h" />
+		<Unit filename="src/PopulationReplacement.cpp" />
+		<Unit filename="src/PopulationReplacement.h" />
+		<Unit filename="src/Search.cpp" />
+		<Unit filename="src/Search.h" />
+		<Unit filename="src/Selection.cpp" />
+		<Unit filename="src/Selection.h" />
+		<Unit filename="src/SimpleCrossover.cpp" />
+		<Unit filename="src/SimpleCrossover.h" />
+		<Unit filename="src/SimpleIndividuo.cpp" />
+		<Unit filename="src/SimpleIndividuo.h" />
+		<Unit filename="src/SimpleIndividuoBuilder.cpp" />
+		<Unit filename="src/SimpleIndividuoBuilder.h" />
+		<Unit filename="src/SimpleMutation.cpp" />
+		<Unit filename="src/SimpleMutation.h" />
+		<Unit filename="src/SimpleParser.cpp" />
+		<Unit filename="src/SimpleParser.h" />
+		<Unit filename="src/SimpleReplace.cpp" />
+		<Unit filename="src/SimpleReplace.h" />
+		<Unit filename="src/Subject.cpp" />
+		<Unit filename="src/Subject.h" />
+		<Unit filename="src/TournamentSelection.cpp" />
+		<Unit filename="src/TournamentSelection.h" />
+		<Unit filename="src/Tree.cpp" />
+		<Unit filename="src/Tree.h" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
