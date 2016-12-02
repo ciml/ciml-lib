@@ -12,25 +12,11 @@ Tree::Tree(No* n){
     //ctor
     root = n;
     update();
+    fitness = 0;
 }
 
 void Tree::print(){
     root->print();
-}
-
-Tree::~Tree(){
-    //dtor
-     delete root;
-     #ifdef debug
-            cout << "deletando ARVORE" << endl;
-            cin.get();
-        #endif // debug
-    nonTerminals.clear();
-    targetedNonTerminals.clear();
-    linearModel.clear();
-
-    delete [] leastSquare;
-
 }
 
 No* Tree::subTree(){
@@ -104,5 +90,20 @@ No* Tree::clone(No* n){
     }
 
     return m;
+}
+
+Tree::~Tree(){
+    //dtor
+     delete root;
+     #ifdef debug
+            cout << "deletando ARVORE" << endl;
+            cin.get();
+        #endif // debug
+    nonTerminals.clear();
+    targetedNonTerminals.clear();
+    linearModel.clear();
+//    if(leastSquare!=NULL)
+//        delete [] leastSquare;
+
 }
 

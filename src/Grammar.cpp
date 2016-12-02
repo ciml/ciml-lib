@@ -272,8 +272,8 @@ void Grammar::high1(Node* n){
             else{
                 invalid = true;
             }
-            if(invalid)
-                n->high = INFINITY;
+//            if(invalid)
+//                n->high = INFINITY;
         }
     }
 

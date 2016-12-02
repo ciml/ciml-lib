@@ -2439,7 +2439,7 @@
 1480448273 source:/home/felipe/Dropbox/id-ggp_mod parallel/src/Database.cpp
 	"Database.h"
 
-1480022539 source:/home/felipe/Dropbox/id-ggp_mod parallel/src/Grammar.cpp
+1480462635 source:/home/felipe/Dropbox/id-ggp_mod parallel/src/Grammar.cpp
 	"Grammar.h"
 	"Configures.h"
 
@@ -2450,7 +2450,7 @@
 	"Subject.h"
 	<string>
 
-1480457359 source:/home/felipe/Dropbox/id-ggp_mod parallel/src/main.cpp
+1480532397 source:/home/felipe/Dropbox/id-ggp_mod parallel/src/main.cpp
 	<iostream>
 	<ctime>
 	"Database.h"
@@ -2610,7 +2610,7 @@
 	<iostream>
 	<memory.h>
 
-1480456654 source:/home/felipe/Dropbox/id-ggp_mod parallel/inc/LSDerivadasParser.cpp
+1480458132 source:/home/felipe/Dropbox/id-ggp_mod parallel/inc/LSDerivadasParser.cpp
 	"LSDerivadasParser.h"
 
 1480455962 /home/felipe/Dropbox/id-ggp_mod parallel/inc/LSDerivadasParser.h
@@ -2622,4 +2622,282 @@
 	<tuple>
 	<cmath>
 	"SimpleParser.h"
+
+1480531799 source:/home/felipe/Dropbox/id-ggp_mod parallel/inc/RKDParser.cpp
+	"RKDParser.h"
+
+1480532027 /home/felipe/Dropbox/id-ggp_mod parallel/inc/RKDParser.h
+	"Configures.h"
+	"Parser.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+	"QRDecomposition.h"
+	"SimpleParser.h"
+
+1480640602 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareParser.cpp
+	"LeastSquareParser.h"
+
+1480564959 /home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareParser.h
+	"Configures.h"
+	"Parser.h"
+	"../inc/QRDecomposition.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+	"SimpleParser.h"
+	"LeastSquareIndividuo.h"
+
+1480035730 /home/felipe/Documentos/id-ggp_mod parallel/src/Configures.h
+	<stdlib.h>
+	"Grammar.h"
+
+1478200400 /home/felipe/Documentos/id-ggp_mod parallel/src/Grammar.h
+	<tuple>
+	<vector>
+	<string>
+	<fstream>
+	<algorithm>
+	"Database.h"
+	"No.h"
+	"Configures.h"
+
+1480448272 /home/felipe/Documentos/id-ggp_mod parallel/src/Database.h
+	<iostream>
+	<cstring>
+	<fstream>
+	<vector>
+	<cmath>
+	"Configures.h"
+
+1479074318 /home/felipe/Documentos/id-ggp_mod parallel/src/No.h
+	<iostream>
+	<string>
+	<vector>
+
+1479961983 /home/felipe/Documentos/id-ggp_mod parallel/src/Parser.h
+	"Configures.h"
+	"Subject.h"
+	<string>
+
+1480084971 /home/felipe/Documentos/id-ggp_mod parallel/src/Subject.h
+	<iostream>
+	<vector>
+	"Tree.h"
+	<string>
+
+1480561888 /home/felipe/Documentos/id-ggp_mod parallel/src/Tree.h
+	"No.h"
+	"Configures.h"
+	<iostream>
+	<vector>
+	<tuple>
+
+1444961608 /home/felipe/Documentos/id-ggp_mod parallel/inc/QRDecomposition.h
+
+1480348920 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleParser.h
+	"Configures.h"
+	"Parser.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+
+1480458132 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/LSDerivadasParser.cpp
+	"LSDerivadasParser.h"
+
+1480455962 /home/felipe/Documentos/id-ggp_mod parallel/inc/LSDerivadasParser.h
+	"Configures.h"
+	"Parser.h"
+	"QRDecomposition.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+	"SimpleParser.h"
+
+1480563348 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/ParserDerivadas.cpp
+	"ParserDerivadas.h"
+
+1480350966 /home/felipe/Documentos/id-ggp_mod parallel/inc/ParserDerivadas.h
+	"Configures.h"
+	"Parser.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+	"SimpleParser.h"
+
+1444961580 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/QRDecomposition.cpp
+	"QRDecomposition.h"
+	<cmath>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<memory.h>
+
+1480531799 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/RKDParser.cpp
+	"RKDParser.h"
+
+1480532027 /home/felipe/Documentos/id-ggp_mod parallel/inc/RKDParser.h
+	"Configures.h"
+	"Parser.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+	"QRDecomposition.h"
+	"SimpleParser.h"
+
+1475621808 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Configures.cpp
+	"Configures.h"
+
+1479961424 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Crossover.cpp
+	"Crossover.h"
+
+1480085168 /home/felipe/Documentos/id-ggp_mod parallel/src/Crossover.h
+	"Subject.h"
+
+1480448273 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Database.cpp
+	"Database.h"
+
+1480462635 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Grammar.cpp
+	"Grammar.h"
+	"Configures.h"
+
+1479960366 source:/home/felipe/Documentos/id-ggp_mod parallel/src/IndividuoBuilder.cpp
+	"IndividuoBuilder.h"
+
+1479961104 /home/felipe/Documentos/id-ggp_mod parallel/src/IndividuoBuilder.h
+	"Subject.h"
+	<string>
+
+1480616286 source:/home/felipe/Documentos/id-ggp_mod parallel/src/main.cpp
+	<iostream>
+	<ctime>
+	"Database.h"
+	"Grammar.h"
+	"No.h"
+	"Configures.h"
+	"Search.h"
+	"Configures.h"
+	"SimpleParser.h"
+	"../inc/ParserDerivadas.h"
+	"../inc/LeastSquareParser.h"
+	"../inc/LSDerivadasParser.h"
+	"IndividuoBuilder.h"
+	"LeastSquareIndividuoBuilder.h"
+
+1480218232 /home/felipe/Documentos/id-ggp_mod parallel/src/Search.h
+	"Subject.h"
+	"Grammar.h"
+	"Tree.h"
+	"Configures.h"
+	"Parser.h"
+	"SimpleParser.h"
+	<cmath>
+	<algorithm>
+	<exception>
+	"Selection.h"
+	"TournamentSelection.h"
+	"PopulationReplacement.h"
+	"SimpleReplace.h"
+	"IndividuoBuilder.h"
+	"SimpleIndividuoBuilder.h"
+	"Mutation.h"
+	"SimpleMutation.h"
+	"Crossover.h"
+	"SimpleCrossover.h"
+	<omp.h>
+
+1480080002 /home/felipe/Documentos/id-ggp_mod parallel/src/Selection.h
+	"Subject.h"
+
+1480033291 /home/felipe/Documentos/id-ggp_mod parallel/src/TournamentSelection.h
+	"Selection.h"
+
+1479959093 /home/felipe/Documentos/id-ggp_mod parallel/src/PopulationReplacement.h
+	"Subject.h"
+
+1479959249 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleReplace.h
+	"Subject.h"
+	"PopulationReplacement.h"
+	"Configures.h"
+	<iostream>
+	<algorithm>
+
+1479961152 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleIndividuoBuilder.h
+	"IndividuoBuilder.h"
+	"SimpleIndividuo.h"
+
+1480444308 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleIndividuo.h
+	"Subject.h"
+
+1480085119 /home/felipe/Documentos/id-ggp_mod parallel/src/Mutation.h
+	"Subject.h"
+
+1479964525 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleMutation.h
+	"Mutation.h"
+
+1480007929 /home/felipe/Documentos/id-ggp_mod parallel/src/SimpleCrossover.h
+	"Crossover.h"
+
+1479963513 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Mutation.cpp
+	"Mutation.h"
+
+1479239126 source:/home/felipe/Documentos/id-ggp_mod parallel/src/No.cpp
+	"No.h"
+
+1479833213 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Parser.cpp
+
+1479959099 source:/home/felipe/Documentos/id-ggp_mod parallel/src/PopulationReplacement.cpp
+	"PopulationReplacement.h"
+
+1480640415 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Search.cpp
+	"Search.h"
+
+1479266414 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Selection.cpp
+	"Selection.h"
+
+1480444563 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleCrossover.cpp
+	"SimpleCrossover.h"
+
+1480084900 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleIndividuo.cpp
+	"SimpleIndividuo.h"
+
+1479960379 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleIndividuoBuilder.cpp
+	"SimpleIndividuoBuilder.h"
+
+1480561836 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleMutation.cpp
+	"SimpleMutation.h"
+
+1480444735 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleParser.cpp
+	"SimpleParser.h"
+
+1480563692 source:/home/felipe/Documentos/id-ggp_mod parallel/src/SimpleReplace.cpp
+	"SimpleReplace.h"
+
+1479927451 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Subject.cpp
+	"Subject.h"
+
+1480085032 source:/home/felipe/Documentos/id-ggp_mod parallel/src/TournamentSelection.cpp
+	"TournamentSelection.h"
+
+1480561966 source:/home/felipe/Documentos/id-ggp_mod parallel/src/Tree.cpp
+	"Tree.h"
+
+1480564033 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareIndividuoBuilder.cpp
+	"LeastSquareIndividuoBuilder.h"
+
+1480567716 /home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareIndividuoBuilder.h
+	"IndividuoBuilder.h"
+	"LeastSquareIndividuo.h"
+
+1480614189 /home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareIndividuo.h
+	"Subject.h"
+
+1480616451 source:/home/felipe/Documentos/id-ggp_mod parallel/inc/LeastSquareIndividuo.cpp
+	"LeastSquareIndividuo.h"
 

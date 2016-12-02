@@ -9,6 +9,7 @@
 #include <tuple>
 #include <cmath>
 #include "SimpleParser.h"
+#include "LeastSquareIndividuo.h"
 
 class LeastSquareParser : public SimpleParser {
     public:
@@ -22,7 +23,7 @@ class LeastSquareParser : public SimpleParser {
         virtual ~LeastSquareParser();
     protected:
     private:
-        double * AuxEvaluate(Subject* s, int model, double ** dat,int tam);
+        double * AuxEvaluate(LeastSquareIndividuo* s, int model, double ** dat,int tam);
 };
 
 #endif // LEASTSQUAREPARSER_H

@@ -5,14 +5,33 @@ LeastSquareParser::LeastSquareParser() {
 }
 
 double LeastSquareParser::Evaluate(Subject* s){
+
+    LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
+    for(int i = 0 ; i <conf->numTree; i++){
+        delete [] s1->leastSquare[i];
+    }
+    delete [] s1->leastSquare;
+    delete [] s1->leastSquareSize;
+    cout << "deletou\n";
+
     /***
         Arrumar orientação mudarleastSquare para muitos lugares
     ***/
     double * r;
+
+
     s->fitness = 0;
     for(int arvore = 0; arvore < conf->numTree;arvore++){
         s->trees[arvore]->fitness = 0;
-        r = AuxEvaluate(s,arvore,dataset,tamDataset);
+        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
+
+//        cout << "leastSquare arvore " << arvore  << " : ";
+//        for(int k = 0; k < s1->leastSquareSize[arvore]; k++){
+//            cout << r[k] << " ";
+//        }
+//        cout << endl;
+//        cin.get();
+
         for( int j = 0; j < tamDataset ; j++){ // para todos os dados do conjunto de treinamento
             if(isinf(r[j]) || isnan(r[j])){
                 s->trees[arvore]->fitness = INFINITY;
@@ -21,13 +40,18 @@ double LeastSquareParser::Evaluate(Subject* s){
             }
             s->trees[arvore]->fitness += pow(r[j] - dataset[j][data->variables + arvore], 2);
         }
+//        cout << s->trees[arvore]->fitness << endl;
+//        cin.get();
         s->fitness += s->trees[arvore]->fitness;
     }
+    delete s1;
     return s->fitness;
 
 }
 
-double * LeastSquareParser::AuxEvaluate(Subject* s, int model, double ** dat,int tam){
+double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, double ** dat,int tam){
+
+    //LeastSquareIndividuo * s1 = s;
 //    s->trees[model]->root->print();
 //    cout << endl;
 //    s->trees[model]->root->print(0);
@@ -38,6 +62,7 @@ double * LeastSquareParser::AuxEvaluate(Subject* s, int model, double ** dat,int
     for(int i = 0; i < s->trees[model]->linearModel.size(); i++)
         if((int)get<0>(s->trees[model]->linearModel.at(i)) == conf->leastSquareOperator)
             sub++;
+    s->leastSquareSize[model] = sub;
 
     double** subMatrix = new double*[tam];
     for(int i = 0; i < tam; i++){
@@ -129,17 +154,18 @@ double * LeastSquareParser::AuxEvaluate(Subject* s, int model, double ** dat,int
         b[i] = dat[i][data->variables + model];
     }
 
-    s->trees[model]->leastSquare = qrDec->solveLeastSquares(b, tam);
-    s->trees[model]->leastSquareSize = sub;
+
+    s->leastSquare[model] = qrDec->solveLeastSquares(b, tam);
+    s->leastSquareSize[model] = sub;
 //    s->trees[model]->leastSquare = NULL;
-    if(s->trees[model]->leastSquare != NULL){
+    if(s->leastSquare != NULL){
 //        cout << "deu" << endl;
     }
     else{
 //        cout << "nao deu" << endl;
-        s->trees[model]->leastSquare = new double[sub];
+        s->leastSquare[model] = new double[sub];
         for(int j = 0; j < sub; j++){
-            s->trees[model]->leastSquare[j] = 1;
+            s->leastSquare[model][j] = 1;
         }
     }
 
@@ -148,7 +174,7 @@ double * LeastSquareParser::AuxEvaluate(Subject* s, int model, double ** dat,int
     for(int i = 0; i < tam; i++){
         r[i] = 0;
         for(int j = 0; j < sub; j++){
-            r[i] += s->trees[model]->leastSquare[j] * subMatrix[i][j];
+            r[i] += s->leastSquare[model][j] * subMatrix[i][j];
             if(isnan(r[i]) || isinf(r[i]))
                 r[i] = INFINITY;
         }
@@ -168,8 +194,12 @@ double * LeastSquareParser::AuxEvaluate(Subject* s, int model, double ** dat,int
     delete [] subMatrix;
 
     delete [] b;
-    delete qrDec;
-
+//    delete qrDec;
+//    cout << "vetor r : ";
+//    for(int i = 0; i < tam; i++){
+//                cout << r[i] << " ";
+//    }
+//    cout << endl;
 //    cin.get();
     return r;
 }

@@ -99,7 +99,7 @@ double ParserDerivadas::Evaluate(Subject* s){
 //                cin.get();
 //                break;
             }
-            double fit = pow(r - bancoDerivadas[j][data->variables + arvore], 2);
+            double fit = pow(r - dataset[j][data->variables + arvore], 2);
             s->trees[arvore]->fitness += fit;
         }
         s->fitness += s->trees[arvore]->fitness;

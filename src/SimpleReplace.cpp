@@ -4,8 +4,10 @@ SimpleReplace::SimpleReplace(){
 
 }
 void SimpleReplace::Replace(Subject **pop){
-            sort(pop, pop + conf->popSize * 2, SortMyPop);
+
             int elitismo = conf->elitism*conf->popSize;
+            sort(pop + elitismo, pop + conf->popSize * 2, SortMyPop);
+
             int indice;
 
             for(int i = elitismo; i < conf->popSize; i++){
@@ -13,6 +15,7 @@ void SimpleReplace::Replace(Subject **pop){
                 if(pop[i]->fitness < pop[indice]->fitness)
                     swap(pop[i], pop[indice]);
             }
+            sort(pop, pop + conf->popSize * 2, SortMyPop);
 }
 
 SimpleReplace::~SimpleReplace(){

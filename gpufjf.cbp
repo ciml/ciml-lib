@@ -12,10 +12,13 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-O2" />
+					<Add option="-w" />
 					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="src" />
 					<Add directory="include" />
+					<Add directory="inc" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -29,6 +32,7 @@
 					<Add option="-fopenmp" />
 					<Add directory="src" />
 					<Add directory="include" />
+					<Add directory="inc" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -40,39 +44,16 @@
 			<Add option="-Wall" />
 			<Add option="-openmp" />
 		</Compiler>
-		<Unit filename="GrammarDictionary.txt" />
-		<Unit filename="inc/LSDerivadasParser.cpp" />
-		<Unit filename="inc/LSDerivadasParser.h" />
+		<Unit filename="inc/LeastSquareIndividuo.cpp" />
+		<Unit filename="inc/LeastSquareIndividuo.h" />
+		<Unit filename="inc/LeastSquareIndividuoBuilder.cpp" />
+		<Unit filename="inc/LeastSquareIndividuoBuilder.h" />
 		<Unit filename="inc/LeastSquareParser.cpp" />
 		<Unit filename="inc/LeastSquareParser.h" />
 		<Unit filename="inc/ParserDerivadas.cpp" />
 		<Unit filename="inc/ParserDerivadas.h" />
 		<Unit filename="inc/QRDecomposition.cpp" />
 		<Unit filename="inc/QRDecomposition.h" />
-		<Unit filename="input/data/atrito.dat" />
-		<Unit filename="input/data/atrito.grp" />
-		<Unit filename="input/data/edo.dat" />
-		<Unit filename="input/data/edo1.dat" />
-		<Unit filename="input/data/ita.dat" />
-		<Unit filename="input/data/ita.grp" />
-		<Unit filename="input/data/ls.dat" />
-		<Unit filename="input/data/ls.grp" />
-		<Unit filename="input/data/rk4.dat" />
-		<Unit filename="input/data/rk4.grp" />
-		<Unit filename="input/data/senx.dat" />
-		<Unit filename="input/data/senx.grp" />
-		<Unit filename="input/data/teste.dat" />
-		<Unit filename="input/data/teste.grp" />
-		<Unit filename="input/data/tubo.dat" />
-		<Unit filename="input/data/tubo.grp" />
-		<Unit filename="input/grammar/edogram.txt" />
-		<Unit filename="input/grammar/gram.dat" />
-		<Unit filename="input/grammar/gramatica.dat" />
-		<Unit filename="input/grammar/ita.dat" />
-		<Unit filename="input/grammar/ls.dat" />
-		<Unit filename="input/grammar/rk4.dat" />
-		<Unit filename="input/grammar/senx.dat" />
-		<Unit filename="input/grammar/teste.dat" />
 		<Unit filename="src/Configures.cpp" />
 		<Unit filename="src/Configures.h" />
 		<Unit filename="src/Crossover.cpp" />

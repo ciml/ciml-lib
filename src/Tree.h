@@ -18,8 +18,8 @@ class Tree{
         vector<tuple<double,double> > linearModel;
         double fitness;
 
-        double * leastSquare;
-        int leastSquareSize;
+//        double * leastSquare = NULL;
+//        int leastSquareSize;
 
         No* subTree();
         No* targetSubTree(No* n);

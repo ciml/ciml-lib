@@ -68,6 +68,7 @@ void Search::evolve(){
 
     //initial population evaluation
     EvaluatePopulation(0, conf->popSize);
+
     sort(pop, pop + conf->popSize, SortPopulationFitness);
 
     last_best_fitness = INFINITY;
@@ -75,24 +76,28 @@ void Search::evolve(){
     cout << "Evolving..." << endl;
     for(int it = 1; it < conf->generations; it++){
         //aplica operadores geneticos
+         cout << "Operate" << endl;
         Operate();
-
+         cout << "Evaluate" << endl;
         //Avalia população
         EvaluatePopulation(conf->popSize, conf->popSize * 2);
-
+         cout << "Replace" << endl;
         //substitui a população
         replacer->Replace(pop);
 
         // free temporary population
-
+         cout << "Free" << endl;
         #pragma omp parallel for num_threads(conf->NUM_THREADS)
         for(int i = conf->popSize; i < conf->popSize * 2; i++){
             delete pop[i];
         }
+
+         cout << "print" << endl;
         if(stepByStep){
             cout << " generation " << it;
             printBestIndividuo();
         }
+
 //        if(pop[0]->fitness < tolerance){
 //            cout << "The process lasted: " << it << " generations " << endl;
 //            break;
@@ -126,7 +131,6 @@ void Search::EvaluatePopulation(int initialIndex, int finalIndex){
     @return void
 **/
 void Search::Operate(){
-
     int num_individuos = seletor->tam_selection;
     Subject ** selecionados;
 
@@ -231,10 +235,10 @@ void Search::printResult(){
         for(int m = 0; m < conf->numTree; m++){
             cout << "   f" << m << "() = (" << pop[i]->trees[m]->fitness << ") ";
             pop[i]->trees[m]->root->print();
-            cout << "leastSquare=[";
-            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
-                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
-            cout << "]";
+//            cout << "leastSquare=[";
+//            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
+//                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
+//            cout << "]";
         }
         cout << endl;
     }
@@ -246,10 +250,10 @@ void Search::printBestIndividuo(){
         for(int m = 0; m < conf->numTree; m++){
             cout << "   f" << m << "() = (" << pop[0]->trees[m]->fitness << ") ";
             pop[0]->trees[m]->root->print();
-            cout << "leastSquare=[";
-            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
-                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
-            cout << "]";
+//            cout << "leastSquare=[";
+//            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
+//                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
+//            cout << "]";
         }
         cout << endl;
 }

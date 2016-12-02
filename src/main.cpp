@@ -10,12 +10,17 @@
 #include "../inc/ParserDerivadas.h"
 #include "../inc/LeastSquareParser.h"
 #include "../inc/LSDerivadasParser.h"
+#include "IndividuoBuilder.h"
+#include "LeastSquareIndividuoBuilder.h"
 
 using namespace std;
 
-//#define parserLeastSquare
-#define parserLSDerivadas
+#define parserLeastSquare
+//#define parserLSDerivadas
+//#define parserDerivadas
+//#define simpleParser
 int main(){
+
 #ifdef MAKEDATA
     double a, e = 0;
     int size = 200;
@@ -42,13 +47,14 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 2000;
-    conf->popSize = 500;
+    conf->generations = 1000;
+    conf->popSize = 10;
     conf->elitism = 0.1;
-    conf->crossoverRate = 0.9;
-    conf->mutationRate = 0.1;
+    conf->crossoverRate = 0.5;
+    conf->mutationRate = 0.5;
 
     conf->NUM_THREADS = 4;
+
 
     /// Loading database and grammar
 
@@ -89,6 +95,7 @@ int main(){
     double** dados_treino = data->values;
     cout << "total training " << data->totalTraining << " total test " << data->totalTest << " total validation "<< data->totalValidation << endl;
 
+     IndividuoBuilder * individuoBuilder = NULL;
     /// Setting parser
 
     #ifdef simpleParser
@@ -99,6 +106,7 @@ int main(){
     #endif
     #ifdef parserLeastSquare
         parser = new LeastSquareParser();
+        individuoBuilder = new LeastSquareIndividuoBuilder();
     #endif
     #ifdef parserDerivadas
         parser = new ParserDerivadas();
@@ -110,9 +118,13 @@ int main(){
          parser = new RK4Parser();
     #endif
 
+
     parser->setDataSet(dados_treino,data->totalTraining);
 
-    Search* s = new Search(parser,NULL,NULL);
+
+
+
+    Search* s = new Search(parser,NULL,individuoBuilder);
     s->stepByStep = true;
     s->evolve();
 
