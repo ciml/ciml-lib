@@ -10,8 +10,8 @@ void Subject::addTree(Tree* t){
 
 
 Subject::~Subject() {
-   //cout << "Destrutor Subject" << endl;
-   //cin.get();
+//   cout << "Destrutor Subject" << endl;
+//   cin.get();
   for(Tree* t : trees)
         delete t;
   trees.clear();

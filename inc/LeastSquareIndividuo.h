@@ -15,7 +15,7 @@ class LeastSquareIndividuo : public Subject
         virtual string nameIndividual();
         void print();
 
-        virtual ~LeastSquareIndividuo();
+        virtual ~LeastSquareIndividuo() override;
 
     protected:
 

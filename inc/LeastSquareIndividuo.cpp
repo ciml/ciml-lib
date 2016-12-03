@@ -1,16 +1,17 @@
 #include "LeastSquareIndividuo.h"
+#include "Tree.h"
 
 LeastSquareIndividuo::LeastSquareIndividuo(bool inicializa)
 {
     if(inicializa == true){
         leastSquare = new double*[conf->numTree];
         leastSquareSize = new int[conf->numTree];
-        for(int j = 0 ; j < conf->numTree; j++)
+        for(int i = 0 ; i < conf->numTree; i++)
         {
+            leastSquareSize[i] = 0;
             addTree(new Tree());
         }
-        for(int i = 0; i < conf->numTree; i++)
-            leastSquareSize[i] = 0;
+
     }else{
 //        cout << "Inicializa == false " << endl;
 //        cin.get();
@@ -36,8 +37,7 @@ void LeastSquareIndividuo::print(){
 
 Subject* LeastSquareIndividuo::clone()
 {
-
-    LeastSquareIndividuo* s = new LeastSquareIndividuo(false);
+    LeastSquareIndividuo* s = new LeastSquareIndividuo(false);//cria um invididuo 'vazio'
 
     for(int i = 0; i < conf->numTree; i++)
     {
@@ -45,48 +45,47 @@ Subject* LeastSquareIndividuo::clone()
     }
     s->fitness = fitness;
 
-//    cout << "Clone"<< endl;
-    //cin.get();
 
     double ** mat = new double*[conf->numTree];
     int * vet_tam = new int[conf->numTree];
-    //cin.get();
+
     for(int i = 0; i < conf->numTree; i++){
-//            cout << " : " << leastSquareSize[i] << " : \n";
             vet_tam[i] = leastSquareSize[i];
             mat[i] = new double[vet_tam[i]];
+    }
 
+    for(int i = 0; i < conf->numTree; i++){
+        for(int j = 0 ; j < vet_tam[i]; j ++){
+            mat[i][j] = leastSquare[i][j];
+        }
     }
     s->leastSquare = mat;
     s->leastSquareSize = vet_tam;
-//    cout << "saiu";
-//    cin.get();
+
     return s;
 }
 
 LeastSquareIndividuo::~LeastSquareIndividuo()
 {
 
-    if (leastSquare != NULL)
+    if ( leastSquare != NULL)
 	{
-//        cout << "DESTRUTOR1\n";
-//        cin.get();
-		for (int i = 0; i < conf->numTree; i++)
-	  	{
-  			delete[]leastSquare[i];
-	  	}
+//		for (int i = 0; i < conf->numTree; i++)
+//	  	{
+//            if( leastSquare[i] != NULL )
+//                delete [] leastSquare[i];
+//	  	}
 		delete[]leastSquare;
 
-		leastSquare = NULL;
+		//leastSquare = NULL;
 
-//		cout << "DESTRUTOR2\n";
-//        cin.get();
 	}
 	if(leastSquareSize != NULL){
         delete[]leastSquareSize;
-        leastSquareSize = NULL;
+        //leastSquareSize = NULL;
 	}
-//
+
+
 //    for(Tree* t : trees)
 //        delete t;
 //    trees.clear();

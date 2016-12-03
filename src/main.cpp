@@ -12,6 +12,7 @@
 #include "../inc/LSDerivadasParser.h"
 #include "IndividuoBuilder.h"
 #include "LeastSquareIndividuoBuilder.h"
+#include "Subject.h"
 
 using namespace std;
 
@@ -47,8 +48,8 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 1000;
-    conf->popSize = 1000;
+    conf->generations = 1000000;
+    conf->popSize = 10;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
@@ -85,6 +86,27 @@ int main(){
 //    data = new Database("input/data/ls.dat");
 //    data->loadGroup("input/data/ls.grp");
 //    grammar = new Grammar("input/grammar/ls.dat");
+
+
+ conf->numTree = data->prediction;
+
+int tam = 10;
+Subject ** pop = new Subject*[tam];
+    while(1){
+        for(int i = 0 ; i < tam; i++){
+            LeastSquareIndividuo * l = new LeastSquareIndividuo(true);
+            pop[i] = l;
+           // pop[i]->addTree(new Tree());
+            pop[i]->trees[0]->print();
+            cout << endl;
+        }
+        for(int i = 0 ; i < tam; i++){
+            delete pop[i];
+        }
+    }
+
+
+#ifdef normal
 
     conf->numTree = data->prediction; // seta o numero de variaveis a serem preditas. dependente do problema a ser tratado
 
@@ -127,7 +149,7 @@ int main(){
     Search* s = new Search(parser,NULL,individuoBuilder);
     s->stepByStep = false;
     s->evolve();
-
+#endif
 
     return 0;
 }
