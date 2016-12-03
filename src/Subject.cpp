@@ -1,6 +1,7 @@
 #include "Subject.h"
 
 Subject::Subject() {
+    //cout << "subject set fit = 0 \n";
     fitness = 0;
 }
 

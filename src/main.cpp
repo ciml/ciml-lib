@@ -48,8 +48,8 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 100000;
-    conf->popSize = 100;
+    conf->generations = 10;
+    conf->popSize = 5;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
@@ -156,7 +156,7 @@ Subject ** pop = new Subject*[tam];
     #endif
 
 
-    parser->setDataSet(dados_treino,data->totalTraining);
+    parser->setDataSet(data->training,50);
 
 
 

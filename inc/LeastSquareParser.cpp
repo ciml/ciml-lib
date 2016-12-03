@@ -7,8 +7,9 @@ LeastSquareParser::LeastSquareParser() {
 double LeastSquareParser::Evaluate(Subject* s){
 
    // LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
-   LeastSquareIndividuo * s1 = dynamic_cast<LeastSquareIndividuo*>(s);
-
+   LeastSquareIndividuo * s1 = dynamic_cast<LeastSquareIndividuo*>(s->clone());
+   s1->leastSquareSize = new int[conf->numTree];
+   s1->leastSquare = new double*[conf->numTree];
     /***
         Arrumar orientação mudarleastSquare para muitos lugares
     ***/
@@ -18,28 +19,39 @@ double LeastSquareParser::Evaluate(Subject* s){
     s1->fitness = 0;
     for(int arvore = 0; arvore < conf->numTree;arvore++){
         s->trees[arvore]->fitness = 0;
-//        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
-//
-////        cout << "leastSquare arvore " << arvore  << " : ";
-////        for(int k = 0; k < s1->leastSquareSize[arvore]; k++){
-////            cout << r[k] << " ";
-////        }
-////        cout << endl;
-////        cin.get();
-//
-//        for( int j = 0; j < tamDataset ; j++){ // para todos os dados do conjunto de treinamento
-//            if(isinf(r[j]) || isnan(r[j])){
-//                s->trees[arvore]->fitness = INFINITY;
-//                //s->trees[arvore]->root->print();
-//                break;
-//            }
-//            s->trees[arvore]->fitness += pow(r[j] - dataset[j][data->variables + arvore], 2);
+        //cout << "AUX ";
+        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
+        //cout << "ok auxEvaluete\n";
+        //cin.get();
+
+//        cout << "leastSquare arvore " << arvore  << " : ";
+//        for(int k = 0; k < s1->leastSquareSize[arvore]; k++){
+//            cout << r[k] << " ";
 //        }
+//        cout << endl;
+//        cin.get();
+
+        for( int j = 0; j < tamDataset; j++){ // para todos os dados do conjunto de treinamento
+            if(isinf(r[j]) || isnan(r[j])){
+                s->trees[arvore]->fitness = INFINITY;
+                //s->trees[arvore]->root->print();
+                break;
+            }
+            s->trees[arvore]->fitness += pow(r[j] - dataset[j][data->variables + arvore], 2);
+        }
 
         s->fitness += s->trees[arvore]->fitness;
     }
+
+//    delete[]s1->leastSquare;
+//    delete[]s1->leastSquareSize;
+    delete []r;
+    double fit =  s1->fitness;
     delete s1;
-    return s->fitness;
+    cout << "return fit";
+    //cin.get();
+    return fit;
+
 
 }
 
@@ -49,7 +61,8 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
 //    s->trees[model]->root->print();
 //    cout << endl;
 //    s->trees[model]->root->print(0);
-//    cout << "________________________" << endl;
+//   cout << "________________________" << endl;
+//   cin.get();
 
     /// Find base functions
     int sub = 1;
@@ -58,10 +71,18 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
             sub++;
     s->leastSquareSize[model] = sub;
 
+//    cout <<"LeastSquareSize : " ;
+//    cout << s->leastSquareSize[model];
+//    cout << " TAM : " << tam << endl;
+//    cin.get();
+
     double** subMatrix = new double*[tam];
     for(int i = 0; i < tam; i++){
         subMatrix[i] = new double[sub];
     }
+
+//    cout << " subMatrix criada\n";
+//    cin.get();
 
 //    for(tuple<double, double> t : s->trees[model]->linearModel)
 //        cout << "(" << get<0>(t) << "," << get<1>(t) << ")";
@@ -141,16 +162,27 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
 //        cout << endl;
     }
 
+//    cout <<"Pilha operada \n";
+//    cin.get();
+
 //////    /// Solve Least Square
     QRDecomposition* qrDec = new QRDecomposition(subMatrix, tam, sub);
     double* b = new double[tam];
     for(int i = 0; i < tam; i++){
         b[i] = dat[i][data->variables + model];
+        //cout << b[i] << endl;
     }
+
+//    cout <<"Solve LeastSquare\n";
+//    cin.get();
 
 
     s->leastSquare[model] = qrDec->solveLeastSquares(b, tam);
     s->leastSquareSize[model] = sub;
+
+//    cout <<"Bora calcular o erro?\n";
+//    cin.get();
+
 //    s->trees[model]->leastSquare = NULL;
     if(s->leastSquare != NULL){
 //        cout << "deu" << endl;
@@ -163,12 +195,21 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
         }
     }
 
+
+
     /// Calculate Error
     double* r = new double[tam];
     for(int i = 0; i < tam; i++){
         r[i] = 0;
         for(int j = 0; j < sub; j++){
-            r[i] += s->leastSquare[model][j] * subMatrix[i][j];
+//            if(j == 0){
+//            cout << "Coeficiente : " << s->leastSquare[model][j] <<endl;
+//            cout << "valor : " << subMatrix[i][j] << endl;
+//            //cin.get();
+//            }
+            cout << "\n["<< model << "," << j <<"] ";
+            cout << " LS : " << double(s->leastSquare[model][j]) << " subMatriz " << double(subMatrix[i][j]) << endl;
+            r[i] += double(s->leastSquare[model][j]) * double(subMatrix[i][j]);
             if(isnan(r[i]) || isinf(r[i]))
                 r[i] = INFINITY;
         }
@@ -182,6 +223,8 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
 //    }
 //    cin.get();
 
+    //cout << "Todos calcs realizados\n";
+   // cin.get();
     for(int i = 0; i < tam; i++){
         delete [] subMatrix[i];
     }
@@ -195,6 +238,11 @@ double * LeastSquareParser::AuxEvaluate(LeastSquareIndividuo * s, int model, dou
 //    }
 //    cout << endl;
 //    cin.get();
+//    delete []s->leastSquare;
+//    delete []s->leastSquareSize;
+
+   // cout << "Finalizado retornando \n";
+    //cin.get();
     return r;
 }
 

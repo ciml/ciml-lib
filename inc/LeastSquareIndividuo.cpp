@@ -3,12 +3,13 @@
 
 LeastSquareIndividuo::LeastSquareIndividuo(bool inicializa)
 {
+
     if(inicializa == true){
-        leastSquare = new double*[conf->numTree];
-        leastSquareSize = new int[conf->numTree];
+//        leastSquare = new double*[conf->numTree];
+//        leastSquareSize = new int[conf->numTree];
         for(int i = 0 ; i < conf->numTree; i++)
         {
-            leastSquareSize[i] = 0;
+            //leastSquareSize[i] = 0;
             addTree(new Tree());
         }
 
@@ -42,7 +43,20 @@ void LeastSquareIndividuo::print(){
 
 Subject* LeastSquareIndividuo::clone()
 {
-    LeastSquareIndividuo* s = new LeastSquareIndividuo(false);//cria um invididuo 'vazio'
+    //cout << "CLONE:" << endl;
+    Subject* k = new LeastSquareIndividuo(false);
+
+
+
+    for(int i = 0; i < conf->numTree; i++)
+    {
+        k->trees.push_back(trees.at(i)->clone());
+    }
+    k->fitness = fitness;
+
+    return k;
+
+    /*LeastSquareIndividuo* s = new LeastSquareIndividuo(false);//cria um invididuo 'vazio'
 
     for(int i = 0; i < conf->numTree; i++)
     {
@@ -51,24 +65,35 @@ Subject* LeastSquareIndividuo::clone()
     s->fitness = fitness;
 
 
-   s->leastSquare = new double*[conf->numTree];
-   s->leastSquareSize  = new int[conf->numTree];
 
 
+   if(leastSquareSize == NULL){
+      s->leastSquare = new double*[conf->numTree];
+      s->leastSquareSize  = new int[conf->numTree];
 
-    for(int i = 0; i < conf->numTree; i++){
-        s->leastSquareSize[i] = leastSquareSize[i];
-        s->leastSquare[i] = new double[s->leastSquareSize[i]];
+       for(int i = 0 ; i < conf->numTree; i++){
+            leastSquareSize[i] = 0;
+       }
+
     }
 
-    for(int i = 0; i < conf->numTree; i++){
-        for(int j = 0 ; j < s->leastSquareSize[i]; j++){
-            s->leastSquare[i][j] = leastSquare[i][j];
-        }
-    }
+
+
+
+//    for(int i = 0; i < conf->numTree; i++){
+//        s->leastSquareSize[i] = leastSquareSize[i];
+//        s->leastSquare[i] = new double[s->leastSquareSize[i]];
+//    }
+//
+//    for(int i = 0; i < conf->numTree; i++){
+//        for(int j = 0 ; j < s->leastSquareSize[i]; j++){
+//            s->leastSquare[i][j] = leastSquare[i][j];
+//        }
+//    }
 
 
     return s;
+    */
 }
 
 LeastSquareIndividuo::~LeastSquareIndividuo()

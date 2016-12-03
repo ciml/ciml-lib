@@ -9,8 +9,9 @@ class LeastSquareIndividuo : public Subject
         int * leastSquareSize = NULL;// vetor que contem os tamanhos de cada vetor leastSquare
 
 
+
         LeastSquareIndividuo(bool inicializa);
-        virtual Subject* clone() override;// retorna uma copia da instancia atual
+        virtual Subject* clone();// retorna uma copia da instancia atual
         virtual string nameIndividual();
         void print();
 

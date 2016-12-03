@@ -20,7 +20,7 @@ Search::Search()
     setCrossover(NULL);
     setSelection(NULL);
 
-    omp_set_num_threads(conf->NUM_THREADS);
+   // omp_set_num_threads(conf->NUM_THREADS);
 
 }
 
@@ -35,7 +35,7 @@ Search::Search(Parser* parser,PopulationReplacement * populationreplace,Individu
     setCrossover(NULL);
     setSelection(NULL);
 
-    omp_set_num_threads(conf->NUM_THREADS);
+   // omp_set_num_threads(conf->NUM_THREADS);
 
 }
 
@@ -46,7 +46,7 @@ void Search::createsInitialPopulation(){
     cout << "Create Initial Population..." << endl;
     pop = new Subject*[conf->popSize * 2];
 
-    #pragma omp parallel for num_threads(conf->NUM_THREADS)
+   // #pragma omp parallel for num_threads(conf->NUM_THREADS)
     for(int i = 0; i < conf->popSize; i++){
         pop[i] = individuoBuilder->generateIndividuo();
     }
@@ -87,7 +87,7 @@ void Search::evolve(){
 
         // free temporary population
          cout << "Free" << endl;
-        #pragma omp parallel for num_threads(conf->NUM_THREADS)
+       // #pragma omp parallel for num_threads(conf->NUM_THREADS)
         for(int i = conf->popSize; i < conf->popSize * 2; i++){
             delete pop[i];
         }
@@ -121,7 +121,7 @@ void Search::Replace(){
 **/
 void Search::EvaluatePopulation(int initialIndex, int finalIndex){
 
-    #pragma omp parallel for num_threads(conf->NUM_THREADS)
+   // #pragma omp parallel for num_threads(conf->NUM_THREADS)
     for(int i = initialIndex; i < finalIndex; i++){
         parser->Evaluate(pop[i]);
     }
