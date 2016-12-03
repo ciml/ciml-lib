@@ -10,12 +10,11 @@ class LeastSquareIndividuo : public Subject
 
 
         LeastSquareIndividuo(bool inicializa);
-        LeastSquareIndividuo(Subject * s);
-        virtual Subject* clone();// retorna uma copia da instancia atual
+        virtual Subject* clone() override;// retorna uma copia da instancia atual
         virtual string nameIndividual();
         void print();
 
-        virtual ~LeastSquareIndividuo() override;
+        virtual ~LeastSquareIndividuo();
 
     protected:
 

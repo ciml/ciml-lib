@@ -6,7 +6,8 @@ LeastSquareParser::LeastSquareParser() {
 
 double LeastSquareParser::Evaluate(Subject* s){
 
-    LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
+   // LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
+   LeastSquareIndividuo * s1 = dynamic_cast<LeastSquareIndividuo*>(s);
 
     /***
         Arrumar orientação mudarleastSquare para muitos lugares

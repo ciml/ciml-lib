@@ -48,8 +48,8 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 1000000;
-    conf->popSize = 10;
+    conf->generations = 100000;
+    conf->popSize = 100;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
@@ -88,22 +88,37 @@ int main(){
 //    grammar = new Grammar("input/grammar/ls.dat");
 
 
+
+#ifdef testLSIndividuo
  conf->numTree = data->prediction;
+
+ Subject * s = new LeastSquareIndividuo(true);
 
 int tam = 10;
 Subject ** pop = new Subject*[tam];
     while(1){
-        for(int i = 0 ; i < tam; i++){
-            LeastSquareIndividuo * l = new LeastSquareIndividuo(true);
-            pop[i] = l;
-           // pop[i]->addTree(new Tree());
-            pop[i]->trees[0]->print();
-            cout << endl;
+        for(int i = 0 ; i < tam; i++)
+        {
+           pop[i] = s->clone();
+//           LeastSquareIndividuo * l = dynamic_cast<LeastSquareIndividuo*>(s1);
+//           //LeastSquareIndividuo * l = new LeastSquareIndividuo(true);
+//            cout << "LeastSquareSize[0] : " << l->leastSquareSize[0] << endl;
+//            pop[i] = l;
+//            for(int j = 0 ; j < conf->numTree; j ++){
+//                pop[i]->trees[j]->print();
+//                cout << endl;
+//            }
+//            cout << endl;
         }
         for(int i = 0 ; i < tam; i++){
             delete pop[i];
         }
     }
+
+#endif
+
+
+#define normal
 
 
 #ifdef normal

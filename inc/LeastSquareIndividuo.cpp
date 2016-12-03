@@ -18,14 +18,19 @@ LeastSquareIndividuo::LeastSquareIndividuo(bool inicializa)
     }
 }
 
-LeastSquareIndividuo::LeastSquareIndividuo(Subject * s){
-    trees = s->trees;
-    fitness = s->fitness;
-    leastSquare = new double*[conf->numTree];
-    leastSquareSize = new int[conf->numTree];
-    for(int i = 0; i < conf->numTree; i++)
-        leastSquareSize[i] = 0;
-}
+//LeastSquareIndividuo::LeastSquareIndividuo(Subject * s){
+//    //DerivedType *derived_ptr1=dynamic_cast<DerivedType*>(D_ptr);// works fine
+////    LeastSquareIndividuo * x = dynamic_cast<LeastSquareIndividuo*>(s);
+////    cout << "Trees size : " << x->trees.size() << endl;
+////    cin.get()
+////    trees = s->trees;
+////    fitness = s->fitness;
+////    leastSquare = new double*[conf->numTree];
+////    leastSquareSize = new int[conf->numTree];
+////    for(int i = 0; i < conf->numTree; i++)
+////        leastSquareSize[i] = 0;
+//
+//}
 
 string LeastSquareIndividuo::nameIndividual(){
     return "LeastSquareIndividuo";
@@ -46,21 +51,22 @@ Subject* LeastSquareIndividuo::clone()
     s->fitness = fitness;
 
 
-    double ** mat = new double*[conf->numTree];
-    int * vet_tam = new int[conf->numTree];
+   s->leastSquare = new double*[conf->numTree];
+   s->leastSquareSize  = new int[conf->numTree];
+
+
 
     for(int i = 0; i < conf->numTree; i++){
-            vet_tam[i] = leastSquareSize[i];
-            mat[i] = new double[vet_tam[i]];
+        s->leastSquareSize[i] = leastSquareSize[i];
+        s->leastSquare[i] = new double[s->leastSquareSize[i]];
     }
 
     for(int i = 0; i < conf->numTree; i++){
-        for(int j = 0 ; j < vet_tam[i]; j ++){
-            mat[i][j] = leastSquare[i][j];
+        for(int j = 0 ; j < s->leastSquareSize[i]; j++){
+            s->leastSquare[i][j] = leastSquare[i][j];
         }
     }
-    s->leastSquare = mat;
-    s->leastSquareSize = vet_tam;
+
 
     return s;
 }
