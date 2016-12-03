@@ -3,11 +3,14 @@
 LeastSquareIndividuo::LeastSquareIndividuo(bool inicializa)
 {
     if(inicializa == true){
-        //leastSquare = new double*[conf->numTree];
+        leastSquare = new double*[conf->numTree];
+        leastSquareSize = new int[conf->numTree];
         for(int j = 0 ; j < conf->numTree; j++)
         {
             addTree(new Tree());
         }
+        for(int i = 0; i < conf->numTree; i++)
+            leastSquareSize[i] = 0;
     }else{
 //        cout << "Inicializa == false " << endl;
 //        cin.get();
@@ -19,6 +22,8 @@ LeastSquareIndividuo::LeastSquareIndividuo(Subject * s){
     fitness = s->fitness;
     leastSquare = new double*[conf->numTree];
     leastSquareSize = new int[conf->numTree];
+    for(int i = 0; i < conf->numTree; i++)
+        leastSquareSize[i] = 0;
 }
 
 string LeastSquareIndividuo::nameIndividual(){
@@ -32,15 +37,6 @@ void LeastSquareIndividuo::print(){
 Subject* LeastSquareIndividuo::clone()
 {
 
-     if(conf->numTree  !=trees.size()){
-        cout << "Clone " << endl;
-        cout << "num trees "<< conf->numTree << endl;
-        cout << "trees size " <<trees.size() << endl;
-
-        cout << "algo de muito errado com o clone do individuo" <<endl;
-        cin.get();
-     }
-
     LeastSquareIndividuo* s = new LeastSquareIndividuo(false);
 
     for(int i = 0; i < conf->numTree; i++)
@@ -49,45 +45,50 @@ Subject* LeastSquareIndividuo::clone()
     }
     s->fitness = fitness;
 
+//    cout << "Clone"<< endl;
+    //cin.get();
 
-    if(leastSquare != NULL){
-        int auxLSSize[conf->numTree];
-        for(int i = 0; i < conf->numTree;i++){
-            auxLSSize[i] = leastSquareSize[i];
-        }
-        double ** auxLS = new double*[conf->numTree];
+    double ** mat = new double*[conf->numTree];
+    int * vet_tam = new int[conf->numTree];
+    //cin.get();
+    for(int i = 0; i < conf->numTree; i++){
+//            cout << " : " << leastSquareSize[i] << " : \n";
+            vet_tam[i] = leastSquareSize[i];
+            mat[i] = new double[vet_tam[i]];
 
-        for(int i = 0 ; i < conf->numTree; i++){
-            auxLS[i] = new double[leastSquareSize[i]];
-        }
-
-
-        for(int i = 0; i < conf->numTree; i++){
-            for(int j = 0; j < leastSquareSize[i]; j++){
-                auxLS[i][j] = leastSquare[i][j];
-            }
-
-        }
-        s->leastSquareSize = auxLSSize;
-        s->leastSquare = auxLS;
     }
-    //cout << "clone fit\n";
-
+    s->leastSquare = mat;
+    s->leastSquareSize = vet_tam;
+//    cout << "saiu";
+//    cin.get();
     return s;
 }
 
 LeastSquareIndividuo::~LeastSquareIndividuo()
 {
-//    if(leastSquareSize != NULL){
+
+    if (leastSquare != NULL)
+	{
 //        cout << "DESTRUTOR1\n";
 //        cin.get();
-//        for(int i = 0 ; i < conf->numTree;i++){
-//            delete [] leastSquare[i];
-//        }
-//
-//        delete [] leastSquareSize;
-//        cout << "DESTRUTOR2\n";
+		for (int i = 0; i < conf->numTree; i++)
+	  	{
+  			delete[]leastSquare[i];
+	  	}
+		delete[]leastSquare;
+
+		leastSquare = NULL;
+
+//		cout << "DESTRUTOR2\n";
 //        cin.get();
-//    }
+	}
+	if(leastSquareSize != NULL){
+        delete[]leastSquareSize;
+        leastSquareSize = NULL;
+	}
+//
+//    for(Tree* t : trees)
+//        delete t;
+//    trees.clear();
 
 }

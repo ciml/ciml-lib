@@ -6,45 +6,43 @@ LeastSquareParser::LeastSquareParser() {
 
 double LeastSquareParser::Evaluate(Subject* s){
 
-    LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
-    for(int i = 0 ; i <conf->numTree; i++){
-        delete [] s1->leastSquare[i];
-    }
-    delete [] s1->leastSquare;
-    delete [] s1->leastSquareSize;
-    cout << "deletou\n";
-
-    /***
-        Arrumar orientação mudarleastSquare para muitos lugares
-    ***/
-    double * r;
-
-
-    s->fitness = 0;
-    for(int arvore = 0; arvore < conf->numTree;arvore++){
-        s->trees[arvore]->fitness = 0;
-        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
-
-//        cout << "leastSquare arvore " << arvore  << " : ";
-//        for(int k = 0; k < s1->leastSquareSize[arvore]; k++){
-//            cout << r[k] << " ";
+//    LeastSquareIndividuo * s1 = new LeastSquareIndividuo(s->clone());
+//
+//    cout << s1->leastSquareSize[0] << " : ";
+//    cin.get();
+//    cout << "deletou\n";
+//
+//    /***
+//        Arrumar orientação mudarleastSquare para muitos lugares
+//    ***/
+//    //double * r;
+//
+//
+//    s1->fitness = 0;
+//    for(int arvore = 0; arvore < conf->numTree;arvore++){
+//        s->trees[arvore]->fitness = 0;
+//        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
+//
+////        cout << "leastSquare arvore " << arvore  << " : ";
+////        for(int k = 0; k < s1->leastSquareSize[arvore]; k++){
+////            cout << r[k] << " ";
+////        }
+////        cout << endl;
+////        cin.get();
+//
+//        for( int j = 0; j < tamDataset ; j++){ // para todos os dados do conjunto de treinamento
+//            if(isinf(r[j]) || isnan(r[j])){
+//                s->trees[arvore]->fitness = INFINITY;
+//                //s->trees[arvore]->root->print();
+//                break;
+//            }
+//            s->trees[arvore]->fitness += pow(r[j] - dataset[j][data->variables + arvore], 2);
 //        }
-//        cout << endl;
-//        cin.get();
-
-        for( int j = 0; j < tamDataset ; j++){ // para todos os dados do conjunto de treinamento
-            if(isinf(r[j]) || isnan(r[j])){
-                s->trees[arvore]->fitness = INFINITY;
-                //s->trees[arvore]->root->print();
-                break;
-            }
-            s->trees[arvore]->fitness += pow(r[j] - dataset[j][data->variables + arvore], 2);
-        }
-//        cout << s->trees[arvore]->fitness << endl;
-//        cin.get();
-        s->fitness += s->trees[arvore]->fitness;
-    }
-    delete s1;
+////        cout << s->trees[arvore]->fitness << endl;
+////        cin.get();
+//        s->fitness += s->trees[arvore]->fitness;
+//    }
+//    delete s1;
     return s->fitness;
 
 }

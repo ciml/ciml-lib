@@ -42,6 +42,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-g" />
 			<Add option="-openmp" />
 		</Compiler>
 		<Unit filename="inc/LeastSquareIndividuo.cpp" />

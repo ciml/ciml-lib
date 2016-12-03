@@ -48,12 +48,12 @@ int main(){
     conf->MAXDEEP = 6;
 
     conf->generations = 1000;
-    conf->popSize = 10;
+    conf->popSize = 1000;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
 
-    conf->NUM_THREADS = 4;
+    conf->NUM_THREADS = 1;
 
 
     /// Loading database and grammar
@@ -125,7 +125,7 @@ int main(){
 
 
     Search* s = new Search(parser,NULL,individuoBuilder);
-    s->stepByStep = true;
+    s->stepByStep = false;
     s->evolve();
 
 
