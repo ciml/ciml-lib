@@ -1,3 +1,3 @@
 <expr> ::= <expr> <expr> <op> | <var>
-<op> ::= + | - | * | /
-<var> ::= a | b | c | d | e
+<op> ::= + | - | * | / | !
+<var> ::= a | b

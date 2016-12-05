@@ -41,7 +41,7 @@ int main(){
 #endif
 
 
-    srand(time(NULL));
+    srand(42/*time(NULL)*/);
     cout << "Hello GP-ufjf!" << endl;
     conf = new Configures();
 
@@ -49,7 +49,7 @@ int main(){
     conf->MAXDEEP = 6;
 
     conf->generations = 10;
-    conf->popSize = 5;
+    conf->popSize = 50;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
@@ -67,9 +67,9 @@ int main(){
 //    data->loadGroup("input/data/rk4.grp");
 //    grammar = new Grammar("input/grammar/rk4.dat");
 
-    data = new Database("input/data/ita.dat");
-    data->loadGroup("input/data/ita.grp");
-    grammar = new Grammar("input/grammar/ita.dat");
+//    data = new Database("input/data/ita.dat");
+//    data->loadGroup("input/data/ita.grp");
+//    grammar = new Grammar("input/grammar/ita.dat");
 
 //    data = new Database("input/data/teste.dat");
 //    data->loadGroup("input/data/teste.grp");
@@ -83,9 +83,9 @@ int main(){
 //    data->loadGroup("input/data/cos.grp");
 //    grammar = new Grammar("input/grammar/senx.dat");
 
-//    data = new Database("input/data/ls.dat");
-//    data->loadGroup("input/data/ls.grp");
-//    grammar = new Grammar("input/grammar/ls.dat");
+    data = new Database("input/data/ls.dat");
+    data->loadGroup("input/data/ls.grp");
+    grammar = new Grammar("input/grammar/ls.dat");
 
 
 

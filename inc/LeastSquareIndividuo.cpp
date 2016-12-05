@@ -37,9 +37,6 @@ string LeastSquareIndividuo::nameIndividual(){
     return "LeastSquareIndividuo";
 }
 
-void LeastSquareIndividuo::print(){
-
-}
 
 Subject* LeastSquareIndividuo::clone()
 {
@@ -96,29 +93,42 @@ Subject* LeastSquareIndividuo::clone()
     */
 }
 
+void LeastSquareIndividuo::print(){
+      cout << " (" << fitness << ") " << endl;
+        for(int m = 0; m < conf->numTree; m++){
+            cout << "   f" << m << "() = (" << trees[m]->fitness << ") ";
+            trees[m]->root->print();
+            cout << "leastSquare=[";
+            for(int j = 0; j < leastSquareSize[m]; j++)
+                cout << leastSquare[m][j] << ", ";
+            cout << "]";
+        }
+        cout << endl;
+}
+
 LeastSquareIndividuo::~LeastSquareIndividuo()
 {
 
-    if ( leastSquare != NULL)
-	{
-//		for (int i = 0; i < conf->numTree; i++)
-//	  	{
-//            if( leastSquare[i] != NULL )
-//                delete [] leastSquare[i];
-//	  	}
+    if(leastSquare !=NULL){
+		for (int i = 0; i < conf->numTree; i++)
+	  	{
+            if( leastSquare[i] != NULL )
+                delete [] leastSquare[i];
+	  	}
 		delete[]leastSquare;
 
 		//leastSquare = NULL;
+    }
 
-	}
-	if(leastSquareSize != NULL){
+    if(leastSquareSize!=NULL){
         delete[]leastSquareSize;
         //leastSquareSize = NULL;
-	}
+    }
 
 
-//    for(Tree* t : trees)
-//        delete t;
-//    trees.clear();
+
+    for(Tree* t : trees)
+        delete t;
+    trees.clear();
 
 }

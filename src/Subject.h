@@ -16,6 +16,7 @@ class Subject{
         void addTree(Tree* t);
         virtual string nameIndividual() = 0; // deve printar o nome do individuo
         virtual Subject* clone() = 0;
+        virtual void print() = 0;
         virtual ~Subject();
 
 

@@ -252,6 +252,54 @@ bool Grammar::sortNode(Node* a, Node* b){
     return aa < bb;
 }
 
+
+
+void Grammar::high1(Node* n){
+    if(n->visited)
+        return;
+
+    n->visited = true;
+    n->high = INFINITY;
+
+    if(n->type > -1)
+        n->high = -1;
+
+    for(Node* nn : n->productions){
+        bool invalid = false;
+        int maxh = 0;
+        for(Node* nnn : nn->productions){
+            high1(nnn);
+            maxh = max(maxh, nnn->high);
+        }
+        nn->high = maxh;
+        n->high = min(n->high, nn->high);
+    }
+    n->high++;
+}
+
+void Grammar::high2(){
+    bool allSet;
+//    do{
+        allSet = true;
+        for(Node* n : gg){
+            int min = INFINITY;
+            for(Node* nn : n->productions){
+                int max = 0;
+                for(Node* nnn : nn->productions)
+                    if(nnn->high > max)
+                        max = nnn->high;
+                nn->high = max;
+
+                if(min > max)
+                    min = max;
+            }
+//            if(n->high == )
+        }
+//    }while(!allSet);
+}
+
+
+/*
 void Grammar::high1(Node* n){
     n->visited = true;
     n->high = INFINITY;
@@ -299,6 +347,8 @@ void Grammar::high2(){
         }
 //    }while(!allSet);
 }
+
+*/
 
 No* Grammar::derivate(){
     Node* node = gg.at(0);

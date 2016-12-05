@@ -16,6 +16,11 @@ string SimpleIndividuo::nameIndividual(){
     return "SimpleIndividuo";
 }
 
+void SimpleIndividuo::print(){
+
+
+}
+
 Subject* SimpleIndividuo::clone()
 {
     //cout << "Clone " << endl;

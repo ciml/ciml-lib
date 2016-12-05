@@ -13,6 +13,7 @@ class SimpleIndividuoBuilder : public IndividuoBuilder
         virtual string nameIndividuo(){
             return "SimpleIndividuo";
         }
+        void print();
         virtual ~SimpleIndividuoBuilder();
 
     protected:

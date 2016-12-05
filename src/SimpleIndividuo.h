@@ -7,7 +7,7 @@ class SimpleIndividuo : public Subject {
         SimpleIndividuo(bool inicializa = true);
         virtual Subject* clone();// retorna uma copia da instancia atual
         virtual string nameIndividual();
-        void print();
+        virtual void print();
         virtual ~SimpleIndividuo();
 
 

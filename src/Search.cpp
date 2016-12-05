@@ -76,23 +76,23 @@ void Search::evolve(){
     cout << "Evolving..." << endl;
     for(int it = 1; it < conf->generations; it++){
         //aplica operadores geneticos
-         cout << "Operate" << endl;
+         //cout << "Operate" << endl;
         Operate();
-         cout << "Evaluate" << endl;
+        // cout << "Evaluate" << endl;
         //Avalia população
         EvaluatePopulation(conf->popSize, conf->popSize * 2);
-         cout << "Replace" << endl;
+         //cout << "Replace" << endl;
         //substitui a população
         replacer->Replace(pop);
 
         // free temporary population
-         cout << "Free" << endl;
+        // cout << "Free" << endl;
        // #pragma omp parallel for num_threads(conf->NUM_THREADS)
         for(int i = conf->popSize; i < conf->popSize * 2; i++){
             delete pop[i];
         }
 
-         cout << "print" << endl;
+        // cout << "print" << endl;
         if(stepByStep){
             cout << " generation " << it;
             printBestIndividuo();
@@ -230,31 +230,22 @@ void Search::printParameters(){
 
 void Search::printResult(){
     cout << "--------------Results--------------" << endl;
-    for(int i = 0; i < 1; i++){
-        cout << i << "    " << pop[i]->fitness << " ";
-        for(int m = 0; m < conf->numTree; m++){
-            cout << "   f" << m << "() = (" << pop[i]->trees[m]->fitness << ") ";
-            pop[i]->trees[m]->root->print();
-//            cout << "leastSquare=[";
-//            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
-//                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
-//            cout << "]";
-        }
-        cout << endl;
-    }
+    pop[0]->print();
 
 }
 
 void Search::printBestIndividuo(){
-        cout << " (" << pop[0]->fitness << ") " << endl;
-        for(int m = 0; m < conf->numTree; m++){
-            cout << "   f" << m << "() = (" << pop[0]->trees[m]->fitness << ") ";
-            pop[0]->trees[m]->root->print();
-//            cout << "leastSquare=[";
-//            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
-//                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
-//            cout << "]";
-        }
+
+        pop[0]->print();
+//        cout << " (" << pop[0]->fitness << ") " << endl;
+//        for(int m = 0; m < conf->numTree; m++){
+//            cout << "   f" << m << "() = (" << pop[0]->trees[m]->fitness << ") ";
+//            pop[0]->trees[m]->root->print();
+////            cout << "leastSquare=[";
+////            for(int j = 0; j < pop[0]->trees[m]->leastSquareSize; j++)
+////                cout << pop[0]->trees[m]->leastSquare[j] << ", ";
+////            cout << "]";
+//        }
         cout << endl;
 }
 
