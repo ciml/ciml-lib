@@ -8,6 +8,7 @@
 #include <stack>
 #include <tuple>
 #include <cmath>
+#include "LeastSquareIndividuo.h"
 #include "SimpleParser.h"
 
 class LSDerivadasParser: public SimpleParser{
@@ -15,10 +16,6 @@ class LSDerivadasParser: public SimpleParser{
         LSDerivadasParser();
 
         double Evaluate(Subject* s);
-//        double * Evaluate(Subject* s, double** dat,int tam);
-//        double* Evaluate(Subject* s, int model, double** dat,int tam);
-//        double * Evaluate(Subject* s, double* dat);
-//        double Operate(int opType, int opValue, double a, double b = NULL, double c = NULL);
         double* calcDerivadaRegistroI(int registro);
 
         double ** banco_derivadas;
@@ -27,7 +24,8 @@ class LSDerivadasParser: public SimpleParser{
         virtual ~LSDerivadasParser();
     protected:
     private:
-            double * AuxEvaluate(Subject* s, int model, double ** dat,int tam);
+            double * AuxEvaluate(LeastSquareIndividuo * s, int model, double ** dat,int tam);
+            //double * AuxEvaluate(Subject* s, int model, double ** dat,int tam);
             void calcDerivadas();
 };
 

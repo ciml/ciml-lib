@@ -17,7 +17,12 @@ string SimpleIndividuo::nameIndividual(){
 }
 
 void SimpleIndividuo::print(){
-
+    cout << " (" << fitness << ") " << endl;
+    for(int m = 0; m < conf->numTree; m++){
+        cout << "   f" << m << "() = (" << trees[m]->fitness << ") ";
+        trees[m]->root->print();
+    }
+    cout << endl;
 
 }
 

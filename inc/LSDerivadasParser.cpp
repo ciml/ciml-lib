@@ -39,26 +39,32 @@ void LSDerivadasParser::setDataSet(double ** x, int tam){
 
 
 double LSDerivadasParser::Evaluate(Subject* s){
-    /***
-        Arrumar orientação mudar leastSquare para muitos lugares
-    ***/
+
+    LeastSquareIndividuo * s1 = dynamic_cast<LeastSquareIndividuo*>(s);
+    s1->leastSquareSize = new int[conf->numTree];
+    s1->leastSquare = new double*[conf->numTree];
+
+    for(int i  = 0; i < conf->numTree; i++){
+        s1->leastSquare[i] = NULL;
+    }
+
     double * r;
-    s->fitness = 0;
+    s1->fitness = 0;
     for(int arvore = 0; arvore < conf->numTree;arvore++){
-        s->trees[arvore]->fitness = 0;
-        r = AuxEvaluate(s,arvore,dataset,tamDataset);
+        s1->trees[arvore]->fitness = 0;
+        r = AuxEvaluate(s1,arvore,dataset,tamDataset);
         for( int j = 0; j < tamDataset ; j++){ // para todos os dados do conjunto de treinamento
             if(isinf(r[j]) || isnan(r[j])){
-                s->trees[arvore]->fitness = INFINITY;
+                s1->trees[arvore]->fitness = INFINITY;
                 //s->trees[arvore]->root->print();
                 break;
             }
-            s->trees[arvore]->fitness += pow(r[j] - banco_derivadas[j][data->variables + arvore], 2);
+            s1->trees[arvore]->fitness += pow(r[j] - banco_derivadas[j][data->variables + arvore], 2);
         }
-        s->fitness += s->trees[arvore]->fitness;
+        s1->fitness += s1->trees[arvore]->fitness;
         delete [] r;
     }
-    return s->fitness;
+    return s1->fitness;
 }
 
 
@@ -112,22 +118,35 @@ double * LSDerivadasParser::calcDerivadaRegistroI(int registro){
 
 }
 
-double * LSDerivadasParser::AuxEvaluate(Subject* s, int model, double ** dat,int tam){
-//    s->trees[model]->root->print();
+
+double * LSDerivadasParser::AuxEvaluate(LeastSquareIndividuo * s, int model, double ** dat,int tam){
+
+    //LeastSquareIndividuo * s1 = s;
+    //s->trees[model]->root->print();
 //    cout << endl;
-//    s->trees[model]->root->print(0);
-//    cout << "________________________" << endl;
+//    s->trees[model]->root->print();
+//   cout << "________________________" << endl;
+   //cin.get();
 
     /// Find base functions
     int sub = 1;
     for(int i = 0; i < s->trees[model]->linearModel.size(); i++)
         if((int)get<0>(s->trees[model]->linearModel.at(i)) == conf->leastSquareOperator)
             sub++;
+    s->leastSquareSize[model] = sub;
+
+//    cout <<"LeastSquareSize : " ;
+//    cout << s->leastSquareSize[model];
+//    cout << " TAM : " << tam << endl;
+//    cin.get();
 
     double** subMatrix = new double*[tam];
     for(int i = 0; i < tam; i++){
         subMatrix[i] = new double[sub];
     }
+
+    //cout << " subMatrix criada\n";
+//    cin.get();
 
 //    for(tuple<double, double> t : s->trees[model]->linearModel)
 //        cout << "(" << get<0>(t) << "," << get<1>(t) << ")";
@@ -144,7 +163,7 @@ double * LSDerivadasParser::AuxEvaluate(Subject* s, int model, double ** dat,int
                 stk.push(get<1>(t));
             }
             else if( var == conf->variable ){ // variable
-                stk.push(banco_derivadas[i][(int)get<1>(t)]);
+                stk.push(dat[i][(int)get<1>(t)]);
             }
             else if( var == conf->bynaryArithmeticOperators){ // bynaryArithmeticOperators
                 double b = stk.top();
@@ -207,33 +226,55 @@ double * LSDerivadasParser::AuxEvaluate(Subject* s, int model, double ** dat,int
 //        cout << endl;
     }
 
+    //cout <<"Pilha operada \n";
+//    cin.get();
+
 //////    /// Solve Least Square
     QRDecomposition* qrDec = new QRDecomposition(subMatrix, tam, sub);
     double* b = new double[tam];
     for(int i = 0; i < tam; i++){
-        b[i] = banco_derivadas[i][model];
+        b[i] = dat[i][data->variables + model];
+        //cout << b[i] << endl;
     }
 
-    s->trees[model]->leastSquare = qrDec->solveLeastSquares(b, tam);
-    s->trees[model]->leastSquareSize = sub;
+    //cout <<"Solve LeastSquare\n";
+//    cin.get();
+
+    double * coef = qrDec->solveLeastSquares(b, tam);
+    s->leastSquareSize[model] = sub;
+
+    //cout <<"Bora calcular o erro?\n";
+//    cin.get();
+
 //    s->trees[model]->leastSquare = NULL;
-    if(s->trees[model]->leastSquare != NULL){
-//        cout << "deu" << endl;
+    if(coef != NULL){
+        //cout << "deu" << endl;
     }
     else{
 //        cout << "nao deu" << endl;
-        s->trees[model]->leastSquare = new double[sub];
+        coef = new double[sub];
         for(int j = 0; j < sub; j++){
-            s->trees[model]->leastSquare[j] = 1;
+            coef[j] = 1;
         }
     }
 
+//    cout << "model " ;
+//    s->trees[model]->root->print();
     /// Calculate Error
     double* r = new double[tam];
     for(int i = 0; i < tam; i++){
         r[i] = 0;
         for(int j = 0; j < sub; j++){
-            r[i] += s->trees[model]->leastSquare[j] * subMatrix[i][j];
+//            if(j == 0){
+//            cout << "Coeficiente : " << s->leastSquare[model][j] <<endl;
+//            cout << "valor : " << subMatrix[i][j] << endl;
+//            //cin.get();
+//            }
+  //          cout << "\n[" << i  <<  ","<< model << "," << j <<"] ";
+//            cout << " LS : " << double(coef[j]) ;
+    //        cout <<" subMatriz " << double(subMatrix[i][j]) << endl;
+            //cin.get();
+            r[i] += double(coef[j]) * double(subMatrix[i][j]);
             if(isnan(r[i]) || isinf(r[i]))
                 r[i] = INFINITY;
         }
@@ -247,6 +288,10 @@ double * LSDerivadasParser::AuxEvaluate(Subject* s, int model, double ** dat,int
 //    }
 //    cin.get();
 
+    //cout << "Todos calcs realizados\n";
+   // cin.get();
+   s->leastSquare[model] = coef;
+   //delete [] coef;
     for(int i = 0; i < tam; i++){
         delete [] subMatrix[i];
     }
@@ -254,10 +299,20 @@ double * LSDerivadasParser::AuxEvaluate(Subject* s, int model, double ** dat,int
 
     delete [] b;
     delete qrDec;
-
+//    cout << "vetor r : ";
+//    for(int i = 0; i < tam; i++){
+//                cout << r[i] << " ";
+//    }
+//    cout << endl;
 //    cin.get();
+//    delete []s->leastSquare;
+//    delete []s->leastSquareSize;
+
+   // cout << "Finalizado retornando \n";
+    //cin.get();
     return r;
 }
+
 
 LSDerivadasParser::~LSDerivadasParser() {
     //dtor

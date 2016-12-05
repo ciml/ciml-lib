@@ -121,7 +121,7 @@ void Search::Replace(){
 **/
 void Search::EvaluatePopulation(int initialIndex, int finalIndex){
 
-   // #pragma omp parallel for num_threads(conf->NUM_THREADS)
+    #pragma omp parallel for num_threads(conf->NUM_THREADS)
     for(int i = initialIndex; i < finalIndex; i++){
         parser->Evaluate(pop[i]);
     }

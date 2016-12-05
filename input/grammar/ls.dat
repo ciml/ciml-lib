@@ -1,4 +1,4 @@
 <expr> ::= <expr> <expr> ! | <base>
 <base> ::= <base> <base> <op> | <var>
 <op> ::= + | - | * | /
-<var> ::= a | b
+<var> ::= a | b | 4

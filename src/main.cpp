@@ -16,8 +16,8 @@
 
 using namespace std;
 
-#define parserLeastSquare
-//#define parserLSDerivadas
+//#define parserLeastSquare
+#define parserLSDerivadas
 //#define parserDerivadas
 //#define simpleParser
 int main(){
@@ -48,14 +48,13 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 10;
-    conf->popSize = 50;
+    conf->generations = 1000;
+    conf->popSize = 500;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
 
-    conf->NUM_THREADS = 1;
-
+    conf->NUM_THREADS = 4;
 
     /// Loading database and grammar
 
@@ -75,17 +74,17 @@ int main(){
 //    data->loadGroup("input/data/teste.grp");
 //    grammar = new Grammar("input/grammar/teste.dat");
 
-//    data = new Database("input/data/ita.dat");
-//    data->loadGroup("input/data/ita.grp");
-//    grammar = new Grammar("input/grammar/ita.dat");
+    data = new Database("input/data/ita.dat");
+    data->loadGroup("input/data/ita.grp");
+    grammar = new Grammar("input/grammar/ita.dat");
 
 //    data = new Database("input/data/cos.dat");
 //    data->loadGroup("input/data/cos.grp");
 //    grammar = new Grammar("input/grammar/senx.dat");
 
-    data = new Database("input/data/ls.dat");
-    data->loadGroup("input/data/ls.grp");
-    grammar = new Grammar("input/grammar/ls.dat");
+//    data = new Database("input/data/ls.dat");
+//    data->loadGroup("input/data/ls.grp");
+//    grammar = new Grammar("input/grammar/ls.dat");
 
 
 
@@ -150,13 +149,14 @@ Subject ** pop = new Subject*[tam];
     #endif
     #ifdef parserLSDerivadas
         parser = new LSDerivadasParser();
+        individuoBuilder = new LeastSquareIndividuoBuilder();
     #endif
     #ifdef parserRungeKutta
          parser = new RK4Parser();
     #endif
 
 
-    parser->setDataSet(data->training,50);
+    parser->setDataSet(data->training,data->totalTraining);
 
 
 

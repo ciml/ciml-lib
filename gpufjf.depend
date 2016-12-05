@@ -2959,7 +2959,7 @@
 	"Subject.h"
 	<string>
 
-1480563348 source:/home/felipe/Documentos/PG/ciml-lib/inc/ParserDerivadas.cpp
+1480972470 source:/home/felipe/Documentos/PG/ciml-lib/inc/ParserDerivadas.cpp
 	"ParserDerivadas.h"
 
 1480350966 /home/felipe/Documentos/PG/ciml-lib/inc/ParserDerivadas.h
@@ -3013,7 +3013,7 @@
 1479960366 source:/home/felipe/Documentos/PG/ciml-lib/src/IndividuoBuilder.cpp
 	"IndividuoBuilder.h"
 
-1480970699 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
+1480972723 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
 	<iostream>
 	<ctime>
 	"Database.h"
@@ -3096,7 +3096,7 @@
 	"SimpleParser.h"
 	"LeastSquareIndividuo.h"
 
-1480455962 /home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.h
+1480973245 /home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.h
 	"Configures.h"
 	"Parser.h"
 	"QRDecomposition.h"
@@ -3104,6 +3104,7 @@
 	<stack>
 	<tuple>
 	<cmath>
+	"LeastSquareIndividuo.h"
 	"SimpleParser.h"
 
 1479963513 source:/home/felipe/Documentos/PG/ciml-lib/src/Mutation.cpp
@@ -3126,7 +3127,7 @@
 1480444563 source:/home/felipe/Documentos/PG/ciml-lib/src/SimpleCrossover.cpp
 	"SimpleCrossover.h"
 
-1480970389 source:/home/felipe/Documentos/PG/ciml-lib/src/SimpleIndividuo.cpp
+1480971707 source:/home/felipe/Documentos/PG/ciml-lib/src/SimpleIndividuo.cpp
 	"SimpleIndividuo.h"
 
 1479960379 source:/home/felipe/Documentos/PG/ciml-lib/src/SimpleIndividuoBuilder.cpp
@@ -3150,6 +3151,9 @@
 1480561966 source:/home/felipe/Documentos/PG/ciml-lib/src/Tree.cpp
 	"Tree.h"
 
-1480971109 source:/home/felipe/Documentos/PG/ciml-lib/inc/LeastSquareParser.cpp
+1480971331 source:/home/felipe/Documentos/PG/ciml-lib/inc/LeastSquareParser.cpp
 	"LeastSquareParser.h"
+
+1480973347 source:/home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.cpp
+	"LSDerivadasParser.h"
 
