@@ -12,14 +12,17 @@
 #include "../inc/LSDerivadasParser.h"
 #include "IndividuoBuilder.h"
 #include "LeastSquareIndividuoBuilder.h"
+#include "../inc/RK4LSDerivadasParser.h"
+#include "../inc/RK4LSIndividuoBuilder.h"
 #include "Subject.h"
 
 using namespace std;
 
 //#define parserLeastSquare
-#define parserLSDerivadas
+//#define parserLSDerivadas
 //#define parserDerivadas
 //#define simpleParser
+#define RK4LSDerivadas
 int main(){
 
 #ifdef MAKEDATA
@@ -154,6 +157,10 @@ Subject ** pop = new Subject*[tam];
     #ifdef parserRungeKutta
          parser = new RK4Parser();
     #endif
+    #ifdef RK4LSDerivadas
+        parser = new RK4LSDerivadasParser();
+        individuoBuilder = new RK4LSIndividuoBuilder();
+    #endif // RK4LSDerivadas
 
 
     parser->setDataSet(data->training,data->totalTraining);
