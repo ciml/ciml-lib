@@ -3013,7 +3013,7 @@
 1479960366 source:/home/felipe/Documentos/PG/ciml-lib/src/IndividuoBuilder.cpp
 	"IndividuoBuilder.h"
 
-1480975033 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
+1480978731 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
 	<iostream>
 	<ctime>
 	"Database.h"
@@ -3031,6 +3031,7 @@
 	"../inc/RK4LSDerivadasParser.h"
 	"../inc/RK4LSIndividuoBuilder.h"
 	"Subject.h"
+	"RK4sParser.h"
 
 1480218232 /home/felipe/Documentos/PG/ciml-lib/src/Search.h
 	"Subject.h"
@@ -3159,7 +3160,7 @@
 1480973347 source:/home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.cpp
 	"LSDerivadasParser.h"
 
-1480974215 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDerivadasParser.cpp
+1480975286 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDerivadasParser.cpp
 	"RK4LSDerivadasParser.h"
 
 1480975272 /home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDerivadasParser.h
@@ -3185,4 +3186,22 @@
 1480974898 /home/felipe/Documentos/PG/ciml-lib/inc/RK4LSIndividuoBuilder.h
 	"IndividuoBuilder.h"
 	"RK4LSIndividuo.h"
+
+1480977790 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4Parser.cpp
+	"RK4Parser.h"
+
+1480977881 /home/felipe/Documentos/PG/ciml-lib/inc/RK4Parser.h
+	"Configures.h"
+	"SimpleParser.h"
+	"RK4LSIndividuo.h"
+	<vector>
+	<stack>
+	<tuple>
+	<cmath>
+
+1480978678 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4sParser.cpp
+	"RK4sParser.h"
+
+1480978556 /home/felipe/Documentos/PG/ciml-lib/inc/RK4sParser.h
+	"SimpleParser.h"
 

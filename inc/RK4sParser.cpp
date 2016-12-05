@@ -1,24 +1,24 @@
-#include "RK4Parser.h"
-/*
-RK4Parser::RK4Parser(){
-    cout << "Q treta" << endl;
+#include "RK4sParser.h"
+
+RK4sParser::RK4sParser()
+{
+    //ctor
+}
+string RK4sParser::nameParser(){
+    return "RK4sParser";
 }
 
-string RK4Parser::nameParser(){
-    return "RK4Parser";
-}
-
-void RK4Parser::setDataSet(double ** x,int tam){
+void RK4sParser::setDataSet(double ** x,int tam){
     tamDataset = tam;
     dataset = x;
 }
 
 
-double RK4Parser::Evaluate(Subject* s){
-
+double RK4sParser::Evaluate(Subject* s){
+    return 100 + rand()%50;
 }
 
-double** RK4Parser::RKEvaluate(Subject* s, double* initial, int vars, double h, int iterations){
+double** RK4sParser::RKEvaluate(Subject* s, double* initial, int vars, double h, int iterations){
 //    cout << "h = " << h << endl;
 //    for(int i = 0; i < vars - 1; i++){
 //        cout << "f" << i << " = ";
@@ -117,7 +117,7 @@ double** RK4Parser::RKEvaluate(Subject* s, double* initial, int vars, double h, 
 
 
 
-double RK4Parser::AuxEvaluate(Subject* s, int model, double* dat, double* increments){
+double RK4sParser::AuxEvaluate(Subject* s, int model, double* dat, double* increments){
 //    for(int i = 0; i < 3; i++)
 //        cout << increments[i] << " e ";
 //    cout << endl;
@@ -168,9 +168,7 @@ double RK4Parser::AuxEvaluate(Subject* s, int model, double* dat, double* increm
     }
     return stk.top();
 }
-
-
-RK4Parser::~RK4Parser(){
+RK4sParser::~RK4sParser()
+{
     //dtor
 }
-*/

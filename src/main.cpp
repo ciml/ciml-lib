@@ -15,6 +15,7 @@
 #include "../inc/RK4LSDerivadasParser.h"
 #include "../inc/RK4LSIndividuoBuilder.h"
 #include "Subject.h"
+#include "RK4sParser.h"
 
 using namespace std;
 
@@ -22,7 +23,8 @@ using namespace std;
 //#define parserLSDerivadas
 //#define parserDerivadas
 //#define simpleParser
-#define RK4LSDerivadas
+//#define RK4LSDerivadas
+#define RK4Parser
 int main(){
 
 #ifdef MAKEDATA
@@ -51,8 +53,8 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 1000;
-    conf->popSize = 500;
+    conf->generations = 100;
+    conf->popSize = 50;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.5;
     conf->mutationRate = 0.5;
@@ -154,13 +156,14 @@ Subject ** pop = new Subject*[tam];
         parser = new LSDerivadasParser();
         individuoBuilder = new LeastSquareIndividuoBuilder();
     #endif
-    #ifdef parserRungeKutta
-         parser = new RK4Parser();
-    #endif
     #ifdef RK4LSDerivadas
         parser = new RK4LSDerivadasParser();
         individuoBuilder = new RK4LSIndividuoBuilder();
     #endif // RK4LSDerivadas
+    #ifdef RK4Parser
+        //parser = new RK4sParser();
+        //individuoBuilder = new RK4LSIndividuoBuilder();
+    #endif
 
 
     parser->setDataSet(data->training,data->totalTraining);
