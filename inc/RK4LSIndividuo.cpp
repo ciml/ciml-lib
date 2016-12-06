@@ -38,8 +38,8 @@ void RK4LSIndividuo::print(){
 
             cout << "leastSquare=[";
 
-//            for(int j = 0; j < leastSquareSize[m], leastSquare[m]!=NULL; j++)
-//                cout << leastSquare[m][j] << ", ";
+            for(int j = 0; j < leastSquareSize[m], leastSquare != NULL; j++)
+                cout << leastSquare[m][j] << ", ";
             cout << "]";
         }
         cout << endl;

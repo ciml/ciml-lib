@@ -3013,7 +3013,7 @@
 1479960366 source:/home/felipe/Documentos/PG/ciml-lib/src/IndividuoBuilder.cpp
 	"IndividuoBuilder.h"
 
-1481049603 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
+1481056650 source:/home/felipe/Documentos/PG/ciml-lib/src/main.cpp
 	<iostream>
 	<ctime>
 	"Database.h"
@@ -3032,6 +3032,7 @@
 	"../inc/RK4LSIndividuoBuilder.h"
 	"Subject.h"
 	"RK4sParser.h"
+	"RK4LSDParser.h"
 
 1480218232 /home/felipe/Documentos/PG/ciml-lib/src/Search.h
 	"Subject.h"
@@ -3157,7 +3158,7 @@
 1480971331 source:/home/felipe/Documentos/PG/ciml-lib/inc/LeastSquareParser.cpp
 	"LeastSquareParser.h"
 
-1480973347 source:/home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.cpp
+1481053129 source:/home/felipe/Documentos/PG/ciml-lib/inc/LSDerivadasParser.cpp
 	"LSDerivadasParser.h"
 
 1480975286 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDerivadasParser.cpp
@@ -3174,7 +3175,7 @@
 	"RK4LSIndividuo.h"
 	"SimpleParser.h"
 
-1481047962 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSIndividuo.cpp
+1481054804 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSIndividuo.cpp
 	"RK4LSIndividuo.h"
 
 1480974674 /home/felipe/Documentos/PG/ciml-lib/inc/RK4LSIndividuo.h
@@ -3205,4 +3206,13 @@
 1481048196 /home/felipe/Documentos/PG/ciml-lib/inc/RK4sParser.h
 	"SimpleParser.h"
 	"RK4LSIndividuo.h"
+
+1481056026 source:/home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDParser.cpp
+	"RK4LSDParser.h"
+
+1481055782 /home/felipe/Documentos/PG/ciml-lib/inc/RK4LSDParser.h
+	"SimpleParser.h"
+	"RK4LSIndividuo.h"
+	"LeastSquareIndividuo.h"
+	"QRDecomposition.h"
 

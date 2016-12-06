@@ -16,6 +16,7 @@
 #include "../inc/RK4LSIndividuoBuilder.h"
 #include "Subject.h"
 #include "RK4sParser.h"
+#include "RK4LSDParser.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ using namespace std;
 //#define simpleParser
 //#define RK4LSDerivadas
 #define RK4Parser
+//#define RK4LDSPaser
 int main(){
 
 #ifdef MAKEDATA
@@ -53,13 +55,13 @@ int main(){
     //set parametros
     conf->MAXDEEP = 6;
 
-    conf->generations = 100;
+    conf->generations = 1000;
     conf->popSize = 500;
     conf->elitism = 0.1;
     conf->crossoverRate = 0.9;
     conf->mutationRate = 0.05;
 
-    conf->NUM_THREADS = 1;
+    conf->NUM_THREADS = 4;
 
     /// Loading database and grammar
 
@@ -164,6 +166,10 @@ Subject ** pop = new Subject*[tam];
         parser = new RK4sParser();
         individuoBuilder = new RK4LSIndividuoBuilder();
     #endif
+    #ifdef RK4LDSPaser
+        parser = new RK4LSDParser();
+        individuoBuilder = new RK4LSIndividuoBuilder();
+    #endif // RK4LDSPaser
 
 
 
