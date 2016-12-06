@@ -1,4 +1,4 @@
-<base> ::= <base> <base> <op> | <var> | <const>
+<base> ::= y1 y2 +
 <op> ::= + | - | * | / | ^ | !
 <var> ::= y1 | y2
 <const> ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9

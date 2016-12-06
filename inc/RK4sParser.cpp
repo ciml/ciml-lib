@@ -15,7 +15,35 @@ void RK4sParser::setDataSet(double ** x,int tam){
 
 
 double RK4sParser::Evaluate(Subject* s){
-    return 100 + rand()%50;
+    RK4LSIndividuo * s1 = dynamic_cast<RK4LSIndividuo*>(s);
+
+    double ** serieRK = RKEvaluate(s1,dataset[0],data->prediction + data->variables,dataset[1][0] - dataset[0][0],tamDataset);
+    s1->fitness  = 0;
+    for(int m = 0; m < conf->numTree; m++){
+                    s1->trees[m]->fitness = 0;
+                    for(int j = 0; j < tamDataset; j++){
+                        s1->trees[m]->fitness  += double(pow(dataset[j][data->variables + m] - serieRK[j][data->variables + m], 2)/tamDataset);
+                    }
+                    if(isinf(s1->trees[m]->fitness) || isnan(s1->trees[m]->fitness))
+                        s1->trees[m]->fitness = INFINITY;
+                    s1->fitness += double(s1->trees[m]->fitness/conf->numTree);
+    //                cout << " ===== " << s1->trees[m]->fitness << endl;
+    }
+
+//    for(int i = 0 ; i < tamDataset; i++){
+//        for(int j = 0 ; j < data->prediction + data->variables; j++){
+//            cout << serieRK[i][j] << " ";
+//        }
+//        cout << endl;
+//
+//    }
+//    cin.get();
+
+
+    for(int i = 0 ; i < tamDataset; i++)
+        delete [] serieRK[i];
+    delete [] serieRK;
+    return s1->fitness;
 }
 
 double** RK4sParser::RKEvaluate(Subject* s, double* initial, int vars, double h, int iterations){

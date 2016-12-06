@@ -46,7 +46,7 @@ int main(){
 #endif
 
 
-    srand(42/*time(NULL)*/);
+    srand(7566742/*time(NULL)*/);
     cout << "Hello GP-ufjf!" << endl;
     conf = new Configures();
 
@@ -54,12 +54,12 @@ int main(){
     conf->MAXDEEP = 6;
 
     conf->generations = 100;
-    conf->popSize = 50;
+    conf->popSize = 500;
     conf->elitism = 0.1;
-    conf->crossoverRate = 0.5;
-    conf->mutationRate = 0.5;
+    conf->crossoverRate = 0.9;
+    conf->mutationRate = 0.05;
 
-    conf->NUM_THREADS = 4;
+    conf->NUM_THREADS = 1;
 
     /// Loading database and grammar
 
@@ -161,9 +161,10 @@ Subject ** pop = new Subject*[tam];
         individuoBuilder = new RK4LSIndividuoBuilder();
     #endif // RK4LSDerivadas
     #ifdef RK4Parser
-        //parser = new RK4sParser();
-        //individuoBuilder = new RK4LSIndividuoBuilder();
+        parser = new RK4sParser();
+        individuoBuilder = new RK4LSIndividuoBuilder();
     #endif
+
 
 
     parser->setDataSet(data->training,data->totalTraining);

@@ -1,6 +1,7 @@
 #ifndef RK4SPARSER_H
 #define RK4SPARSER_H
 #include "SimpleParser.h"
+#include "RK4LSIndividuo.h"
 
 class RK4sParser : public SimpleParser
 {

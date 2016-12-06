@@ -35,9 +35,11 @@ void RK4LSIndividuo::print(){
         for(int m = 0; m < conf->numTree; m++){
             cout << "   f" << m << "() = (" << trees[m]->fitness << ") ";
             trees[m]->root->print();
+
             cout << "leastSquare=[";
-            for(int j = 0; j < leastSquareSize[m]; j++)
-                cout << leastSquare[m][j] << ", ";
+
+//            for(int j = 0; j < leastSquareSize[m], leastSquare[m]!=NULL; j++)
+//                cout << leastSquare[m][j] << ", ";
             cout << "]";
         }
         cout << endl;

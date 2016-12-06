@@ -45,6 +45,8 @@
 			<Add option="-g" />
 			<Add option="-openmp" />
 		</Compiler>
+		<Unit filename="inc/LSDerivadasParser.cpp" />
+		<Unit filename="inc/LSDerivadasParser.h" />
 		<Unit filename="inc/LeastSquareIndividuo.cpp" />
 		<Unit filename="inc/LeastSquareIndividuo.h" />
 		<Unit filename="inc/LeastSquareIndividuoBuilder.cpp" />
@@ -55,6 +57,14 @@
 		<Unit filename="inc/ParserDerivadas.h" />
 		<Unit filename="inc/QRDecomposition.cpp" />
 		<Unit filename="inc/QRDecomposition.h" />
+		<Unit filename="inc/RK4LSDerivadasParser.cpp" />
+		<Unit filename="inc/RK4LSDerivadasParser.h" />
+		<Unit filename="inc/RK4LSIndividuo.cpp" />
+		<Unit filename="inc/RK4LSIndividuo.h" />
+		<Unit filename="inc/RK4LSIndividuoBuilder.cpp" />
+		<Unit filename="inc/RK4LSIndividuoBuilder.h" />
+		<Unit filename="inc/RK4sParser.cpp" />
+		<Unit filename="inc/RK4sParser.h" />
 		<Unit filename="src/Configures.cpp" />
 		<Unit filename="src/Configures.h" />
 		<Unit filename="src/Crossover.cpp" />
