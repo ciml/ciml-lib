@@ -5,13 +5,13 @@
 #include "utilitarios.h"
 #include "bitwise.h"
 
+
 typedef struct{
     int numeroFilhos[MAX_NOS];
     int informacao[MAX_NOS];
     int numNos;
     float aptidao;
 }Arvore;
-
 
 
 void inicializaArvore(Arvore* arv);//Inicializar todos os nós da arvore com um valor flag (verificar necessidade)
@@ -24,7 +24,6 @@ void imprimeArvoreNivel(Arvore* arv);//Metodo para imprimir a árvore na estrutur
 void imprimeArvorePre(Arvore* arv);//Imprime a árvore em pré ordem no modelo: 1filho= (1(0)), 2 filhos=(2(0)(0))
 void imprimeArvorePos(Arvore* arv);//Imprime a árvore em pós ordem no modelo: 1filho= ((0)1), 2 filhos=((0)(0)2)
 
-
 void shift(Arvore* arv, int tam, int indice); //Desloca os elementos da árvore a partir de um 'indice' em determinado tamanho
 void mutacao(Arvore* arvore); //Sorteia uma sub-arvore aleatória e troca por outra
 void crossOver(Arvore* arvore1, Arvore* arvore2); //Troca informações entre duas arvores
@@ -36,7 +35,6 @@ void imprimeSinxate(int info);
 
 float executa(Arvore* individuo, float dados[]);
 
-float fazConta(int k, float vet[]);
 float opBinaria(int operador, float valor1, float valor2);
 float opUnaria(int k, float valor1);
 

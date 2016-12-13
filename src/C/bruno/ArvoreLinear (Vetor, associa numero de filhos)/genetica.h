@@ -9,7 +9,7 @@ void inicializaPopulacao(Arvore pop[]);
 void avaliaIndividuos(Arvore pop[], float* dados[]);
 
 void imprimePopulacao(Arvore pop[]);
-void imprimeMelhor(Arvore pop[]);
+Arvore imprimeMelhor(Arvore pop[]);
 void ordenaElite(Arvore pop[], int k);
 int selecionaElite(Arvore popAtual[], Arvore popFutura[]);
 int torneio(Arvore pop[]);

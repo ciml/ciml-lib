@@ -3,9 +3,6 @@
 #include "bitwise.h"
 #include "constantes.h"
 
-//usar operações >> ou &
-//cast ou reinterpretacao
-
 //typedef union {
 //    float f;
 //    unsigned int i;

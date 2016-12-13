@@ -22,7 +22,8 @@ int calculaTamanhoSubArvore(Arvore* arv, int indice){
     return tam;
 }
 
-//TODO: mudar o gerador para receber uma profundidade máxima?
+/*
+//TODO: mudar a ordem  sorteio: definir primeiro o TIPO
 void geradorArvore(Arvore* arv, int maxTam){
     Pilha pilha;
     pilha.topo = -1;
@@ -83,7 +84,9 @@ void geradorArvore(Arvore* arv, int maxTam){
         }
     }
 }
+*/
 
+/*
 void criaCheia(Arvore* arv, int maxDepth){
 
     //conferir de alguma forma que cabe uma árvore cheia no vetor (no caso confere para uma arvore binaria)
@@ -91,7 +94,6 @@ void criaCheia(Arvore* arv, int maxDepth){
     //if(pow(2, maxDepth+1)-1 > MAX_NOS)
     //printf("Espaco insuficiente para arvore cheia nesta profundidade.");
     //return;
-    //
 
     Pilha pilha;
     pilha.topo = -1;
@@ -141,11 +143,145 @@ void criaCheia(Arvore* arv, int maxDepth){
                     arv->informacao[indice] = packInt(VAR, valor);
 
             } else if (num == 1){
-                arv->informacao[indice] = packInt(FUN, randomFunctionUn());
+                arv->informacao[indice] = packInt(FUN, operacoesUn[randomFunctionUn()]);
 
             } else{
-                arv->informacao[indice] = packInt(FBIN, randomFunctionBin());
+                arv->informacao[indice] = packInt(FBIN, operacoesBin[randomFunctionBin()]);
             }
+        }
+
+
+//        if(soma > MAX_NOS){
+//            soma-=arv->numeroFilhos[indice];
+//            arv->numeroFilhos[indice] = 0;
+//        }
+
+
+        if(aux[indice] < arv->numeroFilhos[indice]){
+            empilha(&pilha, indice);
+            aux[indice]++;
+            ultimo++;
+            empilha(&pilha, ultimo);
+        }
+    }
+}
+*/
+
+void geradorArvore(Arvore* arv, int maxTam){
+    Pilha pilha;
+    pilha.topo = -1;
+
+    int indice = 0;
+    int ultimo = 0;
+    int soma = 1;
+
+    int aux[maxTam];
+    int sorteio, j, num, tipo;
+
+    //usar 'num' o inves de j pra nao ter variavel sobrando...
+    for(j = 0; j < maxTam; j++){
+        aux[j] = 0;
+    }
+
+    arv->numNos = 0;
+    empilha(&pilha, indice);
+
+    while(pilha.topo != -1){
+        indice = desempilha(&pilha);
+
+        if(aux[indice] == 0){
+
+            sorteio = conjuntoOpTerm[randomType()];
+            tipo = unpackTipo(sorteio);
+
+            if(tipo == VAR || tipo == CONST){
+                num = 0;
+            } else if (tipo == FUN){
+                num = 1;
+            } else if (tipo == FBIN){
+                num = 2;
+            }
+
+            arv->numeroFilhos[indice] = num;
+            arv->numNos++;
+            soma += num;
+
+        if(soma > maxTam){
+            soma-=arv->numeroFilhos[indice];
+            arv->numeroFilhos[indice] = 0;
+            sorteio = conjuntoOpTerm[randomLeafType()];
+            num = 0;
+
+        }
+
+        tipo = unpackTipo(sorteio);
+
+        if(tipo == CONST){
+            sorteio = packFloat(CONST, randomConst());
+        }
+        arv->informacao[indice] = sorteio;
+        }
+
+        if(aux[indice] < arv->numeroFilhos[indice]){
+            empilha(&pilha, indice);
+            aux[indice]++;
+            ultimo++;
+            empilha(&pilha, ultimo);
+        }
+    }
+}
+
+
+void criaCheia(Arvore* arv, int maxDepth){
+
+    //conferir de alguma forma que cabe uma árvore cheia no vetor (no caso confere para uma arvore binaria)
+    //nao funciona no caso se sortear '1' filho várias vezes, pois acaba cabendo uma arvore mais profunda e ainda 'cheia'
+    //if(pow(2, maxDepth+1)-1 > MAX_NOS)
+    //printf("Espaco insuficiente para arvore cheia nesta profundidade.");
+    //return;
+
+    Pilha pilha;
+    pilha.topo = -1;
+
+    int indice = 0;
+    int ultimo = 0;
+    int j, num, tipo, sorteio;
+    //se tirar 'soma' tem que garantir que a profundidade maxima garanta uma arvore nao-degenerada
+    //int soma = 1;
+
+    int aux[MAX_NOS];
+
+    //usar 'num' o inves de j pra nao ter variavel sobrando...
+    for(j = 0; j < MAX_NOS; j++){
+        aux[j] = 0;
+    }
+    arv->numNos = 0;
+    empilha(&pilha, indice);
+
+    while(pilha.topo != -1){
+        indice = desempilha(&pilha);
+
+        if(aux[indice] == 0){
+            if(pilha.topo+1 != maxDepth){
+                sorteio = conjuntoOpTerm[randomNodeType()];
+                tipo = unpackTipo(sorteio);
+                if (tipo == FUN){
+                    num = 1;
+                } else if (tipo == FBIN){
+                    num = 2;
+                }
+
+            } else {
+                sorteio = conjuntoOpTerm[randomLeafType()];
+                tipo = unpackTipo(sorteio);
+                if(tipo == CONST){
+                    sorteio = packFloat(CONST, randomConst());
+                }
+                num = 0;
+            }
+            arv->numeroFilhos[indice] = num;
+            arv->numNos++;
+            arv->informacao[indice] = sorteio;
         }
 
         /*
@@ -321,7 +457,6 @@ void mutacao(Arvore* arvore){
         int tamShift = novaArvore.numNos - tamanhoSub;
         shift(arvore, tamShift, indiceSub+tamanhoSub);
 
-//
 
     //troca a informação
     for(i = 0; i < novaArvore.numNos; i++){
@@ -331,18 +466,16 @@ void mutacao(Arvore* arvore){
 }
 
 void crossOver(Arvore* arvore1, Arvore* arvore2){
-    //int i;
+
     int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
-    //printf("\nCHEGOU\n");
+
     do{
         indiceSub1 = rand() % (arvore1->numNos);
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
-        //printf("ind1= %d\n", indiceSub1);
-        //printf("tam1= %d\n", tamanhoSub1);
+
         indiceSub2 = rand() % (arvore2->numNos);
         tamanhoSub2 = calculaTamanhoSubArvore(arvore2, indiceSub2);
-        //printf("ind2= %d\n", indiceSub2);
-        //printf("tam1= %d\n", tamanhoSub2);
+
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
 
@@ -418,19 +551,19 @@ void imprimeSinxate(int info){ //int id, int tipo){
             printf("/");
             break;
         case SIN:
-            printf("sin ");
+            printf("sin");
             break;
         case COS:
-            printf("cos ");
+            printf("cos");
             break;
         case SQR:
-            printf("sqrt ");
+            printf("sqrt");
             break;
         }
         break;
     case CONST:;//This is an empty statement.
         float valorF = unpackFloat(info);
-        printf("%.2f", valorF);
+        printf("%.5f", valorF);
         break;
     case VAR:;
         int valor2 = unpackInt(info);
@@ -483,108 +616,6 @@ void imprimeSinxate(int info){ //int id, int tipo){
 //leitura de arquivos
 //alterar as faixas de valores
 
-//float executa(Arvore* arv, float dados[]){
-//    //float dados[3] = {10, 20, 30};
-//    Pilha pilha, pilhaEx;
-//    //PilhaEx pilhaEx;
-//
-//    pilha.topo = -1;
-//    //pilhaEx.topo = -1;
-//
-//    int indice = 0;
-//    int ultimo = 0;
-//    int aux[MAX_NOS];
-//    int j;
-//    //float auxVet[MAX_NOS];
-//    int k = 0;
-//
-//    float  resultado;
-//    int aux1;
-//    int resultadoInt, tipo, valor;
-//
-//    for(j = 0; j < MAX_NOS; j++){
-//        aux[j] = 0;
-//    }
-//
-//    empilha(&pilha, indice);
-//    //printf("(");
-//
-//    while(pilha.topo != -1){
-//        indice = desempilha(&pilha);
-//
-//        if(aux[indice] == arv->numeroFilhos[indice]){
-//            if(arv->numeroFilhos[indice] == 0){
-//                tipo = unpackTipo(arv->informacao[indice]);
-//                if(tipo == CONST){
-//                    empilha(&pilhaEx, arv->informacao[indice]);
-//                } else {
-//                    valor = unpackInt(arv->informacao[indice]);
-//                    resultadoInt = packFloat(CONST, dados[aux1]);
-//                    empilha(&pilhaEx, resultadoInt);
-//                }
-//                //empilha2(&pilhaEx, dados[arv->informacao[indice]]); //TODO pensar em constantes
-//            }else{
-//                //empilha2(&pilhaEx, arv->informacao[indice]);
-//            //printf("inf ind %d = %d\n",indice,  arv->informacao[indice]);
-//            //printf("topo = %d\n",pilhaEx.topo);
-//            //printf("aaaa");
-//
-//                if(arv->numeroFilhos[indice] == 1){
-//                    aux1 = desempilha(&pilhaEx);
-//
-//                    //aux1 = desempilha2(&pilhaEx);
-//
-//                    resultado = opUnaria(arv->informacao[indice], aux1);
-//                    resultadoInt = packFloat(CONST, resultado);
-//
-//                    empilha(&pilhaEx, resultadoInt);
-//                    //empilha2(&pilhaEx, resultado);
-//                } else if (arv->numeroFilhos[indice] == 2){
-//                    aux1 = desempilha(&pilhaEx);
-//                    aux2 = desempilha(&pilhaEx);
-//                    //aux1 = desempilha2(&pilhaEx);
-//                    //aux2 = desempilha2(&pilhaEx);
-//                    resultado = opBinaria(arv->informacao[indice], aux2, aux1);
-//
-//                    resultadoInt = packFloat(CONST, resultado);
-//                    empilha(&pilhaEx, resultadoInt);
-//                    //empilha2(&pilhaEx, resultado);
-//                }
-//
-//                    //Consultar a pilha (o operador)
-//                    //desempilhar a quantidade de operandos de acordo com o operador
-//
-//
-//    //                while(k <= arv->numeroFilhos[indice]){
-//    //                    auxVet[k] = desempilha2(&pilhaEx);
-//    //                    printf("%.2f \n", auxVet[k]);
-//    //                    k++;
-//    //                }
-//    //                    float resultado = fazConta(k-1, auxVet);
-//    //                    printf("resultado = %.2f\n", resultado);
-//    //                    empilha2(&pilhaEx, resultado);
-//    //                    k = 0;
-//                }
-//            }
-//
-//
-//        if(aux[indice] < arv->numeroFilhos[indice]){
-//            //printf("(");
-//            empilha(&pilha, indice);
-//            aux[indice]++;
-//            ultimo++;
-//            empilha(&pilha, ultimo);
-//        }
-//    }
-//
-//    //printf("topo: %d\n", pilhaEx.topo);
-//    float erro = desempilha2(&pilhaEx) - dados[N-1];
-//    //printf("erro: %f\n", erro*erro);
-//    return erro*erro;
-//}
-
-
-
 //arquivo entrada
 //3 2 1
 //x0 Y
@@ -605,8 +636,6 @@ float executa(Arvore* arv, float dados[]){
     int aux[MAX_NOS];
     int j;
 
-    //float auxVet[MAX_NOS];
-    int k = 0;
     float aux1, aux2, resultado;
     int tipo;
 
@@ -627,12 +656,8 @@ float executa(Arvore* arv, float dados[]){
                     empilha2(&pilhaEx, unpackFloat(arv->informacao[indice]));
                 } else {
                     empilha2(&pilhaEx, dados[unpackInt(arv->informacao[indice])]);
-                } //TODO pensar em constantes
+                }
             }else{
-                //empilha2(&pilhaEx, arv->informacao[indice]);
-            //printf("inf ind %d = %d\n",indice,  arv->informacao[indice]);
-            //printf("topo = %d\n",pilhaEx.topo);
-            //printf("aaaa");
 
                 if(arv->numeroFilhos[indice] == 1){
                     aux1 = desempilha2(&pilhaEx);
@@ -647,17 +672,6 @@ float executa(Arvore* arv, float dados[]){
 
                     //Consultar a pilha (o operador)
                     //desempilhar a quantidade de operandos de acordo com o operador
-
-
-    //                while(k <= arv->numeroFilhos[indice]){
-    //                    auxVet[k] = desempilha2(&pilhaEx);
-    //                    printf("%.2f \n", auxVet[k]);
-    //                    k++;
-    //                }
-    //                    float resultado = fazConta(k-1, auxVet);
-    //                    printf("resultado = %.2f\n", resultado);
-    //                    empilha2(&pilhaEx, resultado);
-    //                    k = 0;
                 }
             }
 
@@ -679,55 +693,39 @@ float executa(Arvore* arv, float dados[]){
 //        for(j = 0; j < N; j++){
 //            printf("%.2f ", dados[j]);
 //        }
-//        printf("\n");
+//       printf("\n");
+//
+//    printf("----------------------------------dados: %f\n", dados[N-1]);
+//    printf("----------------------------------erro: %.22f\n", erro);
 
-    //printf("----------------------------------dados: %f\n", dados[N-1]);
-    //printf("----------------------------------erro: %f\n", erro);
     return erro*erro;
 }
 
 
-//float fazConta(int k, float vet[]){
-//    switch(k){
-//    case 1:
-//        return opUnaria(vet[0], vet[1]);
-//        break;
-//    case 2:
-//        return opBinaria(vet[0], vet[2], vet[1]);
-//        break;
-//    default:
-//        return 0;
-//    }
-//}
-
 float opBinaria(int operador, float valor1, float valor2){
     switch(operador){
-        case 0:
+        case PLUS:
             return (valor1 + valor2);
-        case 1:
+        case MIN:
             return (valor1 - valor2);
-        case 2:
+        case MULT:
             return (valor1 * valor2);
-        case 3:
-            if(valor2 != 0)
-                return (valor1 / valor2);
-            else
-                return 1;
+        case DIV:
+            return proDiv(valor1, valor2);
     }
     return -1;
 }
 
 float opUnaria(int operador, float valor){
     switch(operador){
-        case 4:
+        case SIN:
             return (float)sin(valor);
-        case 5:
+        case COS:
             return (float)cos(valor);
-        case 6:
-            if(valor < 0) //valor = -1 * valor;
-                return 1;//(float)sqrt(valor);
+        case SQR:
+            return proSqrt(valor);
         default:
-            return 0;
+            return -1;
     }
     return -1;
 }
@@ -745,7 +743,7 @@ void testaExecuta(float* dados[]){
 //        printf("\n");
 //    }
 
-    printf("%f", executa(&arvore1, dados[0]));
+    printf("%f", executa(&arvore1, dados[1]));
 }
 
 void generate(Arvore* arv, int min, int max){
@@ -787,22 +785,27 @@ void testaPrint(Arvore *arvore){
 
 void criaArvTeste(Arvore *arvore1){
     arvore1->numeroFilhos[0] = 2;
-    arvore1->numeroFilhos[1] = 2;
-    arvore1->numeroFilhos[2] = 0;
+    arvore1->numeroFilhos[1] = 0;
+    arvore1->numeroFilhos[2] = 2;
     arvore1->numeroFilhos[3] = 2;
-    arvore1->numeroFilhos[4] = 0;
-    arvore1->numeroFilhos[5] = 0;
+    arvore1->numeroFilhos[4] = 1;
+    arvore1->numeroFilhos[5] = 1;
     arvore1->numeroFilhos[6] = 0;
+    arvore1->numeroFilhos[7] = 0;
+    arvore1->numeroFilhos[8] = 0;
 
-    arvore1->informacao[0] = packInt(FBIN, 0);
-    arvore1->informacao[1] = packInt(FBIN, 2);
-    arvore1->informacao[2] = packFloat(CONST, 10.00);
+
+    arvore1->informacao[0] = packInt(FBIN, 1);
+    arvore1->informacao[1] = packInt(VAR, 0);
+    arvore1->informacao[2] = packInt(FBIN, 2);
     arvore1->informacao[3] = packInt(FBIN, 1);
-    arvore1->informacao[4] = packInt(VAR, 0);
-    arvore1->informacao[5] = packFloat(CONST, 5.0);;
-    arvore1->informacao[6] = packFloat(VAR, 0);
+    arvore1->informacao[4] = packInt(FUN, 5);
+    arvore1->informacao[5] = packInt(FUN, 6);
+    arvore1->informacao[6] = packInt(VAR, 0);
+    arvore1->informacao[7] = packInt(VAR, 0);
+    arvore1->informacao[8] = packInt(VAR, 0);
 
-    arvore1->numNos = 7;
+    arvore1->numNos = 9;
 }
 
 void realizaTestes(){
