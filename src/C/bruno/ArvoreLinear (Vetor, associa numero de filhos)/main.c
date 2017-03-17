@@ -9,12 +9,16 @@ void testaIndividuo(){
 
 }
 
-
+//TODO:fazer receber os dados também+labels.
 void leIndividuo(char *fileName, Arvore* individuo) {
     FILE* arquivo = fopen(fileName, "r");
     char cp[100000];
     int posicao = 0;
     int informacao;
+
+//    fseek(arquivo, 0, SEEK_END);
+//    long fsize = ftell(arquivo);
+//    fseek(arquivo, 0, SEEK_SET);
 
 
     if (arquivo == NULL) {
@@ -86,7 +90,6 @@ void leIndividuo(char *fileName, Arvore* individuo) {
        // for(i= 0; i < posicao-1; i++){
             //printf("%d ", individuo->informacao[posicao]);
        // }
-        imprimeArvorePre(individuo);
 
 //        token = strtok (NULL, delimiters);    /* token => "separated" */
 //        printf("%s", token);
@@ -111,46 +114,50 @@ void imprimeParametros(){
     printf("* NUMERO GERACOES  : %d \t MUTACAO   : %.2f\n", NUM_GERACOES, PROB_MUT);
     printf("* NUM MAXIMO NOS   : %d \t ELITISMO  : %.2f\n", MAX_NOS, ELITISMO);
     printf("* PROFUNDIDADE MAX : %d \t \n", MAX_DEPTH);
-    printf("*-----------------------------------------------------------------*/\n");
+    printf("*------------------------------------------------------------------\n");
 }
 
 
 int main(){
-    int seed = 10;
+    printf("aaaaaaaa\n");
+    //int seed = 5;
     int i, indice1, indice2, novosIndividuos;
     int iteracoes = 0;
 
-    float** dadosTreinamento = readTrainingData();
+    ///variaveis lidas de arquivo
+    int M, N;
+    char** LABELS;
+    int* conjuntoOpTerm;
+    float* ctes; //TODO:ainda nao le constantes...
+    int NUM_OPBIN, NUM_OPUN, NUM_CTES;
 
-//        for(i = 0; i < M; i++){
-//            for(j = 0; j < N; j++){
-//                printf("%.2f ", dadosTreinamento[i][j]);
-//            }
-//            printf("\n");
-//        }
-//    Arvore arv;
-//    leIndividuo("indiv.txt", &arv);
+    ///leituras de dados
+    float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm);
+
+
     imprimeParametros();
-    atribuiSemente(seed);
-    printf("Seed %d: \n", seed);
-    //realizaTestes();
-//    float** dadosTreinamento = readTrainingData();
-//    float dadosTreinamento[M][N];
-//    readTrainingData(dadosTreinamento);
+    atribuiSemente(SEED);
+    printf("Seed: %d \n", SEED);
+    printf("M: %d \n", M);
+    printf("N: %d \n", N);
+    printf("NUM_CTES: %d \n", NUM_CTES);
+    printf("NUM_OPBIN: %d \n", NUM_OPBIN);
+    printf("NUM_OPUN: %d \n", NUM_OPUN);
+
 
     Arvore popAtual[NUM_INDIV], popFutura[NUM_INDIV];
-    inicializaPopulacao(popAtual);
-    avaliaIndividuos(popAtual, dadosTreinamento);
 
-    //testaSelection(popAtual, 5);
-    printf("\nPOPULACAO INICIAL \n");
-    imprimePopulacao(popAtual);
+
+    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+    //imprimePopulacao(popAtual, LABELS);
+    avaliaIndividuos(popAtual, dadosTreinamento, M, N);
+    imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
-        //printf("GERAÇÃO %d: \n\n", iteracoes);
+        printf("GERACAO %d: \n\n", iteracoes);
 
         novosIndividuos = 0;
-        Arvore popFutura[NUM_INDIV];
+        //Arvore popFutura[NUM_INDIV];
         novosIndividuos = novosIndividuos + selecionaElite(popAtual, popFutura);
         //printf("novos = %d\n\n", novosIndividuos);
         while(novosIndividuos < NUM_INDIV){
@@ -170,24 +177,24 @@ int main(){
                 crossOver(&popFutura[novosIndividuos-2], &popFutura[novosIndividuos-1]);
             }
             if(mut <= PROB_MUT){
-                mutacao(&popFutura[novosIndividuos-2]);
-                mutacao(&popFutura[novosIndividuos-1]);
+                mutacao(&popFutura[novosIndividuos-2], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+                mutacao(&popFutura[novosIndividuos-1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
             }
         }
 
-        avaliaIndividuos(popFutura, dadosTreinamento);
+        avaliaIndividuos(popFutura, dadosTreinamento, M, N);
         for(i = 0; i< NUM_INDIV; i++){
             popAtual[i] = popFutura[i];
         }
 
         //imprimePopulacao(popAtual);
-        imprimeMelhor(popAtual);
+        imprimeMelhor(popAtual, LABELS);
         iteracoes++;
     }
     printf("\nPOPULACAO FINAL \n");
-    imprimePopulacao(popAtual);
+    imprimePopulacao(popAtual, LABELS);
     printf("*");
-    imprimeMelhor(popAtual);
+    imprimeMelhor(popAtual, LABELS);
     printf("\n");
 
     return 0;

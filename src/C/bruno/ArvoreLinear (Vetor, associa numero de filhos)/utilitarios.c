@@ -19,19 +19,19 @@ int randomSuperior(int limiteSuperior){
     return rand() % (limiteSuperior + 1);
 }
 
-int randomTerminal(){
+int randomTerminal(int N){
     int valor = rand() % (2*(N-1));
     return valor;
 }
 
-
-int randomFunctionBin(){
+///NAO ESTAO SENDO USADAS..............
+int randomFunctionBin(int NUM_OPBIN){
     return rand() % NUM_OPBIN;
 }
-
-int randomFunctionUn(){
+int randomFunctionUn(int NUM_OPUN){
     return rand() % NUM_OPUN;
 }
+///.....................................
 
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
@@ -39,18 +39,18 @@ float randomConst(){
     return (rand()/(float)(RAND_MAX));
 }
 
-int randomType(){
+int randomType(int NUM_OPBIN, int NUM_OPUN, int N){
     int tipoAleatorio = rand()%(NUM_OPBIN+NUM_OPUN+(1)+N-1);
     return tipoAleatorio;
 }
 
 
-int randomLeafType(){
+int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N){
     int tipoAleatorio = (rand()%N) + NUM_OPBIN + NUM_OPUN;
     return tipoAleatorio;
 }
 
-int randomNodeType(){
+int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N){
     int tipoAleatorio = (rand()%(NUM_OPBIN+NUM_OPUN));
     return tipoAleatorio;
 }
@@ -62,34 +62,39 @@ void fatal(char *msg) {
 }
 
 
-float** readTrainingData(){
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm){
     FILE *arq;
     float** dadosTreinamento;
     int i = 0, j;
     int k;
-
+    printf("Lendo Dados Arquivo...\n");
 //    char nome[100];
 //    printf("\nDigite nome do arquivo:");
 //    gets(nome);
 //    arq = fopen(nome, "r");
 
     arq = fopen("dadosTreinamento4.txt", "r");
-    int numLinhas, numColunas, boolLabel;
-    fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
+    int boolLabel;
+    //fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
+    fscanf(arq, "%d %d %d", M, N, &boolLabel);//, &numVariaveis);
 
-    M = numLinhas;
-    N = numColunas;
+//    M = numLinhas;
+//    N = numColunas;
 //    printf("\nN = %d\n\n", N);
 //    printf("\nM = %d\n\n", M);
 
-    dadosTreinamento = malloc(M* sizeof(float*));
-    for(k = 0; k < M; k++){
-        (dadosTreinamento)[k] = malloc(N*sizeof(float));
+    dadosTreinamento = malloc((*M)* sizeof(float*));
+    for(k = 0; k < (*M); k++){
+        (dadosTreinamento)[k] = malloc((*N)*sizeof(float));
     }
 
     //float dadosTreinamento[M][N];
+    //printf("Inicializando Labels...\n");
+    *LABELS = malloc((*N) * sizeof(char*));
+//    for(k = 0; k < *N; k++){
+//        (*LABELS)[k] = (char*)malloc(10*sizeof(char));
+//    }
 
-    LABELS = malloc(numColunas*sizeof(char*));
 
     if(boolLabel){
         char *word = NULL;
@@ -104,7 +109,7 @@ float** readTrainingData(){
             fatal("Failed to allocate memory");
         sprintf (format, "%%%us", (unsigned)size-1);        // format for fscanf''
 
-        while((fscanf(arq, format, word) == 1) && (i < N)) {
+        while((fscanf(arq, format, word) == 1) && (i < (*N))) {
             while (strlen(word) >= size-1) {                // is buffer full?
                 size *= 2;                                  // double buff size
                 //printf ("** doubling to %u **\n", (unsigned)size);
@@ -115,12 +120,12 @@ float** readTrainingData(){
                 if (fscanf(arq, format, word) == 0)
                     fatal("Failed to re-read file");
 
-       // printf ("lido2= %s\n", word);
+        // printf ("lido2= %s\n", word);
             }
             //printf("pos = %d\n", fpos);
-            LABELS[i] = (char*)malloc((size));
-
-            strcpy(LABELS[i], word);
+            (*LABELS)[i] = (char*)malloc((size));
+            //printf("aaaaaaaaa");
+            strcpy((*LABELS)[i], word);
             i = i + 1;
 
            // printf ("%s\n", word);
@@ -130,22 +135,26 @@ float** readTrainingData(){
         fseek(arq, fpos, SEEK_SET);
         //printf("pos = %d\n", fpos);
         free(word);
+
     } else {
-//        for(k = 0; k < N; k++){
-//            (LABELS)[k] = (char*)malloc(10*sizeof(char));
-//            (LABELS)[k][0] = 'X';
-//            (LABELS)[k][1] = '\0';
-//
-//            strcat(LABELS[k], "k");
-        //}
+        for(k = 0; k < (*N); k++){
+            (*LABELS)[k] = (char*)malloc(10*sizeof(char));
+            (*LABELS)[k][0] = 'X';
+            (*LABELS)[k][1] = '\0';
+
+            char str[15];
+            sprintf(str, "%d", k);
+            strcat((*LABELS)[k], str);
+
+        }
     }
 
-//    for(i = 0; i < numColunas; i++){
-//        printf ("%s\n", LABELS[i]);
+//    for(i = 0; i < (*N); i++){
+//        printf ("%s\n", (*LABELS)[i]);
 //    }
-
-    for(i = 0; i < numLinhas; i++){
-        for(j = 0; j < numColunas; j++){
+    //printf("Lendo Dados...\n");
+    for(i = 0; i < (*M); i++){
+        for(j = 0; j < (*N); j++){
                 //printf("a\n");
             if(!fscanf(arq, "%f", &dadosTreinamento[i][j]))
                 break;
@@ -153,55 +162,56 @@ float** readTrainingData(){
         }
     }
 
-    int boolOps, numOpBin, numOpUn;
+    int boolOps;//, numOpBin, numOpUn;
     int tipo;
     int info;
-    //int j;
 
+    //printf("Inicializando conjunto de operações...\n");
     fscanf(arq, "%d", &boolOps);
     if(boolOps){
-        fscanf(arq, "%d %d", &numOpBin, &numOpUn);
-        NUM_OPBIN = numOpBin;
-        NUM_OPUN = numOpUn;
+        fscanf(arq, "%d %d", NUM_OPBIN, NUM_OPUN);
+//        NUM_OPBIN = numOpBin;
+//        NUM_OPUN = numOpUn;
 
         //operacoesBin = malloc(numOpBin * sizeof(int));
-        conjuntoOpTerm = malloc((NUM_OPBIN+NUM_OPUN+(1)+N-1) * sizeof(int));
+        *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
 
-        for (i = 0; i < NUM_OPBIN; i++){
+        for (i = 0; i < (*NUM_OPBIN); i++){
             if(!fscanf(arq, "%d", &info))
                 break;
-            conjuntoOpTerm[i] = packInt(FBIN, info);
+            (*conjuntoOpTerm)[i] = packInt(FBIN, info);
         }
 
 //        if(numOpUn!= 0){
-            for (j = 0 ; j < NUM_OPUN; j++, i++){
+            for (j = 0; j < (*NUM_OPUN); j++, i++){
                 if(!fscanf(arq, "%d", &info))
                     break;
-                conjuntoOpTerm[i] = packInt(FUN, info);
+                (*conjuntoOpTerm)[i] = packInt(FUN, info);
             }
 //        }
 
-        for(j = 0; j < N-1; j++, i++){
-            conjuntoOpTerm[i] = packInt(VAR, j);
+        for(j = 0; j < (*N)-1; j++, i++){
+            (*conjuntoOpTerm)[i] = packInt(VAR, j);
         }
 
-        conjuntoOpTerm[i] = packFloat(CONST, 1.0);
+        (*conjuntoOpTerm)[i] = packFloat(CONST, 1.0);
 
     } else {
-        NUM_OPBIN = 4;
-        NUM_OPUN = 3;
-        conjuntoOpTerm = malloc((NUM_OPBIN+NUM_OPUN+(1)+N-1) * sizeof(int));
 
-        for (i = 0; i < NUM_OPBIN; i++){
-            conjuntoOpTerm[i] = packInt(FBIN, i);
+        *NUM_OPBIN = 4;
+        *NUM_OPUN = 3;
+        *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
+
+        for (i = 0; i < (*NUM_OPBIN); i++){
+            (*conjuntoOpTerm)[i] = packInt(FBIN, i);
         }
-        for (j = 0 ; j < NUM_OPUN; j++, i++){
-            conjuntoOpTerm[i] = packInt(FUN, i);
+        for (j = 0 ; j < (*NUM_OPUN); j++, i++){
+            (*conjuntoOpTerm)[i] = packInt(FUN, i);
         }
-        for(j = 0; j < N-1; j++, i++){
-            conjuntoOpTerm[i] = packInt(VAR, j);
+        for(j = 0; j < (*N)-1; j++, i++){
+            (*conjuntoOpTerm)[i] = packInt(VAR, j);
         }
-        conjuntoOpTerm[i] = packFloat(CONST, 1.0);
+        (*conjuntoOpTerm)[i] = packFloat(CONST, 1.0);
     }
     fclose(arq);
 

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1489637374 source:c:\users\bruno\dropbox\openmpreduction\main.cpp
+	<CL/cl.hpp>
+	<omp.h>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	<time.h>
+	<windows.h>
+

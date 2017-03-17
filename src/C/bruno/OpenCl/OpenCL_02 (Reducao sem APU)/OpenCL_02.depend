@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1489674099 source:c:\users\bruno\dropbox\opencl_02\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	<time.h>
+	<windows.h>
+
+1489547977 source:c:\users\brunom\dropbox\opencl_02\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	<time.h>
+	<windows.h>
+	<limits>
+

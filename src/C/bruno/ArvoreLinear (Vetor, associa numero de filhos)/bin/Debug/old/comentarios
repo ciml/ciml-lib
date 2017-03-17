@@ -1,0 +1,52 @@
+comentarios
+::setlocal enableextensions enabledelayedexpansion
+
+::SET Pathname=C:\Users\bruno\Dropbox\GIT\ciml-lib\src\C\bruno\ArvoreLinear (Vetor, associa numero de filhos)\bin\Debug
+::cd %Pathname%
+
+::SET Caminho=C:\Users\bruno\Dropbox\GIT\ciml-lib\src\C\bruno\ArvoreLinear (Vetor, associa numero de filhos)
+
+
+::echo Current Directory = %CD%
+::cbpmakefile --> make +parametros
+
+
+::PUSHD %Caminho%
+::make -f ArvoreLinear.cbp.mak clean
+::make -f ArvoreLinear.cbp.mak PROB_MUT=%parameterValue% SEED=1
+::POPD
+
+::FOR /L %%G IN (0,1,11) DO (
+::	ECHO Executando...  !seedValue!
+::	FOR /L %%N IN (0,1,2) DO (
+::
+::		SET nomeArquivo=seed_!seedValue!_%parameter%_!parameterValue!.txt
+::		ECHO Extraindo dados para "!nomeArquivo!"
+::		ECHO[
+::		ArvoreLinear.exe >!nomeArquivo!
+::		SET /A parameterValue+=1
+::
+::	)
+::	SET /A seedValue+=1
+::)
+
+
+SET parameter=mutacao
+SET Caminho=..\..
+SET valores=0.3,0.4,0.5
+SET seeds=1,2,3,4,5,6,7,8,9,10,11
+
+break>resultFiles.txt
+FOR %%i IN (%valores%) DO (
+	FOR %%j IN (%seeds%) DO (
+		PUSHD %Caminho%
+		make -f ArvoreLinear.cbp.mak clean
+		make -f ArvoreLinear.cbp.mak PROB_MUT=%%i SEED=%%j
+		POPD
+		SET nomeArquivo=seed_%%j_%parameter%_%%i.txt
+		ECHO Extraindo dados para "!nomeArquivo!"
+		ECHO !nomeArquivo!>> resultFiles.txt
+		ArvoreLinear.exe >!nomeArquivo!
+	)
+)
+

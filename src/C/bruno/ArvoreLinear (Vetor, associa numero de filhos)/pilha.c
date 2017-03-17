@@ -7,7 +7,7 @@ void empilha(Pilha* pilha, int info){
     if(pilha->topo < MAX_NOS){
         pilha->info[pilha->topo] = info;
     }else{
-        printf("Erro empilhar");
+        printf("Erro empilhar\n");
     }
 }
 
@@ -17,7 +17,7 @@ int desempilha(Pilha* pilha){
         pilha->topo--;
         return val;
     }else{
-        printf("Erro desempilhar");
+        printf("Erro desempilhar\n");
         return -1;
     }
 }
@@ -25,19 +25,21 @@ int desempilha(Pilha* pilha){
 void empilha2(PilhaEx* pilha, float info){
     (pilha->topo)++;
     if(pilha->topo < MAX_NOS){
+        //printf("Sucesso Empilhar 2\n");
         pilha->info[pilha->topo] = info;
     }else{
-        printf("Erro empilhar 2");
+        printf("Erro empilhar 2\n");
     }
 }
 
 float desempilha2(PilhaEx* pilha){
     if(pilha->topo >= 0){
+        //printf("Sucesso Desempilhar 2\n");
         float val = pilha->info[pilha->topo];
         pilha->topo--;
         return val;
     }else{
-        printf("Erro desempilhar 2");
+        printf("Erro desempilhar 2\n");
         return -1;
     }
 }

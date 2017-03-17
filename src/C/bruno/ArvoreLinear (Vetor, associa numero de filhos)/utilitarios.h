@@ -6,30 +6,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 void atribuiSemente(int i);
 float randomProb();
 int randomInterval(int inferior, int superior);
 int randomSuperior(int max);
-int randomTerminal();
-
-int randomFunctionUn();
-int randomFunctionBin();
-
-int randomType();
-int randomLeafType();
-int randomNodeType();
-
+int randomTerminal(int N);
+int randomFunctionUn(int NUM_OPUN);
+int randomFunctionBin(int NUM_OPBIN);
+int randomType(int NUM_OPBIN, int NUM_OPUN, int N);
+int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N);
+int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N);
 float randomConst();
-
-
 float proDiv(float num, float div);
 float infDiv(float num, float div);
-
 float proSqrt(float num);
 float infSqrt(float num);
 
-float** readTrainingData();
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm);
 
 //float** readTrainingData();
 

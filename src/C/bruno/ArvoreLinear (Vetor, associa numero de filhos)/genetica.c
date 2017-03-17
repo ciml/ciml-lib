@@ -2,24 +2,24 @@
 #include <stdlib.h>
 #include "genetica.h"
 
-void inicializaCheia(Arvore pop[], int num, int indice){
+void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
     int i;
     for(i = indice; i < num; i++){
-        criaCheia(&pop[i], MAX_DEPTH);
+        criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
     }
 }
 
-void inicializaAleatorio(Arvore pop[], int num, int indice){
+void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
     int i;
     for(i = indice; i < num; i++){
-        geradorArvore(&pop[i], MAX_NOS);
+        geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
     }
 }
 
-void inicializaPopulacao(Arvore pop[]){
+void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
 
-    inicializaAleatorio(pop, NUM_INDIV/2, 0);
-    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2);
+    inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
 //    int i;
 //    for(i = 0; i < NUM_INDIV/2; i++){
 //        geradorArvore(&pop[i], MAX_NOS); //sortear a quantidade de nós em determinado intervalo
@@ -30,31 +30,32 @@ void inicializaPopulacao(Arvore pop[]){
 }
 
 
-void avaliaIndividuos(Arvore pop[], float* dados[]){
+void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
 
     int i, j = 0;
     float erro = 0;
     for(i = 0; i < NUM_INDIV; i++){
         for(j = 0; j < M; j++){
-            erro = erro + executa(&pop[i], dados[j]);
+            erro = erro + executa(&pop[i], dados[j], N);
         }
+        //int k; scanf("%d", &k);
         pop[i].aptidao = erro; // + 2 * pop[i].numNos;
         erro = 0;
     }
 }
 
 //TODO: imprimir profundidade tambem
-void imprimePopulacao(Arvore pop[]){
+void imprimePopulacao(Arvore pop[], char** LABELS){
     int i;
     for(i = 0; i < NUM_INDIV; i++){
-        imprimeArvorePre(&pop[i]);
+        imprimeArvorePre(&pop[i], LABELS);
         //imprimeArvoreNivel(&pop[i]);
         printf(" | Numero de nos: %d | Erro: %.25f |\n",pop[i].numNos, pop[i].aptidao);
     }
     printf("\n");
 }
 
-Arvore imprimeMelhor(Arvore pop[]){
+void imprimeMelhor(Arvore pop[], char** LABELS){
     int i;
     int indiceMelhor = 0;
     float melhor = pop[0].aptidao;
@@ -65,9 +66,9 @@ Arvore imprimeMelhor(Arvore pop[]){
         }
     }
     printf("MELHOR: ");
-    imprimeArvorePre(&pop[indiceMelhor]);
+    imprimeArvorePre(&pop[indiceMelhor], LABELS);
     printf(" | Numero de nos: %d | Erro: %.25f |\n",pop[indiceMelhor].numNos, pop[indiceMelhor].aptidao);
-    return pop[indiceMelhor];
+    //return pop[indiceMelhor];
 }
 
 void selection(Arvore pop[], int k){
@@ -133,8 +134,8 @@ int selecionaElite(Arvore popAtual[], Arvore popFutura[]){
 
 void testaSelection(Arvore pop[], int k){
     //imprimePopulacao(pop);
-    ordenaElite(pop, k);
-    imprimePopulacao(pop);
+//    ordenaElite(pop, k);
+//    imprimePopulacao(pop);
 }
 
 int torneio(Arvore pop[]){

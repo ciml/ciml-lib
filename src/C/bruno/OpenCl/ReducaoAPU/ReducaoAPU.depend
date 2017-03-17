@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1489548499 source:c:\users\bruno\dropbox\reducaoapu\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	<time.h>
+	<windows.h>
+
+1489723506 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\reducaoapu\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+
+1489723506 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\opencl\reducaoapu\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+
