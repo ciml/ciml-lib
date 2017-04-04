@@ -22,3 +22,49 @@
 	<windows.h>
 	<limits>
 
+1490874732 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	"utilitarios.h"
+	<time.h>
+	<windows.h>
+
+1490874788 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\utilitarios.h
+
+1477662316 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\bitwise.h
+
+1490871896 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\utilitarios.c
+	"utilitarios.h"
+
+1487697285 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\constantes.h
+
+1481639485 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\bitwise.c
+	<stdio.h>
+	<stdlib.h>
+	"bitwise.h"
+	"constantes.h"
+
+1490872042 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\utilitarios.cpp
+	"utilitarios.h"
+
+1490895243 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	<time.h>
+	<windows.h>
+
+1490893691 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\utilitarios.h
+
+1490893691 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\utilitarios.cpp
+	"utilitarios.h"
+

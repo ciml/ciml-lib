@@ -9,9 +9,12 @@
 #include <utility>
 #include <cstdlib>
 #include <iomanip>
+//#include "utilitarios.h"
+
 
 #include <time.h>
 #include <windows.h>
+
 
 #define ARRAY_SIZE 32771
 #define ARRAY_SIZE_R 8
@@ -96,6 +99,8 @@ const char *getErrorString(cl_int error) {
 
 int main(){
     std::cout << std::setprecision(10) << std::fixed;
+//    int somaaa = soma(10, 5);
+  //  std::cout << somaaa << std::endl;
 
     cl_int result; //Variavel para verificar erros
 
@@ -192,7 +197,7 @@ int main(){
 
     ///Criando a fila de comando para o device 0
     cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
-    cl::CommandQueue cmdQueue(contexto, devices[2], commandQueueProperties, &result);
+    cl::CommandQueue cmdQueue(contexto, devices[0], commandQueueProperties, &result);
     if(result != CL_SUCCESS){
         std::cout << "Erro ao criar a Command Queue" << std::endl;
         exit(1);
@@ -210,18 +215,30 @@ int main(){
     ///Leitura do arquivo com o programa em C++
 	std::ifstream sourceFileName("estudo.cl");
 	std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
-
     ///Criar programa por Source
     //cl::Program::Sources fonte(1, std::make_pair(kernel_str, std::strlen(kernel_str)));
     cl::Program::Sources source(1, std::make_pair(sourceFile.c_str(), sourceFile.length()+1));
     cl::Program programa(contexto, source);
 
+    const char options[] = "-I.";
+    //int error;
     try {
-        programa.build(devices);
+        programa.build(devices, options);
     } catch(cl::Error& e){
         std::cerr << getErrorString(e.err()) << std::endl;
-        exit(1);
+        std::cout << std::endl << e.what() << " : " << e.err() << std::endl;
+        //exit(1);
     }
+
+//    for (cl::Device& device: devices){
+//        cl_build_status status;
+//        programa.getBuildInfo(device, CL_PROGRAM_BUILD_STATUS, &status);
+//        std::cerr << "PROGRAM_BUILD_STATUS: " << status << std::endl;
+//        std::string build_log;
+//        programa.getBuildInfo(device, CL_PROGRAM_BUILD_LOG, &build_log);
+//        std::cerr << "PROGRAM_BUILD_LOG: " << build_log << std::endl;
+//    }
+
 
     ///Criar kernel OpenCL
     cl::Kernel krnl(programa, "somatorioSequencialEsperto");

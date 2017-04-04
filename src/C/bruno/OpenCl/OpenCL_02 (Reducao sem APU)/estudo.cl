@@ -1,10 +1,12 @@
-   
+#include "utilitarios.h"
 #pragma OPENCL EXTENSION cl_amd_printf : enable
 
     __kernel void somatorioSequencialEsperto(__global float* values,
                                              __local float* localSum,
                                              __const int length,
                                              __global float* sum){
+        //int somaaaa = soma(10,25);
+        //printf("%d\n", soma(10,25));
         int global_id = get_global_id(0);                               
         int local_id = get_local_id(0);
         int group_id = get_group_id(0);
@@ -50,7 +52,7 @@
         for(int i = get_local_size(0)/2 /* nextPower2/2*/; i > 0; i/=2){
             barrier(CLK_LOCAL_MEM_FENCE);
             if(local_id < i/* && (local_id + i < get_local_size(0))*/){
-                printf("values[localid]= %d \n values[localid+i]= %d \n result = %d \n\n",(int)values[local_id], (int)values[local_id+i], (int)values[local_id]+(int)values[local_id+i]);
+                //printf("values[localid]= %d \n values[localid+i]= %d \n result = %d \n\n",(int)values[local_id], (int)values[local_id+i], (int)values[local_id]+(int)values[local_id+i]);
                 values[local_id] += values[local_id + i];
             }
         }

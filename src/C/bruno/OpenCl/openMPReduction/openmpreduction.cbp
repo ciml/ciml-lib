@@ -4,19 +4,27 @@
 	<Project>
 		<Option title="openmpreduction" />
 		<Option pch_mode="2" />
-		<Option compiler="opencl_amd" />
+		<Option compiler="opencl_intel" />
+		<MakeCommands>
+			<Build command="" />
+			<CompileFile command="" />
+			<Clean command="" />
+			<DistClean command="" />
+			<AskRebuildNeeded command="" />
+			<SilentBuild command=" &gt; $(CMD_NULL)" />
+		</MakeCommands>
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/openmpreduction" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="openmpopencl_amd" />
+				<Option compiler="opencl_intel" />
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/openmpreduction" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
-				<Option compiler="opencl_amd" />
+				<Option compiler="opencl_intel" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
@@ -25,10 +33,6 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-			<Add option="-fexceptions" />
-		</Compiler>
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

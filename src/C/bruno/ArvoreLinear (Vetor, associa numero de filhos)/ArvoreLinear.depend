@@ -287,10 +287,11 @@
 	<stdlib.h>
 	<string.h>
 
-1487684011 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\main.c
+1490885641 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\main.c
 	<stdio.h>
 	<stdlib.h>
 	"genetica.h"
+	<omp.h>
 
 1487246233 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\pilha.c
 	<stdio.h>
@@ -300,4 +301,10 @@
 1487253591 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\utilitarios.c
 	"utilitarios.h"
 	"constantes.h"
+
+1489547104 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"arvore.h"
 

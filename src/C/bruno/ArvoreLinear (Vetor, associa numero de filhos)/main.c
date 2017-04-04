@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "genetica.h"
-
+#include <omp.h>
 #define MAX_TEXT_LINE_LENGTH 10000
-
 
 void testaIndividuo(){
 
@@ -158,14 +157,20 @@ int main(){
 
         novosIndividuos = 0;
         //Arvore popFutura[NUM_INDIV];
-        novosIndividuos = novosIndividuos + selecionaElite(popAtual, popFutura);
+       //novosIndividuos = novosIndividuos + selecionaElite(popAtual, popFutura);
         //printf("novos = %d\n\n", novosIndividuos);
-        while(novosIndividuos < NUM_INDIV){
+
+        //while(novosIndividuos < NUM_INDIV){
+        int num = 0;
+        #pragma omp parallel for
+        for(novosIndividuos = selecionaElite(popAtual, popFutura);novosIndividuos < NUM_INDIV; novosIndividuos +=2){
+            num = omp_get_num_threads();
+            //printf("aaaa");
             indice1 = torneio(popAtual);
             indice2 = torneio(popAtual);
 
-            popFutura[novosIndividuos++] = popAtual[indice1];
-            popFutura[novosIndividuos++] = popAtual[indice2];
+            popFutura[novosIndividuos] = popAtual[indice1];
+            popFutura[novosIndividuos+1] = popAtual[indice2];
 
             float cross = randomProb();
             float mut = randomProb();
@@ -174,12 +179,13 @@ int main(){
             //printf("mut: %f\n", mut);
 
             if(cross <= PROB_CROSS){
-                crossOver(&popFutura[novosIndividuos-2], &popFutura[novosIndividuos-1]);
+                crossOver(&popFutura[novosIndividuos+1/*-2*/], &popFutura[novosIndividuos/*-1*/]);
             }
             if(mut <= PROB_MUT){
-                mutacao(&popFutura[novosIndividuos-2], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
-                mutacao(&popFutura[novosIndividuos-1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+                mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+                mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
             }
+            printf("num threads = %d\n\n", num);
         }
 
         avaliaIndividuos(popFutura, dadosTreinamento, M, N);

@@ -15,7 +15,8 @@
 #include <time.h>
 #include <windows.h>
 
-#define ARRAY_SIZE 16386
+#define ARRAY_SIZE 1024
+//16386
 #define ARRAY_SIZE_R 8
 
 
@@ -106,14 +107,15 @@ int main(){
     float *X = new float[ARRAY_SIZE];
     //float *Y = new float[ARRAY_SIZE_R];
 
+
+
     ///Inicializa X com valores aleatorios
     for(int i = 0; i < ARRAY_SIZE; i++){
         X[i] = i+1;
         somaTotal2+=i+1;
         //std::cout << (int)X[i] << " ";
     }
-    //X[0] = 101;
-    //X[1] = 102;
+
     std::cout <<"Soma int = " << somaTotal2;
     //somaTotal = 0;
     ///Medir tempo dentro do host
@@ -129,6 +131,19 @@ int main(){
     std::cout << std::endl;
     std::cout << "Soma Total = " << (float)somaTotal << std::endl;
     std::cout << "Tempo Soma Total Sequencial = " << (double)(eNd.QuadPart - start.QuadPart)/frequency.QuadPart  << std::endl << std::endl;
+//    float sum;
+//    //QueryPerformanceCounter(&start);
+//    double inicio = omp_get_wtime();
+//    #pragma omp parallel for reduction(+ : sum)
+//    for(int i = 0; i < ARRAY_SIZE; i++){
+//        sum = sum + X[i];
+//    }
+//    //QueryPerformanceCounter(&eNd);
+//    std::cout << std::endl;
+//    std::cout << "Soma OMP= " << sum << std::endl << std::endl;
+//    //double tempoOmp = (double)(eNd.QuadPart - start.QuadPart)/frequency.QuadPart;
+//    std::cout << "Tempo soma Final Omp = " << omp_get_wtime()-inicio  << std::endl;
+
 
     ///TODO: Colocar conferencias de erros pelo código
     std::vector<cl::Platform> platforms;
@@ -275,8 +290,8 @@ int main(){
         sum = sum + Y[i];
     }
 
-//    int num = omp_get_num_threads();
-//    std::cout << "num threads = " << num << std::endl;
+    int num = omp_get_num_threads();
+    std::cout << "num threads = " << num << std::endl;
     QueryPerformanceCounter(&eNd);
     std::cout << std::endl;
     std::cout << "Soma OMP= " << sum << std::endl << std::endl;
