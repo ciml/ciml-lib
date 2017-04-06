@@ -2,20 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="OpenCL_02" />
+		<Option title="GeneticOpenCL" />
 		<Option pch_mode="2" />
 		<Option compiler="openmpopencl_amd" />
-		<MakeCommands>
-			<Build command="" />
-			<CompileFile command="" />
-			<Clean command="" />
-			<DistClean command="" />
-			<AskRebuildNeeded command="" />
-			<SilentBuild command=" &gt; $(CMD_NULL)" />
-		</MakeCommands>
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/OpenCL_02" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="opencl_intel" />
@@ -34,7 +26,7 @@
 				</MakeCommands>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/OpenCL_02" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="openmpopencl_amd" />
@@ -46,7 +38,32 @@
 				</Linker>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="arvore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="arvore.h" />
+		<Unit filename="bitwise.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bitwise.h" />
+		<Unit filename="constantes.h" />
+		<Unit filename="genetica.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="genetica.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="pilha.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pilha.h" />
+		<Unit filename="utilitarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="utilitarios.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

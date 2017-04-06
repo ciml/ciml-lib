@@ -98,6 +98,7 @@ const char *getErrorString(cl_int error) {
 
 
 int main(){
+
     std::cout << std::setprecision(10) << std::fixed;
     cl_int result; //Variavel para verificar erros
 

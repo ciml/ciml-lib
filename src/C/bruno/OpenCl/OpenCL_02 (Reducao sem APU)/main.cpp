@@ -145,7 +145,7 @@ int main(){
     }
 
     ///Encontrando os devices disponiveis na plataforma 0
-    platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+    platforms[1].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     if(result != CL_SUCCESS){
         std::cout << "Erro ao encontrar devices." << std::endl;
         exit(1);

@@ -22,7 +22,7 @@
 	<windows.h>
 	<limits>
 
-1490874732 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\main.cpp
+1491355847 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\opencl\opencl_02 (reducao sem apu)\main.cpp
 	<CL/cl.hpp>
 	<iostream>
 	<fstream>
@@ -30,7 +30,6 @@
 	<utility>
 	<cstdlib>
 	<iomanip>
-	"utilitarios.h"
 	<time.h>
 	<windows.h>
 

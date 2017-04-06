@@ -1,12 +1,26 @@
 #include "utilitarios.h"
-#pragma OPENCL EXTENSION cl_amd_printf : enable
+#pragma OPENCL EXTENSION cl_intel_printf : enable
+
+int somaaa(int a, int b){
+    return a + b;
+}
+
+typedef struct{
+    int numeroFilhos[10];
+    int informacao[10];
+    int numNos;
+    float aptidao;
+}Arvore;
+
+
 
     __kernel void somatorioSequencialEsperto(__global float* values,
                                              __local float* localSum,
                                              __const int length,
                                              __global float* sum){
         //int somaaaa = soma(10,25);
-        //printf("%d\n", soma(10,25));
+        //printf("%d\n\n\n\n", somaaa(10,25));
+
         int global_id = get_global_id(0);                               
         int local_id = get_local_id(0);
         int group_id = get_group_id(0);

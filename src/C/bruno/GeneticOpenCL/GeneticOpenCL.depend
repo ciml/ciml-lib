@@ -1,0 +1,115 @@
+# depslib dependency file v1.0
+1491317977 source:c:\users\bruno\dropbox\geneticopencl\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	"genetica.h"
+	<omp.h>
+
+1487252991 c:\users\bruno\dropbox\geneticopencl\genetica.h
+	"arvore.h"
+
+1487683785 c:\users\bruno\dropbox\geneticopencl\arvore.h
+	"pilha.h"
+	"utilitarios.h"
+	"bitwise.h"
+
+1474405533 c:\users\bruno\dropbox\geneticopencl\pilha.h
+	"constantes.h"
+
+1487697285 c:\users\bruno\dropbox\geneticopencl\constantes.h
+
+1481663096 c:\users\bruno\dropbox\geneticopencl\utilitarios.h
+	"math.h"
+	"bitwise.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1477665916 c:\users\bruno\dropbox\geneticopencl\bitwise.h
+
+1489547104 source:c:\users\bruno\dropbox\geneticopencl\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"arvore.h"
+
+1481643085 source:c:\users\bruno\dropbox\geneticopencl\bitwise.c
+	<stdio.h>
+	<stdlib.h>
+	"bitwise.h"
+	"constantes.h"
+
+1487252991 source:c:\users\bruno\dropbox\geneticopencl\genetica.c
+	<stdio.h>
+	<stdlib.h>
+	"genetica.h"
+
+1487246233 source:c:\users\bruno\dropbox\geneticopencl\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1487253591 source:c:\users\bruno\dropbox\geneticopencl\utilitarios.c
+	"utilitarios.h"
+	"constantes.h"
+
+1491447084 source:c:\users\brunom\dropbox\geneticopencl\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"arvore.h"
+
+1491444688 c:\users\brunom\dropbox\geneticopencl\arvore.h
+	"pilha.h"
+	"utilitarios.h"
+	"bitwise.h"
+
+1474405533 c:\users\brunom\dropbox\geneticopencl\pilha.h
+	"constantes.h"
+
+1491452412 c:\users\brunom\dropbox\geneticopencl\constantes.h
+
+1481659496 c:\users\brunom\dropbox\geneticopencl\utilitarios.h
+	"math.h"
+	"bitwise.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1477662316 c:\users\brunom\dropbox\geneticopencl\bitwise.h
+
+1481639485 source:c:\users\brunom\dropbox\geneticopencl\bitwise.c
+	<stdio.h>
+	<stdlib.h>
+	"bitwise.h"
+	"constantes.h"
+
+1487249391 source:c:\users\brunom\dropbox\geneticopencl\genetica.c
+	<stdio.h>
+	<stdlib.h>
+	"genetica.h"
+
+1487249391 c:\users\brunom\dropbox\geneticopencl\genetica.h
+	"arvore.h"
+
+1487242633 source:c:\users\brunom\dropbox\geneticopencl\pilha.c
+	<stdio.h>
+	<stdlib.h>
+	"pilha.h"
+
+1491445747 source:c:\users\brunom\dropbox\geneticopencl\utilitarios.c
+	"utilitarios.h"
+	"constantes.h"
+
+1491452473 source:c:\users\brunom\dropbox\geneticopencl\main.cpp
+	<CL/cl.hpp>
+	<iostream>
+	<fstream>
+	<vector>
+	<utility>
+	<cstdlib>
+	<iomanip>
+	"genetica.h"
+	<omp.h>
+

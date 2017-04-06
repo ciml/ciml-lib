@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "genetica.h"
-#include <omp.h>
+//#include <omp.h>
 #define MAX_TEXT_LINE_LENGTH 10000
 
 void testaIndividuo(){
@@ -118,8 +118,6 @@ void imprimeParametros(){
 
 
 int main(){
-    printf("aaaaaaaa\n");
-    //int seed = 5;
     int i, indice1, indice2, novosIndividuos;
     int iteracoes = 0;
 
@@ -162,9 +160,9 @@ int main(){
 
         //while(novosIndividuos < NUM_INDIV){
         int num = 0;
-        #pragma omp parallel for
+        //#pragma omp parallel for
         for(novosIndividuos = selecionaElite(popAtual, popFutura);novosIndividuos < NUM_INDIV; novosIndividuos +=2){
-            num = omp_get_num_threads();
+            //num = omp_get_num_threads();
             //printf("aaaa");
             indice1 = torneio(popAtual);
             indice2 = torneio(popAtual);
@@ -185,7 +183,7 @@ int main(){
                 mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
                 mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
             }
-            printf("num threads = %d\n\n", num);
+           // printf("num threads = %d\n\n", num);
         }
 
         avaliaIndividuos(popFutura, dadosTreinamento, M, N);
