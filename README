@@ -25,6 +25,8 @@ Library Contents
 - gp_innovization (C)
 - gp_ocl_apu (C)
 - gp_hyper-heuristic (C)
+- aos_scheduling (C) 
+
 
 
 
