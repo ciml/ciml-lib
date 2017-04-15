@@ -69,7 +69,7 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
 
         }
 
-        tipo = unpackTipo(sorteio);
+        //tipo = unpackTipo(sorteio);
 
         if(tipo == CONST){
             sorteio = packFloat(CONST, randomConst());

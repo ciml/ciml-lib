@@ -26,11 +26,11 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     10
+#define MAX_NOS     32
 #define MAX_DEPTH   2
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   4
+#define NUM_INDIV   500
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9
@@ -42,7 +42,8 @@
 
 #define NUM_TORNEIO     2
 #define ELITISMO        0.05
-#define NUM_GERACOES    5
+#define NUM_GERACOES    10
+
 
 //tem como mudar a contasntate antes
 

@@ -37,11 +37,12 @@ void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
     for(i = 0; i < NUM_INDIV; i++){
         for(j = 0; j < M; j++){
             float a = executa(&pop[i], dados[j], N);
-            printf("%f\n", a);
+            //printf("%f\n", a);
             erro = erro + a;
         }
         //int k; scanf("%d", &k);
         pop[i].aptidao = erro; // + 2 * pop[i].numNos;
+        //printf("%f\n", pop[i].aptidao);
         erro = 0;
     }
 }

@@ -200,6 +200,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 
         *NUM_OPBIN = 4;
         *NUM_OPUN = 3;
+        *NUM_CTES = 1;
         *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
 
         for (i = 0; i < (*NUM_OPBIN); i++){

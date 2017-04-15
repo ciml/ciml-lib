@@ -1,87 +1,3 @@
-/*
-void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
-
-    int i, j = 0;
-    float erro = 0;
-    for(i = 0; i < NUM_INDIV; i++){
-        for(j = 0; j < M; j++){
-            erro = erro + executa(&pop[i], dados[j], N);
-        }
-        //int k; scanf("%d", &k);
-        pop[i].aptidao = erro; // + 2 * pop[i].numNos;
-        erro = 0;
-    }
-}
-
-
-    __kernel void somatorioSequencialEsperto(__global float* values,
-                                             __local float* localSum,
-                                             __const int length,
-                                             __global float* sum){
-        int global_id = get_global_id(0);                               
-        int local_id = get_local_id(0);
-        int group_id = get_group_id(0);
-        float accumulator = 0;
-
-        while(global_id < length){
-            accumulator += values[global_id];
-            global_id += get_global_size(0);
-        }
-
-        localSum[local_id] = accumulator;
-        barrier(CLK_LOCAL_MEM_FENCE);
-
-        for(int i = get_local_size(0)/2 ; i > 0; i/=2){
-            if(local_id < i){
-               localSum[local_id] += localSum[local_id + i];
-            }
-            barrier(CLK_LOCAL_MEM_FENCE);
-        }
-        
-        if(local_id == 0){
-            sum[group_id] = localSum[0];
-        }
-    }
-*/
-
-#define TIPO    4
-
-#define VAR     7
-#define CONST   8
-#define FBIN    2
-#define FUN     1
-
-#define PLUS    0
-#define MIN     1
-#define MULT    2
-#define DIV     3
-
-#define SIN     4
-#define COS     5
-#define SQR     6
-
-#define EXP     12
-#define LOG10   13
-
-
-#define MAX_NOS     10
-#define MAX_DEPTH   2
-#define MAX_FILHOS  2
-
-#define NUM_INDIV   4
-
-#ifndef PROB_CROSS
-#define PROB_CROSS  0.9
-#endif // PROB_CROSS
-
-#ifndef PROB_MUT
-#define PROB_MUT    0.3
-#endif // PROB_MUT
-
-#define NUM_TORNEIO     2
-#define ELITISMO        0.05
-#define NUM_GERACOES    5
-
 typedef struct{
     int numeroFilhos[MAX_NOS];
     int informacao[MAX_NOS];
@@ -97,7 +13,6 @@ typedef struct{
 void empilha2(PilhaEx* pilha, float info){
     (pilha->topo)++;
     if(pilha->topo < MAX_NOS){
-        //printf("Sucesso Empilhar 2\n");
         pilha->info[pilha->topo] = info;
     }else{
         printf("Erro empilhar 2\n");
@@ -106,7 +21,6 @@ void empilha2(PilhaEx* pilha, float info){
 
 float desempilha2(PilhaEx* pilha){
     if(pilha->topo >= 0){
-        //printf("Sucesso Desempilhar 2\n");
         float val = pilha->info[pilha->topo];
         pilha->topo--;
         return val;
@@ -115,6 +29,7 @@ float desempilha2(PilhaEx* pilha){
         return -1;
     }
 }
+
 
 
 /*
@@ -244,92 +159,116 @@ float proSqrt(float num){
 }
 
 
-float executa(__global Arvore* arv, __global float* dados, int N, int M, int local_id){
-    PilhaEx pilhaEx;
-    pilhaEx.topo = -1;
-
-    int j;
-    int tipo;
-
-    for(j = arv->numNos -1; j>=0; j= j-1){
-        tipo = retornaTipo(arv, j);
-        //unpackTipo(arv->informacao[j]);
-        //printf("tipo = %d\n", tipo);
-        switch(tipo){
-            case PLUS:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
-                break;
-            case MIN:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) - desempilha2(&pilhaEx));
-                break;
-            case MULT:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) * desempilha2(&pilhaEx));
-                break;
-            case DIV:
-                empilha2(&pilhaEx,proDiv (desempilha2(&pilhaEx), desempilha2(&pilhaEx)));
-                break;
-            case SIN:
-                empilha2(&pilhaEx,sin(desempilha2(&pilhaEx)));
-                break;
-            case COS:
-                empilha2(&pilhaEx,cos(desempilha2(&pilhaEx)));
-                break;
-            case SQR:
-               empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
-                break;
-            case CONST:;//This is an empty statement.
-                //int c; scanf("%d", c);
-                float valorF = unpackFloat(arv->informacao[j]);
-                empilha2(&pilhaEx, valorF);
-                break;
-            case VAR:;
-                int valor2 = unpackInt(arv->informacao[j]);
-                empilha2(&pilhaEx, dados[local_id+(valor2*M)]);
-                break;
-        }
-    }
-
-    float erro = desempilha2(&pilhaEx)- dados[local_id+M*(N-1)];
-    return erro*erro;
-}
-
-
-
 __kernel void avaliaIndividuos(__global Arvore* pop,
                                __global float* dados,
                                __local float* error, 
                                __const int M, 
                                __const int N){
-    int i, j = 0;
+    int i, k = 0;
     float erro = 0;
 
 
     int local_id = get_local_id(0);
-    int local_size = get_local_size(0);
+    //int local_size = get_local_size(0);
     int group_id = get_group_id(0);
 
+    PilhaEx pilhaEx;
+    pilhaEx.topo = -1;
 
-    for(j = 0; j <= (M/local_size) - 1; j++){
-        int n = j * local_size + local_id;
-        if( n < M){
-            erro = erro + executa(&pop[group_id], dados, N, M, local_id);
-            //printf("%f, %f\n", dados[local_id+(0*M)], dados[local_id+(1*M)]);
+    #ifndef NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE
+   /* When we know that NUM_POINTS is divisible by LOCAL_SIZE then we can avoid a
+      comparison in each iteration due to the guarantee of not having work-items
+      accessing beyond the available amount of points. */
+    for(k = 0; k <= (M/LOCAL_SIZE) - 1; k++){
+
+    #else
+        for(k = 0; k <= (M/LOCAL_SIZE) - 1; k++){
+            
+            if( k * LOCAL_SIZE + local_id < M){
+    #endif
+            int j;
+            int tipo;
+
+            for(j = pop[group_id].numNos -1; j>=0; j= j-1){
+                tipo = retornaTipo(&pop[group_id], j);
+
+                switch(tipo){
+                    case PLUS:
+                        empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
+                        break;
+                    case MIN:
+                        empilha2(&pilhaEx,desempilha2(&pilhaEx) - desempilha2(&pilhaEx));
+                        break;
+                    case MULT:
+                        empilha2(&pilhaEx,desempilha2(&pilhaEx) * desempilha2(&pilhaEx));
+                        break;
+                    case DIV:
+                        empilha2(&pilhaEx,proDiv(desempilha2(&pilhaEx), desempilha2(&pilhaEx)));
+                        break;
+                    case SIN:
+                        empilha2(&pilhaEx,sin(desempilha2(&pilhaEx)));
+                        break;
+                    case COS:
+                        empilha2(&pilhaEx,cos(desempilha2(&pilhaEx)));
+                        break;
+                    case SQR:
+                       empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
+                        break;
+                    case CONST:;//This is an empty statement.
+                        //int c; scanf("%d", c);
+                        float valorF = unpackFloat(pop[group_id].informacao[j]);
+                        empilha2(&pilhaEx, valorF);
+                        break;
+                    case VAR:;
+                        int valor2 = unpackInt(pop[group_id].informacao[j]);
+                        empilha2(&pilhaEx, dados[k+(valor2*M)]);
+                        break;
+                }
+            }
+
+            float erroF = desempilha2(&pilhaEx)- dados[k+M*(N-1)];
+            //if(group_id == 0){
+            //    printf("%f\n", erroF * erroF);
+            //}
+            erro = erro + (erroF * erroF);
+            
+            //printf("%f, %f\n", dados[k+(0*M)], dados[k+(1*M)]);
             //printf("%f\n", erro);
+    #ifdef NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE
         }
+    #endif
     }
+
     //mudar nome dessas variaveis
     error[local_id] = erro;
-    if(group_id == 1){
-    	printf("%f\n", error[local_id]);
-    }
     barrier(CLK_LOCAL_MEM_FENCE);
 
+
+    #ifndef LOCAL_SIZE_IS_NOT_POWER_OF_2
+      if( local_id < i )
+    #else
+          /* LOCAL_SIZE is not power of 2, so we need to perform an additional
+           * check to ensure that no access beyond PE's range will occur. */ 
+          if( (local_id < i) && (local_id + i < LOCAL_SIZE) )
+    #endif 
+
+
+
     ///redução erros por work group
+    //LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2
+
     for(int i = get_local_size(0)/2 ; i > 0; i/=2){
-        if(local_id < i){
-           error[local_id] += error[local_id + i];
-        }
         barrier(CLK_LOCAL_MEM_FENCE);
+
+    #ifndef LOCAL_SIZE_IS_NOT_POWER_OF_2
+        if( local_id < i )
+    #else
+        /* LOCAL_SIZE is not power of 2, so we need to perform an additional
+        * check to ensure that no access beyond PE's range will occur. */ 
+        if( (local_id < i) && (local_id + i < LOCAL_SIZE) )
+    #endif 
+           error[local_id] += error[local_id + i];
+           
     }
         
     if(local_id == 0){

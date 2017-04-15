@@ -4,17 +4,16 @@
 	<Project>
 		<Option title="GeneticOpenCL" />
 		<Option pch_mode="2" />
-		<Option compiler="openmpopencl_amd" />
+		<Option compiler="opencl_openmp" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="opencl_intel" />
+				<Option compiler="opencl_openmp" />
 				<Option projectCompilerOptionsRelation="-1" />
 				<Option projectLinkerOptionsRelation="-1" />
 				<Option projectIncludeDirsRelation="-1" />
-				<Option projectResourceIncludeDirsRelation="-1" />
 				<Option projectLibDirsRelation="-1" />
 				<MakeCommands>
 					<Build command="" />
@@ -29,7 +28,7 @@
 				<Option output="bin/Release/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
-				<Option compiler="openmpopencl_amd" />
+				<Option compiler="opencl_openmp" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>
