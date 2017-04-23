@@ -1,0 +1,11 @@
+<expr> $ <expr> <expr> <op>
+			| <expr> <uop>
+        	| <var>
+        	| <val>
+<op> $ +  
+		| *	
+		| /
+	    | -
+<uop> $ log
+<val> $ 1.0
+<var> $ x1 
