@@ -49,7 +49,7 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
             sorteio = conjuntoOpTerm[randomType(NUM_OPBIN, NUM_OPUN, N)];
             tipo = unpackTipo(sorteio);
 
-            if(tipo == VAR || tipo == CONST){
+            if(tipo == VAR || tipo == CTE){
                 num = 0;
             } else if (tipo == FUN){
                 num = 1;
@@ -71,8 +71,8 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
 
 //        tipo = unpackTipo(sorteio);
 
-        if(tipo == CONST){
-            sorteio = packFloat(CONST, randomConst());
+        if(tipo == CTE){
+            sorteio = packFloat(CTE, randomConst());
         }
         arv->informacao[indice] = sorteio;
         }
@@ -129,8 +129,8 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
             } else {
                 sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N)];
                 tipo = unpackTipo(sorteio);
-                if(tipo == CONST){
-                    sorteio = packFloat(CONST, randomConst());
+                if(tipo == CTE){
+                    sorteio = packFloat(CTE, randomConst());
                 }
                 num = 0;
             }
@@ -182,7 +182,7 @@ void imprimeArvoreNivel(Arvore* arv){
                 printf("-");
 
             int tipo = unpackTipo(arv->informacao[indice]);
-            if(tipo == CONST)
+            if(tipo == CTE)
                 printf("%f | %d\n", unpackFloat(arv->informacao[indice]), arv->numeroFilhos[indice]);
             else
                 printf("%d | %d\n", unpackInt(arv->informacao[indice]), arv->numeroFilhos[indice]);
@@ -414,7 +414,7 @@ void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){ //int id, int tipo){
         case SQR:
             printf("sqrt");
             break;
-        case CONST:;//This is an empty statement.
+        case CTE:;//This is an empty statement.
             float valorF = unpackFloat(info);
             printf("%.5f", valorF);
             break;
@@ -459,7 +459,7 @@ void imprimeSinxate2(int info, char* LABELS[]){ //int id, int tipo){
             break;
         }
         break;
-    case CONST:;//This is an empty statement.
+    case CTE:;//This is an empty statement.
         float valorF = unpackFloat(info);
         printf("%.5f", valorF);
         break;
@@ -532,7 +532,7 @@ float executa2(Arvore* arv, float dados[], int N){
         if(aux[indice] == arv->numeroFilhos[indice]){
             if(arv->numeroFilhos[indice] == 0){
                 tipo = unpackTipo(arv->informacao[indice]);
-                if(tipo ==  CONST){
+                if(tipo ==  CTE){
                     empilha2(&pilhaEx, unpackFloat(arv->informacao[indice]));
                 } else {
                     empilha2(&pilhaEx, dados[unpackInt(arv->informacao[indice])]);
@@ -623,7 +623,7 @@ float executa(Arvore* arv, float dados[], int N){
             case SQR:
                empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
                 break;
-            case CONST:;//This is an empty statement.
+            case CTE:;//This is an empty statement.
                 //int c; scanf("%d", c);
                 float valorF = unpackFloat(arv->informacao[j]);
                 empilha2(&pilhaEx, valorF);

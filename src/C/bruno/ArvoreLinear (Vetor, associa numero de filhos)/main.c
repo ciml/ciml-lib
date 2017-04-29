@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "genetica.h"
-//#include <omp.h>
+#include <omp.h>
+
 #define MAX_TEXT_LINE_LENGTH 10000
 
-void testaIndividuo(){
-
-}
 
 //TODO:fazer receber os dados também+labels.
 void leIndividuo(char *fileName, Arvore* individuo) {
@@ -107,18 +105,26 @@ void leIndividuo(char *fileName, Arvore* individuo) {
 }
 
 
-void imprimeParametros(){
+
+void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
     printf("/*-----------------------------------------------------------------\n");
     printf("* NUMERO INDIVIDUOS: %d \t CROSS-OVER: %.2f\n", NUM_INDIV, PROB_CROSS);
     printf("* NUMERO GERACOES  : %d \t MUTACAO   : %.2f\n", NUM_GERACOES, PROB_MUT);
     printf("* NUM MAXIMO NOS   : %d \t ELITISMO  : %.2f\n", MAX_NOS, ELITISMO);
     printf("* PROFUNDIDADE MAX : %d \t \n", MAX_DEPTH);
+    printf("SEED: %d \n", SEED);
+    printf("M: %d \n", M);
+    printf("N: %d \n", N);
+    printf("NUM_CTES: %d \n", NUM_CTES);
+    printf("NUM_OPBIN: %d \n", NUM_OPBIN);
+    printf("NUM_OPUN: %d \n", NUM_OPUN);
     printf("*------------------------------------------------------------------\n");
+
 }
 
 
 int main(){
-    int i, indice1, indice2, novosIndividuos;
+    int i;//, indice1, indice2;//, novosIndividuos;
     int iteracoes = 0;
 
     ///variaveis lidas de arquivo
@@ -132,40 +138,30 @@ int main(){
     float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm);
 
 
-    imprimeParametros();
+    imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
     atribuiSemente(SEED);
-    printf("Seed: %d \n", SEED);
-    printf("M: %d \n", M);
-    printf("N: %d \n", N);
-    printf("NUM_CTES: %d \n", NUM_CTES);
-    printf("NUM_OPBIN: %d \n", NUM_OPBIN);
-    printf("NUM_OPUN: %d \n", NUM_OPUN);
-
 
     Arvore popAtual[NUM_INDIV], popFutura[NUM_INDIV];
 
-
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
-    //imprimePopulacao(popAtual, LABELS);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
     imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         printf("GERACAO %d: \n\n", iteracoes);
+        //novosIndividuos = 0;
+        //novosIndividuos = novosIndividuos + selecionaElite(popAtual, popFutura);
 
-        novosIndividuos = 0;
-        //Arvore popFutura[NUM_INDIV];
-       //novosIndividuos = novosIndividuos + selecionaElite(popAtual, popFutura);
-        //printf("novos = %d\n\n", novosIndividuos);
+        //int num = 0;
 
-        //while(novosIndividuos < NUM_INDIV){
-        int num = 0;
-        //#pragma omp parallel for
-        for(novosIndividuos = selecionaElite(popAtual, popFutura);novosIndividuos < NUM_INDIV; novosIndividuos +=2){
+        #pragma omp parallel for
+        for(int novosIndividuos = selecionaElite(popAtual, popFutura); novosIndividuos < NUM_INDIV; novosIndividuos=novosIndividuos+2){
             //num = omp_get_num_threads();
+            //#pragma omp barrier
+
             //printf("aaaa");
-            indice1 = torneio(popAtual);
-            indice2 = torneio(popAtual);
+            int indice1 = torneio(popAtual);
+            int indice2 = torneio(popAtual);
 
             popFutura[novosIndividuos] = popAtual[indice1];
             popFutura[novosIndividuos+1] = popAtual[indice2];
@@ -183,15 +179,16 @@ int main(){
                 mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
                 mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
             }
+
            // printf("num threads = %d\n\n", num);
         }
+
 
         avaliaIndividuos(popFutura, dadosTreinamento, M, N);
         for(i = 0; i< NUM_INDIV; i++){
             popAtual[i] = popFutura[i];
         }
 
-        //imprimePopulacao(popAtual);
         imprimeMelhor(popAtual, LABELS);
         iteracoes++;
     }

@@ -194,7 +194,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
             (*conjuntoOpTerm)[i] = packInt(VAR, j);
         }
 
-        (*conjuntoOpTerm)[i] = packFloat(CONST, 1.0);
+        (*conjuntoOpTerm)[i] = packFloat(CTE, 1.0);
 
     } else {
 
@@ -212,7 +212,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
         for(j = 0; j < (*N)-1; j++, i++){
             (*conjuntoOpTerm)[i] = packInt(VAR, j);
         }
-        (*conjuntoOpTerm)[i] = packFloat(CONST, 1.0);
+        (*conjuntoOpTerm)[i] = packFloat(CTE, 1.0);
     }
     fclose(arq);
 

@@ -159,40 +159,28 @@ float proSqrt(float num){
 }
 
 
-__kernel void avaliaIndividuos(__global Arvore* populacao,
+__kernel void avaliaIndividuos(__global Arvore* pop,
                                __global float* dados,
-                               __local float* error,
-                               __local Arvore* pop 
-                               __const int MM, 
-                               __const int NN){
+                               __local float* error, 
+                               __const int M, 
+                               __const int N){
     int i, k = 0;
     float erro = 0;
 
 
-    int local_id = get_local_id(0);
+    //int local_id = get_local_id(0);
     //int local_size = get_local_size(0);
     int group_id = get_group_id(0);
 
     PilhaEx pilhaEx;
     pilhaEx.topo = -1;
 
-    #ifndef NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE
-   /* When we know that NUM_POINTS is divisible by LOCAL_SIZE then we can avoid a
-      comparison in each iteration due to the guarantee of not having work-items
-      accessing beyond the available amount of points. */
-    for(k = 0; k <= (M/LOCAL_SIZE) - 1; k++){
 
-    #else
-        for(k = 0; k <= (M/LOCAL_SIZE) - 1; k++){
-            
-            if( k * LOCAL_SIZE + local_id < M){
-    #endif
+        for(k = 0; k < M ; k++){
             int j;
             int tipo;
-
             for(j = pop[group_id].numNos -1; j>=0; j= j-1){
                 tipo = retornaTipo(&pop[group_id], j);
-
                 switch(tipo){
                     case PLUS:
                         empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
@@ -222,49 +210,15 @@ __kernel void avaliaIndividuos(__global Arvore* populacao,
                         break;
                     case VAR:;
                         int valor2 = unpackInt(pop[group_id].informacao[j]);
-                        empilha2(&pilhaEx, dados[local_id+(valor2*M)]);
+                        empilha2(&pilhaEx, dados[k+valor2*M]);
                         break;
                 }
             }
 
-            float erroF = desempilha2(&pilhaEx)- dados[local_id+M*(N-1)];
-            //if(group_id == 0){
-            //    printf("%f\n", erroF * erroF);
-            //}
+            float erroF = desempilha2(&pilhaEx)- dados[k+M*(N-1)];
             erro = erro + (erroF * erroF);
-            
-            //printf("%f, %f\n", dados[k+(0*M)], dados[k+(1*M)]);
-            //printf("%f\n", erro);
-    #ifdef NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE
-        }
-    #endif
     }
 
-    //mudar nome dessas variaveis
-    error[local_id] = erro;
-    barrier(CLK_LOCAL_MEM_FENCE);
-
-
-
-    ///redução erros por work group
-    //LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2
-
-    for(int i = get_local_size(0)/2 ; i > 0; i/=2){
-        barrier(CLK_LOCAL_MEM_FENCE);
-
-    #ifndef LOCAL_SIZE_IS_NOT_POWER_OF_2
-        if( local_id < i )
-    #else
-        /* LOCAL_SIZE is not power of 2, so we need to perform an additional
-        * check to ensure that no access beyond PE's range will occur. */ 
-        if( (local_id < i) && (local_id + i < LOCAL_SIZE) )
-    #endif 
-           error[local_id] += error[local_id + i];
-           
-    }
-        
-    if(local_id == 0){
-        pop[group_id].aptidao = error[0];
-    }
+    pop[group_id].aptidao = erro;
 
 }

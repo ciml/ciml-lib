@@ -29,7 +29,7 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
     int ultimo = 0;
     int soma = 1;
 
-    int aux[maxTam];
+    int aux[MAX_NOS];
     int sorteio, j, num, tipo;
 
     //usar 'num' o inves de j pra nao ter variavel sobrando...
