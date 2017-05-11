@@ -7,14 +7,15 @@
 #include "crossover.h"
 #include "mutation.h"
 
-#define HNINDIVIDUALS 10  // Número de indivíduos da hiperheurística
+#define HNINDIVIDUALS 50  // Número de indivíduos da hiperheurística
 #define NEXPERIMENTS 5  //Número de execuções do AG interno para cada AG externo
+#define HNUMGENERATION 50 //Número de Gerações da hyper-heurística
 
-#define HNUMGENERATION 5 //Número de Gerações da hyper-heurística
-#define NUMGENERATION 10 //Número de Gerações do AG interno
+int popLenght;
+int numGeneration; //Número de Gerações do AG interno
 
-#define PCROSSOVER 0.8    // Probabilidade de realizar Crossover
-#define PMUTATION  0.15    // Probabilidade de realizar Mutação
+float HprobCrossover;    // Probabilidade de realizar Crossover
+float HprobMutation;    // Probabilidade de realizar Mutação
 
 //DECLARAÇÕES HIPERHEURISTICA
 
@@ -60,7 +61,8 @@ int ***jobMachine;            // Relaciona o tempo dos jobs nas máquinas
 int nJobs = 0;                // Número de Jobs
 int nMachines = 0;            // Número de Máquinas
 int *dueDate;                 // Data de vencimento dos jobs
-int **Gantt;                  // Matriz que alocará informações
+int ***Gantt;                  // Matriz que alocará informações
+int *qMachines;
 int flowMakespan = 0;         // Auxiliar que armazena o máximo de makespan
 double z[2];               //Valores utópicos para o hypervolume
 
@@ -75,16 +77,28 @@ void printDataFile2(char *fileName, char *nRepeat);
 int main(int argc, char *argv[])
 {
   int i, j;
-
   char fileName[10];
   char nRepeat[4];
-  if( argc < 3){
+  char popString[] = "100", probCrossString[] = "0.8", probMutaString[] = "0.9";
+  if( argc < 6){
     printf("Está faltando argumentos\n" );
-    exit(1);
+    printf("Executando programa default\n" );
+    popLenght = 100;
+    numGeneration = 90000 / popLenght;
+    HprobCrossover = 0.8;
+    HprobMutation = 0.9;
+  } else {
+    popLenght = atoi(argv[3]);
+    numGeneration = 90000 / popLenght;
+    printf("%d %d\n", popLenght, numGeneration);
+    HprobCrossover = atof(argv[4]);
+    HprobMutation = atof(argv[5]);
+    strcpy(popString, argv[3]);
+    strcpy(probCrossString, argv[4]);
+    strcpy(probMutaString, argv[5]);
   }
   strcpy(fileName, argv[1]);
   strcpy(nRepeat, argv[2]);
-
 
   srand((unsigned)time(NULL));
 
@@ -93,45 +107,25 @@ int main(int argc, char *argv[])
   jobDueDate();
 
   //Aloca a memória
-  for(i = 0; i < (2*NINDIVIDUALS); i++)
-  	individuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
-
-  //Inicialização para calcular o máximo do Makespan
-  // initializeIndividuals();
-
-  //Calcula o makespan para essa solução inicial
-  // maxMakespan();
+  individuals = (ind*)malloc(2 * popLenght * sizeof(ind));
+  for(i = 0; i < (2 * popLenght); i++)
+    individuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
 
   //Aloca a memória do Gantt
-  Gantt = (int**)malloc(nMachines*sizeof(int*));
+  Gantt = (int***)malloc(nMachines*sizeof(int**));
   for(i = 0; i < nMachines; i++)
-    Gantt[i] = (int*)malloc(flowMakespan*sizeof(int));
-
-  // { //Cálculo do Z utópico
-  //   z[0] = (double)flowMakespan * 1.5;
-  //   z[1] = 0;
-  //   for(i = 0; i < NINDIVIDUALS; i++)
-  //   {
-  //     createGantt(i);
-  //     individuals[i].fitTardiness = fitnessTardiness();
-  //     if(individuals[i].fitTardiness > z[1])
-  //       z[1] = individuals[i].fitTardiness;
-  //   }
-  //   z[1] = z[1] * 2.0;
-  // }
-
+    Gantt[i] = (int**)malloc(flowMakespan*sizeof(int*));
+  for(i = 0; i < nMachines; i++)
+    for(j = 0; j < flowMakespan; j++)
+      Gantt[i][j] = (int*)malloc(qMachines[i]*sizeof(int));
 
   //Inicializa a hiper-heurística
 	hyperheuristic();
 
   qsort(Hindividuals, (HNINDIVIDUALS), sizeof(Hind), HsortHyperheuristicDescending);
 
-  // for(i = 0; i < HNINDIVIDUALS; i++)
-  //   printf("%d %.2lf\n", i, Hindividuals[i].Hfitness[2]);
-
-  printDataFile(fileName, nRepeat);
   printDataFile2(fileName, nRepeat);
-
+  
   //Desaloca a memória
   for(i = 0; i < nJobs; i++)
   {
@@ -140,10 +134,16 @@ int main(int argc, char *argv[])
     free(jobMachine[i]);
   }
   free(jobMachine);
-  for(i = 0; i < (2*NINDIVIDUALS); i++)
-  	free(individuals[i].jobsOrder);
-  for(i = 0; i < nMachines; i++)
-      free(Gantt[i]);
+  for(i = 0; i < (2*popLenght); i++)
+    free(individuals[i].jobsOrder);
+  free(individuals);
+  free(qMachines);
+  for(i = 0; i < nMachines; i++){
+    for(j = 0; j < flowMakespan; j++){
+        free(Gantt[i][j]);
+    }
+    free(Gantt[i]);
+  }
   free(Gantt);
   free(dueDate);
   return 0;
@@ -174,7 +174,7 @@ void hyperheuristic()
       Htournament(&Hfather1, &Hfather2);
       //Probabilidade de realizar o crossover
       x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < PCROSSOVER)
+      if(x < HprobCrossover)
         Hcrossover(HcountInd, Hfather1, Hfather2);
       else{
         Hindividuals[HcountInd] = Hindividuals[Hfather1];
@@ -182,10 +182,10 @@ void hyperheuristic()
       }
       //Probabilidade de realizar a mutação
       x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < PMUTATION)
+      if(x < HprobMutation)
         Hmutation(HcountInd);
       x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < PMUTATION)
+      if(x < HprobMutation)
         Hmutation(HcountInd + 1);
 
       { //Atualiza os valores de probCrossover e probMutation
@@ -247,33 +247,34 @@ void hyperheuristic()
 
 void AGinterno(int g, int h)
 {
-  int i, qFront[2*NINDIVIDUALS] = {0}, interval[2] = {0}, countGen = 0,
+  int i, interval[2] = {0}, countGen = 0,
                                             father1 = 0, father2 = 0, countInd;
+  int *qFront = (int*)calloc(2 * popLenght, sizeof(int));
   double x; //Número para o sorteio
 
   initializeIndividuals();
 
   // Laço que calcula o fitness do pai para as duas funções objetivo
-  for(i = 0; i < NINDIVIDUALS; i++)
+  for(i = 0; i < popLenght; i++)
   {
     createGantt(i);
     individuals[i].fitMakespan = fitnessMakespan(Gantt, i);
     individuals[i].fitTardiness = fitnessTardiness();
   }
   //Reiniciar o iDistance e iRank previamente
-  for(i = 0; i < (2*NINDIVIDUALS); i++)
+  for(i = 0; i < (2*popLenght); i++)
   {
     individuals[i].iRank = 0;
     individuals[i].iDistance = 0;
   }
-  ranking(NINDIVIDUALS);
-  for(i = 0; i < NINDIVIDUALS; i++)
+  ranking(popLenght);
+  for(i = 0; i < popLenght; i++)
     qFront[individuals[i].iRank - 1] ++;
     interval[0] = 0;
     interval[1] = 0;
 
-  qsort(individuals, NINDIVIDUALS, sizeof(ind), sortFitMakespan);
-  for(i = 0; i < 2*NINDIVIDUALS; i++){
+  qsort(individuals, popLenght, sizeof(ind), sortFitMakespan);
+  for(i = 0; i < 2*popLenght; i++){
     interval[0] += qFront[i];
     if(qFront[i] != 0){
       crowdingDistanceMakespan(interval[0], interval[1]);
@@ -285,8 +286,8 @@ void AGinterno(int g, int h)
 
   interval[0] = 0;
   interval[1] = 0;
-  qsort(individuals, NINDIVIDUALS, sizeof(ind), sortFitTardiness);
-  for(i = 0; i < 2*NINDIVIDUALS; i++){
+  qsort(individuals, popLenght, sizeof(ind), sortFitTardiness);
+  for(i = 0; i < 2*popLenght; i++){
     interval[0] += qFront[i];
     if(qFront[i] != 0){
       crowdingDistanceTardiness(interval[0], interval[1]);
@@ -297,11 +298,11 @@ void AGinterno(int g, int h)
   }
 
   //Laço principal do AG
-  while(countGen < NUMGENERATION)
+  while(countGen < numGeneration)
   {
     initializeGeneration();
-    countInd = NINDIVIDUALS;
-    while(countInd < 2*NINDIVIDUALS)
+    countInd = popLenght;
+    while(countInd < 2*popLenght)
     {
       // Seleção dos pais
       tournament(&father1, &father2);
@@ -350,7 +351,7 @@ void AGinterno(int g, int h)
       countInd = countInd + 2;
     }
 
-    for(i = NINDIVIDUALS; i < (2*NINDIVIDUALS); i++)
+    for(i = popLenght; i < (2*popLenght); i++)
     {
       createGantt(i);
       individuals[i].fitMakespan = fitnessMakespan(Gantt, i);
@@ -358,20 +359,20 @@ void AGinterno(int g, int h)
     }
 
     //Reiniciar o iDistance e iRank previamente e as variáveis auxiliares
-    for(i = 0; i < (2*NINDIVIDUALS); i++)
+    for(i = 0; i < (2*popLenght); i++)
     {
       individuals[i].iRank = 0;
       individuals[i].iDistance = 0;
       qFront[i] = 0;
     }
-    ranking(2*NINDIVIDUALS);
-    for(i = 0; i < 2*NINDIVIDUALS; i++)
+    ranking(2*popLenght);
+    for(i = 0; i < 2*popLenght; i++)
       qFront[individuals[i].iRank - 1] ++;
 
     interval[0] = 0;
     interval[1] = 0;
-    qsort(individuals, 2*NINDIVIDUALS, sizeof(ind), sortFitMakespan);
-    for(i = 0; i < 2*NINDIVIDUALS; i++){
+    qsort(individuals, 2*popLenght, sizeof(ind), sortFitMakespan);
+    for(i = 0; i < 2*popLenght; i++){
       interval[0] += qFront[i];
       if(qFront[i] != 0){
         crowdingDistanceMakespan(interval[0], interval[1]);
@@ -383,8 +384,8 @@ void AGinterno(int g, int h)
 
     interval[0] = 0;
     interval[1] = 0;
-    qsort(individuals, 2*NINDIVIDUALS, sizeof(ind), sortFitTardiness);
-    for(i = 0; i < 2*NINDIVIDUALS; i++){
+    qsort(individuals, 2*popLenght, sizeof(ind), sortFitTardiness);
+    for(i = 0; i < 2*popLenght; i++){
       interval[0] += qFront[i];
       if(qFront[i] != 0){
         crowdingDistanceTardiness(interval[0], interval[1]);
@@ -394,10 +395,11 @@ void AGinterno(int g, int h)
       interval[1] += qFront[i];
     }
 
-    qsort(individuals, (2*NINDIVIDUALS), sizeof(ind), NSGAIIselection);
+    qsort(individuals, (2*popLenght), sizeof(ind), NSGAIIselection);
     countGen++;
   }
   Hindividuals[g].Hfitness[h] = hypervolume();
+  free(qFront);
 } // AGinterno
 
 // Funções da hyperheurística
@@ -458,7 +460,7 @@ int HsortFitness(const void *a, const void *b)
 
 void Htournament(int *Hfather1, int *Hfather2)
 {
-  int i, nCandidate = 4, candidateFather[nCandidate];
+  int i, nCandidate = 2, candidateFather[nCandidate];
 
   //Seleciona o primeiro pai
   for(i = 0; i < nCandidate; i++)
@@ -729,6 +731,7 @@ void intToGray(int n1)
 
 /* FUNÇÕES DE INICIALIZAÇÃO E DO AG*/
 // Realiza a leitura do arquivo
+// Realiza a leitura do arquivo
 void readDataFile(char fileName[])
 {
   int i, j, k;
@@ -750,6 +753,10 @@ void readDataFile(char fileName[])
     flowMakespan = (int)z[0];
 
     fscanf(fileInput, "%lf\n", &z[1]);
+
+    qMachines = (int*)malloc(nMachines * sizeof(int));
+    for(i = 0; i < nMachines; i++)
+      fscanf(fileInput, "%d\n", &qMachines[i]);
 
     //Cria a matriz que relaciona o tempo dos jobs com as máquinas
     jobMachine = (int***)malloc(nJobs*sizeof(int**));
@@ -793,7 +800,7 @@ void maxMakespan()
   int *vetMachines; // Variável que calcula o tempo utilizado em cada máquina
   vetMachines = (int*)malloc(nMachines*sizeof(int));
 
-  for(k = 0; k < NINDIVIDUALS; k++)
+  for(k = 0; k < popLenght; k++)
   {
     //Reinicia o vetMachines após cada interação
     for(i = 0; i < nMachines; i++)
@@ -840,7 +847,7 @@ void printDataFile(char *fileName, char *nRepeat)
   }
   AGinterno(0, 1);
 
-  for(i = 0; i < NINDIVIDUALS; i++){
+  for(i = 0; i < popLenght; i++){
     if(individuals[i].iRank == 1){
       fprintf(output, "%d \t\t %d \t\t %3.lf \t\t %d \t\t %d\n", i,
               individuals[i].iRank, individuals[i].iDistance,
@@ -853,13 +860,13 @@ void printDataFile(char *fileName, char *nRepeat)
 
 void printDataFile2(char *fileName, char *nRepeat)
 {
-  int i;
+  int i, j;
   char *outputName =
-        (char*)malloc((strlen(fileName) + strlen(nRepeat) + 12)*sizeof(char));
+        (char*)malloc((strlen(fileName) + strlen(nRepeat) + 13)*sizeof(char));
   strcpy(outputName, fileName);
   strcat(outputName, "_");
   strcat(outputName, nRepeat);
-  strcat(outputName, "output.txt");
+  strcat(outputName, "_output.txt");
   FILE *output;
   output = fopen(outputName , "a");
   if (output == NULL)
@@ -868,17 +875,17 @@ void printDataFile2(char *fileName, char *nRepeat)
     exit(1);
   }
 
-  fprintf(output, "\n\n\n");
-  for(i = 0; i < HnumCrossover; i++)
-     fprintf(output, "%d ", Hindividuals[0].HgCrossover[i]);
-  fprintf(output, " ");
-  fprintf(output, "%.2lf ", Hindividuals[0].probCrossover);
-  fprintf(output, " ");
-  for(i = 0; i < HnumMutation; i++)
-    fprintf(output, "%d ", Hindividuals[0].HgMutation[i]);
-  fprintf(output, " ");
-  fprintf(output, "%.2lf ", Hindividuals[0].probMutation);
-  fprintf(output, " %.0lf\n", Hindividuals[0].Hfitness[2]);
-
+  for(i = 0; i < HNINDIVIDUALS; i++){
+    for(j = 0; j < HnumCrossover; j++)
+       fprintf(output, "%d ", Hindividuals[0].HgCrossover[j]);
+    fprintf(output, " ");
+    fprintf(output, "%.2lf ", Hindividuals[0].probCrossover);
+    fprintf(output, " ");
+    for(j = 0; j < HnumMutation; j++)
+      fprintf(output, "%d ", Hindividuals[0].HgMutation[j]);
+    fprintf(output, " ");
+    fprintf(output, "%.2lf ", Hindividuals[0].probMutation);
+    fprintf(output, " %.0lf\n", Hindividuals[0].Hfitness[2]);
+  }
   fclose(output);
 } //printDataFile2
