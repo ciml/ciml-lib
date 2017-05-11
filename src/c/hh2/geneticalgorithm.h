@@ -1,7 +1,7 @@
 #ifndef GENETICALGORITHM_H
 #define GENETICALGORITHM_H
 
-#define NINDIVIDUALS 20  // Número de indivíduos do AG interno
+extern int popLenght;  // Número de indivíduos do AG interno
 
 // struct AG interno
 typedef struct ind{
@@ -12,13 +12,14 @@ typedef struct ind{
   double iDistance;
 }ind;
 
-ind individuals[2*NINDIVIDUALS];
+ind *individuals;
 
 extern int nJobs;                // Número de Jobs
 extern int nMachines;            // Número de Máquinas
 extern int flowMakespan;         // Auxiliar que armazena o máximo de makespan
-extern int **Gantt;                  // Matriz que alocará informações
+extern int ***Gantt;                  // Matriz que alocará informações
 extern int ***jobMachine;            // Relaciona o tempo dos jobs nas máquinas
+extern int *qMachines;
 extern int *dueDate;                 // Data de vencimento dos jobs
 extern double z[2];               //Valores utópicos para o hypervolume
 
@@ -26,7 +27,9 @@ extern double z[2];               //Valores utópicos para o hypervolume
 void initializeIndividuals();
 void createGantt(int w);
 int fitnessMakespan();
+// int fitnessMakespanold();
 int fitnessTardiness();
+// int fitnessTardinessold();
 void ranking (int w);
 void crowdingDistanceMakespan(int w, int z);
 void crowdingDistanceTardiness(int w, int z);
