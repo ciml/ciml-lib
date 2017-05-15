@@ -20,17 +20,17 @@
 #define SIN     4
 #define COS     5
 #define SQR     6
-
 #define EXP     12
+
 #define LOG10   13
 
 ///MUDEI AQUI
 
-#define MAX_NOS     128
-#define MAX_DEPTH   4
+#define MAX_NOS     64
+#define MAX_DEPTH   5
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   32
+#define NUM_INDIV   500
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9
@@ -42,7 +42,7 @@
 
 #define NUM_TORNEIO     2
 #define ELITISMO        0.05
-#define NUM_GERACOES    1000
+#define NUM_GERACOES    50
 
 
 //tem como mudar a constantate antes

@@ -246,22 +246,23 @@ float randomProb(){
 __kernel void evolucao(__global Arvore* popA,
 					   __global Arvore* popF,
 					   __const int elite,    
-					   __global int* conjuntoOpTerm) {
+					   __global int* conjuntoOpTerm
+					   __global int* seeds) {
 
 	int group_id = get_group_id(0);
 
-	int ind1 = torneio(popA);
-	int ind2 = torneio(popA);
+	int ind1 = torneio(popA, seeds)
+	int ind2 = torneio(popA, seeds);
 
 	popF[elite+2*group_id]	= popA[ind1];
 	popF[elite+2*group_id+1]= popA[ind2];
 
-	float cross = randomProb();
-    float mut = randomProb();
+	float cross = randomProb(seeds);
+    float mut = randomProb(seeds);
 
 
 	if(cross <= PROB_CROSS){
-        crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id]);
+        crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id], seeds);
     }
     if(mut <= PROB_MUT){									//ISSO CONSIGO PASSAR COMO CONSTANTE POR FORA
         mutacao(&popF[elite+2*group_id+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);

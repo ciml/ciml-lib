@@ -36,7 +36,7 @@ int randomFunctionUn(int NUM_OPUN){
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
 float randomConst(){
-    return (rand()/(float)(RAND_MAX));
+    return (rand()/(float)(RAND_MAX/2+1));
 }
 
 int randomType(int NUM_OPBIN, int NUM_OPUN, int N){
@@ -199,20 +199,37 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
     } else {
 
         *NUM_OPBIN = 4;
-        *NUM_OPUN = 3;
+        *NUM_OPUN = 4;
         *NUM_CTES = 1;
         *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
 
-        for (i = 0; i < (*NUM_OPBIN); i++){
-            (*conjuntoOpTerm)[i] = packInt(FBIN, i);
-        }
-        for (j = 0 ; j < (*NUM_OPUN); j++, i++){
-            (*conjuntoOpTerm)[i] = packInt(FUN, i);
-        }
+        i = 0;
+
+        (*conjuntoOpTerm)[i++] = packInt(FBIN, PLUS);
+        (*conjuntoOpTerm)[i++] = packInt(FBIN, MIN);
+        (*conjuntoOpTerm)[i++] = packInt(FBIN, MULT);
+        (*conjuntoOpTerm)[i++] = packInt(FBIN, DIV);
+
+
+        (*conjuntoOpTerm)[i++] = packInt(FUN, SIN);
+        (*conjuntoOpTerm)[i++] = packInt(FUN, COS);
+        (*conjuntoOpTerm)[i++] = packInt(FUN, SQR);
+        (*conjuntoOpTerm)[i++] = packInt(FUN, EXP);
+
+
+//        for (i = 0; i < (*NUM_OPBIN); i++){
+//            (*conjuntoOpTerm)[i] = packInt(FBIN, i);
+//        }
+//        for (j = 0 ; j < (*NUM_OPUN); j++, i++){
+//            (*conjuntoOpTerm)[i] = packInt(FUN, i);
+//        }
+
         for(j = 0; j < (*N)-1; j++, i++){
             (*conjuntoOpTerm)[i] = packInt(VAR, j);
         }
+
         (*conjuntoOpTerm)[i] = packFloat(CTE, 1.0);
+
     }
     fclose(arq);
 

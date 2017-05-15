@@ -45,9 +45,12 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
 
         if(aux[indice] == 0){
 
+            //printf("RDMtipo = %d\n", rdmType);
 
             sorteio = conjuntoOpTerm[randomType(NUM_OPBIN, NUM_OPUN, N)];
             tipo = unpackTipo(sorteio);
+            //printf("sorteio = %d\n", sorteio);
+            //printf("tipo = %d\n", tipo);
 
             if(tipo == VAR || tipo == CTE){
                 num = 0;
@@ -66,16 +69,15 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
             arv->numeroFilhos[indice] = 0;
             sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N)];
             num = 0;
-
+            tipo = unpackTipo(sorteio);
         }
-
-//        tipo = unpackTipo(sorteio);
 
         if(tipo == CTE){
             sorteio = packFloat(CTE, randomConst());
         }
         arv->informacao[indice] = sorteio;
-        }
+
+    }
 
         if(aux[indice] < arv->numeroFilhos[indice]){
             empilha(&pilha, indice);
@@ -414,6 +416,9 @@ void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){ //int id, int tipo){
         case SQR:
             printf("sqrt");
             break;
+        case EXP:
+            printf("exp");
+            break;
         case CTE:;//This is an empty statement.
             float valorF = unpackFloat(info);
             printf("%.5f", valorF);
@@ -428,159 +433,6 @@ void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){ //int id, int tipo){
     }
 }
 
-
-void imprimeSinxate2(int info, char* LABELS[]){ //int id, int tipo){
-    int tipo = unpackTipo(info);
-    switch(tipo){
-    case FUN:;//This is an empty statement.
-    case FBIN:;//This is an empty statement.
-        int valor1 = unpackInt(info);
-        switch(valor1){
-        case PLUS:
-            printf("+");
-            break;
-        case MIN:
-            printf("-");
-            break;
-        case MULT:
-            printf("*");
-            break;
-        case DIV:
-            printf("/");
-            break;
-        case SIN:
-            printf("sin");
-            break;
-        case COS:
-            printf("cos");
-            break;
-        case SQR:
-            printf("sqrt");
-            break;
-        }
-        break;
-    case CTE:;//This is an empty statement.
-        float valorF = unpackFloat(info);
-        printf("%.5f", valorF);
-        break;
-    case VAR:;
-        int valor2 = unpackInt(info);
-        printf("%s", LABELS[valor2]);
-        break;
-    default:
-        break;
-
-    }
-//    switch(numFilhos){
-//        case 0:
-//            printf("%c", LABELS[id]);
-//            break;
-//        default:
-//            switch(id){
-//                case 0:
-//                    printf("+");
-//                    break;
-//                case 1:
-//                    printf("-");
-//                    break;
-//                case 2:
-//                    printf("*");
-//                    break;
-//                case 3:
-//                    printf("/");
-//                    break;
-//                case 4:
-//                    printf("sin ");
-//                    break;
-//                case 5:
-//                    printf("cos ");
-//                    break;
-//                case 6:
-//                    printf("sqrt ");
-//                    break;
-//            }
-//        break;
-//    }
-}
-
-float executa2(Arvore* arv, float dados[], int N){
-    //float dados[3] = {10, 20, 30};
-    Pilha pilha;
-    PilhaEx pilhaEx;
-
-    pilha.topo = -1;
-    pilhaEx.topo = -1;
-
-    int indice = 0;
-    int ultimo = 0;
-    int aux[MAX_NOS];
-    int j;
-
-    float aux1, aux2, resultado;
-    int tipo;
-
-    for(j = 0; j < MAX_NOS; j++){
-        aux[j] = 0;
-    }
-
-    empilha(&pilha, indice);
-    //printf("(");
-
-    while(pilha.topo != -1){
-        indice = desempilha(&pilha);
-
-        if(aux[indice] == arv->numeroFilhos[indice]){
-            if(arv->numeroFilhos[indice] == 0){
-                tipo = unpackTipo(arv->informacao[indice]);
-                if(tipo ==  CTE){
-                    empilha2(&pilhaEx, unpackFloat(arv->informacao[indice]));
-                } else {
-                    empilha2(&pilhaEx, dados[unpackInt(arv->informacao[indice])]);
-                }
-            }else{
-
-                if(arv->numeroFilhos[indice] == 1){
-                    aux1 = desempilha2(&pilhaEx);
-                    resultado = opUnaria(unpackInt(arv->informacao[indice]), aux1);
-                    empilha2(&pilhaEx, resultado);
-                } else if (arv->numeroFilhos[indice] == 2){
-                    aux1 = desempilha2(&pilhaEx);
-                    aux2 = desempilha2(&pilhaEx);
-                    resultado = opBinaria(unpackInt(arv->informacao[indice]), aux2, aux1);
-                    empilha2(&pilhaEx, resultado);
-                }
-
-                    //Consultar a pilha (o operador)
-                    //desempilhar a quantidade de operandos de acordo com o operador
-                }
-            }
-
-
-        if(aux[indice] < arv->numeroFilhos[indice]){
-            //printf("(");
-            empilha(&pilha, indice);
-            aux[indice]++;
-            ultimo++;
-            empilha(&pilha, ultimo);
-        }
-    }
-
-    //printf("topo: %d\n", pilhaEx.topo);
-    float erro = desempilha2(&pilhaEx)- dados[N-1];
-    //printf("\nN = %d\n\n", N);//dados[N-1]
-//int i,j;
-
-//        for(j = 0; j < N; j++){
-//            printf("%.2f ", dados[j]);
-//        }
-//       printf("\n");
-//
-//    printf("----------------------------------dados: %f\n", dados[N-1]);
-//    printf("----------------------------------erro: %.22f\n", erro);
-
-    return erro*erro;
-}
-
 int retornaTipo(Arvore* arv, int j){
     if(arv->numeroFilhos[j] == 0){
         return unpackTipo(arv->informacao[j]);
@@ -589,9 +441,10 @@ int retornaTipo(Arvore* arv, int j){
     }
 }
 
-float executa(Arvore* arv, float dados[], int N){
-    PilhaEx pilhaEx;
 
+float executa(Arvore* arv, float dados[], int N){
+
+    PilhaEx pilhaEx;
     pilhaEx.topo = -1;
 
     int j;
@@ -623,6 +476,9 @@ float executa(Arvore* arv, float dados[], int N){
             case SQR:
                empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
                 break;
+            case EXP:
+                empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
+                break;
             case CTE:;//This is an empty statement.
                 //int c; scanf("%d", c);
                 float valorF = unpackFloat(arv->informacao[j]);
@@ -636,6 +492,7 @@ float executa(Arvore* arv, float dados[], int N){
     }
 
     float erro = desempilha2(&pilhaEx)- dados[N-1];
+    //printf("erro = %f\n", erro*erro);
     return erro*erro;
 }
 

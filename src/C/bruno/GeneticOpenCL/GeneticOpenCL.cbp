@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="opencl_openmp" />
-				<Option parameters="-D A" />
+				<Option parameters="&gt; resultados.txt" />
 				<Option projectCompilerOptionsRelation="-1" />
 				<Option projectLinkerOptionsRelation="-1" />
 				<Option projectIncludeDirsRelation="-1" />
