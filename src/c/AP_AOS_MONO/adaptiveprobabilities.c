@@ -12,12 +12,12 @@ void initializeRate()
 		crosR[i].qualityRate = 1.0;
 		crosR[i].index[0] = 0;
 		crosR[i].index[1] = 0;
-		
+
 		mut1R[i].probRate = (double)(1.0/3.0);
 		mut1R[i].qualityRate = 1.0;
 		mut1R[i].index[0] = 0;
 		mut1R[i].index[1] = 0;
-		
+
 		mut2R[i].probRate = (double)(1.0/3.0);
 		mut2R[i].qualityRate = 1.0;
 		mut2R[i].index[0] = 0;
@@ -155,7 +155,7 @@ int mutaRateProbabilityMatching(int countInd, int father1, int father2, pro muta
 	}
 	else
 	{
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < 3; i++)
 		{
 			if(muta[i].index[0] != muta[i].index[1])
 			{
@@ -178,23 +178,23 @@ void mutaRateFinalProbability(int countInd, int father1, int father2)
 	count[0] = mutaRateProbabilityMatching(countInd, father1, father2, mut1R);
 	count[1] = mutaRateProbabilityMatching((countInd + 1), father1, father2, mut2R);
 
-	if(count[0] > 1)
+	if(count[0] == 3)
 	{
 		qualitySum = 0;
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < 3; i++)
 			qualitySum += mut1R[i].qualityRate;
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < 3; i++)
 		{
 			mut1R[i].probRate = prob_min + (1.0 - 2.0 * prob_min) *
 																	(mut1R[i].qualityRate / qualitySum);
 		}
 	}
-	if(count[1] > 1)
+	if(count[1] == 3)
 	{
 		qualitySum = 0;
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < 3; i++)
 			qualitySum += mut2R[i].qualityRate;
-		for(i = 0; i < 2; i++)
+		for(i = 0; i < 3; i++)
 		{
 			mut2R[i].probRate = prob_min + (1.0 - 2.0 * prob_min) *
 																	(mut2R[i].qualityRate / qualitySum);
