@@ -350,12 +350,14 @@ std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int loca
 
 
 int main(){
-    std::cout << std::setprecision(16) << std::fixed;
-    std::cout << cos(1) << std::endl;
+    std::cout << std::setprecision(32) << std::fixed;
 //testar geração de arvore
 //comparar tudo sequencial com openmp+opencl com tudo opencl
-//testar shifts
 
+    double tempoTotalAvaliacao = 0;
+    double tempoTotalEvolucao = 0;
+    double tempoTotal = 0;
+    double tempoGeracao;
 
     int i, indice1, indice2;
     int iteracoes = 0;
@@ -369,6 +371,12 @@ int main(){
 
     ///leituras de dados
     float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm);
+    for(int i = 0; i < M; i++){
+        for(int j = 0; j < N; j++){
+            std::cout << dadosTreinamento[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
     NUM_CTES = 1;
     ///transposicao de dados
     float* dadosTranspostos = new float [M*N];
@@ -389,6 +397,14 @@ int main(){
         seeds[i] = rand();
     }
 
+            double start;
+            double startIt, endIt;
+
+            cl_ulong inicio, fim;
+            ///Evento para controlar tempo gasto
+            cl::Event e_tempo;
+            double tempoEvolucao;
+            double tempoAvaliacao;
 
             cl_int result; //Variavel para verificar erros
             ///TODO: Colocar conferencias de erros pelo código
@@ -485,19 +501,21 @@ int main(){
     imprimePopulacao(popAtual, LABELS);
 
     bool evolParalelo = false;
-    bool avalParalelo = true;
+    bool avalParalelo = false;
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
-        printf("GERACAO %d: \n\n", iteracoes);
+        printf("\n-----------\nGERACAO %d: \n", iteracoes);
+        startIt = getTime();
 
         if(evolParalelo){
-            //std::cout << "aaaaaaa" << std::endl;
+            //if(iteracoes == 16)
+                //imprimePopulacao(popAtual, LABELS);
             int novosIndividuos = selecionaElite(popAtual, popFutura);
 
             cmdQueueGPU.enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
             cmdQueueGPU.enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
-            //cmdQueueGPU.enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES)*sizeof(int), conjuntoOpTerm);
             cmdQueueGPU.finish();
+
             //std::cout << "novos = " << novosIndividuos << std::endl;
             ///Evento para controlar tempo gasto
             //cl::Event e_tempo;
@@ -510,14 +528,20 @@ int main(){
 
 
             try {
-                result = cmdQueueGPU.enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((NUM_INDIV-novosIndividuos)/2), cl::NDRange(1), NULL);
+                result = cmdQueueGPU.enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((NUM_INDIV-novosIndividuos)/2), cl::NDRange(1),NULL, &e_tempo);
             } catch(cl::Error& e){
                 std::cerr << getErrorString(e.err()) << std::endl;
                 exit(1);
             }
 
             cmdQueueGPU.finish();
-            //std::cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
+
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
+            tempoEvolucao = (fim-inicio)/1.0E9;
+
+            tempoTotalEvolucao += tempoEvolucao;
+            std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
 
             cmdQueueGPU.enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             cmdQueueGPU.enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
@@ -526,7 +550,7 @@ int main(){
 
         } else {
 
-            double inicio = getTime();
+            start = getTime();
             //Sleep(1000);
             for(int novosIndividuos = selecionaElite(popAtual, popFutura); novosIndividuos < NUM_INDIV; novosIndividuos +=2){
                 indice1 = torneio(popAtual);
@@ -547,15 +571,15 @@ int main(){
                     mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
                 }
             }
-            double tempo = getTime() - inicio;
-            std::cout <<"ts =" <<tempo << std::endl;
+            tempoEvolucao = getTime() - start;
+            tempoTotalEvolucao += tempoEvolucao;
+            std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
         }
 
 
             if(avalParalelo){
                 cmdQueueGPU.enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
-                ///Evento para controlar tempo gasto
-                cl::Event e_tempo;
+
                 ///Dispondo argumentos para o kernel + executar
                 krnlAvalia.setArg(0, bufferPopF);
                 krnlAvalia.setArg(1, dados);
@@ -569,29 +593,36 @@ int main(){
                 }
                 cmdQueueGPU.finish();
 
-                cl_ulong inicio, fim;
-                double tempoExecucao;
-
+                ///medir tempos
                 e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
                 e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
-                tempoExecucao = (fim-inicio)/1.0E9;
-                std::cout << std::endl << "tempo de Execucao = " << tempoExecucao << std::endl;
+                tempoAvaliacao = (fim-inicio)/1.0E9;
+
+                tempoTotalAvaliacao += tempoAvaliacao;
+                std::cout  << "Tempo de avaliacao = " << tempoAvaliacao << std::endl;
 
                 cmdQueueGPU.enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
                 //popFutura = (Arvore*)cmdQueueGPU.enqueueMapBuffer(bufferPop,CL_FALSE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
 
                 cmdQueueGPU.finish();
             } else {
-                //imprimePopulacao(popFutura, LABELS);
-                double inicio = getTime();
+                start = getTime();
+
                 avaliaIndividuos(popFutura, dadosTreinamento, M, N);
-                double tempo = getTime() - inicio;
-            std::cout <<"tsAval =" <<tempo << std::endl;
+
+                tempoAvaliacao = getTime() - start;
+                tempoTotalAvaliacao += tempoAvaliacao;
+                std::cout <<"Tempo de avaliacao = " << tempoAvaliacao << std::endl;
             }
 
         for(i = 0; i< NUM_INDIV; i++){
             popAtual[i] = popFutura[i];
         }
+
+        tempoGeracao = getTime() - startIt;
+        tempoTotal += tempoGeracao;
+        std::cout <<"Tempo de geracao = " << tempoGeracao << std::endl;
+
         //imprimePopulacao(popAtual, LABELS);
         imprimeMelhor(popAtual, LABELS);
         iteracoes++;

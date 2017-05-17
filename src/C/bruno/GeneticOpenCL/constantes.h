@@ -26,8 +26,8 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     64
-#define MAX_DEPTH   5
+#define MAX_NOS     1030
+#define MAX_DEPTH   9
 #define MAX_FILHOS  2
 
 #define NUM_INDIV   500
@@ -37,11 +37,13 @@
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
-#define PROB_MUT    0.3
+#define PROB_MUT    0.1
 #endif // PROB_MUT
 
-#define NUM_TORNEIO     2
-#define ELITISMO        0.05
+#define NUM_TORNEIO     4
+
+#define ELITISMO        0.05//0.002
+
 #define NUM_GERACOES    50
 
 

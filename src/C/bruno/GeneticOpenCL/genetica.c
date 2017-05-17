@@ -4,9 +4,14 @@
 
 void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
     int i;
-    for(i = indice; i < num; i++){
+
+    for(i = indice; i < num/2; i++){
+        criaCheia(&pop[i], MAX_DEPTH/3, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+    }
+    for( ; i < num; i++){
         criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
     }
+
 }
 
 void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
@@ -14,6 +19,7 @@ void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,
     for(i = indice; i < num; i++){
         geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
     }
+
 }
 
 void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
