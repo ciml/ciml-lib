@@ -3,19 +3,13 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
-#include "geneticalgorithm.h"
-#include "crossover.h"
-#include "mutation.h"
+#include "aosgeneticalgorithm.h"
 
 int popLenght;
 int numGeneration; //Número de Gerações do AG interno
 
-float probCrossover;    // Probabilidade de realizar Crossover
-float probMutation;     // Probabilidade de realizar Mutação
-
-// DECLARAÇÕES AG INTERNO
-
-//Variáveis do AG interno
+double probCrossover;    // Probabilidade de realizar Crossover
+double probMutation;     // Probabilidade de realizar Mutação
 
 int nJobs = 0;                // Número de Jobs
 int nMachines = 0;            // Número de Máquinas
@@ -30,25 +24,25 @@ double HV;
 node **operation;                 //Info de início e término dos jobs
 node ***Gantt;                    // Ponteiro para as operações
 
-
 //funções AG interno
-void AGinterno(); //Main loop
 void readDataFile(char fileName[]);
 void jobDueDate();
 void maxMakespan();
 void printDataFile(char *fileName, char *nRepeat,
-                                        char pop[], char pcros[], char pmut[]);
+                                        char pop[]);
 void printMakespan(char *fileName, char *nRepeat);
-void printBestIndividual(char *fileName, char *nRepeat, int countGen);
 
 int main(int argc, char *argv[])
 {
   int i, j, orc;
   char fileName[10];
   char nRepeat[4];
-  // char popString[4], probCrossString[4], probMutaString[4];
-  char popString[] = "100", probCrossString[] = "0.8", probMutaString[] = "0.9";
-  
+  char popString[] = "100";
+
+  #ifdef GA
+    char probCrossString[] = "0.8", probMutaString[] = "0.9";
+  #endif
+
   srand((unsigned)time(NULL));
 
   strcpy(fileName, argv[1]);
@@ -60,34 +54,50 @@ int main(int argc, char *argv[])
   if (orc > 5000000)
     orc = 5000000;
 
-  if( argc < 6){
-    printf("Está faltando argumentos\n" );
-    printf("Executando programa default\n" );
-    popLenght = 100;
-    numGeneration = orc / popLenght;
-    probCrossover = 0.8;
-    probMutation = 0.9;
-  } else {
-    popLenght = atoi(argv[3]);
-    numGeneration = orc / popLenght;
-    printf("%d %d\n", popLenght, numGeneration);
-    probCrossover = atof(argv[4]);
-    probMutation = atof(argv[5]);
-    strcpy(popString, argv[3]);
-    strcpy(probCrossString, argv[4]);
-    strcpy(probMutaString, argv[5]);
-  }
-
-  jobDueDate();
+  #ifdef GA
+    if( argc < 6)
+    {
+      printf("Está faltando argumentos\n" );
+      printf("Executando programa default\n" );
+      popLenght = 100;
+      numGeneration = orc / popLenght;
+      probCrossover = 0.8;
+      probMutation = 0.9;
+    } else {
+      popLenght = atoi(argv[3]);
+      numGeneration = orc / popLenght;
+      printf("%d %d\n", popLenght, numGeneration);
+      probCrossover = atof(argv[4]);
+      probMutation = atof(argv[5]);
+      strcpy(popString, argv[3]);
+      strcpy(probCrossString, argv[4]);
+      strcpy(probMutaString, argv[5]);
+    }
+  #else
+    if( argc < 4)
+    {
+      printf("Está faltando argumentos\n" );
+      printf("Executando programa default\n" );
+      popLenght = 100;
+      numGeneration = orc / popLenght;
+    }
+    else
+    {
+      popLenght = atoi(argv[3]);
+      numGeneration = orc / popLenght;
+      printf("%d %d\n", popLenght, numGeneration);
+      strcpy(popString, argv[3]);
+    }
+  #endif
 
   //Aloca a memória
   individuals = (ind*)malloc(2 * popLenght * sizeof(ind));
   for(i = 0; i < (2 * popLenght); i++)
-  	individuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
+    individuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
 
   selectedIndividuals = (ind*)malloc(popLenght * sizeof(ind));
   for(i = 0; i < (popLenght); i++)
-    selectedIndividuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));  
+    selectedIndividuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
 
   //Aloca a memória do Gantt
   operation = (node**)malloc((nJobs * nMachines) * sizeof(node*));
@@ -106,15 +116,11 @@ int main(int argc, char *argv[])
   for(i = 0; i < 3; i++)
   {
     tmp[i] = (node**)malloc(2 * sizeof(node*));
-    for(j = 0; j < 2; j++){
-      tmp[i][j] = (node*)malloc(sizeof(node));
-      tmp[i][j] = NULL;
-    }
   }
 
-  AGinterno();
+  GeneticAlgorithm(fileName, nRepeat, popString);
 
-  // printDataFile(fileName, nRepeat, popString, probCrossString, probMutaString);
+  // printDataFile(fileName, nRepeat, popString);
   printMakespan(fileName, nRepeat);
 
   //Desaloca a memória
@@ -145,86 +151,12 @@ int main(int argc, char *argv[])
   free(dueDate);
   for(i = 0; i < 3; i++)
   {
-    for(j = 0; j < 2; j++)
-    {
-      tmp[i][j] = NULL;
-      free(tmp[i][j]);
-    }
     free(tmp[i]);
   }
   free(tmp);
 
   return 0;
-}
-
-void AGinterno()
-{
-  int i, countGen = 0, father1 = 0, father2 = 0, countInd;
-  double x; //Número para o sorteio
-
-  initializeIndividuals();
-
-  // Laço que calcula o fitness do pai para as duas funções objetivo
-  for(i = 0; i < popLenght; i++)
-  {
-    createGantt(i);
-  }
-
-  //Laço principal do AG
-  while(countGen < numGeneration)
-  {
-    initializeGeneration();
-    countInd = popLenght;
-    while(countInd < 2*popLenght)
-    {
-      // Seleção dos pais
-      tournament(&father1, &father2);
-
-      // Cálculo da chance de realizar crossover
-      x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < probCrossover)
-      {
-        PMXcrossover(countInd, father1, father2);
-      }
-      else
-      {
-        for(i = 0; i < nJobs; i++)
-        {
-          individuals[countInd].jobsOrder[i] =
-                                              individuals[father1].jobsOrder[i];
-          individuals[countInd + 1].jobsOrder[i] =
-                                              individuals[father2].jobsOrder[i];
-        }
-      }
-      // Chance de realizar mutação
-      x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < probMutation)
-      {
-        shiftMutation(countInd);
-      }
-
-      // Chance de realizar mutação
-      x = (double)((double)rand() / (double)RAND_MAX);
-      if(x < probMutation)
-      {
-        shiftMutation(countInd + 1);
-      }
-
-      countInd = countInd + 2;
-    }
-
-    for(i = popLenght; i < (2*popLenght); i++)
-    {
-      createGantt(i);
-    }
-    selection();
-
-    qsort(individuals, (2*popLenght), sizeof(ind), sortFitMakespan);
-    // printBestIndividual(fileName, nRepeat, countGen);
-
-    countGen++;
-  }
-} // AGinterno
+} //main
 
 /* FUNÇÕES DE INICIALIZAÇÃO E DO AG*/
 // Realiza a leitura do arquivo
@@ -252,7 +184,7 @@ void readDataFile(char fileName[])
 
     qMachines = (int*)malloc(nMachines * sizeof(int));
     for(i = 0; i < nMachines; i++)
-      fscanf(fileInput, "%d\n", &qMachines[i]);
+      fscanf(fileInput, "%d", &qMachines[i]);
 
     //Cria a matriz que relaciona o tempo dos jobs com as máquinas
     jobMachine = (int***)malloc(nJobs*sizeof(int**));
@@ -325,22 +257,17 @@ void maxMakespan()
   free (vetMachines);
 } //maxMakespan
 
-void printDataFile(char *fileName, char *nRepeat,
-                                        char pop[], char pcros[], char pmut[])
+void printDataFile(char *fileName, char *nRepeat, char pop[])
  {
   int i;
   char *outputName =
-        (char*)malloc((strlen(fileName) + strlen(nRepeat) + strlen(pop) +
-              strlen(pcros)+ strlen(pmut) + 16)*sizeof(char));
+        (char*)malloc((strlen(fileName) + strlen(nRepeat)
+                                              + strlen(pop) + 14)*sizeof(char));
   strcpy(outputName, fileName);
   strcat(outputName, "_");
   strcat(outputName, nRepeat);
   strcat(outputName, "_");
   strcat(outputName, pop);
-  strcat(outputName, "_");
-  strcat(outputName, pcros);
-  strcat(outputName, "_");
-  strcat(outputName, pmut);
   strcat(outputName, "_output.txt");
   FILE *output;
   output = fopen(outputName , "w");
@@ -379,32 +306,10 @@ void printMakespan(char *fileName, char *nRepeat)
   }
 
   fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
-    popLenght, numGeneration, probCrossover, probMutation, nRepeat, individuals[0].fitMakespan);
-
-  fclose(output);
-  free(outputName);
-
-} //printHypervolume
-
-void printBestIndividual(char *fileName, char *nRepeat, int countGen)
-{
-  char *outputName =
-        (char*)malloc((strlen(fileName) + 10)*sizeof(char));
-  strcpy(outputName, fileName);
-  strcat(outputName, "_c_MK.txt");
-  FILE *output;
-  output = fopen(outputName , "a");
-  if (output == NULL)
-  {
-    printf("Arquivo não encontrado!\n");
-    exit(1);
-  }
-
-  fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
     popLenght, numGeneration, probCrossover, probMutation, nRepeat,
                                                     individuals[0].fitMakespan);
 
   fclose(output);
   free(outputName);
 
-} //printBestIndividual
+} //printHypervolume

@@ -5,18 +5,53 @@
 #include "crossover.h"
 #include "mutation.h"
 #include "aosgeneticalgorithm.h"
-#include "operatorselection.h"
-#include "adaptiveprobabilities.h"
+#ifdef AP
+  #include "adaptivepursuit.h"
+#endif
+#ifdef PPC
+  #include "predictiveparametercontrol.h"
+#endif
 
-void AGinterno(char *fileName, char *nRepeat, char pop[])
+void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 {
   int i, countGen = 0, father1 = 0, father2 = 0, countInd;
   double x; //Número para o sorteio
 
+  #ifdef PPC
+    for(i = 0; i < 3; i++)
+    {
+      crossRateControl[i].success = malloc(numGeneration * sizeof(double));
+      mut1RateControl[i].success = malloc(numGeneration * sizeof(double));
+      mut2RateControl[i].success = malloc(numGeneration * sizeof(double));
+      crossOperatorControl[i].success = malloc(numGeneration * sizeof(double));
+    }
+    for(i = 0; i < 2; i++)
+    {
+      mut1OperatorControl[i].success = malloc(numGeneration * sizeof(double));
+      mut2OperatorControl[i].success = malloc(numGeneration * sizeof(double));
+    }
+  #endif
+
   initializeIndividuals();
 
-  creditInitialize();
-  initializeRate();
+  #ifdef AP
+    APInitializeProbabilities(3, crossOperatorControl);
+    APInitializeProbabilities(2, mut1OperatorControl);
+    APInitializeProbabilities(2, mut2OperatorControl);
+    APInitializeProbabilities(3, crossRateControl);
+    APInitializeProbabilities(3, mut1RateControl);
+    APInitializeProbabilities(3, mut2RateControl);
+  #endif
+
+  //Inicializa o Predictive Parameter Control
+  #ifdef PPC
+    PPCInitializeProbabilities(3, crossOperatorControl);
+    PPCInitializeProbabilities(2, mut1OperatorControl);
+    PPCInitializeProbabilities(2, mut2OperatorControl);
+    PPCInitializeProbabilities(3, crossRateControl);
+    PPCInitializeProbabilities(3, mut1RateControl);
+    PPCInitializeProbabilities(3, mut2RateControl);
+  #endif
 
   // Laço que calcula o fitness do pai para as duas funções objetivo
   for(i = 0; i < popLenght; i++)
@@ -25,28 +60,51 @@ void AGinterno(char *fileName, char *nRepeat, char pop[])
   //Laço principal do AG
   while(countGen < numGeneration)
   {
-
     initializeGeneration();
-
     countInd = popLenght;
+
+    #ifdef PPC
+      //Inicializa os contadores de ocorrência e successo
+      initializeCounters(3, crossOperatorControl);
+      initializeCounters(2, mut1OperatorControl);
+      initializeCounters(2, mut2OperatorControl);
+      initializeCounters(3, crossRateControl);
+      initializeCounters(3, crossRateControl);
+      initializeCounters(3, mut2RateControl);
+    #endif
+
     while(countInd < (2 * popLenght))
     {
       // Seleção dos pais
       tournament(&father1, &father2);
 
       // Cálculo da chance de realizar crossover
+      #ifndef GA
+        probCrossover = crossoverRateSelection();
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
-      probCrossover = crossoverRate();
       if(x < probCrossover)
       {
-        crossoverOperator(countInd, father1, father2);
-        if(probCrossover == 0.7)
-          crosR[0].index[1]++;
-        if(probCrossover == 0.8)
-          crosR[1].index[1]++;
-        if(probCrossover == 0.9)
-          crosR[2].index[1]++;
-      }else{
+        #ifdef GA
+          PMXcrossover(countInd, father1, father2);
+        #else
+          if(probCrossover == 0.7)
+          {
+            crossRateControl[0].index[1]++;
+          }
+          else if(probCrossover == 0.8)
+          {
+            crossRateControl[1].index[1]++;
+          }
+          else if(probCrossover == 0.9)
+          {
+            crossRateControl[2].index[1]++;
+          }
+          crossoverOperatorSelection(countInd, father1, father2);
+        #endif
+      }else
+      {
         for(i = 0; i < nJobs; i++)
         {
           individuals[countInd].jobsOrder[i] =
@@ -57,55 +115,109 @@ void AGinterno(char *fileName, char *nRepeat, char pop[])
       }
 
       // Chance de realizar mutação
+      #ifndef GA
+      probMutation = mutaRateSelection(3, mut1RateControl);
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
-      probMutation = mutaRate(mut1R);
       if(x < probMutation)
       {
-        mut1Operator(countInd);
-        if(probMutation == 0.3)
-          mut1R[0].index[1]++;
-        if(probMutation == 0.4)
-          mut1R[1].index[1]++;
-        if(probMutation == 0.5)
-          mut1R[2].index[1]++;
+        #ifdef GA
+          shiftMutation(countInd);
+        #else
+          if(probMutation == 0.3)
+            mut1RateControl[0].index[1]++;
+          if(probMutation == 0.4)
+            mut1RateControl[1].index[1]++;
+          if(probMutation == 0.5)
+            mut1RateControl[2].index[1]++;
+          mutaOperatorSelection(countInd, 2, mut1OperatorControl);
+        #endif
       }
 
       // Chance de realizar mutação
+      #ifdef GA
+        probMutation = mutaRateSelection(3, mut2RateControl);
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
-      probMutation = mutaRate(mut2R);
       if(x < probMutation)
       {
-        mut2Operator(countInd + 1);
-        if(probMutation == 0.3)
-          mut2R[0].index[1]++;
-        if(probMutation == 0.4)
-          mut2R[1].index[1]++;
-        if(probMutation == 0.5)
-          mut2R[2].index[1]++;
+        #ifdef GA
+          shiftMutation(countInd + 1);
+        #else
+          if(probMutation == 0.3)
+            mut2RateControl[0].index[1]++;
+          if(probMutation == 0.4)
+            mut2RateControl[1].index[1]++;
+          if(probMutation == 0.5)
+            mut2RateControl[2].index[1]++;
+          mutaOperatorSelection(countInd + 1, 2, mut2OperatorControl);
+        #endif
       }
 
-
+      //Avalia os filhos geradas
       createGantt(countInd);
       createGantt(countInd + 1);
 
-      crossProbabilityMatching(countInd, father1, father2);
-      mutaFinalProbability(countInd, father1, father2);
-      crosRateProbabilityMatching(countInd, father1, father2);
-      mutaRateFinalProbability(countInd, father1, father2);
+      //Adaptação da probabildiade das taxas de crossover
+      #ifdef AP
+        crossoverAdaptivePursuit(countInd, father1, father2, 3,crossOperatorControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut1OperatorControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut2OperatorControl);
+        crossoverAdaptivePursuit(countInd, father1, father2, 3,crossRateControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut1RateControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut2RateControl);
+      #endif
 
+      #ifdef PPC
+        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 2, mut2OperatorControl);
+        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
+      #endif
 
       countInd = countInd + 2;
-    } // fim do While
+    } // while(countInd < (2 * popLenght))
 
-    printProbabilities(countGen, fileName, nRepeat, pop);
+    #ifdef PPC
+      UpdateSuccessIndicator(countGen, 3, crossOperatorControl);
+      UpdateSuccessIndicator(countGen, 2, mut1OperatorControl);
+      UpdateSuccessIndicator(countGen, 2, mut2OperatorControl);
+      UpdateSuccessIndicator(countGen, 3, crossRateControl);
+      UpdateSuccessIndicator(countGen, 3, mut1RateControl);
+      UpdateSuccessIndicator(countGen, 3, mut2RateControl);
+    #endif
+
+    #ifndef GA
+      printProbabilities(countGen, fileName, nRepeat, pop);
+    #endif
+
+    qsort(individuals, popLenght, sizeof(ind), sortFitMakespan);
 
     selection();
-   
-    qsort(individuals, popLenght, sizeof(ind), sortFitMakespan);
-    // printBestIndividual(fileName, nRepeat, countGen);
+
+    printBestIndividual(fileName, nRepeat, countGen);
 
     countGen++;
-  }
+  } // while(countGen < numGeneration)
+
+  #ifdef PPC
+    for(i = 0; i < 3; i++)
+    {
+      free(crossRateControl[i].success);
+      free(mut1RateControl[i].success);
+      free(mut2RateControl[i].success);
+      free(crossOperatorControl[i].success);
+    }
+    for(i = 0; i < 2; i++)
+    {
+      free(mut1OperatorControl[i].success);
+      free(mut2OperatorControl[i].success);
+    }
+  #endif
 } // AGinterno
 
 void initializeIndividuals()
@@ -153,7 +265,7 @@ void createGantt(int w)
         {
           tmp[k][0] = Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][k];
           tmp[k][1] = Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][k]->prox;
-          if((*tmp[k][1]).elem.startTime > 
+          if((*tmp[k][1]).elem.startTime >
                       (timeAux + jobMachine[individuals[w].jobsOrder[i]][j][1]))
           {
             aux[k] = timeAux;
@@ -189,7 +301,7 @@ void createGantt(int w)
                     flag[k] = 5;
                     break;
                   }
-                } 
+                }
                 else
                 {
                   timeGap = (*tmp[k][1]).elem.startTime - (*tmp[k][0]).elem.endTime;
@@ -212,27 +324,27 @@ void createGantt(int w)
         if(aux[k] < aux[bestAllocation])
           bestAllocation = k;
       }
-      
+
       //aloca a tarefa
       switch(flag[bestAllocation])
       {
-        case 1: 
+        case 1:
           (*operation[i*nMachines + j]).elem.startTime = timeAux;
-          (*operation[i*nMachines + j]).elem.endTime = (*operation[i*nMachines + j]).elem.startTime 
+          (*operation[i*nMachines + j]).elem.endTime = (*operation[i*nMachines + j]).elem.startTime
                                 + jobMachine[individuals[w].jobsOrder[i]][j][1];
           (*operation[i*nMachines + j]).elem.jobId = individuals[w].jobsOrder[i] + 1;
           operation[i*nMachines + j]->prox = NULL;
-          Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][bestAllocation]->prox = 
+          Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][bestAllocation]->prox =
                                                       operation[i*nMachines + j];
           timeAux = (*operation[i*nMachines + j]).elem.endTime;
           break;
-        case 2:  
+        case 2:
           (*operation[i*nMachines + j]).elem.startTime = timeAux;
-          (*operation[i*nMachines + j]).elem.endTime = (*operation[i*nMachines + j]).elem.startTime 
+          (*operation[i*nMachines + j]).elem.endTime = (*operation[i*nMachines + j]).elem.startTime
                               + jobMachine[individuals[w].jobsOrder[i]][j][1];
           (*operation[i*nMachines + j]).elem.jobId = individuals[w].jobsOrder[i] + 1;
           operation[i*nMachines + j]->prox = tmp[bestAllocation][1];
-          Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][bestAllocation]->prox = 
+          Gantt[jobMachine[individuals[w].jobsOrder[i]][j][0]][bestAllocation]->prox =
                                                     operation[i*nMachines + j];
           timeAux = (*operation[i*nMachines + j]).elem.endTime;
           break;
@@ -251,7 +363,7 @@ void createGantt(int w)
                               + jobMachine[individuals[w].jobsOrder[i]][j][1];
           (*operation[i*nMachines + j]).elem.jobId = individuals[w].jobsOrder[i] + 1;
           operation[i*nMachines + j]->prox = NULL;
-          tmp[bestAllocation][0]->prox = operation[i*nMachines + j];   
+          tmp[bestAllocation][0]->prox = operation[i*nMachines + j];
           timeAux = (*operation[i*nMachines + j]).elem.endTime;
           break;
         case 5:
@@ -260,7 +372,7 @@ void createGantt(int w)
                             + jobMachine[individuals[w].jobsOrder[i]][j][1];
           (*operation[i*nMachines + j]).elem.jobId = individuals[w].jobsOrder[i] + 1;
           operation[i*nMachines + j]->prox = tmp[bestAllocation][1];
-          tmp[bestAllocation][0]->prox = operation[i*nMachines + j];  
+          tmp[bestAllocation][0]->prox = operation[i*nMachines + j];
           timeAux = (*operation[i*nMachines + j]).elem.endTime;
           break;
         case 6:
@@ -275,7 +387,7 @@ void createGantt(int w)
       }
     }
     // Procura o término das operações
-    jobFinishTime[individuals[w].jobsOrder[i]] = 
+    jobFinishTime[individuals[w].jobsOrder[i]] =
                                     (*operation[i*nMachines + nMachines - 1]).elem.endTime;
   }
 
@@ -484,6 +596,7 @@ int NSGAIIselection (const void * a, const void * b)
     return ( a2->iRank - b2->iRank );
 } //NSGAIIselection
 
+// Função para calcular o hypervolume
 double hypervolume()
 {
   int i, count = 0;
@@ -550,10 +663,16 @@ void printProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
     exit(1);
   }
 
-  fprintf(output, "%d \t %lf \t %lf \t %lf \t %lf \t %lf \t %lf \t %lf \t %lf \t %lf\n", countInd,
-      probCrossover, cross[0].probOperator, cross[1].probOperator, cross[2].probOperator,
-          probMutation, mut1[0].probOperator, mut1[1].probOperator,
-            mut2[0].probOperator, mut2[1].probOperator);
+  fprintf(output, "%d \t", countInd);
+  fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf \t %lf \t",
+    crossOperatorControl[0].prob, crossOperatorControl[1].prob, crossOperatorControl[2].prob,
+      crossRateControl[0].prob, crossRateControl[1].prob, crossRateControl[2].prob);
+  fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf \t",
+    mut1OperatorControl[0].prob, mut1OperatorControl[1].prob,
+      mut1RateControl[0].prob, mut1RateControl[1].prob, mut1RateControl[2].prob);
+  fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf\n",
+    mut2OperatorControl[0].prob, mut2OperatorControl[1].prob,
+      mut2RateControl[0].prob, mut2RateControl[1].prob, mut2RateControl[2].prob);
 
   fclose(output);
   free(outputName);
@@ -564,7 +683,7 @@ void printBestIndividual(char *fileName, char *nRepeat, int countGen)
   char *outputName =
         (char*)malloc((strlen(fileName) + 10)*sizeof(char));
   strcpy(outputName, fileName);
-  strcat(outputName, "_c_MK.txt");
+  strcat(outputName, "_best.txt");
   FILE *output;
   output = fopen(outputName , "a");
   if (output == NULL)
@@ -573,9 +692,13 @@ void printBestIndividual(char *fileName, char *nRepeat, int countGen)
     exit(1);
   }
 
-  fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
-    popLenght, countGen, probCrossover, probMutation, nRepeat,
-                                                    individuals[0].fitMakespan);
+  fprintf(output, "%d \t %d\n", countGen, individuals[0].fitMakespan);
+
+  // for (i = 0; i < popLenght; i++)
+  // {
+  //   fprintf(output, "%d \t", individuals[i].fitMakespan);
+  // }
+  // fprintf(output, "\n");
 
   fclose(output);
   free(outputName);
@@ -584,8 +707,26 @@ void printBestIndividual(char *fileName, char *nRepeat, int countGen)
 
 void selection()
 {
+  int i, j;
+  for(i = popLenght; i < 2*popLenght; i++)
+  {
+    for(j = 0; j < nJobs; j++)
+      selectedIndividuals[i - popLenght].jobsOrder[j] = individuals[i].jobsOrder[j];
+    selectedIndividuals[i - popLenght].fitMakespan = individuals[i].fitMakespan;
+  }
+  qsort(selectedIndividuals, popLenght, sizeof(ind), sortFitMakespan);
+  for(i = 1; i < popLenght; i++)
+  {
+    for(j = 0; j < nJobs; j++)
+      individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
+    individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+  }
+}
+
+void selectionWithTournament()
+{
   int i, j, x;
-  
+
   for(i = 0; i < popLenght; i++)
   {
     x = selectionTournament();
@@ -593,7 +734,6 @@ void selection()
       selectedIndividuals[i].jobsOrder[j] = individuals[x].jobsOrder[j];
     selectedIndividuals[i].fitMakespan = individuals[x].fitMakespan;
   }
-    
 
   for(i = 0; i < popLenght; i++)
   {
@@ -625,3 +765,79 @@ void startList()
     for(j = 0; j < nMachines; j++)
       operation[j*nMachines + j]->prox = NULL;
 }
+
+
+
+
+void crossoverOperatorSelection(int countInd, int father1, int father2)
+{
+	double x;
+	x = (double)((double)rand() / (double)RAND_MAX);
+	if(x < crossOperatorControl[0].prob)
+	{
+		opCrossover(countInd, father1, father2);
+		crossOperatorControl[0].index[1]++;
+	}
+	else if(x < (crossOperatorControl[1].prob + crossOperatorControl[0].prob))
+	{
+		LOXcrossover(countInd, father1, father2);
+		crossOperatorControl[1].index[1]++;
+	}
+	else
+	{
+		PMXcrossover(countInd, father1, father2);
+		crossOperatorControl[2].index[1]++;
+	}
+} //crossoverOperatorSelection
+
+void mutaOperatorSelection(int countInd, int size, ProbabilitiesControl probControl[size])
+{
+	double x;
+	x = (double)((double)rand() / (double)RAND_MAX);
+	if(x < probControl[0].prob)
+	{
+		shiftMutation(countInd);
+		probControl[0].index[1]++;
+	}
+	else
+	{
+		interchangeMutation(countInd);
+		probControl[1].index[1]++;
+	}
+} //mutationOperatorSelection
+
+double crossoverRateSelection()
+{
+	double x;
+	x = (double)((double)rand() / (double)RAND_MAX);
+	if(x < crossRateControl[0].prob)
+	{
+		return 0.7;
+	}
+	else if(x < (crossRateControl[1].prob + crossRateControl[0].prob))
+	{
+		return 0.8;
+	}
+	else
+	{
+		return 0.9;
+	}
+} //crossoverRateSelection
+
+double mutaRateSelection(int size, ProbabilitiesControl probControl[size])
+{
+	double x;
+	x = (double)((double)rand() / (double)RAND_MAX);
+	if(x < probControl[0].prob)
+	{
+		return 0.3;
+	}
+	else if(x < (probControl[1].prob + probControl[0].prob))
+	{
+		return 0.4;
+	}
+	else
+	{
+		return 0.5;
+	}
+} //mutaRateSelection

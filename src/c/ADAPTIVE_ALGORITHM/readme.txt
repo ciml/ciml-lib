@@ -14,17 +14,3 @@ As técnicas implementadas de crossover são:
 As técnicas de mutação impregadas são:
 -Shift mutaxion
 -Interchange mutation
-
-####################################################
-Compilar utilizando o Makefile
-
-
-####################################################
-Para executar o arquivo na máquina pessoal
-
-executavel input_do_problema iteracao tam_da_populacao(opcional)
-
-###################################################
-Para executar no cluster
-
-jobC.sh input_do_problema
