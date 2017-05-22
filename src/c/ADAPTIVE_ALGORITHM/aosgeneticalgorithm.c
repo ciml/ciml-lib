@@ -116,7 +116,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 
       // Chance de realizar mutação
       #ifndef GA
-      probMutation = mutaRateSelection(3, mut1RateControl);
+        probMutation = mutaRateSelection(3, mut1RateControl);
       #endif
 
       x = (double)((double)rand() / (double)RAND_MAX);

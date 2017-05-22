@@ -1,6 +1,10 @@
-Esse código emprega a técnica de ADAPTIVE PURSUIT para resolver o JSP mono-objetivo(makespan)
+O código possui diferentes versões de Algoritmo Genético, verificar o Makefile antes de compilar.
 
-A adaptação ocorre nos parâmetros:
+Algoritmo Genético:
+-Crossover: PMX crossover
+-Mutação: Shift mutation
+
+As técnicas Adaptativas atuam nos seguintes parâmetros:
 -Taxa de crossover
 -Taxa de mutação
 -Operador de crossover empregado
@@ -12,5 +16,16 @@ As técnicas implementadas de crossover são:
 -op crossover
 
 As técnicas de mutação impregadas são:
--Shift mutaxion
+-Shift mutation
 -Interchange mutation
+
+Para executar o AG "default" utilize:
+ ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
+Para selecionar os parâmetros do AG utilize:
+ ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população taxa_de_crossover taxa_de_mutação
+
+Para executar o AG adaptativo "default" utilize:
+ ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
+Para selecionar os parâmetros do AG adaptativo utilize:
+ ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
+
