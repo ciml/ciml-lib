@@ -9,16 +9,10 @@
 #include <cstdlib>
 #include <iomanip>
 
-
-//#include <ctime>
-//#include <chrono>
 #include <sys/time.h>
-
-//#include <windows.h>
 
 #include <stdlib.h>
 #include <stdio.h>
-
 
 #ifdef __cplusplus
 extern "C"
@@ -116,119 +110,6 @@ double getTime(){
     return (double)tv.tv_sec + 1.0e-6*(double)tv.tv_usec;
 }
 
-//////TODO:fazer receber os dados também+labels.
-//void leIndividuo(char *fileName, Arvore* individuo) {
-//    FILE* arquivo = fopen(fileName, "r");
-//    char cp[100000];
-//    int posicao = 0;
-//    int informacao;
-//
-////    fseek(arquivo, 0, SEEK_END);
-////    long fsize = ftell(arquivo);
-////    fseek(arquivo, 0, SEEK_SET);
-//
-//
-//    if (arquivo == NULL) {
-//        fprintf(stderr, "Error opening data file.");
-//        return;
-//    }
-//    const char delimiters[] = " ()";
-//
-//    while (fgets(cp, 100000, arquivo)) {
-//
-//        char *token;
-//
-//        token = strtok (cp, delimiters);      /* token => "words" */
-//            printf("%s\n", token);
-//
-//        while(token != NULL){
-//            printf("%s\n", token);
-//            if(strcmp(token, "+") == 0){
-//                //printf("aaa\n");
-//                informacao = packInt(FBIN, PLUS);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 2;
-//            }
-//            else if(strcmp(token, "-") == 0){
-//                informacao = packInt(FBIN, MIN);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 2;
-//            }
-//            else if(strcmp(token, "*") == 0){
-//                informacao = packInt(FBIN, MULT);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 2;
-//            }
-//            else if(strcmp(token, "/") == 0){
-//                informacao = packInt(FBIN, DIV);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 2;
-//            }
-//            else if(strcmp(token, "sen") == 0){
-//                informacao = packInt(FUN, SIN);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 1;
-//            }
-//            else if(strcmp(token, "cos") == 0){
-//                informacao = packInt(FUN, COS);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 1;
-//            }
-//            else if(strcmp(token, "sqrt") == 0){
-//                informacao = packInt(FUN, SQR);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 1;
-//            }
-//            else if(token[0] == 'x'){
-//                token++;
-//                informacao = packInt(VAR, atoll(token)-1);
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 0;
-//            } else {
-//                informacao = packFloat(CONST, atof(token));
-//                individuo->informacao[posicao] = informacao;
-//                individuo->numeroFilhos[posicao] = 0;
-//            }
-//            posicao++;
-//            token = strtok (NULL, delimiters);
-//        }
-//        individuo->numNos = posicao-1;
-//        //int i;
-//       // for(i= 0; i < posicao-1; i++){
-//            //printf("%d ", individuo->informacao[posicao]);
-//       // }
-//
-////        token = strtok (NULL, delimiters);    /* token => "separated" */
-////        printf("%s", token);
-////        token = strtok (NULL, delimiters);    /* token => "by" */
-////        printf("%s", token);
-////        token = strtok (NULL, delimiters);    /* token => "spaces" */
-////        printf("%s", token);
-////        token = strtok (NULL, delimiters);    /* token => "and" */
-////        printf("%s", token);
-////        token = strtok (NULL, delimiters);    /* token => "punctuation" */
-////        printf("%s", token);
-////        token = strtok (NULL, delimiters);    /* token => NULL */
-////        printf("%s", token);
-//    }
-//
-//}
-
-void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
-    printf("/*-----------------------------------------------------------------\n");
-    printf("* NUMERO INDIVIDUOS: %d \t CROSS-OVER: %.2f\n", NUM_INDIV, PROB_CROSS);
-    printf("* NUMERO GERACOES  : %d \t MUTACAO   : %.2f\n", NUM_GERACOES, PROB_MUT);
-    printf("* NUM MAXIMO NOS   : %d \t ELITISMO  : %.2f\n", MAX_NOS, ELITISMO);
-    printf("* PROFUNDIDADE MAX : %d \t \n", MAX_DEPTH);
-    printf("* SEED: %d \n", SEED);
-    printf("* M: %d \n", M);
-    printf("* N: %d \n", N);
-    printf("* NUM_CTES: %d \n", NUM_CTES);
-    printf("* NUM_OPBIN: %d \n", NUM_OPBIN);
-    printf("* NUM_OPUN: %d \n", NUM_OPUN);
-    printf("*------------------------------------------------------------------\n");
-
-}
 
 bool IsPowerOf2( int n ){
    return (n & -n) == n;
@@ -282,35 +163,40 @@ void setupOpenCL(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &
     }
 }
 
-void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlags, size_t maxLocalSize, size_t numPoints){
-///FOR GPU
-//        if(numPoints < maxLocalSize)
-//          *localSize = numPoints;
-//        else
-//          *localSize = maxLocalSize;
-//
-//        // One individual per work-group
-//        *globalSize = (*localSize) * NUM_INDIV;
-//
-////        std::stringstream ss;
-////        ss << NextPowerOf2( localSize );
-////        std:string str = ss.str();
-//
-//        (*compileFlags) += " -D LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2="
-//                    + ToString( NextPowerOf2(*localSize) );
-//
-//        if( MAX_NOS > (*localSize) ) //MaximumTreeSize() > m_local_size )
-//          (*compileFlags) += " -D PROGRAM_TREE_DOES_NOT_FIT_IN_LOCAL_SIZE";
-//
-//        if( IsPowerOf2( *localSize ) )
-//          (*compileFlags) += " -D LOCAL_SIZE_IS_NOT_POWER_OF_2";
-//
-//        if( numPoints % (*localSize) != 0 )
-//          (*compileFlags) += " -D NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE";
 
+void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlags, size_t maxLocalSize, size_t numPoints, cl_device_type deviceType){
+//FOR GPU
+    if(deviceType == CL_DEVICE_TYPE_GPU){
+        std::cout << "Definindo NDRanges para GPU..." << std::endl;
+        if(numPoints < maxLocalSize)
+          *localSize = numPoints;
+        else
+          *localSize = maxLocalSize;
+
+        // One individual per work-group
+        *globalSize = (*localSize) * NUM_INDIV;
+
+//        std::stringstream ss;
+//        ss << NextPowerOf2( localSize );
+//        std:string str = ss.str();
+
+        (*compileFlags) += " -D LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2="
+                    + ToString( NextPowerOf2(*localSize) );
+
+        if( MAX_NOS > (*localSize) ) //MaximumTreeSize() > m_local_size )
+          (*compileFlags) += " -D PROGRAM_TREE_DOES_NOT_FIT_IN_LOCAL_SIZE";
+
+        if( IsPowerOf2( *localSize ) )
+          (*compileFlags) += " -D LOCAL_SIZE_IS_NOT_POWER_OF_2";
+
+        if( numPoints % (*localSize) != 0 )
+          (*compileFlags) += " -D NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE";
+    } else if (deviceType == CL_DEVICE_TYPE_CPU){
         ///FOR CPU
+        std::cout << "Definindo NDRanges para CPU..." << std::endl;
         *localSize = 1;//m_num_points;
         *globalSize = NUM_INDIV;
+    }
 }
 
 std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize){
@@ -414,12 +300,14 @@ int main(){
             setupOpenCL(platforms,devices);
             printPlatformsDevices(platforms, devices);
 
+            std::cout <<"aaaaa"<< std::endl;
             ///Estabelecendo o contexto com os devices
             cl::Context contexto(devices, NULL, NULL, NULL, &result);
             if(result != CL_SUCCESS){
                 std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
                 exit(1);
             }
+            std::cout << "oi" << std::endl;
 
             ///Criando a fila de comando para o device 0
             cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
@@ -431,33 +319,40 @@ int main(){
                 exit(1);
             }
 
+            std::cout << "a" << std::endl;
+
             cl::Buffer bufferPopA(contexto, CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore)/*, popAtual*/);
             cl::Buffer bufferPopF(contexto, CL_MEM_READ_WRITE/*|CL_MEM_USE_HOST_PTR*/, NUM_INDIV * sizeof(Arvore)/*, popFutura*/);
             cl::Buffer bufferOpTerm(contexto, CL_MEM_READ_ONLY, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int));
             cl::Buffer bufferSeeds(contexto, CL_MEM_READ_WRITE, NUM_INDIV*MAX_NOS*sizeof(int));
             cl::Buffer dados(contexto, CL_MEM_READ_ONLY, M*N * sizeof(float));
 
+            std::cout << "b" << std::endl;
+
             //cmdQueueGPU.enqueueWriteBuffer(bufferPop, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             cmdQueueGPU.enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
             cmdQueueGPU.enqueueWriteBuffer(dados, CL_FALSE, 0, M*N * sizeof(float), dadosTranspostos);
             cmdQueueGPU.enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
 
+            std::cout << "c" << std::endl;
+
             size_t globalSize, localSize;
             size_t numPoints = M;
             std::string compileFlags;
             size_t maxLocalSize = devices[0].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
-            setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints);
+            setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, devices[0].getInfo<CL_DEVICE_TYPE>());
+            std::cout << "d" << std::endl;
 
             ///Leitura do arquivo com o programa em C++
             std::ifstream sourceFileName("kernelAvalia.cl");
             std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
             std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize) + sourceFile;
             //std::cout << program_src << std::endl;
-
+            std::cout <<"e"<<std::endl;
             ///Criar programa por Source
             cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
             cl::Program programa(contexto, source);
-
+            std::cout <<"f"<<std::endl;
             //const char options[] = "-cl-opt-disable";
             //int error;
             try {
@@ -468,11 +363,13 @@ int main(){
                 std::cout << e.what() << " : " << e.err() << std::endl;
                 exit(1);
             }
+            std::cout <<"g"<<std::endl;
              cl::Kernel krnlAvalia(programa, "avaliaIndividuosCPU");
              cl::Kernel krnlEvolucao(programa, "evolucao");
 //             cl::Kernel krnlInit(programa, "inicializaAleatorio");
 //
-//
+        std::cout <<"h"<<std::endl;
+
 //            cmdQueueGPU.enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
 //            cmdQueueGPU.finish();
 //            ///Dispondo argumentos para o kernel + executar

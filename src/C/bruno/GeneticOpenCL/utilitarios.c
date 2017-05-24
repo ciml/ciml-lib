@@ -1,6 +1,17 @@
 #include "utilitarios.h"
 #include "constantes.h"
 
+int rand(int *seed){
+    int s  = *seed;
+    s = abs((s * 16807) % 2147483647);//(int)(pown(2.0, 31)-1));
+    *seed = s;
+    return s;
+}
+
+float randomProb(int* seed){
+    return (float)rand2(seed) / 2147483647;//pown(2.0, 31);
+}
+
 
 void atribuiSemente(int i){
     srand(i);
@@ -73,7 +84,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //    gets(nome);
 //    arq = fopen(nome, "r");
 
-    arq = fopen("dadosTeste.txt", "r");
+    arq = fopen("f1-50.txt", "r");
     int boolLabel;
     //fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
     fscanf(arq, "%d %d %d", M, N, &boolLabel);//, &numVariaveis);
@@ -268,4 +279,19 @@ float infSqrt(float num){
     } else {
         return sqrt(num);
     }
+}
+
+void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
+    printf("/*-----------------------------------------------------------------\n");
+    printf("* NUMERO INDIVIDUOS: %d \t CROSS-OVER: %.2f\n", NUM_INDIV, PROB_CROSS);
+    printf("* NUMERO GERACOES  : %d \t MUTACAO   : %.2f\n", NUM_GERACOES, PROB_MUT);
+    printf("* NUM MAXIMO NOS   : %d \t ELITISMO  : %.2f\n", MAX_NOS, ELITISMO);
+    printf("* PROFUNDIDADE MAX : %d \t \n", MAX_DEPTH);
+    printf("* SEED: %d \n", SEED);
+    printf("* M: %d \n", M);
+    printf("* N: %d \n", N);
+    printf("* NUM_CTES: %d \n", NUM_CTES);
+    printf("* NUM_OPBIN: %d \n", NUM_OPBIN);
+    printf("* NUM_OPUN: %d \n", NUM_OPUN);
+    printf("*------------------------------------------------------------------\n");
 }

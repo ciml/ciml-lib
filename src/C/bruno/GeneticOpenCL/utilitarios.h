@@ -21,6 +21,7 @@ float proDiv(float num, float div);
 float infDiv(float num, float div);
 float proSqrt(float num);
 float infSqrt(float num);
+void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN);
 
 float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm);
 
