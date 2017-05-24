@@ -26,11 +26,11 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     1030
-#define MAX_DEPTH   9
+#define MAX_NOS     32
+#define MAX_DEPTH   3
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   500
+#define NUM_INDIV   20
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9

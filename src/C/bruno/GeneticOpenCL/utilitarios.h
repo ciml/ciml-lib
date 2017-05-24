@@ -7,21 +7,25 @@
 #include <string.h>
 
 void atribuiSemente(int i);
-float randomProb();
+float randomProb(int* seed);
 int randomInterval(int inferior, int superior);
 int randomSuperior(int max);
-int randomTerminal(int N);
+int randomTerminal(int N, int* seed);
 int randomFunctionUn(int NUM_OPUN);
 int randomFunctionBin(int NUM_OPBIN);
-int randomType(int NUM_OPBIN, int NUM_OPUN, int N);
-int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N);
-int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N);
-float randomConst();
+int randomType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
+int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
+int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
+float randomConst(int* seed);
 float proDiv(float num, float div);
 float infDiv(float num, float div);
 float proSqrt(float num);
 float infSqrt(float num);
 void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN);
+
+int rand2(int *seed);
+
+
 
 float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm);
 

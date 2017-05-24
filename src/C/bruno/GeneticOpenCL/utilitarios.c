@@ -1,7 +1,7 @@
 #include "utilitarios.h"
 #include "constantes.h"
 
-int rand(int *seed){
+int rand2(int *seed){
     int s  = *seed;
     s = abs((s * 16807) % 2147483647);//(int)(pown(2.0, 31)-1));
     *seed = s;
@@ -17,9 +17,9 @@ void atribuiSemente(int i){
     srand(i);
 }
 
-float randomProb(){
-    return rand()/(float)(RAND_MAX+1);
-}
+//float randomProb(){
+//    return rand()/(float)(RAND_MAX+1);
+//}
 
 int randomInterval(int inferior, int superior){
     return rand() % (superior - inferior + 1) + inferior;
@@ -30,8 +30,8 @@ int randomSuperior(int limiteSuperior){
     return rand() % (limiteSuperior + 1);
 }
 
-int randomTerminal(int N){
-    int valor = rand() % (2*(N-1));
+int randomTerminal(int N, int* seed){
+    int valor = rand2(seed) % (2*(N-1));
     return valor;
 }
 
@@ -46,23 +46,23 @@ int randomFunctionUn(int NUM_OPUN){
 
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
-float randomConst(){
-    return (rand()/(float)(RAND_MAX/2+1));
+float randomConst(int* seed){
+    return (rand2(seed)/(float)2147483647/2);
 }
 
-int randomType(int NUM_OPBIN, int NUM_OPUN, int N){
-    int tipoAleatorio = rand()%(NUM_OPBIN+NUM_OPUN+(1)+N-1);
+int randomType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+    int tipoAleatorio = rand2(seed)%(NUM_OPBIN+NUM_OPUN+(1)+N-1);
     return tipoAleatorio;
 }
 
 
-int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N){
-    int tipoAleatorio = (rand()%N) + NUM_OPBIN + NUM_OPUN;
+int randomLeafType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+    int tipoAleatorio = (rand2(seed)%N) + NUM_OPBIN + NUM_OPUN;
     return tipoAleatorio;
 }
 
-int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N){
-    int tipoAleatorio = (rand()%(NUM_OPBIN+NUM_OPUN));
+int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+    int tipoAleatorio = (rand2(seed)%(NUM_OPBIN+NUM_OPUN));
     return tipoAleatorio;
 }
 
@@ -84,7 +84,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //    gets(nome);
 //    arq = fopen(nome, "r");
 
-    arq = fopen("f1-50.txt", "r");
+    arq = fopen("dados1.txt", "r");
     int boolLabel;
     //fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
     fscanf(arq, "%d %d %d", M, N, &boolLabel);//, &numVariaveis);

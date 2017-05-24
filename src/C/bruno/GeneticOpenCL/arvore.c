@@ -21,7 +21,7 @@ int calculaTamanhoSubArvore(Arvore* arv, int indice){
     return tam;
 }
 
-void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
+void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     Pilha pilha;
     pilha.topo = -1;
 
@@ -45,9 +45,10 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
 
         if(aux[indice] == 0){
 
+            int rdmType = randomType(NUM_OPBIN, NUM_OPUN, N, seed);
             //printf("RDMtipo = %d\n", rdmType);
-
-            sorteio = conjuntoOpTerm[randomType(NUM_OPBIN, NUM_OPUN, N)];
+//
+            sorteio = conjuntoOpTerm[rdmType];
             tipo = unpackTipo(sorteio);
             //printf("sorteio = %d\n", sorteio);
             //printf("tipo = %d\n", tipo);
@@ -67,13 +68,13 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
         if(soma > maxTam){
             soma-=arv->numeroFilhos[indice];
             arv->numeroFilhos[indice] = 0;
-            sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N)];
+            sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N,seed)];
             num = 0;
             tipo = unpackTipo(sorteio);
         }
 
         if(tipo == CTE){
-            sorteio = packFloat(CTE, randomConst());
+            sorteio = packFloat(CTE, randomConst(seed));
         }
         arv->informacao[indice] = sorteio;
 
@@ -89,7 +90,7 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
 }
 
 
-void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
+void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
 
     //conferir de alguma forma que cabe uma árvore cheia no vetor (no caso confere para uma arvore binaria)
     //nao funciona no caso se sortear '1' filho várias vezes, pois acaba cabendo uma arvore mais profunda e ainda 'cheia'
@@ -120,7 +121,7 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
 
         if(aux[indice] == 0){
             if(pilha.topo+1 != maxDepth){
-                sorteio = conjuntoOpTerm[randomNodeType(NUM_OPBIN, NUM_OPUN, N)];
+                sorteio = conjuntoOpTerm[randomNodeType(NUM_OPBIN, NUM_OPUN, N,seed)];
                 tipo = unpackTipo(sorteio);
                 if (tipo == FUN){
                     num = 1;
@@ -129,10 +130,10 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
                 }
 
             } else {
-                sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N)];
+                sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N,seed)];
                 tipo = unpackTipo(sorteio);
                 if(tipo == CTE){
-                    sorteio = packFloat(CTE, randomConst());
+                    sorteio = packFloat(CTE, randomConst(seed));
                 }
                 num = 0;
             }
@@ -291,11 +292,11 @@ void shift(Arvore* arv, int tam, int indice){//indice a partir de onde começa o 
     arv->numNos += tam;
 }
 
-void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
+void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     int i;
     //sorteia uma subarvore da arvore inicial
         //pega o tamanho dessa subarvore
-    int indiceSub = rand() % (arvore->numNos);
+    int indiceSub = rand2(seed) % (arvore->numNos);
     int tamanhoSub = calculaTamanhoSubArvore(arvore, indiceSub);
 
     //confere o tamanho max para criar uma nova arvore
@@ -306,7 +307,7 @@ void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, i
     //TODO: criar uma nova arvore ou nao?
     Arvore novaArvore;
     //inicializaArvore(&novaArvore);
-    geradorArvore(&novaArvore, espacoLivre, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+    geradorArvore(&novaArvore, espacoLivre, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N,seed);
 
 
     //determina o tamanho do deslocamento da arvore
@@ -324,20 +325,20 @@ void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, i
     }
 }
 
-void crossOver(Arvore* arvore1, Arvore* arvore2){
+void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed){
 
     int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
-
+    int cont = 0;
     do{
-        indiceSub1 = rand() % (arvore1->numNos);
+        indiceSub1 = rand2(seed) % (arvore1->numNos);
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
 
-        indiceSub2 = rand() % (arvore2->numNos);
+        indiceSub2 = rand2(seed) % (arvore2->numNos);
         tamanhoSub2 = calculaTamanhoSubArvore(arvore2, indiceSub2);
 
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
-
+        if(cont++ == 3) return;
     }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
 //    Arvore arvAux;

@@ -2,30 +2,30 @@
 #include <stdlib.h>
 #include "genetica.h"
 
-void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
+void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     int i;
 
     for(i = indice; i < num/2; i++){
-        criaCheia(&pop[i], MAX_DEPTH/3, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+        criaCheia(&pop[i], MAX_DEPTH/3, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
     }
     for( ; i < num; i++){
-        criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+        criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
     }
 
 }
 
-void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N){
+void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     int i;
     for(i = indice; i < num; i++){
-        geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+        geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
     }
 
 }
 
-void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N){
+void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
 
-    inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
-    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N);
+    inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
 //    int i;
 //    for(i = 0; i < NUM_INDIV/2; i++){
 //        geradorArvore(&pop[i], MAX_NOS); //sortear a quantidade de nós em determinado intervalo
@@ -145,12 +145,12 @@ void testaSelection(Arvore pop[], int k){
 //    imprimePopulacao(pop);
 }
 
-int torneio(Arvore pop[]){
-    int indiceMelhor = rand() % NUM_INDIV;
+int torneio(Arvore pop[], int* seed){
+    int indiceMelhor = rand2(seed) % NUM_INDIV;
     int indice;
     int i;
     for(i = 0; i < NUM_TORNEIO-1; i++){
-        indice = rand()%NUM_INDIV;
+        indice = rand2(seed)%NUM_INDIV;
         if(pop[indice].aptidao < pop[indiceMelhor].aptidao)
             indiceMelhor = indice;
     }
