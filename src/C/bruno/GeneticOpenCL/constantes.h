@@ -40,7 +40,7 @@
 #define PROB_MUT    0.1
 #endif // PROB_MUT
 
-#define NUM_TORNEIO     4
+#define NUM_TORNEIO     2
 
 #define ELITISMO        0.05//0.002
 

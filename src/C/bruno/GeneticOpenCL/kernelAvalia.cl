@@ -551,7 +551,7 @@ void  trocaSubArv(__global Arvore* arvMaior, __global Arvore* arvMenor,int ind1,
 void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
     int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
-
+    int cont = 0;
     do{
         indiceSub1 = rand2(seed) % (arvore1->numNos);
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
@@ -561,7 +561,7 @@ void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
-
+        if(cont++ == 5) return;
     }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
 
@@ -656,10 +656,13 @@ __kernel void evolucao(__global Arvore* popA,
     int group_id = get_group_id(0);
     int seed = seeds[group_id];
 
-
-    
+    printf("id = %d\n", group_id);
+    printf("seeds1 = %d\n", seed);
     int ind1 = torneio(popA, &seed);
     int ind2 = torneio(popA, &seed);
+    printf("seeds2 = %d\n", seed);
+    printf("ind1 = %d\n", ind1);
+    printf("ind2 = %d\n\n", ind2);
 
     popF[elite+2*group_id]  = popA[ind1];
     popF[elite+2*group_id+1]= popA[ind2];

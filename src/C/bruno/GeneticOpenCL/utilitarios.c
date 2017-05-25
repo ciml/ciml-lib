@@ -47,7 +47,7 @@ int randomFunctionUn(int NUM_OPUN){
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
 float randomConst(int* seed){
-    return (rand2(seed)/(float)2147483647/2);
+    return (rand2(seed)/(float)(2147483647/2));
 }
 
 int randomType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){

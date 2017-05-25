@@ -113,7 +113,7 @@
 	"genetica.h"
 	<omp.h>
 
-1495631754 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+1495675291 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -127,7 +127,7 @@
 1474405533 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
 	"constantes.h"
 
-1495631677 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1495672102 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
 1495631514 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
@@ -152,7 +152,7 @@
 1495630488 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
 	"arvore.h"
 
-1495633847 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+1495676086 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<CL/cl.hpp>
 	<iostream>
 	<sstream>
@@ -172,7 +172,7 @@
 	<stdlib.h>
 	"pilha.h"
 
-1495631619 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
+1495671750 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
 	"utilitarios.h"
 	"constantes.h"
 

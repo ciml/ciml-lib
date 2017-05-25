@@ -338,7 +338,7 @@ void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed){
 
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
-        if(cont++ == 3) return;
+        if(cont++ == 5) return;
     }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
 //    Arvore arvAux;

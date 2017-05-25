@@ -282,6 +282,8 @@ int main(){
     for(int i = 0; i < NUM_INDIV*MAX_NOS; i++){
         seeds[i] = rand();
     }
+    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0]);
+    std::cout << "seeds00000000000= " << seeds[0] << std::endl;
 
             double start;
             double startIt, endIt;
@@ -391,22 +393,24 @@ int main(){
 //                cl_int prefSize = krnl.getWorkGroupInfo<CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE>(devices[0]);
 //                std::cout << "preferred size = " << prefSize << std::endl;
 
-    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0]);
+
     //imprimePopulacao(popAtual, LABELS);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
     imprimePopulacao(popAtual, LABELS);
 
     bool evolParalelo = false;
-    bool avalParalelo = false;
+    bool avalParalelo = true;
+    std::cout << "seeds00000000000 = " << seeds[0] << std::endl;
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
         startIt = getTime();
-
         if(evolParalelo){
             //if(iteracoes == 16)
                 //imprimePopulacao(popAtual, LABELS);
             int novosIndividuos = selecionaElite(popAtual, popFutura);
+
+            //cmdQueueGPU.enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
 
             cmdQueueGPU.enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
             cmdQueueGPU.enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
@@ -442,33 +446,43 @@ int main(){
             cmdQueueGPU.enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             cmdQueueGPU.enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
 
+            //cmdQueueGPU.enqueueReadBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
+
             cmdQueueGPU.finish();
 
         } else {
 
             start = getTime();
             //Sleep(1000);
-            omp_set_num_threads((NUM_INDIV)/2);
-            #pragma omp parallel for
+            //omp_set_num_threads((NUM_INDIV)/2);
+            //#pragma omp parallel for
             for(int novosIndividuos = selecionaElite(popAtual, popFutura); novosIndividuos < NUM_INDIV; novosIndividuos +=2){
-                   int num = omp_get_num_threads();
-            printf("num threads = %d\n\n", num);
-                indice1 = torneio(popAtual, &seeds[novosIndividuos/2]);
-                indice2 = torneio(popAtual, &seeds[novosIndividuos/2]);
+           //        int num = omp_get_num_threads();
+            //printf("num threads = %d\n\n", num);
+                int id = (novosIndividuos/2)-1;
+                printf("id = %d\n", id);
+                std::cout << "seeds1 = " << seeds[id] << std::endl;
+                indice1 = torneio(popAtual, &seeds[id]);
+                indice2 = torneio(popAtual, &seeds[id]);
+                std::cout << "seeds2 = " << seeds[id] << std::endl;
+                std::cout << "ind1 = " << indice1 << std::endl;
+                std::cout << "ind2 = " << indice2 << std::endl << std::endl;
 
                 popFutura[novosIndividuos] = popAtual[indice1];
                 popFutura[novosIndividuos+1] = popAtual[indice2];
 
                 ///testar imprimir o que está retornando na parte randomica
-                float cross = 1;//randomProb(&seeds[novosIndividuos/2]);
-                float mut = 1;//randomProb(&seeds[novosIndividuos/2]);
+                float cross = randomProb(&seeds[id]);
+                float mut = randomProb(&seeds[id]);
+                //std::cout << "cross= " << cross << std::endl;
+                //std::cout << "mut = " << mut << std::endl << std::endl;;
 
                 if(cross <= PROB_CROSS){
-                    crossOver(&popFutura[novosIndividuos+1/*-2*/], &popFutura[novosIndividuos/*-1*/], &seeds[novosIndividuos/2]);
+                    crossOver(&popFutura[novosIndividuos+1/*-2*/], &popFutura[novosIndividuos/*-1*/], &seeds[id]);
                 }
                 if(mut <= PROB_MUT){
-                    mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[novosIndividuos/2]);
-                    mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[novosIndividuos/2]);
+                    mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
+                    mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
                 }
             }
 
@@ -524,9 +538,10 @@ int main(){
         tempoTotal += tempoGeracao;
         std::cout <<"Tempo de geracao = " << tempoGeracao << std::endl;
 
-        //imprimePopulacao(popAtual, LABELS);
+        imprimePopulacao(popAtual, LABELS);
         imprimeMelhor(popAtual, LABELS);
         iteracoes++;
+        std::cout << "seed8 = " << seeds[8] <<std::endl;
     }
 
     printf("\nPOPULACAO FINAL \n");
