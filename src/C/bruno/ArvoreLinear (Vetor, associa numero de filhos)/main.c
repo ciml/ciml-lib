@@ -154,7 +154,7 @@ int main(){
 
         //int num = 0;
 
-        #pragma omp parallel for
+        //#pragma omp parallel for
         for(int novosIndividuos = selecionaElite(popAtual, popFutura); novosIndividuos < NUM_INDIV; novosIndividuos=novosIndividuos+2){
             //num = omp_get_num_threads();
             //#pragma omp barrier

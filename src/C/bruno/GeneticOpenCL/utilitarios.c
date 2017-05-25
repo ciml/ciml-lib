@@ -84,7 +84,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //    gets(nome);
 //    arq = fopen(nome, "r");
 
-    arq = fopen("dados1.txt", "r");
+    arq = fopen("100 3 1.txt", "r");
     int boolLabel;
     //fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
     fscanf(arq, "%d %d %d", M, N, &boolLabel);//, &numVariaveis);

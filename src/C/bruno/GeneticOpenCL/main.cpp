@@ -283,7 +283,7 @@ int main(){
         seeds[i] = rand();
     }
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0]);
-    std::cout << "seeds00000000000= " << seeds[0] << std::endl;
+   // std::cout << "seeds00000000000= " << seeds[0] << std::endl;
 
             double start;
             double startIt, endIt;
@@ -302,14 +302,14 @@ int main(){
             setupOpenCL(platforms,devices);
             printPlatformsDevices(platforms, devices);
 
-            std::cout <<"aaaaa"<< std::endl;
+           // std::cout <<"aaaaa"<< std::endl;
             ///Estabelecendo o contexto com os devices
             cl::Context contexto(devices, NULL, NULL, NULL, &result);
             if(result != CL_SUCCESS){
                 std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
                 exit(1);
             }
-            std::cout << "oi" << std::endl;
+           // std::cout << "oi" << std::endl;
 
             ///Criando a fila de comando para o device 0
             cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
@@ -321,7 +321,7 @@ int main(){
                 exit(1);
             }
 
-            std::cout << "a" << std::endl;
+            //std::cout << "a" << std::endl;
 
             cl::Buffer bufferPopA(contexto, CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore)/*, popAtual*/);
             cl::Buffer bufferPopF(contexto, CL_MEM_READ_WRITE/*|CL_MEM_USE_HOST_PTR*/, NUM_INDIV * sizeof(Arvore)/*, popFutura*/);
@@ -329,32 +329,32 @@ int main(){
             cl::Buffer bufferSeeds(contexto, CL_MEM_READ_WRITE, NUM_INDIV*MAX_NOS*sizeof(int));
             cl::Buffer dados(contexto, CL_MEM_READ_ONLY, M*N * sizeof(float));
 
-            std::cout << "b" << std::endl;
+            //std::cout << "b" << std::endl;
 
             //cmdQueueGPU.enqueueWriteBuffer(bufferPop, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             cmdQueueGPU.enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
             cmdQueueGPU.enqueueWriteBuffer(dados, CL_FALSE, 0, M*N * sizeof(float), dadosTranspostos);
             cmdQueueGPU.enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
 
-            std::cout << "c" << std::endl;
+            //std::cout << "c" << std::endl;
 
             size_t globalSize, localSize;
             size_t numPoints = M;
             std::string compileFlags;
             size_t maxLocalSize = devices[0].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
             setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, devices[0].getInfo<CL_DEVICE_TYPE>());
-            std::cout << "d" << std::endl;
+            //std::cout << "d" << std::endl;
 
             ///Leitura do arquivo com o programa em C++
             std::ifstream sourceFileName("kernelAvalia.cl");
             std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
             std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize) + sourceFile;
             //std::cout << program_src << std::endl;
-            std::cout <<"e"<<std::endl;
+            //std::cout <<"e"<<std::endl;
             ///Criar programa por Source
             cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
             cl::Program programa(contexto, source);
-            std::cout <<"f"<<std::endl;
+            //std::cout <<"f"<<std::endl;
             //const char options[] = "-cl-opt-disable";
             //int error;
             try {
@@ -365,12 +365,12 @@ int main(){
                 std::cout << e.what() << " : " << e.err() << std::endl;
                 exit(1);
             }
-            std::cout <<"g"<<std::endl;
+            //std::cout <<"g"<<std::endl;
              cl::Kernel krnlAvalia(programa, "avaliaIndividuosCPU");
              cl::Kernel krnlEvolucao(programa, "evolucao");
 //             cl::Kernel krnlInit(programa, "inicializaAleatorio");
 //
-        std::cout <<"h"<<std::endl;
+        //std::cout <<"h"<<std::endl;
 
 //            cmdQueueGPU.enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
 //            cmdQueueGPU.finish();
@@ -396,11 +396,11 @@ int main(){
 
     //imprimePopulacao(popAtual, LABELS);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
 
     bool evolParalelo = false;
-    bool avalParalelo = true;
-    std::cout << "seeds00000000000 = " << seeds[0] << std::endl;
+    bool avalParalelo = false;
+    //std::cout << "seeds00000000000 = " << seeds[0] << std::endl;
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
@@ -454,22 +454,25 @@ int main(){
 
             start = getTime();
             //Sleep(1000);
-            //omp_set_num_threads((NUM_INDIV)/2);
-            //#pragma omp parallel for
-            for(int novosIndividuos = selecionaElite(popAtual, popFutura); novosIndividuos < NUM_INDIV; novosIndividuos +=2){
-           //        int num = omp_get_num_threads();
+            //omp_set_num_threads((NUM_INDIV)/2 -1);
+
+            int novosIndividuos = selecionaElite(popAtual, popFutura);
+            #pragma omp parallel for
+            for(int j = novosIndividuos; j < NUM_INDIV; j +=2){
+             //      int num = omp_get_num_threads();
             //printf("num threads = %d\n\n", num);
-                int id = (novosIndividuos/2)-1;
-                printf("id = %d\n", id);
-                std::cout << "seeds1 = " << seeds[id] << std::endl;
+                int id = (j/2)-(novosIndividuos/2);
+                //std::cout << novosIndividuos << std::endl;
+                //printf("id = %d\n", id);
+                //std::cout << "seeds1 = " << seeds[id] << std::endl;
                 indice1 = torneio(popAtual, &seeds[id]);
                 indice2 = torneio(popAtual, &seeds[id]);
-                std::cout << "seeds2 = " << seeds[id] << std::endl;
-                std::cout << "ind1 = " << indice1 << std::endl;
-                std::cout << "ind2 = " << indice2 << std::endl << std::endl;
+                //std::cout << "seeds2 = " << seeds[id] << std::endl;
+                //std::cout << "ind1 = " << indice1 << std::endl;
+                //std::cout << "ind2 = " << indice2 << std::endl << std::endl;
 
-                popFutura[novosIndividuos] = popAtual[indice1];
-                popFutura[novosIndividuos+1] = popAtual[indice2];
+                popFutura[j] = popAtual[indice1];
+                popFutura[j+1] = popAtual[indice2];
 
                 ///testar imprimir o que está retornando na parte randomica
                 float cross = randomProb(&seeds[id]);
@@ -478,11 +481,11 @@ int main(){
                 //std::cout << "mut = " << mut << std::endl << std::endl;;
 
                 if(cross <= PROB_CROSS){
-                    crossOver(&popFutura[novosIndividuos+1/*-2*/], &popFutura[novosIndividuos/*-1*/], &seeds[id]);
+                    crossOver(&popFutura[j+1/*-2*/], &popFutura[j/*-1*/], &seeds[id]);
                 }
                 if(mut <= PROB_MUT){
-                    mutacao(&popFutura[novosIndividuos+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
-                    mutacao(&popFutura[novosIndividuos], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
+                    mutacao(&popFutura[j+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
+                    mutacao(&popFutura[j], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
                 }
             }
 
@@ -538,17 +541,21 @@ int main(){
         tempoTotal += tempoGeracao;
         std::cout <<"Tempo de geracao = " << tempoGeracao << std::endl;
 
-        imprimePopulacao(popAtual, LABELS);
+        //imprimePopulacao(popAtual, LABELS);
         imprimeMelhor(popAtual, LABELS);
         iteracoes++;
-        std::cout << "seed8 = " << seeds[8] <<std::endl;
+        //std::cout << "seed8 = " << seeds[8] <<std::endl;
     }
 
     printf("\nPOPULACAO FINAL \n");
     imprimePopulacao(popAtual, LABELS);
     printf("*");
     imprimeMelhor(popAtual, LABELS);
-    printf("\n");
+    printf("\n\n");
+
+    std::cout << "Tempo total Evolucao = " << tempoTotalEvolucao << std::endl;
+    std::cout << "Tempo total Avaliacao = " << tempoTotalAvaliacao << std::endl;
+    std::cout << "Tempo total = " << tempoTotal << std::endl;
 
     return 0;
 }

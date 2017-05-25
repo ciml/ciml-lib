@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include <float.h>
 #include "arvore.h"
 
 ///Não está sendo utilizado no programa principal
@@ -29,11 +30,11 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
     int ultimo = 0;
     int soma = 1;
 
-    int aux[maxTam];
+    int aux[MAX_NOS];
     int sorteio, j, num, tipo;
 
     //usar 'num' o inves de j pra nao ter variavel sobrando...
-    for(j = 0; j < maxTam; j++){
+    for(j = 0; j < MAX_NOS; j++){
         aux[j] = 0;
     }
 
@@ -478,8 +479,9 @@ float executa(Arvore* arv, float dados[], int N){
                empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
                 break;
             case EXP:
-                empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
+                empilha2(&pilhaEx,expf(desempilha2(&pilhaEx)));
                 break;
+
             case CTE:;//This is an empty statement.
                 //int c; scanf("%d", c);
                 float valorF = unpackFloat(arv->informacao[j]);
@@ -493,6 +495,7 @@ float executa(Arvore* arv, float dados[], int N){
     }
 
     float erro = desempilha2(&pilhaEx)- dados[N-1];
+    erro = ( isinf( erro ) || isnan( erro ) ) ? /*FLT_MAX*/ INFINITY : erro;
     //printf("erro = %f\n", erro*erro);
     return erro*erro;
 }

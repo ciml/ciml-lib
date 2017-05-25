@@ -215,7 +215,7 @@
 1474405533 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\pilha.h
 	"constantes.h"
 
-1493179130 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\constantes.h
+1495685224 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\constantes.h
 
 1481659496 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\utilitarios.h
 	"math.h"
@@ -240,7 +240,7 @@
 1487249391 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\genetica.h
 	"arvore.h"
 
-1493426859 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\main.c
+1495685209 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\arvorelinear (vetor, associa numero de filhos)\main.c
 	<stdio.h>
 	<stdlib.h>
 	"genetica.h"

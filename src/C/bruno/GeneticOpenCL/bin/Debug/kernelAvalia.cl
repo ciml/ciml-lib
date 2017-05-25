@@ -192,9 +192,7 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
     int i, k = 0;
     float erro = 0;
 
-
     int local_id = get_local_id(0);
-    //int local_size = get_local_size(0);
     int group_id = get_group_id(0);
 
     PilhaEx pilhaEx;
@@ -242,8 +240,7 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
                     case EXP:
                         empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
                         break;
-                    case CTE:;//This is an empty statement.
-                        //int c; scanf("%d", c);
+                    case CTE:;
                         float valorF = unpackFloat(pop[group_id].informacao[j]);
                         empilha2(&pilhaEx, valorF);
                         break;
@@ -255,26 +252,17 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
             }
 
             float erroF = desempilha2(&pilhaEx)- dados[local_id+M*(N-1)];
-            //if(group_id == 0){
-            //    printf("%f\n", erroF * erroF);
-            //}
             erro = erro + (erroF * erroF);
-            
-            //printf("%f, %f\n", dados[k+(0*M)], dados[k+(1*M)]);
-            //printf("%f\n", erro);
+
     #ifdef NUM_POINTS_IS_NOT_DIVISIBLE_BY_LOCAL_SIZE
         }
     #endif
     }
 
-    //mudar nome dessas variaveis
     error[local_id] = erro;
     barrier(CLK_LOCAL_MEM_FENCE);
 
-
-
     ///redução erros por work group
-    //LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2
 
     for(int i = get_local_size(0)/2 ; i > 0; i/=2){
         barrier(CLK_LOCAL_MEM_FENCE);
@@ -291,7 +279,7 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
     }
         
     if(local_id == 0){
-        pop[group_id].aptidao = error[0];
+        pop[group_id].aptidao = ( isinf( error[0] ) || isnan( error[0] ) ) ? MAXFLOAT : error[0]; //error[0];
     }
 
 }
@@ -486,7 +474,6 @@ void geradorArvore(Arvore* arv, int maxTam, __global int* conjuntoOpTerm, int* s
             empilha(&pilha, ultimo);
         }
     }
-    //printf("\n");
 }
 
 
@@ -504,11 +491,9 @@ void shift(__global Arvore* arv, int tam, int indice){//indice a partir de onde 
             arv->informacao[i+tam] = arv->informacao[i];
         }
     }
-    //printf("*1 = %d\n", arv->numNos);
     arv->numNos += tam;
-    //printf("*2 = %d\n", arv->numNos);
-    
 }
+
 
 void mutacao(__global Arvore* arvore, __global int* conjuntoOpTerm, int* seed/*, int NUM_OPBIN, int NUM_OPUN, int N*/){
     int i;
@@ -532,11 +517,9 @@ void mutacao(__global Arvore* arvore, __global int* conjuntoOpTerm, int* seed/*,
 
 //TODO: colocar if para raiz?
 //if(indiceSub != 0 && indiceSub != arvore->numNos-1){
-   // printf("1 = %d\n", arvore->numNos);
         int tamShift = novaArvore.numNos - tamanhoSub;
         shift(arvore, tamShift, indiceSub+tamanhoSub);
 
-   // printf("2 = %d\n", arvore->numNos);
 
 
     //troca a informação
@@ -545,6 +528,7 @@ void mutacao(__global Arvore* arvore, __global int* conjuntoOpTerm, int* seed/*,
         arvore->informacao[i+indiceSub] = novaArvore.informacao[i];
     }
 }
+
 
 void  trocaSubArv(__global Arvore* arvMaior, __global Arvore* arvMenor,int ind1,int ind2,int tamanhoSubMenor, int tamanhoSubMaior){
     int i=0, aux;
@@ -567,7 +551,7 @@ void  trocaSubArv(__global Arvore* arvMaior, __global Arvore* arvMenor,int ind1,
 void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
     int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
-
+    int cont = 0;
     do{
         indiceSub1 = rand2(seed) % (arvore1->numNos);
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
@@ -577,7 +561,7 @@ void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
-
+        if(cont++ == 5) return;
     }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
 
@@ -597,6 +581,56 @@ void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
         trocaSubArv(arvore2, arvore1, indiceSub2, indiceSub1, tamanhoSub2, tamanhoSub1);
         shift(arvore2, tamShift2, indiceSub2+tamanhoSub2);
     }
+
+}
+
+void crossOverP(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
+
+    int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
+    //printf("start\n");
+    int cont = 0;
+    //printf("%d  || %d \n", arvore1->numNos, arvore2->numNos);
+    do{
+        int random = rand2(seed);
+        indiceSub1 = random % (arvore1->numNos);
+
+        tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
+        printf("%d - ", random);
+        random = rand2(seed);
+        printf("%d\n", random);
+        indiceSub2 = random % (arvore2->numNos);
+        tamanhoSub2 = calculaTamanhoSubArvore(arvore2, indiceSub2);
+
+
+        espacoLivre1 = MAX_NOS-(arvore1->numNos+1)+tamanhoSub1;
+        espacoLivre2 = MAX_NOS-(arvore2->numNos+1)+tamanhoSub2;
+
+        //printf("%d - %d || %d - %d\n\n", espacoLivre1, tamanhoSub2, espacoLivre2 , tamanhoSub1);
+
+    }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
+
+    printf("a\n");
+
+    int tamShift1 = tamanhoSub2 - tamanhoSub1;
+    //shift(arvore1, tamShift1, indiceSub1+tamanhoSub1);
+
+    int tamShift2 = tamanhoSub1 - tamanhoSub2;
+    printf("b\n");
+
+
+    if(tamanhoSub1 >= tamanhoSub2){
+        shift(arvore2, tamShift2, indiceSub2+tamanhoSub2);
+        trocaSubArv(arvore1, arvore2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2);
+        shift(arvore1, tamShift1, indiceSub1+tamanhoSub1);
+    } else {
+        shift(arvore1, tamShift1, indiceSub1+tamanhoSub1);
+        trocaSubArv(arvore2, arvore1, indiceSub2, indiceSub1, tamanhoSub2, tamanhoSub1);
+        shift(arvore2, tamShift2, indiceSub2+tamanhoSub2);
+    }
+    
+    
+    printf("c\n");
+
 
 }
 
@@ -622,33 +656,40 @@ __kernel void evolucao(__global Arvore* popA,
     int group_id = get_group_id(0);
     int seed = seeds[group_id];
 
+    printf("id = %d\n", group_id);
+    printf("seeds1 = %d\n", seed);
     int ind1 = torneio(popA, &seed);
     int ind2 = torneio(popA, &seed);
-    //printf("%d | %d\n", ind1, ind2);
-//
+    printf("seeds2 = %d\n", seed);
+    printf("ind1 = %d\n", ind1);
+    printf("ind2 = %d\n\n", ind2);
+
     popF[elite+2*group_id]  = popA[ind1];
     popF[elite+2*group_id+1]= popA[ind2];
 
     float cross = randomProb(&seed);
     float mut = randomProb(&seed);
+    //printf("%d\n", group_id);
 
-    //printf("CROSS = %f | MUT = %f\n", cross, mut);
-
-
-    
     if(cross<=PROB_CROSS){
-        //printf("CROSS\n");
-        crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id], &seed);
+      //  if(group_id == 248)
+       // printf("%d entrou\n",group_id);
+       // if(group_id != 248)
+            crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id], &seed);
+       // else
+        //    crossOverP(&popF[elite+2*group_id+1], &popF[elite+2*group_id], &seed);
+
+        //if(group_id == 248)
+       // printf("%d saiu \n",group_id);
     }
 
-    //barrier(CLK_LOCAL_MEM_FENCE);
 
-    if(mut <= PROB_MUT){   
-        //printf("MUTA\n");                                
+    if(mut <= PROB_MUT){                               
         mutacao(&popF[elite+2*group_id+1], conjuntoOpTerm, &seed);
-        //barrier(CLK_LOCAL_MEM_FENCE);
         mutacao(&popF[elite+2*group_id], conjuntoOpTerm, &seed);
     }
+    
+
 
     seeds[group_id] = seed;
 }

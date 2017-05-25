@@ -5,9 +5,13 @@
 void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     int i;
 
-    for(i = indice; i < num/2; i++){
-        criaCheia(&pop[i], MAX_DEPTH/3, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+    for(i = indice; i < num/3; i++){
+        criaCheia(&pop[i], MAX_DEPTH/4, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
     }
+    for(i = indice; i < 2*num/3; i++){
+        criaCheia(&pop[i], MAX_DEPTH/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+    }
+
     for( ; i < num; i++){
         criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
     }

@@ -279,7 +279,7 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
     }
         
     if(local_id == 0){
-        pop[group_id].aptidao = error[0];
+        pop[group_id].aptidao = ( isinf( error[0] ) || isnan( error[0] ) ) ? MAXFLOAT : error[0]; //error[0];
     }
 
 }

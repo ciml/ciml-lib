@@ -43,6 +43,8 @@ float opUnaria(int k, float valor1);
 
 void generate(Arvore* arv,int min, int max);
 
+int retornaTipo(Arvore* arv, int j);
+
 
 void criaArvTeste(Arvore* arvore1);//Cria uma árvore de forma conhecida para testes.
 void testaPrint(Arvore* arvore); //Testa as três funções de impressão

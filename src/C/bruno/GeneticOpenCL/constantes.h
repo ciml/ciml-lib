@@ -4,7 +4,7 @@
 #define TIPO    4
 
 #ifndef SEED
-#define SEED    10
+#define SEED    25
 #endif // SEED
 
 #define VAR     7
@@ -26,11 +26,11 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     32
-#define MAX_DEPTH   3
+#define MAX_NOS     1025
+#define MAX_DEPTH   8
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   20
+#define NUM_INDIV   500
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9
@@ -44,7 +44,7 @@
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    50
+#define NUM_GERACOES    100
 
 
 //tem como mudar a constantate antes

@@ -26,23 +26,26 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     128
-#define MAX_DEPTH   4
+#define MAX_NOS     125
+#define MAX_DEPTH   3
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   32
+#define NUM_INDIV   500
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
-#define PROB_MUT    0.3
+#define PROB_MUT    0.1
 #endif // PROB_MUT
 
 #define NUM_TORNEIO     2
-#define ELITISMO        0.05
-#define NUM_GERACOES    1000
+
+#define ELITISMO        0.05//0.002
+
+#define NUM_GERACOES    100
+
 
 
 //tem como mudar a constantate antes
