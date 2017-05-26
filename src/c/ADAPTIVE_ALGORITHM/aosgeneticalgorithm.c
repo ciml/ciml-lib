@@ -11,6 +11,9 @@
 #ifdef PPC
   #include "predictiveparametercontrol.h"
 #endif
+#ifdef NEH
+  #include "neh.h"
+#endif
 
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 {
@@ -223,8 +226,29 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 void initializeIndividuals()
 {
   int i, j, r, temp;
-  //Realiza o embaralhamento dos indivíduos
-  for (i = 0; i < popLenght; i++)
+  double proportionNEH = 0.0;
+  int pNEH = (int)(proportionNEH * popLenght);
+
+  #ifdef NEH
+    proportionNEH = 0.2; //Altera a proporção de indivíduos que serão iniciados com o procedimento
+    pNEH = (int)(proportionNEH * popLenght);
+
+    ind NEHindividual;
+    NEHindividual.jobsOrder = (int*)malloc(nJobs * sizeof(int));
+    executeNEH(NEHindividual);
+
+    for(i = 0; i < pNEH; i++)
+    {
+      for(j = 0; j < nJobs; j++)
+        individuals[i].jobsOrder[j] = NEHindividual.jobsOrder[j];
+      individuals[i].fitMakespan = NEHindividual.fitMakespan;
+    }
+
+    //libera memória
+    free(NEHindividual.jobsOrder);
+  #endif
+
+  for (i = pNEH; i < popLenght; i++)
   {
     // Gera o indivíduo
     for (j = 0; j < nJobs; j++)
@@ -391,17 +415,17 @@ void createGantt(int w)
                                     (*operation[i*nMachines + nMachines - 1]).elem.endTime;
   }
 
-  individuals[w].fitMakespan = fitnessMakespan(jobFinishTime);
+  individuals[w].fitMakespan = fitnessMakespan(nJobs, jobFinishTime);
 
   free(jobFinishTime);
 }// createGantt
 
 // Calcula o makespan dos indivíduos
-int fitnessMakespan(int jobFinishTime[nJobs])
+int fitnessMakespan(int numJobs, int jobFinishTime[numJobs])
 {
   int i, makespan, makespanId;
   makespanId = 0;
-  for(i = 1; i < nJobs; i++)
+  for(i = 1; i < numJobs; i++)
     if(jobFinishTime[makespanId] < jobFinishTime[i])
       makespanId = i;
   makespan = jobFinishTime[makespanId];

@@ -7,6 +7,6 @@ do
   for i in {1..5}
   do
 #    echo $i
-    /home/guilherme.ferreira/AP_AOS_MONO/3/aosjss /home/guilherme.ferreira/AP_AOS_MONO/3/$1 $i ${tpop[$j]} > saidascript
+    /home/guilherme.ferreira/AP_AOS_MONO/3/gajsp /home/guilherme.ferreira/AP_AOS_MONO/3/$1 $i ${tpop[$j]} > saidascript
   done
 done

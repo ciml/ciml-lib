@@ -70,7 +70,7 @@ extern double HV;               // variável para calcular o hypervolume
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[]);  //main_loop
 void initializeIndividuals();
 void createGantt(int w);
-int fitnessMakespan(int jobFinishTime[nJobs]);
+int fitnessMakespan(int numJobs, int jobFinishTime[numJobs]);
 int sortFitMakespan(const void *a, const void *b);
 void tournament(int *father1, int *father2);
 void initializeGeneration();
