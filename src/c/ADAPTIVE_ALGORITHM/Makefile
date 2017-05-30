@@ -1,18 +1,15 @@
 #Compilador, opcoes de compilacao.
 CC        = gcc
-#CFLAGS    = -g -Wall -DPPC #use para debug (Predictive Parameter Control)
+CFLAGS    = -g -Wall -DPPCR #use para debug (Predictive Parameter Control)
 #CFLAGS    = -g -Wall -DAP #use para debug (Adaptive Pursuit)
 #CFLAGS    = -g -Wall -DGA #use para debug (Genetic Algorithm)
 
 #CFLAGS    = -g -Wall -DGA -DNEH #use para debug (Genetic Algorithm w/ NEH)
 
-#CFLAGS   = -O3 -march=native -DPPC  #use para compilar com otimização (Predictive Parameter Control)
-#CFLAGS   = -O3 -march=native -DAP  #use para compilar com otimização (Adaptive Pursuit)
-#CFLAGS   = -O3 -march=native -DGA  #use para compilar com otimização (Genetic Algorithm)
-
+#CFLAGS   = -O3 -march=native -DPPCR -DNEH #use para compilar com otimização (Predictive Parameter Control w/ NEH)
 #CFLAGS   = -O3 -march=native -DPPC -DNEH #use para compilar com otimização (Predictive Parameter Control w/ NEH)
 #CFLAGS   = -O3 -march=native -DAP -DNEH #use para compilar com otimização (Adaptive Pursuit w/ NEH)
-CFLAGS   = -O3 -march=native -DGA -DNEH #use para compilar com otimização (Genetic Algorithm w/ NEH)
+#CFLAGS   = -O3 -march=native -DGA -DNEH #use para compilar com otimização (Genetic Algorithm w/ NEH)
 
 LDFLAGS   = -lm
 

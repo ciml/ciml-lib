@@ -11,6 +11,9 @@
 #ifdef PPC
   #include "predictiveparametercontrol.h"
 #endif
+#ifdef PPCR
+  #include "predictiveparametercontrol.h"
+#endif
 #ifdef NEH
   #include "neh.h"
 #endif
@@ -21,6 +24,21 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
   double x; //Número para o sorteio
 
   #ifdef PPC
+    for(i = 0; i < 3; i++)
+    {
+      crossRateControl[i].success = malloc(numGeneration * sizeof(double));
+      mut1RateControl[i].success = malloc(numGeneration * sizeof(double));
+      mut2RateControl[i].success = malloc(numGeneration * sizeof(double));
+      crossOperatorControl[i].success = malloc(numGeneration * sizeof(double));
+    }
+    for(i = 0; i < 2; i++)
+    {
+      mut1OperatorControl[i].success = malloc(numGeneration * sizeof(double));
+      mut2OperatorControl[i].success = malloc(numGeneration * sizeof(double));
+    }
+  #endif
+
+  #ifdef PPCR
     for(i = 0; i < 3; i++)
     {
       crossRateControl[i].success = malloc(numGeneration * sizeof(double));
@@ -56,6 +74,15 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
     PPCInitializeProbabilities(3, mut2RateControl);
   #endif
 
+  #ifdef PPCR
+    PPCInitializeProbabilities(3, crossOperatorControl);
+    PPCInitializeProbabilities(2, mut1OperatorControl);
+    PPCInitializeProbabilities(2, mut2OperatorControl);
+    PPCInitializeProbabilities(3, crossRateControl);
+    PPCInitializeProbabilities(3, mut1RateControl);
+    PPCInitializeProbabilities(3, mut2RateControl);
+  #endif
+
   // Laço que calcula o fitness do pai para as duas funções objetivo
   for(i = 0; i < popLenght; i++)
     createGantt(i);
@@ -76,6 +103,16 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       initializeCounters(3, mut2RateControl);
     #endif
 
+    #ifdef PPCR
+      //Inicializa os contadores de ocorrência e successo
+      initializeCounters(3, crossOperatorControl);
+      initializeCounters(2, mut1OperatorControl);
+      initializeCounters(2, mut2OperatorControl);
+      initializeCounters(3, crossRateControl);
+      initializeCounters(3, crossRateControl);
+      initializeCounters(3, mut2RateControl);
+    #endif
+
     while(countInd < (2 * popLenght))
     {
       // Seleção dos pais
@@ -86,24 +123,48 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         probCrossover = crossoverRateSelection();
       #endif
 
+      #ifdef PPCR
+        if(probCrossover == 0.7)
+          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.7;
+        if(probCrossover == 0.8)
+          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.7;
+        if(probCrossover == 0.9)
+          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.7;
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probCrossover)
       {
         #ifdef GA
           PMXcrossover(countInd, father1, father2);
         #else
-          if(probCrossover == 0.7)
-          {
-            crossRateControl[0].index[1]++;
-          }
-          else if(probCrossover == 0.8)
-          {
-            crossRateControl[1].index[1]++;
-          }
-          else if(probCrossover == 0.9)
-          {
-            crossRateControl[2].index[1]++;
-          }
+          #ifdef PPCR
+            if(probCrossover < 0.7667)
+            {
+              crossRateControl[0].index[1]++;
+            }
+            else if(probCrossover < 0.8334)
+            {
+              crossRateControl[1].index[1]++;
+            }
+            else if(probCrossover < 0.9)
+            {
+              crossRateControl[2].index[1]++;
+            }
+          #else
+            if(probCrossover == 0.7)
+            {
+              crossRateControl[0].index[1]++;
+            }
+            else if(probCrossover == 0.8)
+            {
+              crossRateControl[1].index[1]++;
+            }
+            else if(probCrossover == 0.9)
+            {
+              crossRateControl[2].index[1]++;
+            }
+          #endif
           crossoverOperatorSelection(countInd, father1, father2);
         #endif
       }else
@@ -122,18 +183,36 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         probMutation = mutaRateSelection(3, mut1RateControl);
       #endif
 
+      #ifdef PPCR
+        if(probMutation == 0.3)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.3;
+        if(probMutation == 0.4)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.3;
+        if(probMutation == 0.5)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.3;
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probMutation)
       {
         #ifdef GA
           shiftMutation(countInd);
         #else
-          if(probMutation == 0.3)
-            mut1RateControl[0].index[1]++;
-          if(probMutation == 0.4)
-            mut1RateControl[1].index[1]++;
-          if(probMutation == 0.5)
-            mut1RateControl[2].index[1]++;
+          #ifdef PPCR
+            if(probMutation < 0.3667)
+              mut1RateControl[0].index[1]++;
+            if(probMutation < 0.4334)
+              mut1RateControl[1].index[1]++;
+            if(probMutation < 0.5)
+              mut1RateControl[2].index[1]++;
+          #else
+            if(probMutation == 0.3)
+              mut1RateControl[0].index[1]++;
+            if(probMutation == 0.4)
+              mut1RateControl[1].index[1]++;
+            if(probMutation == 0.5)
+              mut1RateControl[2].index[1]++;
+          #endif
           mutaOperatorSelection(countInd, 2, mut1OperatorControl);
         #endif
       }
@@ -143,18 +222,36 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         probMutation = mutaRateSelection(3, mut2RateControl);
       #endif
 
+      #ifdef PPCR
+        if(probMutation == 0.3)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.3;
+        if(probMutation == 0.4)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.3;
+        if(probMutation == 0.5)
+          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.3;
+      #endif
+
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probMutation)
       {
         #ifdef GA
           shiftMutation(countInd + 1);
         #else
-          if(probMutation == 0.3)
-            mut2RateControl[0].index[1]++;
-          if(probMutation == 0.4)
-            mut2RateControl[1].index[1]++;
-          if(probMutation == 0.5)
-            mut2RateControl[2].index[1]++;
+          #ifdef PPCR
+            if(probMutation < 0.3667)
+              mut2RateControl[0].index[1]++;
+            if(probMutation < 0.4334)
+              mut2RateControl[1].index[1]++;
+            if(probMutation < 0.5)
+              mut2RateControl[2].index[1]++;
+          #else
+            if(probMutation == 0.3)
+              mut2RateControl[0].index[1]++;
+            if(probMutation == 0.4)
+              mut2RateControl[1].index[1]++;
+            if(probMutation == 0.5)
+              mut2RateControl[2].index[1]++;
+          #endif
           mutaOperatorSelection(countInd + 1, 2, mut2OperatorControl);
         #endif
       }
@@ -179,13 +276,31 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         mutationSuccessEvaluation(countInd, father1, father2, 2, mut2OperatorControl);
         crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
         mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 3, mut2RateControl);
+      #endif
+
+      #ifdef PPCR
+        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 2, mut2OperatorControl);
+        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
         mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
+        mutationSuccessEvaluation(countInd, father1, father2, 3, mut2RateControl);
       #endif
 
       countInd = countInd + 2;
     } // while(countInd < (2 * popLenght))
 
     #ifdef PPC
+      UpdateSuccessIndicator(countGen, 3, crossOperatorControl);
+      UpdateSuccessIndicator(countGen, 2, mut1OperatorControl);
+      UpdateSuccessIndicator(countGen, 2, mut2OperatorControl);
+      UpdateSuccessIndicator(countGen, 3, crossRateControl);
+      UpdateSuccessIndicator(countGen, 3, mut1RateControl);
+      UpdateSuccessIndicator(countGen, 3, mut2RateControl);
+    #endif
+
+    #ifdef PPCR
       UpdateSuccessIndicator(countGen, 3, crossOperatorControl);
       UpdateSuccessIndicator(countGen, 2, mut1OperatorControl);
       UpdateSuccessIndicator(countGen, 2, mut2OperatorControl);
@@ -208,6 +323,21 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
   } // while(countGen < numGeneration)
 
   #ifdef PPC
+    for(i = 0; i < 3; i++)
+    {
+      free(crossRateControl[i].success);
+      free(mut1RateControl[i].success);
+      free(mut2RateControl[i].success);
+      free(crossOperatorControl[i].success);
+    }
+    for(i = 0; i < 2; i++)
+    {
+      free(mut1OperatorControl[i].success);
+      free(mut2OperatorControl[i].success);
+    }
+  #endif
+
+  #ifdef PPCR
     for(i = 0; i < 3; i++)
     {
       free(crossRateControl[i].success);

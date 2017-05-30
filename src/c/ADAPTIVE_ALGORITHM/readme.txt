@@ -2,7 +2,8 @@ O código possui diferentes versões de Algoritmo Genético, verificar o Makefil
 
 Definir: 
 -GA para algoritmo genético padrão
--PPC para algoritmo genético adaptativo utilizando Predictive Parameter Control
+-PPC para algoritmo genético adaptativo utilizando Predictive Parameter Control (discreto)
+-PPCR para algoritmo genético adaptativo utilizando Predictive Parameter Control (contínuo)
 -AP para algoritmo genético adaptativo utilizando Adaptive Pursuit
 -NEH para inicializar parte da população com a heurística construtiva NEH(Nawaz, Enscore, Ham)
 
