@@ -1,5 +1,5 @@
-#ifndef AOSGENETICALGORITHM_H
-#define AOSGENETICALGORITHM_H
+#ifndef GENETICALGORITHM_H
+#define GENETICALGORITHM_H
 
 extern int popLenght;  // Número de indivíduos do AG interno
 extern int numGeneration;
@@ -60,6 +60,7 @@ extern node **operation;			 // Armazena info de inicio e fim dos jobs
 
 extern int nJobs;                // Número de Jobs
 extern int nMachines;            // Número de Máquinas
+extern int nGenes;              // Número de genes que o filho terá, depeendendo da representação adotada
 extern int flowMakespan;         // Auxiliar que armazena o máximo de makespan
 extern int ***jobMachine;        // Relaciona o tempo dos jobs nas máquinas
 extern int *qMachines;           // Vetor que armazena o número de máquinas semelhantes em cada estágio
@@ -69,7 +70,8 @@ extern double HV;               // variável para calcular o hypervolume
 
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[]);  //main_loop
 void initializeIndividuals();
-void createGantt(int w);
+void fitnessEvaluationOBR(int w);
+void fitnessEvaluationJBR(int w);
 int fitnessMakespan(int numJobs, int jobFinishTime[numJobs]);
 int sortFitMakespan(const void *a, const void *b);
 void tournament(int *father1, int *father2);
@@ -90,4 +92,4 @@ void mutaOperatorSelection(int countInd, int size, ProbabilitiesControl probCont
 double crossoverRateSelection();
 double mutaRateSelection(int size, ProbabilitiesControl probControl[size]);
 
-#endif //AOSGENETICALGORITHM_H
+#endif //GENETICALGORITHM_H

@@ -1,6 +1,10 @@
 O código possui diferentes versões de Algoritmo Genético, verificar o Makefile antes de compilar.
 
-Definir: 
+O padrão da representação é Job Based Representation
+-OBR para Operation Based Representation
+
+
+Definir:
 -GA para algoritmo genético padrão
 -PPC para algoritmo genético adaptativo utilizando Predictive Parameter Control (discreto)
 -PPCR para algoritmo genético adaptativo utilizando Predictive Parameter Control (contínuo)
@@ -35,4 +39,3 @@ Para executar o AG adaptativo "default" utilize:
  ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
 Para selecionar os parâmetros do AG adaptativo utilize:
  ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
-

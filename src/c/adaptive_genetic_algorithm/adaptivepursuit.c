@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 #include "adaptivepursuit.h"
 #include "crossover.h"
 #include "mutation.h"

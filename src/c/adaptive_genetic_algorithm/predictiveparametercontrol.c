@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 #include "predictiveparametercontrol.h"
 #include "gausselimination.h"
 #include "crossover.h"

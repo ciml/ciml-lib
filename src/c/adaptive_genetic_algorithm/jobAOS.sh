@@ -4,4 +4,4 @@
 #$ -cwd
 #$ -j y
 #$ -S /bin/bash
-/home/guilherme.ferreira/AP_AOS_MONO/3/script.sh $1
+/home/guilherme.ferreira/Adaptive_Pursuit/scriptAOS.sh $1

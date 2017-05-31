@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 #include "crossover.h"
 
 void opCrossover(int countInd, int father1, int father2)
 {
   int i, j, id, id2, gver;
-  id = rand() % nJobs;
+  id = rand() % nGenes;
   id2 = id;
   //Copia metade dos genes do primeiro pai
   for(i = 0; i < id; i++)
@@ -14,17 +14,17 @@ void opCrossover(int countInd, int father1, int father2)
     individuals[countInd].jobsOrder[i] = individuals[father1].jobsOrder[i];
     individuals[countInd + 1].jobsOrder[i] = individuals[father2].jobsOrder[i];
   }
-  
+
   //Primeiro filho
-  /*Copia metade dos genes do segundo pai (na ordem que se apresenta 
+  /*Copia metade dos genes do segundo pai (na ordem que se apresenta
                                     sem repetir os genes que o filho já tem)*/
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     //Verifica se o gene já existe
     gver = 0;
     for (j = 0; j < id; j++)
     {
-      if (individuals[father2].jobsOrder[i] == 
+      if (individuals[father2].jobsOrder[i] ==
                                             individuals[countInd].jobsOrder[j])
       {
         gver++;
@@ -37,15 +37,15 @@ void opCrossover(int countInd, int father1, int father2)
     }
   }
   //Segundo filho
-  /*Copia metade dos genes do segundo pai (na ordem que se apresenta 
+  /*Copia metade dos genes do segundo pai (na ordem que se apresenta
                                     sem repetir os genes que o filho já tem)*/
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     //Verifica se o gene já existe
     gver = 0;
     for (j = 0; j < id2; j++)
     {
-      if (individuals[father1].jobsOrder[i] == 
+      if (individuals[father1].jobsOrder[i] ==
                                         individuals[countInd + 1].jobsOrder[j])
       {
         gver++;
@@ -53,47 +53,47 @@ void opCrossover(int countInd, int father1, int father2)
     }
     if (gver == 0)
     {
-      individuals[countInd + 1].jobsOrder[id2] = 
+      individuals[countInd + 1].jobsOrder[id2] =
                                               individuals[father1].jobsOrder[i];
       id2++;
     }
   }
 } //opCrossover
 
-/*Realiza a cópia um pedaço do Pai1 e 
+/*Realiza a cópia um pedaço do Pai1 e
                                 completa com os genes do Pai2 mantendo a ordem*/
 void LOXcrossover(int countInd, int father1, int father2)
 {
   int i, j, firstCromossome, interval, id = 0, gver;
-  
+
   //Seleciona o intervalo que ocorrerá crossover
-  firstCromossome = rand() % nJobs; //Estabelece onde ocorrerá o crossover
+  firstCromossome = rand() % nGenes; //Estabelece onde ocorrerá o crossover
 
    //Estabelece o intervalo de genes que realizarão crossover
-  if(firstCromossome == (nJobs - 1))
+  if(firstCromossome == (nGenes - 1))
     interval = 0;
   else
-    interval = rand() % (nJobs - firstCromossome);
+    interval = rand() % (nGenes - firstCromossome);
 
   // Copia os genes do intervalo do primeiro pai para a filho
   for(i = 0; i <= interval; i++)
   {
-    if((firstCromossome + i) < nJobs)
+    if((firstCromossome + i) < nGenes)
     {
-      individuals[countInd].jobsOrder[firstCromossome + i] = 
+      individuals[countInd].jobsOrder[firstCromossome + i] =
                             individuals[father1].jobsOrder[firstCromossome + i];
-      individuals[countInd + 1].jobsOrder[firstCromossome + i] = 
+      individuals[countInd + 1].jobsOrder[firstCromossome + i] =
                             individuals[father2].jobsOrder[firstCromossome + i];
     }
   }
-  
+
   //Finaliza o primeiro filho
   //Preenche com a segunda metade do pai
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     //Verifica se o gene já existe
     gver = 0;
-    for(j = 0; j < nJobs; j++)
+    for(j = 0; j < nGenes; j++)
     {
       if(individuals[father2].jobsOrder[i] == individuals[countInd].jobsOrder[j])
       {
@@ -109,17 +109,17 @@ void LOXcrossover(int countInd, int father1, int father2)
       individuals[countInd].jobsOrder[id] = individuals[father2].jobsOrder[i];
     }
   }
-  
+
     //Finaliza o segundo filho
   //Preenche com a segunda metade do pai
   id = 0;
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     //Verifica se o gene já existe
     gver = 0;
-    for(j = 0; j < nJobs; j++)
+    for(j = 0; j < nGenes; j++)
     {
-      if(individuals[father1].jobsOrder[i] == 
+      if(individuals[father1].jobsOrder[i] ==
                                         individuals[countInd + 1].jobsOrder[j])
       {
         gver++;
@@ -131,7 +131,7 @@ void LOXcrossover(int countInd, int father1, int father2)
       {
         id++;
       }
-      individuals[countInd + 1].jobsOrder[id] = 
+      individuals[countInd + 1].jobsOrder[id] =
                                               individuals[father1].jobsOrder[i];
     }
   }
@@ -143,26 +143,26 @@ void PMXcrossover(int countInd, int father1, int father2)
   int i, j, firstCromossome, interval, vaux1;
 
   //Seleciona o intervalo que ocorrerá crossover
-  firstCromossome = rand() % nJobs; //Estabelece onde ocorrerá o crossover
+  firstCromossome = rand() % nGenes; //Estabelece onde ocorrerá o crossover
 
    //Estabelece o intervalo de genes que realizarão crossover
-  if(firstCromossome == (nJobs - 1))
+  if(firstCromossome == (nGenes - 1))
     interval = 0;
   else
-    interval = rand() % (nJobs - firstCromossome);
+    interval = rand() % (nGenes - firstCromossome);
 
   // Copia os genes do intervalo do father1 para a filho
   for(i = 0; i <= interval; i++)
   {
-    if((firstCromossome + i) < nJobs)
+    if((firstCromossome + i) < nGenes)
     {
-      individuals[countInd].jobsOrder[firstCromossome + i] = 
+      individuals[countInd].jobsOrder[firstCromossome + i] =
                             individuals[father1].jobsOrder[firstCromossome + i];
-      individuals[countInd + 1].jobsOrder[firstCromossome + i] = 
+      individuals[countInd + 1].jobsOrder[firstCromossome + i] =
                             individuals[father2].jobsOrder[firstCromossome + i];
     }
   }
-  
+
   //Finaliza primeiro filho
   for(i = 0; i <= interval; i++)
   {
@@ -170,7 +170,7 @@ void PMXcrossover(int countInd, int father1, int father2)
     //Verifica se o gene já foi copiado para o filho
     for(j = 0; j <= interval; j++)
     {
-      if(individuals[father2].jobsOrder[firstCromossome + i] == 
+      if(individuals[father2].jobsOrder[firstCromossome + i] ==
                             individuals[father1].jobsOrder[firstCromossome + j])
       {
         vaux1 = 1;
@@ -181,14 +181,14 @@ void PMXcrossover(int countInd, int father1, int father2)
     // Localiza uma posição para receber o gene diferente do father2
     if(vaux1 == 0)
     {
-      for(j = 0; j < nJobs; j++)
+      for(j = 0; j < nGenes; j++)
       {
-        if(individuals[father1].jobsOrder[firstCromossome + i] == 
+        if(individuals[father1].jobsOrder[firstCromossome + i] ==
                                               individuals[father2].jobsOrder[j])
         {
           if(individuals[countInd].jobsOrder[j] == (-1))
           {
-            individuals[countInd].jobsOrder[j] = 
+            individuals[countInd].jobsOrder[j] =
                             individuals[father2].jobsOrder[firstCromossome + i];
           } else
           {
@@ -200,14 +200,14 @@ void PMXcrossover(int countInd, int father1, int father2)
     }
   }
   // Copia o restante dos genes do father2
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     if(individuals[countInd].jobsOrder[i] == (-1))
     {
       individuals[countInd].jobsOrder[i] = individuals[father2].jobsOrder[i];
     }
   }
-  
+
   //Finaliza segundo filho
   for(i = 0; i <= interval; i++)
   {
@@ -215,7 +215,7 @@ void PMXcrossover(int countInd, int father1, int father2)
     //Verifica se o gene já foi copiado para o filho
     for(j = 0; j <= interval; j++)
     {
-      if(individuals[father1].jobsOrder[firstCromossome + i] == 
+      if(individuals[father1].jobsOrder[firstCromossome + i] ==
                             individuals[father2].jobsOrder[firstCromossome + j])
       {
         vaux1 = 1;
@@ -226,14 +226,14 @@ void PMXcrossover(int countInd, int father1, int father2)
     // Localiza uma posição para receber o gene diferente do father2
     if(vaux1 == 0)
     {
-      for(j = 0; j < nJobs; j++)
+      for(j = 0; j < nGenes; j++)
       {
-        if(individuals[father2].jobsOrder[firstCromossome + i] == 
+        if(individuals[father2].jobsOrder[firstCromossome + i] ==
                                             individuals[father1].jobsOrder[j])
         {
           if(individuals[countInd + 1].jobsOrder[j] == (-1))
           {
-            individuals[countInd + 1].jobsOrder[j] = 
+            individuals[countInd + 1].jobsOrder[j] =
                           individuals[father1].jobsOrder[firstCromossome + i];
           } else
           {
@@ -245,27 +245,27 @@ void PMXcrossover(int countInd, int father1, int father2)
     }
   }
   // Copia o restante dos genes do father2
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     if(individuals[countInd + 1].jobsOrder[i] == (-1))
     {
-      individuals[countInd + 1].jobsOrder[i] = 
+      individuals[countInd + 1].jobsOrder[i] =
                                               individuals[father1].jobsOrder[i];
     }
   }
 } // PMXcrossover
 
-void permutation(int firstCromossome, int i, int countInd, 
+void permutation(int firstCromossome, int i, int countInd,
                                                 int father1, int father2, int j)
 {
   int k;
-  for(k = 0; k < nJobs; k++)
+  for(k = 0; k < nGenes; k++)
   {
     if(individuals[father1].jobsOrder[j] == individuals[father2].jobsOrder[k])
     {
       if(individuals[countInd].jobsOrder[k] == (-1))
       {
-        individuals[countInd].jobsOrder[k] = 
+        individuals[countInd].jobsOrder[k] =
                             individuals[father2].jobsOrder[firstCromossome + i];
       }
       else

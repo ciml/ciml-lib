@@ -4,7 +4,7 @@
 #include <string.h>
 #include "crossover.h"
 #include "mutation.h"
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 #ifdef AP
   #include "adaptivepursuit.h"
 #endif
@@ -84,8 +84,13 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
   #endif
 
   // Laço que calcula o fitness do pai para as duas funções objetivo
-  for(i = 0; i < popLenght; i++)
-    createGantt(i);
+  #ifdef OBR
+    for(i = 0; i < popLenght; i++)
+      fitnessEvaluationOBR(i);
+  #else
+    for(i = 0; i < popLenght; i++)
+      fitnessEvaluationJBR(i);
+  #endif
 
   //Laço principal do AG
   while(countGen < numGeneration)
@@ -169,7 +174,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         #endif
       }else
       {
-        for(i = 0; i < nJobs; i++)
+        for(i = 0; i < nGenes; i++)
         {
           individuals[countInd].jobsOrder[i] =
                                               individuals[father1].jobsOrder[i];
@@ -257,8 +262,13 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       }
 
       //Avalia os filhos geradas
-      createGantt(countInd);
-      createGantt(countInd + 1);
+      #ifdef OBR
+        fitnessEvaluationOBR(countInd);
+        fitnessEvaluationOBR(countInd + 1);
+      #else
+        fitnessEvaluationJBR(countInd);
+        fitnessEvaluationJBR(countInd + 1);
+      #endif
 
       //Adaptação da probabildiade das taxas de crossover
       #ifdef AP
@@ -364,12 +374,12 @@ void initializeIndividuals()
     pNEH = (int)(proportionNEH * popLenght);
 
     ind NEHindividual;
-    NEHindividual.jobsOrder = (int*)malloc(nJobs * sizeof(int));
+    NEHindividual.jobsOrder = (int*)malloc(nGenes * sizeof(int));
     executeNEH(NEHindividual);
 
     for(i = 0; i < pNEH; i++)
     {
-      for(j = 0; j < nJobs; j++)
+      for(j = 0; j < nGenes; j++)
         individuals[i].jobsOrder[j] = NEHindividual.jobsOrder[j];
       individuals[i].fitMakespan = NEHindividual.fitMakespan;
     }
@@ -381,20 +391,176 @@ void initializeIndividuals()
   for (i = pNEH; i < popLenght; i++)
   {
     // Gera o indivíduo
-    for (j = 0; j < nJobs; j++)
+    for (j = 0; j < nGenes; j++)
       individuals[i].jobsOrder[j] = j;
     // Realiza o embaralhamento
-    for (j = 0; j < nJobs; j++)
+    for (j = 0; j < nGenes; j++)
     {
-      r = rand() % nJobs;
+      r = rand() % nGenes;
       temp = individuals[i].jobsOrder[j];
       individuals[i].jobsOrder[j] = individuals[i].jobsOrder[r];
       individuals[i].jobsOrder[r] = temp;
     }
   }
-} //Função initializeIndividuals
+} //initializeIndividuals
 
-void createGantt(int w)
+void fitnessEvaluationOBR(int w)
+{
+  int i, j, k, aux[3], flag[3], timeGap, bestAllocation;
+  int *jobFinishTime;
+  int *machineAux = (int*)calloc(nJobs, sizeof(int));
+
+  startList();
+
+  jobFinishTime = (int*)calloc(nJobs, sizeof(int));
+
+  for(i = 0; i < nGenes; i++)
+  {
+    j = (int)floor((double)individuals[w].jobsOrder[i]/(double)nJobs);
+
+    for(k = 0; k < qMachines[jobMachine[j][machineAux[j]][0]]; k++)
+    {
+      if(Gantt[jobMachine[j][machineAux[j]][0]][k]->prox == NULL)
+      {
+        aux[k] = jobFinishTime[j];
+        flag[k] = 1;
+      }else
+      {
+        tmp[k][0] = Gantt[jobMachine[j][machineAux[j]][0]][k];
+        tmp[k][1] = Gantt[jobMachine[j][machineAux[j]][0]][k]->prox;
+        if((*tmp[k][1]).elem.startTime >
+                    (jobFinishTime[j] + jobMachine[j][machineAux[j]][1]))
+        {
+          aux[k] = jobFinishTime[j];
+          flag[k] = 2;
+        }else
+        {
+          while(1)
+          {
+            tmp[k][0] = tmp[k][1];
+            tmp[k][1] = tmp[k][1]->prox;
+            if(tmp[k][1] == NULL)
+            {
+              if(jobFinishTime[j] > (*tmp[k][0]).elem.endTime)
+              {
+                aux[k] = jobFinishTime[j];
+                flag[k] = 3;
+              }
+              else
+              {
+                aux[k] = (*tmp[k][0]).elem.endTime;
+                flag[k] = 4;
+              }
+              break;
+            }
+            else
+            {
+              if(jobFinishTime[j] > (*tmp[k][0]).elem.endTime)
+              {
+                timeGap = (*tmp[k][1]).elem.startTime - jobFinishTime[j];
+                if(timeGap > jobMachine[j][machineAux[j]][1])
+                {
+                  aux[k] = jobFinishTime[j];
+                  flag[k] = 5;
+                  break;
+                }
+              }
+              else
+              {
+                timeGap = (*tmp[k][1]).elem.startTime - (*tmp[k][0]).elem.endTime;
+                if(timeGap > jobMachine[j][machineAux[j]][1])
+                {
+                  aux[k] = (*tmp[k][0]).elem.endTime;
+                  flag[k] = 6;
+                  break;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    bestAllocation = 0;
+    for(k = 0; k < qMachines[jobMachine[j][machineAux[j]][0]]; k++)
+    {
+      if(aux[k] < aux[bestAllocation])
+        bestAllocation = k;
+    }
+
+    //aloca a tarefa
+    switch(flag[bestAllocation])
+    {
+      case 1:
+        (*operation[i]).elem.startTime = jobFinishTime[j];
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                              + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = NULL;
+        Gantt[jobMachine[j][machineAux[j]][0]][bestAllocation]->prox =
+                                                    operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+      case 2:
+        (*operation[i]).elem.startTime = jobFinishTime[j];
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                            + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = tmp[bestAllocation][1];
+        Gantt[jobMachine[j][machineAux[j]][0]][bestAllocation]->prox =
+                                                  operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+      case 3:
+        (*operation[i]).elem.startTime = jobFinishTime[j];
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                               + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = NULL;
+        tmp[bestAllocation][0]->prox = operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+      case 4:
+        (*operation[i]).elem.startTime = (*tmp[bestAllocation][0]).elem.endTime;
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                            + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = NULL;
+        tmp[bestAllocation][0]->prox = operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+      case 5:
+        (*operation[i]).elem.startTime = jobFinishTime[j];
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                          + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = tmp[bestAllocation][1];
+        tmp[bestAllocation][0]->prox = operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+      case 6:
+        (*operation[i]).elem.startTime = (*tmp[bestAllocation][0]).elem.endTime;
+        (*operation[i]).elem.endTime = (*operation[i]).elem.startTime
+                          + jobMachine[j][machineAux[j]][1];
+        (*operation[i]).elem.jobId = j + 1;
+        operation[i]->prox = tmp[bestAllocation][1];
+        tmp[bestAllocation][0]->prox = operation[i];
+        jobFinishTime[j] = (*operation[i]).elem.endTime;
+      break;
+    }
+    // Procura o término das operações
+    jobFinishTime[j] = (*operation[i]).elem.endTime;
+
+    machineAux[j]++;
+  }
+
+  individuals[w].fitMakespan = fitnessMakespan(nJobs, jobFinishTime);
+
+  free(jobFinishTime);
+  free(machineAux);
+}//createGantt
+
+void fitnessEvaluationJBR(int w)
 {
   int i, j, k, aux[3], flag[3], timeGap, timeAux, bestAllocation;
   int *jobFinishTime;
@@ -404,7 +570,7 @@ void createGantt(int w)
 
   jobFinishTime = (int*)calloc(nJobs, sizeof(int));
 
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
   {
     timeAux = 0;
     for(j = 0; j < nMachines; j++)
@@ -548,7 +714,7 @@ void createGantt(int w)
   individuals[w].fitMakespan = fitnessMakespan(nJobs, jobFinishTime);
 
   free(jobFinishTime);
-}// createGantt
+}//fitnessEvaluationJBR
 
 // Calcula o makespan dos indivíduos
 int fitnessMakespan(int numJobs, int jobFinishTime[numJobs])
@@ -698,7 +864,7 @@ void initializeGeneration()
 {
   int i, j;
   for(i = popLenght; i < (2*popLenght); i++)
-    for(j = 0; j < nJobs; j++)
+    for(j = 0; j < nGenes; j++)
       individuals[i].jobsOrder[j] = (-1);
 } //initializeGeneration
 
@@ -848,12 +1014,6 @@ void printBestIndividual(char *fileName, char *nRepeat, int countGen)
 
   fprintf(output, "%d \t %d\n", countGen, individuals[0].fitMakespan);
 
-  // for (i = 0; i < popLenght; i++)
-  // {
-  //   fprintf(output, "%d \t", individuals[i].fitMakespan);
-  // }
-  // fprintf(output, "\n");
-
   fclose(output);
   free(outputName);
 
@@ -864,14 +1024,14 @@ void selection()
   int i, j;
   for(i = popLenght; i < 2*popLenght; i++)
   {
-    for(j = 0; j < nJobs; j++)
+    for(j = 0; j < nGenes; j++)
       selectedIndividuals[i - popLenght].jobsOrder[j] = individuals[i].jobsOrder[j];
     selectedIndividuals[i - popLenght].fitMakespan = individuals[i].fitMakespan;
   }
   qsort(selectedIndividuals, popLenght, sizeof(ind), sortFitMakespan);
   for(i = 1; i < popLenght; i++)
   {
-    for(j = 0; j < nJobs; j++)
+    for(j = 0; j < nGenes; j++)
       individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
     individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
   }

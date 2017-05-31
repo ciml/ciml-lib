@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 #include "mutation.h"
 
 
@@ -8,10 +8,10 @@
 void shiftMutation(int countInd)
 {
   int gene, place, vaux1, i;
-  gene = rand() % nJobs;
-  place = rand() % nJobs;
+  gene = rand() % nGenes;
+  place = rand() % nGenes;
   while(gene == place)
-    place = rand() % nJobs;
+    place = rand() % nGenes;
   if(gene < place)
   {
     vaux1 = individuals[countInd].jobsOrder[gene];
@@ -36,10 +36,10 @@ void shiftMutation(int countInd)
 void interchangeMutation(int countInd)
 {
   int gene, place, temp;
-  gene = rand() % nJobs;
-  place = rand() % nJobs;
+  gene = rand() % nGenes;
+  place = rand() % nGenes;
   temp = individuals[countInd].jobsOrder[gene];
-  individuals[countInd].jobsOrder[gene] = 
+  individuals[countInd].jobsOrder[gene] =
                                         individuals[countInd].jobsOrder[place];
   individuals[countInd].jobsOrder[place] = temp;
 } // interchangeMutation

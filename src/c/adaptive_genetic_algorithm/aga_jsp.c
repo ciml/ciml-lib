@@ -3,7 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
-#include "aosgeneticalgorithm.h"
+#include "geneticalgorithm.h"
 
 int popLenght;
 int numGeneration; //Número de Gerações do AG interno
@@ -13,6 +13,7 @@ double probMutation;     // Probabilidade de realizar Mutação
 
 int nJobs = 0;                // Número de Jobs
 int nMachines = 0;            // Número de Máquinas
+int nGenes = 0;
 int flowMakespan = 0;         // Auxiliar que armazena o máximo de makespan
 int ***jobMachine;            // Relaciona o tempo dos jobs nas máquinas
 int *qMachines;               /* Aramazena a quantidade de máquinas
@@ -90,14 +91,21 @@ int main(int argc, char *argv[])
     }
   #endif
 
+  #ifdef OBR //Operation based Representation
+  #undef NEH //A heurística NEH funciona apenas para JBR
+    nGenes = nJobs * nMachines;
+  #else
+    nGenes = nJobs; //Job based Representation
+  #endif
+
   //Aloca a memória
   individuals = (ind*)malloc(2 * popLenght * sizeof(ind));
   for(i = 0; i < (2 * popLenght); i++)
-    individuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
+    individuals[i].jobsOrder = (int*)malloc(nGenes * sizeof(int));
 
   selectedIndividuals = (ind*)malloc(popLenght * sizeof(ind));
   for(i = 0; i < (popLenght); i++)
-    selectedIndividuals[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
+    selectedIndividuals[i].jobsOrder = (int*)malloc(nGenes * sizeof(int));
 
   //Aloca a memória do Gantt
   operation = (node**)malloc((nJobs * nMachines) * sizeof(node*));
