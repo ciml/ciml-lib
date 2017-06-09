@@ -39,3 +39,17 @@ Para executar o AG adaptativo "default" utilize:
  ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
 Para selecionar os parâmetros do AG adaptativo utilize:
  ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
+
+Versão 3.1 - Alteração na forma de recompensar os operadores e correção de erros menores:
+A recompensa do crossover é calculada por:
+recompensa = fitness_melhor_pai/fitness_melhor_filho
+
+A recompensa da mutação é calculada por:
+recompensa = fitness_médio_da_população/fitness_alcançado
+
+Versão 3.0
+A recompensa do crossover é calculada por:
+recompensa = (fitness_pai1 + fitness_pai2)/(fitness_filho1 + fitness_filho2)
+
+A recompensa da mutação é calculada por:
+recompensa = (fitness_pai1 + fitness_pai2)/(fitness_offspring * 2)

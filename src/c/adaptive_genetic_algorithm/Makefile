@@ -7,9 +7,9 @@
 #-PPCR Predictive Paramenter Control with range
 CC        = gcc
 
-#CFLAGS    = -g -Wall -DGA -DNEH #use para debug 
+#CFLAGS    = -g -Wall -DAP# -DNEH #use para debug 
 
-CFLAGS   = -O3 -DOBR -DGA -DNEH #use para compilar com otimização (Genetic Algorithm w/ NEH)
+CFLAGS   = -O3 -DAP  #use para compilar com otimização (Genetic Algorithm w/ NEH)
 
 #CFLAGS    = -O3 -march=native -DGA -DNEH #use para debug 
 

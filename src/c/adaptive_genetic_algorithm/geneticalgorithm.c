@@ -21,7 +21,7 @@
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 {
   int i, countGen = 0, father1 = 0, father2 = 0, countInd;
-  double x; //Número para o sorteio
+  double avgFitness, x; //Número para o sorteio
 
   #ifdef PPC
     for(i = 0; i < 3; i++)
@@ -92,11 +92,17 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       fitnessEvaluationJBR(i);
   #endif
 
+
   //Laço principal do AG
   while(countGen < numGeneration)
   {
     initializeGeneration();
     countInd = popLenght;
+
+    for(i = 0; i < popLenght; i++)
+      avgFitness += (double)individuals[i].fitMakespan;
+    avgFitness = avgFitness / popLenght;
+    printf("%lf\n", avgFitness);
 
     #ifdef PPC
       //Inicializa os contadores de ocorrência e successo
@@ -273,29 +279,29 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       //Adaptação da probabildiade das taxas de crossover
       #ifdef AP
         crossoverAdaptivePursuit(countInd, father1, father2, 3,crossOperatorControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut1OperatorControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut2OperatorControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut1OperatorControl, avgFitness);
+        mutationFinalAdaptivePursuit(countInd + 1, father1, father2, 2, mut2OperatorControl, avgFitness);
         crossoverAdaptivePursuit(countInd, father1, father2, 3,crossRateControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut1RateControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut2RateControl);
+        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut1RateControl, avgFitness);
+        mutationFinalAdaptivePursuit(countInd + 1, father1, father2, 3, mut2RateControl, avgFitness);
       #endif
 
       #ifdef PPC
         crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
         mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 2, mut2OperatorControl);
+        mutationSuccessEvaluation(countInd + 1, father1, father2, 2, mut2OperatorControl);
         crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
         mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 3, mut2RateControl);
+        mutationSuccessEvaluation(countInd + 1, father1, father2, 3, mut2RateControl);
       #endif
 
       #ifdef PPCR
         crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
         mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 2, mut2OperatorControl);
+        mutationSuccessEvaluation(countInd + 1, father1, father2, 2, mut2OperatorControl);
         crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
         mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 3, mut2RateControl);
+        mutationSuccessEvaluation(countInd + 1, father1, father2, 3, mut2RateControl);
       #endif
 
       countInd = countInd + 2;
