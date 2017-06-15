@@ -44,7 +44,30 @@
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    100
+#define NUM_GERACOES    50
+
+
+#define MAX_TEXT_LINE_LENGTH 10000
+
+#ifndef TWODEVICES
+    #define TWODEVICES 1
+#endif // TWODEVICES
+
+#ifndef EVOLOCL
+    #define EVOLOCL 1
+#endif // EVOLOCL
+
+#ifndef AVALOCL
+    #define AVALOCL 1
+#endif // AVALOCL
+
+#ifndef EVOLOMP
+    #define EVOLOMP 0
+#endif // EVOLOMP
+
+#ifndef AVALGPU
+    #define AVALGPU 1
+#endif // AVALGPU
 
 
 //tem como mudar a constantate antes

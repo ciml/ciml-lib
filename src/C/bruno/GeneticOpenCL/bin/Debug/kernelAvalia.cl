@@ -20,7 +20,7 @@ void empilha(Pilha* pilha, int info){
     if(pilha->topo < MAX_NOS){
         pilha->info[pilha->topo] = info;
     }else{
-        printf("Erro empilhar\n");
+        //printf("Erro empilhar\n");
     }
 }
 
@@ -30,7 +30,7 @@ int desempilha(Pilha* pilha){
         pilha->topo--;
         return val;
     }else{
-        printf("Erro desempilhar\n");
+        //printf("Erro desempilhar\n");
         return -1;
     }
 }
@@ -40,7 +40,7 @@ void empilha2(PilhaEx* pilha, float info){
     if(pilha->topo < MAX_NOS){
         pilha->info[pilha->topo] = info;
     }else{
-        printf("Erro empilhar 2\n");
+        //printf("Erro empilhar 2\n");
     }
 }
 
@@ -50,7 +50,7 @@ float desempilha2(PilhaEx* pilha){
         pilha->topo--;
         return val;
     }else{
-        printf("Erro desempilhar 2\n");
+        //printf("Erro desempilhar 2\n");
         return -1;
     }
 }
@@ -595,9 +595,9 @@ void crossOverP(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
         indiceSub1 = random % (arvore1->numNos);
 
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
-        printf("%d - ", random);
+        //printf("%d - ", random);
         random = rand2(seed);
-        printf("%d\n", random);
+        //printf("%d\n", random);
         indiceSub2 = random % (arvore2->numNos);
         tamanhoSub2 = calculaTamanhoSubArvore(arvore2, indiceSub2);
 
@@ -609,13 +609,13 @@ void crossOverP(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
     }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
-    printf("a\n");
+    //printf("a\n");
 
     int tamShift1 = tamanhoSub2 - tamanhoSub1;
     //shift(arvore1, tamShift1, indiceSub1+tamanhoSub1);
 
     int tamShift2 = tamanhoSub1 - tamanhoSub2;
-    printf("b\n");
+    //printf("b\n");
 
 
     if(tamanhoSub1 >= tamanhoSub2){
@@ -629,7 +629,7 @@ void crossOverP(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
     }
     
     
-    printf("c\n");
+    //printf("c\n");
 
 
 }
@@ -656,13 +656,13 @@ __kernel void evolucao(__global Arvore* popA,
     int group_id = get_group_id(0);
     int seed = seeds[group_id];
 
-    printf("id = %d\n", group_id);
-    printf("seeds1 = %d\n", seed);
+    //printf("id = %d\n", group_id);
+    //printf("seeds1 = %d\n", seed);
     int ind1 = torneio(popA, &seed);
     int ind2 = torneio(popA, &seed);
-    printf("seeds2 = %d\n", seed);
-    printf("ind1 = %d\n", ind1);
-    printf("ind2 = %d\n\n", ind2);
+    //printf("seeds2 = %d\n", seed);
+    //printf("ind1 = %d\n", ind1);
+    //printf("ind2 = %d\n\n", ind2);
 
     popF[elite+2*group_id]  = popA[ind1];
     popF[elite+2*group_id+1]= popA[ind2];

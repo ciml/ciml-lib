@@ -11,14 +11,11 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="opencl_openmp" />
-				<Option parameters="&gt; resultados.txt" />
-				<Option projectCompilerOptionsRelation="-1" />
-				<Option projectLinkerOptionsRelation="-1" />
-				<Option projectIncludeDirsRelation="-1" />
-				<Option projectLibDirsRelation="-1" />
+				<Option parameters="f1-50.txt" />
 				<Compiler>
 					<Add option="-Wmissing-prototypes" />
 					<Add option="-Wmissing-declarations" />
+					<Add directory="include" />
 				</Compiler>
 				<MakeCommands>
 					<Build command="" />
@@ -36,6 +33,7 @@
 				<Option compiler="opencl_openmp" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -45,7 +43,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
+			<Add option="-std=c++11" />
+			<Add option="-fopenmp" />
+			<Add directory="include" />
 		</Compiler>
+		<Linker>
+			<Add option="-lOpenCL" />
+			<Add option="-lgomp" />
+			<Add option="-pthread" />
+			<Add directory="x86" />
+		</Linker>
 		<Unit filename="arvore.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -60,6 +67,8 @@
 		</Unit>
 		<Unit filename="genetica.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="options.cpp" />
+		<Unit filename="options.hpp" />
 		<Unit filename="pilha.c">
 			<Option compilerVar="CC" />
 		</Unit>

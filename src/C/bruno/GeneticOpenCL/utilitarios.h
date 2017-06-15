@@ -27,7 +27,7 @@ int rand2(int *seed);
 
 
 
-float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm);
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm, char* filename);
 
 //float** readTrainingData();
 

@@ -73,26 +73,25 @@ void fatal(char *msg) {
 }
 
 
-float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm){
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm, char* filename){
     FILE *arq;
     float** dadosTreinamento;
     int i = 0, j;
     int k;
-    printf("Lendo Dados Arquivo...\n");
+    printf("Lendo Dados Arquivo... %s\n",filename);
 //    char nome[100];
 //    printf("\nDigite nome do arquivo:");
 //    gets(nome);
 //    arq = fopen(nome, "r");
-
-    arq = fopen("100 3 1.txt", "r");
+    arq = fopen(filename, "r");
     int boolLabel;
     //fscanf(arq, "%d %d %d", &numLinhas, &numColunas, &boolLabel);//, &numVariaveis);
     fscanf(arq, "%d %d %d", M, N, &boolLabel);//, &numVariaveis);
 
 //    M = numLinhas;
 //    N = numColunas;
-//    printf("\nN = %d\n\n", N);
-//    printf("\nM = %d\n\n", M);
+//    printf("\nN = %d\n\n", *N);
+//    printf("\nM = %d\n\n", *M);
 
     dadosTreinamento = malloc((*M)* sizeof(float*));
     for(k = 0; k < (*M); k++){
@@ -206,7 +205,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
         }
 
         (*conjuntoOpTerm)[i] = packFloat(CTE, 1.0);
-
+        *NUM_CTES = 1;
     } else {
 
         *NUM_OPBIN = 4;
@@ -287,11 +286,8 @@ void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
     printf("* NUMERO GERACOES  : %d \t MUTACAO   : %.2f\n", NUM_GERACOES, PROB_MUT);
     printf("* NUM MAXIMO NOS   : %d \t ELITISMO  : %.2f\n", MAX_NOS, ELITISMO);
     printf("* PROFUNDIDADE MAX : %d \t \n", MAX_DEPTH);
-    printf("* SEED: %d \n", SEED);
-    printf("* M: %d \n", M);
-    printf("* N: %d \n", N);
-    printf("* NUM_CTES: %d \n", NUM_CTES);
-    printf("* NUM_OPBIN: %d \n", NUM_OPBIN);
-    printf("* NUM_OPUN: %d \n", NUM_OPUN);
+    printf("* M: %d \t N: %d\n", M, N);
+    printf("* NUM_OPBIN: %d \t NUM_OPUN: %d\n", NUM_OPBIN, NUM_OPUN);
+    printf("* NUM_CTES: %d \t SEED: %d\n", NUM_CTES, SEED);
     printf("*------------------------------------------------------------------\n");
 }
