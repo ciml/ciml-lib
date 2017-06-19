@@ -5,93 +5,43 @@
 #include "crossover.h"
 #include "mutation.h"
 #include "geneticalgorithm.h"
+#include "adaptivepreprocessors.h"
+
 #ifdef AP
   #include "adaptivepursuit.h"
+  #define CR_v1
 #endif
+
 #ifdef PPC
   #include "predictiveparametercontrol.h"
+  #define CR_v0
 #endif
+
 #ifdef PPCR
   #include "predictiveparametercontrol.h"
+  #define CR_v0
 #endif
+
 #ifdef NEH
   #include "neh.h"
 #endif
 
+
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 {
   int i, countGen = 0, father1 = 0, father2 = 0, countInd;
-  double avgFitness, x; //Número para o sorteio
+  double avgFitness = 0.0, x; //Número para o sorteio
 
-  #ifdef PPC
-    for(i = 0; i < 3; i++)
-    {
-      crossRateControl[i].success = malloc(numGeneration * sizeof(double));
-      mut1RateControl[i].success = malloc(numGeneration * sizeof(double));
-      mut2RateControl[i].success = malloc(numGeneration * sizeof(double));
-      crossOperatorControl[i].success = malloc(numGeneration * sizeof(double));
-    }
-    for(i = 0; i < 2; i++)
-    {
-      mut1OperatorControl[i].success = malloc(numGeneration * sizeof(double));
-      mut2OperatorControl[i].success = malloc(numGeneration * sizeof(double));
-    }
-  #endif
-
-  #ifdef PPCR
-    for(i = 0; i < 3; i++)
-    {
-      crossRateControl[i].success = malloc(numGeneration * sizeof(double));
-      mut1RateControl[i].success = malloc(numGeneration * sizeof(double));
-      mut2RateControl[i].success = malloc(numGeneration * sizeof(double));
-      crossOperatorControl[i].success = malloc(numGeneration * sizeof(double));
-    }
-    for(i = 0; i < 2; i++)
-    {
-      mut1OperatorControl[i].success = malloc(numGeneration * sizeof(double));
-      mut2OperatorControl[i].success = malloc(numGeneration * sizeof(double));
-    }
-  #endif
+  //Memória reservada para manter a série temporal para o método PPC e derivativos
+  alocateMemoryPPC();
 
   initializeIndividuals();
 
-  #ifdef AP
-    APInitializeProbabilities(3, crossOperatorControl);
-    APInitializeProbabilities(2, mut1OperatorControl);
-    APInitializeProbabilities(2, mut2OperatorControl);
-    APInitializeProbabilities(3, crossRateControl);
-    APInitializeProbabilities(3, mut1RateControl);
-    APInitializeProbabilities(3, mut2RateControl);
-  #endif
+  //Inicializa os métodos adaptativos dependendo da definição
+  initilizeAdaptiveMethods();
 
-  //Inicializa o Predictive Parameter Control
-  #ifdef PPC
-    PPCInitializeProbabilities(3, crossOperatorControl);
-    PPCInitializeProbabilities(2, mut1OperatorControl);
-    PPCInitializeProbabilities(2, mut2OperatorControl);
-    PPCInitializeProbabilities(3, crossRateControl);
-    PPCInitializeProbabilities(3, mut1RateControl);
-    PPCInitializeProbabilities(3, mut2RateControl);
-  #endif
-
-  #ifdef PPCR
-    PPCInitializeProbabilities(3, crossOperatorControl);
-    PPCInitializeProbabilities(2, mut1OperatorControl);
-    PPCInitializeProbabilities(2, mut2OperatorControl);
-    PPCInitializeProbabilities(3, crossRateControl);
-    PPCInitializeProbabilities(3, mut1RateControl);
-    PPCInitializeProbabilities(3, mut2RateControl);
-  #endif
-
-  // Laço que calcula o fitness do pai para as duas funções objetivo
-  #ifdef OBR
-    for(i = 0; i < popLenght; i++)
-      fitnessEvaluationOBR(i);
-  #else
-    for(i = 0; i < popLenght; i++)
-      fitnessEvaluationJBR(i);
-  #endif
-
+  for(i = 0; i < popLenght; i++)
+    fitnessEvaluation(i);
 
   //Laço principal do AG
   while(countGen < numGeneration)
@@ -99,86 +49,33 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
     initializeGeneration();
     countInd = popLenght;
 
+    avgFitness = 0.0;
     for(i = 0; i < popLenght; i++)
       avgFitness += (double)individuals[i].fitMakespan;
     avgFitness = avgFitness / popLenght;
-    printf("%lf\n", avgFitness);
 
-    #ifdef PPC
-      //Inicializa os contadores de ocorrência e successo
-      initializeCounters(3, crossOperatorControl);
-      initializeCounters(2, mut1OperatorControl);
-      initializeCounters(2, mut2OperatorControl);
-      initializeCounters(3, crossRateControl);
-      initializeCounters(3, crossRateControl);
-      initializeCounters(3, mut2RateControl);
-    #endif
+    //Inicializa os contadores de ocorrência e sucesso para os métodos preditivos
+    initializePredictiveCounters();
 
-    #ifdef PPCR
-      //Inicializa os contadores de ocorrência e successo
-      initializeCounters(3, crossOperatorControl);
-      initializeCounters(2, mut1OperatorControl);
-      initializeCounters(2, mut2OperatorControl);
-      initializeCounters(3, crossRateControl);
-      initializeCounters(3, crossRateControl);
-      initializeCounters(3, mut2RateControl);
-    #endif
-
-    while(countInd < (2 * popLenght))
+    while(countInd < ( popLenght * 2))
     {
       // Seleção dos pais
       tournament(&father1, &father2);
 
-      // Cálculo da chance de realizar crossover
+      // Altera a probabilidade se for método adaptativo
       #ifndef GA
         probCrossover = crossoverRateSelection();
       #endif
 
-      #ifdef PPCR
-        if(probCrossover == 0.7)
-          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.7;
-        if(probCrossover == 0.8)
-          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.7;
-        if(probCrossover == 0.9)
-          probCrossover = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.7;
-      #endif
+      //Sorteia, dentro do intervalo, qual a taxa de Crossover para o método PPCR
+      rouletteCrossoverProbabilityForPPCR();
 
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probCrossover)
       {
-        #ifdef GA
-          PMXcrossover(countInd, father1, father2);
-        #else
-          #ifdef PPCR
-            if(probCrossover < 0.7667)
-            {
-              crossRateControl[0].index[1]++;
-            }
-            else if(probCrossover < 0.8334)
-            {
-              crossRateControl[1].index[1]++;
-            }
-            else if(probCrossover < 0.9)
-            {
-              crossRateControl[2].index[1]++;
-            }
-          #else
-            if(probCrossover == 0.7)
-            {
-              crossRateControl[0].index[1]++;
-            }
-            else if(probCrossover == 0.8)
-            {
-              crossRateControl[1].index[1]++;
-            }
-            else if(probCrossover == 0.9)
-            {
-              crossRateControl[2].index[1]++;
-            }
-          #endif
-          crossoverOperatorSelection(countInd, father1, father2);
-        #endif
-      }else
+        //Realiza o crossover de acordo com a técnica escolhida
+        crossover(countInd, father1, father2);
+      }else // Clonagem
       {
         for(i = 0; i < nGenes; i++)
         {
@@ -189,141 +86,57 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         }
       }
 
-      // Chance de realizar mutação
+      // Altera a probabilidade se for método adaptativo
       #ifndef GA
         probMutation = mutaRateSelection(3, mut1RateControl);
       #endif
 
-      #ifdef PPCR
-        if(probMutation == 0.3)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.3;
-        if(probMutation == 0.4)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.3;
-        if(probMutation == 0.5)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.3;
-      #endif
+      //Sorteia, dentro do intervalo, qual a taxa de Crossover para o método PPCR
+      rouletteMutationProbabilityForPPCR();
 
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probMutation)
       {
-        #ifdef GA
-          shiftMutation(countInd);
-        #else
-          #ifdef PPCR
-            if(probMutation < 0.3667)
-              mut1RateControl[0].index[1]++;
-            if(probMutation < 0.4334)
-              mut1RateControl[1].index[1]++;
-            if(probMutation < 0.5)
-              mut1RateControl[2].index[1]++;
-          #else
-            if(probMutation == 0.3)
-              mut1RateControl[0].index[1]++;
-            if(probMutation == 0.4)
-              mut1RateControl[1].index[1]++;
-            if(probMutation == 0.5)
-              mut1RateControl[2].index[1]++;
-          #endif
-          mutaOperatorSelection(countInd, 2, mut1OperatorControl);
-        #endif
+        //Realiza a mutação no primeiro filho de acordo com a técnica escolhida
+        mutation(countInd, 3, mut1RateControl, 2, mut1OperatorControl);
       }
 
-      // Chance de realizar mutação
+      // Altera a probabilidade se for método adaptativo
       #ifndef GA
         probMutation = mutaRateSelection(3, mut2RateControl);
       #endif
 
-      #ifdef PPCR
-        if(probMutation == 0.3)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.0667 + 0.3;
-        if(probMutation == 0.4)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.1334 + 0.3;
-        if(probMutation == 0.5)
-          probMutation = ((double)rand() / (double)(RAND_MAX)) * 0.2000 + 0.3;
-      #endif
+      //Sorteia, dentro do intervalo, qual a taxa de Crossover para o método PPCR
+      rouletteMutationProbabilityForPPCR();
 
       x = (double)((double)rand() / (double)RAND_MAX);
       if(x < probMutation)
       {
-        #ifdef GA
-          shiftMutation(countInd + 1);
-        #else
-          #ifdef PPCR
-            if(probMutation < 0.3667)
-              mut2RateControl[0].index[1]++;
-            if(probMutation < 0.4334)
-              mut2RateControl[1].index[1]++;
-            if(probMutation < 0.5)
-              mut2RateControl[2].index[1]++;
-          #else
-            if(probMutation == 0.3)
-              mut2RateControl[0].index[1]++;
-            if(probMutation == 0.4)
-              mut2RateControl[1].index[1]++;
-            if(probMutation == 0.5)
-              mut2RateControl[2].index[1]++;
-          #endif
-          mutaOperatorSelection(countInd + 1, 2, mut2OperatorControl);
-        #endif
+        //Realiza a mutação no segundo filho de acordo com a técnica escolhida
+        mutation(countInd + 1, 3, mut2RateControl, 2, mut2OperatorControl);
       }
 
-      //Avalia os filhos geradas
-      #ifdef OBR
-        fitnessEvaluationOBR(countInd);
-        fitnessEvaluationOBR(countInd + 1);
-      #else
-        fitnessEvaluationJBR(countInd);
-        fitnessEvaluationJBR(countInd + 1);
-      #endif
+      //Avalia os filhos gerados
+      fitnessEvaluation(countInd);
+      fitnessEvaluation(countInd + 1);
 
-      //Adaptação da probabildiade das taxas de crossover
-      #ifdef AP
-        crossoverAdaptivePursuit(countInd, father1, father2, 3,crossOperatorControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 2, mut1OperatorControl, avgFitness);
-        mutationFinalAdaptivePursuit(countInd + 1, father1, father2, 2, mut2OperatorControl, avgFitness);
-        crossoverAdaptivePursuit(countInd, father1, father2, 3,crossRateControl);
-        mutationFinalAdaptivePursuit(countInd, father1, father2, 3, mut1RateControl, avgFitness);
-        mutationFinalAdaptivePursuit(countInd + 1, father1, father2, 3, mut2RateControl, avgFitness);
-      #endif
+      //Atualização do método AP
+      APupdate(countInd, father1, father2, avgFitness);
 
-      #ifdef PPC
-        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
-        mutationSuccessEvaluation(countInd + 1, father1, father2, 2, mut2OperatorControl);
-        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
-        mutationSuccessEvaluation(countInd + 1, father1, father2, 3, mut2RateControl);
-      #endif
+      //Verifica o sucesso dos operadores para os métodos preditivos
+      PredictiveMethodsGetSuccess(countInd, father1, father2, avgFitness);
 
-      #ifdef PPCR
-        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossOperatorControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 2, mut1OperatorControl);
-        mutationSuccessEvaluation(countInd + 1, father1, father2, 2, mut2OperatorControl);
-        crossoverSuccessEvaluation(countInd, father1, father2, 3, crossRateControl);
-        mutationSuccessEvaluation(countInd, father1, father2, 3, mut1RateControl);
-        mutationSuccessEvaluation(countInd + 1, father1, father2, 3, mut2RateControl);
-      #endif
+      // for(i = 0; i < 3; i++)
+      // {
+      //     printf("1- %d\n", crossOperatorControl[i].index[1]);
+      //     printf("2- %d\n", crossRateControl[i].index[1]);
+      // }
 
       countInd = countInd + 2;
     } // while(countInd < (2 * popLenght))
 
-    #ifdef PPC
-      UpdateSuccessIndicator(countGen, 3, crossOperatorControl);
-      UpdateSuccessIndicator(countGen, 2, mut1OperatorControl);
-      UpdateSuccessIndicator(countGen, 2, mut2OperatorControl);
-      UpdateSuccessIndicator(countGen, 3, crossRateControl);
-      UpdateSuccessIndicator(countGen, 3, mut1RateControl);
-      UpdateSuccessIndicator(countGen, 3, mut2RateControl);
-    #endif
-
-    #ifdef PPCR
-      UpdateSuccessIndicator(countGen, 3, crossOperatorControl);
-      UpdateSuccessIndicator(countGen, 2, mut1OperatorControl);
-      UpdateSuccessIndicator(countGen, 2, mut2OperatorControl);
-      UpdateSuccessIndicator(countGen, 3, crossRateControl);
-      UpdateSuccessIndicator(countGen, 3, mut1RateControl);
-      UpdateSuccessIndicator(countGen, 3, mut2RateControl);
-    #endif
+    //Atualização dos métodos preditivos
+    PredictiveMethodsUpdate(countGen);
 
     #ifndef GA
       printProbabilities(countGen, fileName, nRepeat, pop);
@@ -338,35 +151,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
     countGen++;
   } // while(countGen < numGeneration)
 
-  #ifdef PPC
-    for(i = 0; i < 3; i++)
-    {
-      free(crossRateControl[i].success);
-      free(mut1RateControl[i].success);
-      free(mut2RateControl[i].success);
-      free(crossOperatorControl[i].success);
-    }
-    for(i = 0; i < 2; i++)
-    {
-      free(mut1OperatorControl[i].success);
-      free(mut2OperatorControl[i].success);
-    }
-  #endif
-
-  #ifdef PPCR
-    for(i = 0; i < 3; i++)
-    {
-      free(crossRateControl[i].success);
-      free(mut1RateControl[i].success);
-      free(mut2RateControl[i].success);
-      free(crossOperatorControl[i].success);
-    }
-    for(i = 0; i < 2; i++)
-    {
-      free(mut1OperatorControl[i].success);
-      free(mut2OperatorControl[i].success);
-    }
-  #endif
+  FreeMemoryForPPC();
 } // AGinterno
 
 void initializeIndividuals()
@@ -409,6 +194,15 @@ void initializeIndividuals()
     }
   }
 } //initializeIndividuals
+
+void fitnessEvaluation(int w)
+{
+  #ifdef OBR
+    fitnessEvaluationOBR(w);
+  #else
+    fitnessEvaluationJBR(w);
+  #endif
+}
 
 void fitnessEvaluationOBR(int w)
 {
@@ -1085,9 +879,6 @@ void startList()
     for(j = 0; j < nMachines; j++)
       operation[j*nMachines + j]->prox = NULL;
 }
-
-
-
 
 void crossoverOperatorSelection(int countInd, int father1, int father2)
 {

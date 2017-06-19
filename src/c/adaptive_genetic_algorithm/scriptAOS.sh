@@ -6,6 +6,6 @@ for ((j = 0; j < 3; j++))
 do
   for i in {1..5}
   do
-    /home/guilherme.ferreira/Adaptive_Pursuit/aga_jsp /home/guilherme.ferreira/Adaptive_Pursuit/$1 $i ${tpop[$j]} > saidascript
+    /home/guilherme.ferreira/AGA_3.2/8_2/aga_jsp /home/guilherme.ferreira/AGA_3.2/8_2/$1 $i ${tpop[$j]} > saidascript
   done
 done

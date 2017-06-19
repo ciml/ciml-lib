@@ -5,9 +5,16 @@
 #include "crossover.h"
 #include "mutation.h"
 
+#ifdef AP
+	#define CR_V1
+#endif
+
 void APInitializeProbabilities(int size, ProbabilitiesControl probControl[size])
 {
 	int i;
+	alpha = 0.8;
+	beta = 0.2;
+	prob_min = 0.05;
 	for(i = 0; i < size; i++)
 	{
 		probControl[i].prob = (double)(1.0/size);
@@ -17,14 +24,11 @@ void APInitializeProbabilities(int size, ProbabilitiesControl probControl[size])
 	}
 } //initializeProbabilities
 
-void crossoverAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size])
+void crossoverAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
 	int i, count = 0;
 	int bestOperator;
-	double prob_min = 0.05;
 	double prob_max = 1 - (size - 1)*prob_min;
-	double alpha = 0.8;
-	double beta = 0.8;
 
 	for(i = 0; i < size; i++)
 	{
@@ -39,7 +43,7 @@ void crossoverAdaptivePursuit(int countInd, int father1, int father2, int size, 
 		{
 			if((probControl[i].index[1] == 1) && (probControl[i].index[1] != probControl[i].index[0]))
 			{
-				crossoverGetReward(countInd, father1, father2, i, size , probControl);
+				crossoverGetReward(countInd, father1, father2, i, size , probControl, avgFitness);
 				probControl[i].index[0] = probControl[i].index[1];
 				probControl[i].prob = 0.0;
 				probControl[i].quality = (1.0 - alpha) *
@@ -57,11 +61,10 @@ void crossoverAdaptivePursuit(int countInd, int father1, int father2, int size, 
 		{
 			if(probControl[i].index[0] < probControl[i].index[1])
 			{
-				crossoverGetReward(countInd, father1, father2, i, size, probControl);
+				crossoverGetReward(countInd, father1, father2, i, size, probControl, avgFitness);
 				probControl[i].index[0] = probControl[i].index[1];
 				probControl[i].quality =	(1.0 - alpha) *
 										probControl[i].quality + alpha * probControl[i].reward;
-
 			}
 		}
 		bestOperator = 0;
@@ -80,31 +83,48 @@ void crossoverAdaptivePursuit(int countInd, int father1, int father2, int size, 
 	}
 } //crossoverAdaptivePursuit
 
-void crossoverGetReward(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size])
+void crossoverGetReward(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
-	int bestFather, bestSon;
+	#ifdef CR_V0
+		probControl[i].reward = (((double)individuals[father1].fitMakespan +
+			individuals[father2].fitMakespan) / ((double)individuals[countInd].fitMakespan +
+				individuals[countInd + 1].fitMakespan));
+	#endif
+	#ifdef CR_V1
+		int bestFather, bestSon;
 
-	if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
-		bestFather = father1;
-	else
-		bestFather = father2;
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
 
-	if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
-		bestSon = countInd;
-	else
-		bestSon = countInd + 1;
+		probControl[i].reward = (double)((double)individuals[bestFather].fitMakespan /
+			(double)individuals[bestSon].fitMakespan);
+	#endif
+	#ifdef CR_V2
+		int bestSon;
 
-	probControl[i].reward = (double)((double)individuals[bestFather].fitMakespan/
-																							(double)individuals[bestSon].fitMakespan);
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
+		probControl[i].reward = (double)(avgFitness / (double)individuals[bestSon].fitMakespan);
+	#endif
 }//crossoverGetReward
 
-int mutationAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
+void mutationAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
 	int i, count = 0;
-	double alpha = 0.8;
+	int bestOperator;
+	double prob_max = 1 - (size - 1)*prob_min;
+
 	for(i = 0; i < size; i++)
 	{
-		if(probControl[i].index[1] != 0)
+		if(probControl[i].index[1] > 0)
 		{
 			count++;
 		}
@@ -115,11 +135,11 @@ int mutationAdaptivePursuit(int countInd, int father1, int father2, int size, Pr
 		{
 			if((probControl[i].index[1] == 1) && (probControl[i].index[1] != probControl[i].index[0]))
 			{
-				mutationGetReward(countInd, father1, father2, i, size, probControl, avgFitness);
+				mutationGetReward(countInd, father1, father2, i, size , probControl, avgFitness);
 				probControl[i].index[0] = probControl[i].index[1];
-				probControl[i].prob = 0;
+				probControl[i].prob = 0.0;
 				probControl[i].quality = (1.0 - alpha) *
-					probControl[i].quality +	alpha * probControl[i].reward;
+									probControl[i].quality +	alpha * probControl[i].reward;
 			}
 			else if(probControl[i].index[1] == 0)
 			{
@@ -131,40 +151,37 @@ int mutationAdaptivePursuit(int countInd, int father1, int father2, int size, Pr
 	{
 		for(i = 0; i < size; i++)
 		{
-			if(probControl[i].index[0] != probControl[i].index[1])
+			if(probControl[i].index[0] < probControl[i].index[1])
 			{
 				mutationGetReward(countInd, father1, father2, i, size, probControl, avgFitness);
 				probControl[i].index[0] = probControl[i].index[1];
 				probControl[i].quality =	(1.0 - alpha) *
-						probControl[i].quality + alpha * probControl[i].reward;
+										probControl[i].quality + alpha * probControl[i].reward;
 			}
 		}
+		bestOperator = 0;
+		for(i = 1; i < size; i++)
+			if(probControl[bestOperator].quality < probControl[i].quality)
+				bestOperator = i;
+		for(i = 0; i < size; i++)
+		{
+			if(i == bestOperator)
+				probControl[i].prob = probControl[i].prob +
+								beta*(prob_max - probControl[i].prob);
+			else
+				probControl[i].prob = probControl[i].prob +
+								beta*(prob_min - probControl[i].prob);
+		}
 	}
-	return count;
 } //mutationAdaptivePursuit
 
 void mutationGetReward(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
-	probControl[i].reward = (avgFitness	/ individuals[countInd].fitMakespan);
+	#ifdef CR_V0
+		probControl[i].reward = (((double)individuals[father1].fitMakespan +
+			(double)individuals[father2].fitMakespan)	/
+				((double)individuals[countInd].fitMakespan * 2.0));
+	#else
+		probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
 }//mutationGetReward
-
-void mutationFinalAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
-{
-	int i, count = 0;
-	double qualitySum;
-	double prob_min = 0.05;
-
-	count = mutationAdaptivePursuit(countInd, father1, father2, size, probControl, avgFitness);
-
-	if(count > size - 1)
-	{
-		qualitySum = 0;
-		for(i = 0; i < size; i++)
-			qualitySum += probControl[i].quality;
-		for(i = 0; i < size; i++)
-		{
-			probControl[i].prob = prob_min +
-        (1.0 - ((double)size) * prob_min) *	(probControl[i].quality / qualitySum);
-		}
-	}
-} //mutationFinalAdaptivePursuit

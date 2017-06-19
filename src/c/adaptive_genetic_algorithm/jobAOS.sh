@@ -4,4 +4,4 @@
 #$ -cwd
 #$ -j y
 #$ -S /bin/bash
-/home/guilherme.ferreira/adaptive_genetic_algorithm/scriptAOS.sh $1
+/home/guilherme.ferreira/AGA_3.2/8_2/scriptAOS.sh $1

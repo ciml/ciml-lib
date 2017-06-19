@@ -7,6 +7,12 @@
 #include "crossover.h"
 #include "mutation.h"
 
+#ifdef PPC
+	#define CR_V2
+#elif PPCR
+	#define CR_V1
+#endif
+
 void PPCInitializeProbabilities(int size, ProbabilitiesControl probControl[size])
 {
 	int i;
@@ -133,32 +139,61 @@ void ForecastNextProbability(int countGen, int size, ProbabilitiesControl probCo
 	free(x);
 }//ForecastNextProbability
 
-void crossoverSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size])
+void crossoverSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
 	int i;
+
 	for(i = 0; i < size; i++)
 	{
 		if((probControl[i].index[1] > 0) && (probControl[i].index[1] != probControl[i].index[0]))
 		{
 			probControl[i].successApplication +=
-											crossoverGetSuccess(countInd, father1, father2, i, size, probControl);
+											crossoverGetSuccess(countInd, father1, father2, i, size, probControl, avgFitness);
 			probControl[i].index[0] = probControl[i].index[1];
 		}
 	}
 }//crossoverSuccessEvaluation
 
-int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size])
+int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
-	probControl[i].reward =
-		(double)((double)individuals[father1].fitMakespan + (double)individuals[father2].fitMakespan)/
-			((double)individuals[countInd].fitMakespan + (double)individuals[countInd + 1].fitMakespan);
+	#ifdef CR_V0
+		probControl[i].reward =
+			(double)((double)individuals[father1].fitMakespan + (double)individuals[father2].fitMakespan)/
+				((double)individuals[countInd].fitMakespan + (double)individuals[countInd + 1].fitMakespan);
+	#endif
+	#ifdef CR_V1
+		int bestFather, bestSon;
+
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
+
+		probControl[i].reward = (double)((double)individuals[bestFather].fitMakespan /
+			(double)individuals[bestSon].fitMakespan);
+	#endif
+	#ifdef CR_V2
+		int bestSon;
+
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
+
+		probControl[i].reward = (double)(avgFitness / (double)individuals[bestSon].fitMakespan);
+	#endif
+
 	if(probControl[i].reward > 1)
 		return 1;
 	else
 		return 0;
 }// crossoverGetSuccess
 
-void mutationSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size])
+void mutationSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
 	int i;
 	for(i = 0; i < size; i++)
@@ -166,17 +201,23 @@ void mutationSuccessEvaluation(int countInd, int father1, int father2, int size,
 		if((probControl[i].index[1] > 0) && (probControl[i].index[1] != probControl[i].index[0]))
 		{
 			probControl[i].successApplication +=
-											mutationGetSuccess(countInd, father1, father2, i, size, probControl);
+											mutationGetSuccess(countInd, father1, father2, i, size, probControl, avgFitness);
 			probControl[i].index[0] = probControl[i].index[1];
 		}
 	}
 }//mutationSuccessEvaluation
 
-int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size])
+int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
 {
-	probControl[i].reward =
-		(double)(((double)individuals[father1].fitMakespan + (double)individuals[father2].fitMakespan)/2.0)
-																	/ ((double)individuals[countInd].fitMakespan);
+	#ifdef CR_V0
+		probControl[i].reward = (((double)individuals[father1].fitMakespan +
+			(double)individuals[father2].fitMakespan)	/
+				((double)individuals[countInd].fitMakespan * 2.0));
+				printf("beta\n" );
+	#else
+		probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
 	if(probControl[i].reward > 1)
 		return 1;
 	else

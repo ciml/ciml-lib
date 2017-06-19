@@ -9,7 +9,7 @@ CC        = gcc
 
 #CFLAGS    = -g -Wall -DAP# -DNEH #use para debug 
 
-CFLAGS   = -O3 -DAP  #use para compilar com otimização (Genetic Algorithm w/ NEH)
+CFLAGS   = -O3 -DPPC #-DNEH #use para compilar com otimização (Genetic Algorithm w/ NEH)
 
 #CFLAGS    = -O3 -march=native -DGA -DNEH #use para debug 
 

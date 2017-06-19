@@ -8,12 +8,12 @@ void UpdateSuccessIndicator(int countGen, int size, ProbabilitiesControl probCon
 void ForecastNextProbability(int countGen, int size, ProbabilitiesControl probControl[size]);
 
 // Funções para o CROSSOVER
-void crossoverSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size]);
-int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size]);
+void crossoverSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness);
+int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness);
 
 // Funções para a MUTAÇÃO
-void mutationSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size]);
-int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size]);
+void mutationSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness);
+int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness);
 
 
 #endif // PREDICTIVEPARAMETERCONTROL_H
