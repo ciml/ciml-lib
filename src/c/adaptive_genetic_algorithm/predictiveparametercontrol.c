@@ -8,7 +8,7 @@
 #include "mutation.h"
 
 #ifdef PPC
-	#define CR_V2
+	#define CR_V3
 #elif PPCR
 	#define CR_V1
 #endif
@@ -186,8 +186,24 @@ int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size,
 
 		probControl[i].reward = (double)(avgFitness / (double)individuals[bestSon].fitMakespan);
 	#endif
+	#ifdef CR_V3
+		int bestFather, bestSon;
 
-	if(probControl[i].reward > 1)
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
+
+		probControl[i].reward = (double)((double)individuals[bestFather].fitMakespan /
+			(double)individuals[bestSon].fitMakespan);
+	#endif
+
+
+	if(probControl[i].reward > 1.0)
 		return 1;
 	else
 		return 0;
@@ -213,12 +229,25 @@ int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, 
 		probControl[i].reward = (((double)individuals[father1].fitMakespan +
 			(double)individuals[father2].fitMakespan)	/
 				((double)individuals[countInd].fitMakespan * 2.0));
-				printf("beta\n" );
-	#else
-		probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+	#ifdef CR_V1
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+	#ifdef CR_V2
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+	#ifdef CR_V3
+		int bestFather;
+
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+
+		probControl[i].reward = (double) individuals[bestFather].fitMakespan / individuals[countInd].fitMakespan;
 	#endif
 
-	if(probControl[i].reward > 1)
+	if(probControl[i].reward > 1.0)
 		return 1;
 	else
 		return 0;

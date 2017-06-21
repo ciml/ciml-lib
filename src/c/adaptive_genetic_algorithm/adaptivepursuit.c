@@ -6,13 +6,13 @@
 #include "mutation.h"
 
 #ifdef AP
-	#define CR_V1
+	#define CR_V3
 #endif
 
 void APInitializeProbabilities(int size, ProbabilitiesControl probControl[size])
 {
 	int i;
-	alpha = 0.8;
+	alpha = 0.2;
 	beta = 0.2;
 	prob_min = 0.05;
 	for(i = 0; i < size; i++)
@@ -114,6 +114,23 @@ void crossoverGetReward(int countInd, int father1, int father2, int i, int size,
 			bestSon = countInd + 1;
 		probControl[i].reward = (double)(avgFitness / (double)individuals[bestSon].fitMakespan);
 	#endif
+	#ifdef CR_V3
+		int bestFather, bestSon;
+
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+		if (individuals[countInd].fitMakespan < individuals[countInd + 1].fitMakespan)
+			bestSon = countInd;
+		else
+			bestSon = countInd + 1;
+
+		probControl[i].reward = (double)((double)individuals[bestFather].fitMakespan /
+			(double)individuals[bestSon].fitMakespan);
+
+	#endif
+
 }//crossoverGetReward
 
 void mutationAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
@@ -181,7 +198,25 @@ void mutationGetReward(int countInd, int father1, int father2, int i, int size, 
 		probControl[i].reward = (((double)individuals[father1].fitMakespan +
 			(double)individuals[father2].fitMakespan)	/
 				((double)individuals[countInd].fitMakespan * 2.0));
-	#else
-		probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
+	#ifdef CR_V1
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
+	#ifdef CR_V2
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
+	#ifdef CR_V3
+		int bestFather;
+
+		if(individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+
+		probControl[i].reward = (double)individuals[bestFather].fitMakespan /
+			individuals[countInd].fitMakespan;
 	#endif
 }//mutationGetReward

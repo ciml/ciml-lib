@@ -40,8 +40,18 @@ Para selecionar os parâmetros do AG adaptativo utilize:
    ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
 
 ################## VERSÕES ##################
+Versão 3.2.1 - AGA_3.2.1 - Adição de novo método de recompensa
 
-Versão 3.2 - AGA_3.2 - Melhorias no Método de Recompensa, correção de erros nos métodos adaptativos e melhorias menores
+Para os métodos ADAPTIVE PURSUIT e os Preditivos - Definir nos arquivos adaptivepursuit.c ou predictiveparametercontrol.c
+-CR_V3
+  A recompensa do crossover é calculada por:
+  recompensa = fitness_melhor_pai/fitness_melhor_filho
+
+  A recompensa da mutação é calculada por:
+  recompensa = fitness_melhor_pai/fitness_alcançado
+
+
+Versão 3.2 - AGA_3.2 - Melhorias nos Métodos de Recompensa, correção de erros nos métodos adaptativos e melhorias menores
 
 Para os métodos ADAPTIVE PURSUIT e os Preditivos - Definir nos arquivos adaptivepursuit.c ou predictiveparametercontrol.c
 -CR_V0
@@ -50,12 +60,14 @@ Para os métodos ADAPTIVE PURSUIT e os Preditivos - Definir nos arquivos adaptiv
 
    A recompensa da mutação é calculada por:
    recompensa = (fitness_pai1 + fitness_pai2)/(fitness_offspring * 2)
+
 -CR_V1 (default para o AP)
    A recompensa do crossover é calculada por:
    recompensa = fitness_melhor_pai/fitness_melhor_filho
 
    A recompensa da mutação é calculada por:
    recompensa = fitness_médio_da_população/fitness_alcançado
+
 -CR_V2
    A recompensa do crossover é calculada por:
    recompensa = fitness_médio_da_população/fitness_melhor_filho
