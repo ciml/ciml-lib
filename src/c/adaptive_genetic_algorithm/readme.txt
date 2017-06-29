@@ -5,6 +5,8 @@ O padrão da representação é Job Based Representation
 
 Definir:
    -GA para algoritmo genético padrão
+   -LS somente busca local
+   -IG para ativar AG híbrido
    -AP para algoritmo genético adaptativo utilizando Adaptive Pursuit
    -PPC para algoritmo genético adaptativo utilizando Predictive Parameter Control (discreto)
    -PPCR para algoritmo genético adaptativo utilizando Predictive Parameter Control (contínuo)
@@ -25,14 +27,17 @@ As técnicas implementadas de crossover são:
    -LOX crossover
    -op crossover
 
-As técnicas de mutação impregadas são:
+As técnicas de mutação empregadas são:
    -Shift mutation
    -Interchange mutation
+
+A técnica de busca local empregada é:
+   -integrated Greedy, disponível para problemas de Flexible Flow Shop Scheduling Problems
 
 Para executar o AG "default" utilize:
    ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
 Para selecionar os parâmetros do AG utilize:
-   ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população taxa_de_crossover taxa_de_mutação
+   ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população taxa_de_crossover taxa_de_mutação taxa_local_search
 
 Para executar o AG adaptativo "default" utilize:
    ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao
@@ -40,6 +45,15 @@ Para selecionar os parâmetros do AG adaptativo utilize:
    ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
 
 ################## VERSÕES ##################
+Versão 3.3 - AGA_3.3 - Adição de método de busca local e correção no método PPCR
+
+Para todos os algoritmos foi inserida a possibilidade de aplicar busca local
+Para isso deve-se definir "IG" para um algoritmo híbrido (ver Makefile) ou "LS" para somente busca local.
+
+Nos métodos adaptativos a busca local também tem sua probabilidade de ocorrência ajustada no decorrer da busca.
+Os métodos de recompensa estão descritos nesse log na Versão 3.2.1 e 3.2
+
+
 Versão 3.2.1 - AGA_3.2.1 - Adição de novo método de recompensa
 
 Para os métodos ADAPTIVE PURSUIT e os Preditivos - Definir nos arquivos adaptivepursuit.c ou predictiveparametercontrol.c

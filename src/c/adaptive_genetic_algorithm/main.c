@@ -5,11 +5,17 @@
 #include <string.h>
 #include "geneticalgorithm.h"
 
+// #ifd ef LS
+  #include "localsearch.h"
+// #endif
+
 int popLenght;
 int numGeneration; //Número de Gerações do AG interno
+int orc; //orçamento computacional
 
 double probCrossover;    // Probabilidade de realizar Crossover
 double probMutation;     // Probabilidade de realizar Mutação
+double probLocalSearch;  // Probabilidade de realizar Mutação
 
 int nJobs = 0;                // Número de Jobs
 int nMachines = 0;            // Número de Máquinas
@@ -31,17 +37,16 @@ void jobDueDate();
 void maxMakespan();
 void printDataFile(char *fileName, char *nRepeat,
                                         char pop[]);
-void printMakespan(char *fileName, char *nRepeat);
 
 int main(int argc, char *argv[])
 {
-  int i, j, orc;
+  int i, j;
   char fileName[10];
   char nRepeat[4];
   char popString[] = "100";
 
   #ifdef GA
-    char probCrossString[] = "0.8", probMutaString[] = "0.9";
+    char probCrossString[] = "0.7", probMutaString[] = "0.4", probLocalSearchString[] = "0.03";
   #endif
 
   srand((unsigned)time(NULL));
@@ -62,14 +67,21 @@ int main(int argc, char *argv[])
       printf("Executando programa default\n" );
       popLenght = 100;
       numGeneration = orc / popLenght;
-      probCrossover = 0.8;
-      probMutation = 0.9;
+      probCrossover = 0.7;
+      probMutation = 0.4;
+      #ifdef IG
+        probLocalSearch = 0.03;
+      #endif
     } else {
       popLenght = atoi(argv[3]);
       numGeneration = orc / popLenght;
       printf("%d %d\n", popLenght, numGeneration);
       probCrossover = atof(argv[4]);
       probMutation = atof(argv[5]);
+      #ifdef IG
+        probLocalSearch = atof(argv[6]);
+        strcpy(probLocalSearchString, argv[6]);
+      #endif
       strcpy(popString, argv[3]);
       strcpy(probCrossString, argv[4]);
       strcpy(probMutaString, argv[5]);
@@ -92,7 +104,7 @@ int main(int argc, char *argv[])
   #endif
 
   #ifdef OBR //Operation based Representation
-  #undef NEH //A heurística NEH funciona apenas para JBR
+    #undef NEH //A heurística NEH funciona apenas para JBR
     nGenes = nJobs * nMachines;
   #else
     nGenes = nJobs; //Job based Representation
@@ -126,10 +138,11 @@ int main(int argc, char *argv[])
     tmp[i] = (node**)malloc(2 * sizeof(node*));
   }
 
-  GeneticAlgorithm(fileName, nRepeat, popString);
-
-  // printDataFile(fileName, nRepeat, popString);
-  printMakespan(fileName, nRepeat);
+  #ifndef LS
+    GeneticAlgorithm(fileName, nRepeat, popString);
+  #else
+    LocalSearch(fileName, nRepeat, popString);
+  #endif
 
   //Desaloca a memória
   for(i = 0; i < nMachines; i++)
@@ -298,26 +311,3 @@ void printDataFile(char *fileName, char *nRepeat, char pop[])
   fclose(output);
   free(outputName);
 } //printDataFile
-
-void printMakespan(char *fileName, char *nRepeat)
-{
-  char *outputName =
-        (char*)malloc((strlen(fileName) + 8)*sizeof(char));
-  strcpy(outputName, fileName);
-  strcat(outputName, "_MK.txt");
-  FILE *output;
-  output = fopen(outputName , "a");
-  if (output == NULL)
-  {
-    printf("Arquivo não encontrado!\n");
-    exit(1);
-  }
-
-  fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
-    popLenght, numGeneration, probCrossover, probMutation, nRepeat,
-                                                    individuals[0].fitMakespan);
-
-  fclose(output);
-  free(outputName);
-
-} //printHypervolume

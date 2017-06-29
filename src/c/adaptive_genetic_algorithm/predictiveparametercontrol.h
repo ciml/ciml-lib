@@ -15,5 +15,8 @@ int crossoverGetSuccess(int countInd, int father1, int father2, int i, int size,
 void mutationSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness);
 int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness);
 
+// Funções para a LOCALSERACH
+void localSearchSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness);
+int localSearchGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness);
 
 #endif // PREDICTIVEPARAMETERCONTROL_H

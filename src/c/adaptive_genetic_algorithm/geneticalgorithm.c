@@ -22,14 +22,18 @@
   #define CR_v0
 #endif
 
+#ifdef IG
+  #include "localsearch.h"
+  #define CR_v1
+#endif
+
 #ifdef NEH
   #include "neh.h"
 #endif
 
-
 void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 {
-  int i, countGen = 0, father1 = 0, father2 = 0, countInd;
+  int i, countGen = 0, father1 = 0, father2 = 0, countInd, countEvaluation = 0;
   double avgFitness = 0.0, x; //Número para o sorteio
 
   //Memória reservada para manter a série temporal para o método PPC e derivativos
@@ -44,7 +48,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
     fitnessEvaluation(i);
 
   //Laço principal do AG
-  while(countGen < numGeneration)
+  while(countEvaluation < orc)
   {
     initializeGeneration();
     countInd = popLenght;
@@ -118,7 +122,87 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
 
       //Avalia os filhos gerados
       fitnessEvaluation(countInd);
+      countEvaluation++;
+      if(countEvaluation == orc)
+      {
+        countInd++;
+        break;
+      }
       fitnessEvaluation(countInd + 1);
+      countEvaluation++;
+      if(countEvaluation == orc)
+      {
+        countInd += 2;
+        break;
+      }
+
+      #ifdef IG
+        #ifndef GA
+          probLocalSearch = localSearchRateSelection(3, localSearch1RateControl);
+        #endif
+
+        rouletteLocalSearchProbabilityForPPCR();
+
+        x = (double)((double)rand() / (double)RAND_MAX);
+        if(x < probLocalSearch)
+        {
+          iteratedGreedy(countInd, &countEvaluation);
+          #ifndef GA
+            #ifdef PPCR
+              if(probLocalSearch <= 0.05333)
+                localSearch1RateControl[0].index[1]++;
+              else if(probLocalSearch <= 0.07666)
+                localSearch1RateControl[1].index[1]++;
+              else if(probLocalSearch < 0.1)
+                localSearch1RateControl[2].index[1]++;
+            #else
+              if(probLocalSearch == 0.03)
+                localSearch1RateControl[0].index[1]++;
+              if(probLocalSearch == 0.065)
+                localSearch1RateControl[1].index[1]++;
+              if(probLocalSearch == 0.1)
+                localSearch1RateControl[2].index[1]++;
+            #endif
+          #endif
+          if(countEvaluation == orc)
+            break;
+        }
+
+        #ifndef GA
+          probLocalSearch = localSearchRateSelection(3, localSearch2RateControl);
+        #endif
+
+        rouletteLocalSearchProbabilityForPPCR();
+
+        x = (double)((double)rand() / (double)RAND_MAX);
+        if(x < probLocalSearch)
+        {
+          iteratedGreedy(countInd + 1, &countEvaluation);
+          #ifndef GA
+            #ifdef PPCR
+              if(probLocalSearch < 0.3667)
+                localSearch2RateControl[0].index[1]++;
+              if(probLocalSearch < 0.4334)
+                localSearch2RateControl[1].index[1]++;
+              if(probLocalSearch < 0.5)
+                localSearch2RateControl[2].index[1]++;
+            #else
+              if(probLocalSearch == 0.3)
+                localSearch2RateControl[0].index[1]++;
+              if(probLocalSearch == 0.4)
+                localSearch2RateControl[1].index[1]++;
+              if(probLocalSearch == 0.5)
+                localSearch2RateControl[2].index[1]++;
+            #endif
+          #endif
+          if(countEvaluation == orc)
+            break;
+        }
+      #endif
+
+      #ifdef AP
+        printProbabilities(countInd, fileName, nRepeat, pop);
+      #endif
 
       //Atualização do método AP
       APupdate(countInd, father1, father2, avgFitness);
@@ -126,30 +210,31 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       //Verifica o sucesso dos operadores para os métodos preditivos
       PredictiveMethodsGetSuccess(countInd, father1, father2, avgFitness);
 
-      // for(i = 0; i < 3; i++)
-      // {
-      //     printf("1- %d\n", crossOperatorControl[i].index[1]);
-      //     printf("2- %d\n", crossRateControl[i].index[1]);
-      // }
-
       countInd = countInd + 2;
     } // while(countInd < (2 * popLenght))
 
     //Atualização dos métodos preditivos
-    PredictiveMethodsUpdate(countGen);
+    if(countInd == popLenght)
+      PredictiveMethodsUpdate(countGen);
 
     #ifndef GA
-      printProbabilities(countGen, fileName, nRepeat, pop);
+      #ifndef AP
+        printProbabilities(countGen, fileName, nRepeat, pop);
+      #endif
     #endif
 
     qsort(individuals, popLenght, sizeof(ind), sortFitMakespan);
 
-    selection();
+    selection(countInd);
+
+    qsort(individuals, popLenght, sizeof(ind), sortFitMakespan);
 
     printBestIndividual(fileName, nRepeat, countGen);
 
     countGen++;
   } // while(countGen < numGeneration)
+
+  printMakespan(fileName, nRepeat);
 
   FreeMemoryForPPC();
 } // AGinterno
@@ -819,21 +904,32 @@ void printBestIndividual(char *fileName, char *nRepeat, int countGen)
 
 } //printBestIndividual
 
-void selection()
+void selection(int countInd)
 {
   int i, j;
-  for(i = popLenght; i < 2*popLenght; i++)
+  for(i = popLenght; i < countInd; i++)
   {
     for(j = 0; j < nGenes; j++)
       selectedIndividuals[i - popLenght].jobsOrder[j] = individuals[i].jobsOrder[j];
     selectedIndividuals[i - popLenght].fitMakespan = individuals[i].fitMakespan;
   }
-  qsort(selectedIndividuals, popLenght, sizeof(ind), sortFitMakespan);
-  for(i = 1; i < popLenght; i++)
+  qsort(selectedIndividuals, (countInd - popLenght), sizeof(ind), sortFitMakespan);
+  if(countInd == (2*popLenght))
   {
-    for(j = 0; j < nGenes; j++)
-      individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
-    individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+    for(i = 1; i < popLenght; i++)
+    {
+      for(j = 0; j < nGenes; j++)
+        individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
+      individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+    }
+  } else
+  {
+    for(i = (2 * popLenght - countInd); i < popLenght; i++)
+    {
+      for(j = 0; j < nGenes; j++)
+        individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
+      individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+    }
   }
 }
 
@@ -952,3 +1048,44 @@ double mutaRateSelection(int size, ProbabilitiesControl probControl[size])
 		return 0.5;
 	}
 } //mutaRateSelection
+
+double localSearchRateSelection(int size, ProbabilitiesControl probControl[size])
+{
+	double x;
+	x = (double)((double)rand() / (double)RAND_MAX);
+	if(x < probControl[0].prob)
+	{
+		return 0.030;
+	}
+	else if(x < (probControl[1].prob + probControl[0].prob))
+	{
+		return 0.065;
+	}
+	else
+	{
+		return 0.100;
+	}
+} //localSearchRateSelection
+
+void printMakespan(char *fileName, char *nRepeat)
+{
+  char *outputName =
+        (char*)malloc((strlen(fileName) + 8)*sizeof(char));
+  strcpy(outputName, fileName);
+  strcat(outputName, "_MK.txt");
+  FILE *output;
+  output = fopen(outputName , "a");
+  if (output == NULL)
+  {
+    printf("Arquivo não encontrado!\n");
+    exit(1);
+  }
+
+  fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
+    popLenght, numGeneration, probCrossover, probMutation, nRepeat,
+                                                    individuals[0].fitMakespan);
+
+  fclose(output);
+  free(outputName);
+
+} //printHypervolume

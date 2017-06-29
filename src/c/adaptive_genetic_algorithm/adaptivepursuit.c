@@ -220,3 +220,91 @@ void mutationGetReward(int countInd, int father1, int father2, int i, int size, 
 			individuals[countInd].fitMakespan;
 	#endif
 }//mutationGetReward
+
+void localSearchAdaptivePursuit(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
+{
+	int i, count = 0;
+	int bestOperator;
+	double prob_max = 1 - (size - 1)*prob_min;
+
+	for(i = 0; i < size; i++)
+	{
+		if(probControl[i].index[1] > 0)
+		{
+			count++;
+		}
+	}
+	if(count < size)
+	{
+		for(i = 0; i < size; i++)
+		{
+			if((probControl[i].index[1] == 1) && (probControl[i].index[1] != probControl[i].index[0]))
+			{
+				localSearchGetReward(countInd, father1, father2, i, size , probControl, avgFitness);
+				probControl[i].index[0] = probControl[i].index[1];
+				probControl[i].prob = 0.0;
+				probControl[i].quality = (1.0 - alpha) *
+									probControl[i].quality +	alpha * probControl[i].reward;
+			}
+			else if(probControl[i].index[1] == 0)
+			{
+				probControl[i].prob = (1.0 / (size - count));
+			}
+		}
+	}
+	else
+	{
+		for(i = 0; i < size; i++)
+		{
+			if(probControl[i].index[0] < probControl[i].index[1])
+			{
+				localSearchGetReward(countInd, father1, father2, i, size, probControl, avgFitness);
+				probControl[i].index[0] = probControl[i].index[1];
+				probControl[i].quality =	(1.0 - alpha) *
+										probControl[i].quality + alpha * probControl[i].reward;
+			}
+		}
+		bestOperator = 0;
+		for(i = 1; i < size; i++)
+			if(probControl[bestOperator].quality < probControl[i].quality)
+				bestOperator = i;
+		for(i = 0; i < size; i++)
+		{
+			if(i == bestOperator)
+				probControl[i].prob = probControl[i].prob +
+								beta*(prob_max - probControl[i].prob);
+			else
+				probControl[i].prob = probControl[i].prob +
+								beta*(prob_min - probControl[i].prob);
+		}
+	}
+} //localSearchAdaptivePursuit
+
+void localSearchGetReward(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
+{
+	#ifdef CR_V0
+		probControl[i].reward = (((double)individuals[father1].fitMakespan +
+			(double)individuals[father2].fitMakespan)	/
+				((double)individuals[countInd].fitMakespan * 2.0));
+	#endif
+
+	#ifdef CR_V1
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
+	#ifdef CR_V2
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+
+	#ifdef CR_V3
+		int bestFather;
+
+		if(individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+
+		probControl[i].reward = (double)individuals[bestFather].fitMakespan /
+			individuals[countInd].fitMakespan;
+	#endif
+}//localSearchGetReward

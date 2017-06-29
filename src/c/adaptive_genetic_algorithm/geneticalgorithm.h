@@ -3,8 +3,10 @@
 
 extern int popLenght;  // Número de indivíduos do AG interno
 extern int numGeneration;
+extern int orc;
 extern double probCrossover;
 extern double probMutation;
+extern double probLocalSearch;
 
 //Indivíduo
 typedef struct ind{
@@ -45,6 +47,8 @@ ProbabilitiesControl mut2OperatorControl[2];
 ProbabilitiesControl crossRateControl[3];
 ProbabilitiesControl mut1RateControl[3];
 ProbabilitiesControl mut2RateControl[3];
+ProbabilitiesControl localSearch1RateControl[3];
+ProbabilitiesControl localSearch2RateControl[3];
 
 // indíviduos padrão do algoritmo genético
 ind *individuals;
@@ -78,11 +82,12 @@ int sortFitMakespan(const void *a, const void *b);
 void tournament(int *father1, int *father2);
 void initializeGeneration();
 int sortFitMakespanDescending(const void *a, const void *b);
-void selection();
+void selection(int countInd);
 void selectionWithTournament();
 int selectionTournament();
 void printProbabilities(int countInd, char *fileName, char *nRepeat, char pop[]);
 void printBestIndividual(char *fileName, char *nRepeat, int countGen);
+void printMakespan(char *fileName, char *nRepeat);
 void startList();
 
 // Funções que escolhem os OPERADORES a serem aplicados
@@ -91,6 +96,7 @@ void mutaOperatorSelection(int countInd, int size, ProbabilitiesControl probCont
 
 // Funções que controlam a probabilidade as TAXAS de crossover e mutação a serem aplicadas
 double crossoverRateSelection();
+double localSearchRateSelection(int size, ProbabilitiesControl probControl[size]);
 double mutaRateSelection(int size, ProbabilitiesControl probControl[size]);
 
 #endif //GENETICALGORITHM_H

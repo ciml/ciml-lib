@@ -252,3 +252,47 @@ int mutationGetSuccess(int countInd, int father1, int father2, int i, int size, 
 	else
 		return 0;
 }//mutationGetSuccess
+
+void localSearchSuccessEvaluation(int countInd, int father1, int father2, int size, ProbabilitiesControl probControl[size], double avgFitness)
+{
+	int i;
+	for(i = 0; i < size; i++)
+	{
+		if((probControl[i].index[1] > 0) && (probControl[i].index[1] != probControl[i].index[0]))
+		{
+			probControl[i].successApplication +=
+				localSearchGetSuccess(countInd, father1, father2, i, size, probControl, avgFitness);
+			probControl[i].index[0] = probControl[i].index[1];
+		}
+	}
+} // localSearchSuccessEvaluation
+
+int localSearchGetSuccess(int countInd, int father1, int father2, int i, int size, ProbabilitiesControl probControl[size], double avgFitness)
+{
+	#ifdef CR_V0
+		probControl[i].reward = (((double)individuals[father1].fitMakespan +
+			(double)individuals[father2].fitMakespan)	/
+				((double)individuals[countInd].fitMakespan * 2.0));
+	#endif
+	#ifdef CR_V1
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+	#ifdef CR_V2
+	probControl[i].reward = (avgFitness	/ (double)individuals[countInd].fitMakespan);
+	#endif
+	#ifdef CR_V3
+		int bestFather;
+
+		if (individuals[father1].fitMakespan < individuals[father2].fitMakespan)
+			bestFather = father1;
+		else
+			bestFather = father2;
+
+		probControl[i].reward = (double) individuals[bestFather].fitMakespan / individuals[countInd].fitMakespan;
+	#endif
+
+	if(probControl[i].reward > 1.0)
+		return 1;
+	else
+		return 0;
+} // localSearchGetSuccess

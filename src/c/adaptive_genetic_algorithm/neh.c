@@ -6,7 +6,7 @@
 void evaluateProcessTime()
 {
   int i, j;
-  jobsInfo = (JobsInformation*)calloc(nJobs, sizeof(JobsInformation));
+  jobsInfo = (JobsInformation*)calloc(nGenes, sizeof(JobsInformation));
   for(i = 0; i < nJobs; i++)
   {
     jobsInfo[i].Id = i;
@@ -182,9 +182,9 @@ void NEHfitnessEvaluation(int w, int y)
 void executeNEH(ind NEHindividual)
 {
   int i, j, k = 2, flag, bestAllocation;
-  tempIndividual = (ind*)malloc(nJobs * sizeof(ind));
-  for(i = 0; i < nJobs; i++)
-    tempIndividual[i].jobsOrder = (int*)malloc(nJobs * sizeof(int));
+  tempIndividual = (ind*)malloc(nGenes * sizeof(ind));
+  for(i = 0; i < nGenes; i++)
+    tempIndividual[i].jobsOrder = (int*)malloc(nGenes * sizeof(int));
 
   evaluateProcessTime();
   qsort(jobsInfo, nJobs, sizeof(JobsInformation), sortDescendingJobProcessTime);
@@ -206,7 +206,7 @@ void executeNEH(ind NEHindividual)
     NEHindividual.jobsOrder[i] = tempIndividual[bestAllocation].jobsOrder[i];
 
   k++; //Contador de quantos trabalhos já foram avaliados na heurística construtiva
-  while(k <= nJobs)
+  while(k <= nGenes)
   {
     for(i = 0; i < k; i++)
     {
@@ -240,8 +240,9 @@ void executeNEH(ind NEHindividual)
   }
   NEHindividual.fitMakespan = tempIndividual[bestAllocation].fitMakespan;
 
+
   //Libera memória
-  for(i = 0; i < nJobs; i++)
+  for(i = 0; i < nGenes; i++)
     free(tempIndividual[i].jobsOrder);
   free(tempIndividual);
   free(jobsInfo);
