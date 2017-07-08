@@ -9,8 +9,7 @@
 #-PPCR Predictive Paramenter Control with range
 CC        = gcc
 
-#CFLAGS    = -g -Wall -DLS -DNEH #use para debug
-#CFLAGS    = -g -Wall -DAP -DIG -DNEH #use para debug
+#CFLAGS    = -g -Wall -O3 -DAP -DIG #-DNEH #use para debug
 
 CFLAGS   = -O3 -DAP -DIG #-DNEH #use para compilar com otimiza��o (Genetic Algorithm w/ NEH)
 
