@@ -45,6 +45,11 @@ Para selecionar os parâmetros do AG adaptativo utilize:
    ./nome_do_executável nome_do_arquivo_teste numero_da_repeticao tamanho_da_população
 
 ################## VERSÕES ##################
+Versão 3.4 - AGA_3.4 Correção na busca local
+
+- Correção na busca local que poderia acarretar em falha de segmentação
+- Correção no contador do número de avaliações da busca local
+
 Versão 3.3 - AGA_3.3 - Adição de método de busca local e correção no método PPCR
 
 Para todos os algoritmos foi inserida a possibilidade de aplicar busca local

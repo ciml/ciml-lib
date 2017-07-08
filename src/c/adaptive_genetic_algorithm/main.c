@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
 // Realiza a leitura do arquivo
 void readDataFile(char fileName[])
 {
-  int i, j, k;
+  int i, j, k, l;
   FILE *fileInput;
   fileInput = fopen(fileName, "r");
 
@@ -192,20 +192,20 @@ void readDataFile(char fileName[])
   else
   {
     //recebe o número de Jobs
-    fscanf(fileInput, "%d\n", &nJobs);
+    l = fscanf(fileInput, "%d\n", &nJobs);
 
     //recebe o número de Máquinas
-    fscanf(fileInput, "%d\n", &nMachines);
+    l = fscanf(fileInput, "%d\n", &nMachines);
 
     //recebe o Z[0] e flowMakespan
-    fscanf(fileInput, "%lf\n", &z[0]);
+    l = fscanf(fileInput, "%lf\n", &z[0]);
     flowMakespan = (int)z[0];
 
-    fscanf(fileInput, "%lf\n", &z[1]);
+    l = fscanf(fileInput, "%lf\n", &z[1]);
 
     qMachines = (int*)malloc(nMachines * sizeof(int));
     for(i = 0; i < nMachines; i++)
-      fscanf(fileInput, "%d", &qMachines[i]);
+      l = fscanf(fileInput, "%d", &qMachines[i]);
 
     //Cria a matriz que relaciona o tempo dos jobs com as máquinas
     jobMachine = (int***)malloc(nJobs*sizeof(int**));
@@ -219,7 +219,8 @@ void readDataFile(char fileName[])
     for(i = 0; i < nJobs; i++)
       for(j = 0; j < nMachines; j++)
         for(k = 0; k < 2; k++)
-          fscanf(fileInput, "%d", &jobMachine[i][j][k]);
+          l = fscanf(fileInput, "%d", &jobMachine[i][j][k]);
+    l++;
   }
   fclose(fileInput);
 } // Função readDataFile

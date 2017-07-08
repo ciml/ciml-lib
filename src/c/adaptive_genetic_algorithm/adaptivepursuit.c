@@ -6,7 +6,7 @@
 #include "mutation.h"
 
 #ifdef AP
-	#define CR_V3
+	#define CR_V1
 #endif
 
 void APInitializeProbabilities(int size, ProbabilitiesControl probControl[size])

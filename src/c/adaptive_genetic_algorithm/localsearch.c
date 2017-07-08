@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "localsearch.h"
 #include "geneticalgorithm.h"
 #include "neh.h"
@@ -8,14 +9,22 @@ void iteratedGreedy(int countInd, int *countEvaluation)
 {
   int i, flag, countLS = 0;
   int nd = nJobs * 0.1; //número de itens na fase de destruição
-  int *d = (int*)malloc(nd * sizeof(int)); // aloca os genes que serão retirados
-  // ind IGindividual;
+  double lsNumEvaluation = 0.0;
+  d = (int*)malloc(nd * sizeof(int)); // aloca os genes que serão retirados
 
   IGindividual.jobsOrder = (int*)malloc(nGenes * sizeof(int));
 
+  for(i = 0; i < nd; i++)
+    lsNumEvaluation += ((double)(nGenes - i)*(nGenes - i))/nGenes;
+
   do {
-    destructionPhase(countInd, nd,/* &IGindividual,*/ d);
-    constructionPhase(nd, /*&IGindividual,*/ d);
+    destructionPhase(countInd, nd);
+    constructionPhase(nd);
+
+    (*countEvaluation) += (int)ceil(lsNumEvaluation);
+    if((*countEvaluation) > orc)
+      break;
+
     if(IGindividual.fitMakespan < individuals[countInd].fitMakespan)
     {
       for(i = 0; i < nGenes; i++)
@@ -27,19 +36,15 @@ void iteratedGreedy(int countInd, int *countEvaluation)
     else{
       flag = 0;
     }
-    (*countEvaluation)++;
-    if((*countEvaluation) == orc)
-      break;
-  } while(flag == 1);
-
+  } while((flag == 1) && ((*countEvaluation) < orc));
 
   free(d);
   free(IGindividual.jobsOrder);
 } //integratedGreedy
 
-void destructionPhase(int countInd, int nd,/* ind *IGindividual,*/ int *d)
+void destructionPhase(int countInd, int nd)
 {
-  int i, j, flag;
+  int i, j, aux, flag;
   int wd; //Número para sorteio de qual gene será retirado
 
   for(i = 0; i < nd; i++)
@@ -47,54 +52,59 @@ void destructionPhase(int countInd, int nd,/* ind *IGindividual,*/ int *d)
     flag = 1;
     while(flag == 1)
     {
-      wd = rand() % nJobs;
-      if(nd > 1)
+      wd = rand() % nGenes;
+      if(i == 0)
+      {
+        flag = 0;
+      }
+      else
       {
         for(j = 0; j < i; j++)
         {
           if(wd == d[j])
+          {
+            flag = 1;
             break;
+          }
           else
             flag = 0;
         }
-      }
-      else{
-        flag = 0;
       }
     }
     d[i] = wd;
   }
 
   for(i = 0; i < nGenes; i++)
+    IGindividual.jobsOrder[i] = individuals[countInd].jobsOrder[i];
+
+  for(i = 0; i < nd; i++)
   {
-    flag = 0;
-    for(j = 0; j < nd; j++)
-    {
-      if(individuals[countInd].jobsOrder[i] == d[j])
-        flag = 1;
-    }
-    if(flag == 1)
-      IGindividual.jobsOrder[i] = -1;
-    else
-      IGindividual.jobsOrder[i] = individuals[countInd].jobsOrder[i];
+    aux = IGindividual.jobsOrder[d[i]];
+    IGindividual.jobsOrder[d[i]] = (-1);
+    d[i] = aux;
   }
+
   for(i = 0; i < (nGenes - 1); i++)
   {
     if(IGindividual.jobsOrder[i] == -1)
     {
-      IGindividual.jobsOrder[i] = IGindividual.jobsOrder[i + 1];
-      IGindividual.jobsOrder[i + 1] = -1;
+      j = i;
+      do {
+        j++;
+      } while((IGindividual.jobsOrder[j] == -1) && (j < (nGenes -1)));
+
+      IGindividual.jobsOrder[i] = IGindividual.jobsOrder[j];
+      IGindividual.jobsOrder[j] = -1;
     }
   }
-
 } //destructionPhase
 
-void constructionPhase(int nd,/* ind *IGindividual,*/ int *d)
+void constructionPhase(int nd)
 {
-  int i, j, k = 0, bestAllocation, flag;
+  int i, j, k = 0, bestAllocation = 0, flag;
 
-  tempIndividual = (ind*)malloc((nGenes - nd + 1) * sizeof(ind));
-  for(i = 0; i < (nGenes - nd + 1); i++)
+  tempIndividual = (ind*)malloc(nGenes * sizeof(ind));
+  for(i = 0; i < nGenes; i++)
     tempIndividual[i].jobsOrder = (int*)malloc(nGenes * sizeof(int));
 
   while(k < nd)
@@ -131,7 +141,7 @@ void constructionPhase(int nd,/* ind *IGindividual,*/ int *d)
   }
   IGindividual.fitMakespan = tempIndividual[bestAllocation].fitMakespan;
 
-  for(i = 0; i < (nGenes - nd + 1); i++)
+  for(i = 0; i < nGenes; i++)
     free(tempIndividual[i].jobsOrder);
   free(tempIndividual);
 } //constructionPhase

@@ -226,12 +226,12 @@ void mutation(int countInd, int rateSize, ProbabilitiesControl rateControl[rateS
 void rouletteLocalSearchProbabilityForPPCR()
 {
   #ifdef PPCR
+    if(probLocalSearch == 0.015)
+      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.010 + 0.015;
     if(probLocalSearch == 0.030)
-      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.02333 + 0.03;
-    if(probLocalSearch == 0.065)
-      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.02333 + 0.05333;
-    if(probLocalSearch == 0.100)
-      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.02334 + 0.07666;
+      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.010 + 0.025;
+    if(probLocalSearch == 0.045)
+      probLocalSearch = ((double)rand() / (double)(RAND_MAX)) * 0.010 + 0.035;
   #endif
 }
 

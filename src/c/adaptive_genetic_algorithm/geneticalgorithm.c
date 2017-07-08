@@ -128,6 +128,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
         countInd++;
         break;
       }
+
       fitnessEvaluation(countInd + 1);
       countEvaluation++;
       if(countEvaluation == orc)
@@ -149,23 +150,25 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
           iteratedGreedy(countInd, &countEvaluation);
           #ifndef GA
             #ifdef PPCR
-              if(probLocalSearch <= 0.05333)
+              if(probLocalSearch <= 0.025)
                 localSearch1RateControl[0].index[1]++;
-              else if(probLocalSearch <= 0.07666)
+              else if(probLocalSearch <= 0.035)
                 localSearch1RateControl[1].index[1]++;
-              else if(probLocalSearch < 0.1)
+              else if(probLocalSearch <= 0.045)
                 localSearch1RateControl[2].index[1]++;
             #else
-              if(probLocalSearch == 0.03)
+              if(probLocalSearch == 0.015)
                 localSearch1RateControl[0].index[1]++;
-              if(probLocalSearch == 0.065)
+              if(probLocalSearch == 0.030)
                 localSearch1RateControl[1].index[1]++;
-              if(probLocalSearch == 0.1)
+              if(probLocalSearch == 0.045)
                 localSearch1RateControl[2].index[1]++;
             #endif
           #endif
-          if(countEvaluation == orc)
-            break;
+          if(countEvaluation >= orc)
+          {
+              break;
+          }
         }
 
         #ifndef GA
@@ -180,28 +183,32 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
           iteratedGreedy(countInd + 1, &countEvaluation);
           #ifndef GA
             #ifdef PPCR
-              if(probLocalSearch < 0.3667)
+              if(probLocalSearch <= 0.025)
                 localSearch2RateControl[0].index[1]++;
-              if(probLocalSearch < 0.4334)
+              else if(probLocalSearch <= 0.035)
                 localSearch2RateControl[1].index[1]++;
-              if(probLocalSearch < 0.5)
+              else if(probLocalSearch <= 0.045)
                 localSearch2RateControl[2].index[1]++;
             #else
-              if(probLocalSearch == 0.3)
+              if(probLocalSearch == 0.015)
                 localSearch2RateControl[0].index[1]++;
-              if(probLocalSearch == 0.4)
+              if(probLocalSearch == 0.030)
                 localSearch2RateControl[1].index[1]++;
-              if(probLocalSearch == 0.5)
+              if(probLocalSearch == 0.045)
                 localSearch2RateControl[2].index[1]++;
             #endif
           #endif
-          if(countEvaluation == orc)
+          if(countEvaluation >= orc)
+          {
             break;
+          }
         }
       #endif
 
       #ifdef AP
-        printProbabilities(countInd, fileName, nRepeat, pop);
+        printCrossoverProbabilities(countInd, fileName, nRepeat, pop);
+        printMutationProbabilities(countInd, fileName, nRepeat, pop);
+        printLocalSearchProbabilities(countInd, fileName, nRepeat, pop);
       #endif
 
       //Atualização do método AP
@@ -211,15 +218,17 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
       PredictiveMethodsGetSuccess(countInd, father1, father2, avgFitness);
 
       countInd = countInd + 2;
-    } // while(countInd < (2 * popLenght))
+    }// Fim do while(countInd < 2 * popLenght)
 
     //Atualização dos métodos preditivos
-    if(countInd == popLenght)
+    if(countInd == (2*popLenght))
       PredictiveMethodsUpdate(countGen);
 
     #ifndef GA
       #ifndef AP
-        printProbabilities(countGen, fileName, nRepeat, pop);
+        printCrossoverProbabilities(countInd, fileName, nRepeat, pop);
+        printMutationProbabilities(countInd, fileName, nRepeat, pop);
+        printLocalSearchProbabilities(countInd, fileName, nRepeat, pop);
       #endif
     #endif
 
@@ -232,7 +241,7 @@ void GeneticAlgorithm(char *fileName, char *nRepeat, char pop[])
     printBestIndividual(fileName, nRepeat, countGen);
 
     countGen++;
-  } // while(countGen < numGeneration)
+  } // while(countEvaluation < orc)
 
   printMakespan(fileName, nRepeat);
 
@@ -849,13 +858,13 @@ int sortFitMakespanDescending(const void *a, const void *b)
     return (a2->iRank - b2->iRank);
 } //sortFitMakespan
 
-void printProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
+void printCrossoverProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
 {
   char *outputName =
         (char*)malloc((strlen(fileName) + strlen(nRepeat) +
                                                 strlen(pop) + 19)*sizeof(char));
   strcpy(outputName, fileName);
-  strcat(outputName, "_prob_");
+  strcat(outputName, "_Pcro_");
   strcat(outputName, nRepeat);
   strcat(outputName, "_");
   strcat(outputName, pop);
@@ -869,9 +878,34 @@ void printProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
   }
 
   fprintf(output, "%d \t", countInd);
-  fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf \t %lf \t",
+  fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf \t %lf \n",
     crossOperatorControl[0].prob, crossOperatorControl[1].prob, crossOperatorControl[2].prob,
       crossRateControl[0].prob, crossRateControl[1].prob, crossRateControl[2].prob);
+
+  fclose(output);
+  free(outputName);
+} //printCrossoverProbabilities
+
+void printMutationProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
+{
+  char *outputName =
+        (char*)malloc((strlen(fileName) + strlen(nRepeat) +
+                                                strlen(pop) + 19)*sizeof(char));
+  strcpy(outputName, fileName);
+  strcat(outputName, "_Pmut_");
+  strcat(outputName, nRepeat);
+  strcat(outputName, "_");
+  strcat(outputName, pop);
+  strcat(outputName, "_output.txt");
+  FILE *output;
+  output = fopen(outputName, "a");
+  if (output == NULL)
+  {
+    printf("Arquivo não encontrado!\n");
+    exit(1);
+  }
+
+  fprintf(output, "%d \t", countInd);
   fprintf(output, "%lf \t %lf \t %lf \t %lf \t %lf \t",
     mut1OperatorControl[0].prob, mut1OperatorControl[1].prob,
       mut1RateControl[0].prob, mut1RateControl[1].prob, mut1RateControl[2].prob);
@@ -881,13 +915,44 @@ void printProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
 
   fclose(output);
   free(outputName);
-} //printProbabilities
+} //printMutationProbabilities
+
+void printLocalSearchProbabilities(int countInd, char *fileName, char *nRepeat, char pop[])
+{
+  char *outputName =
+        (char*)malloc((strlen(fileName) + strlen(nRepeat) +
+                                                strlen(pop) + 19)*sizeof(char));
+  strcpy(outputName, fileName);
+  strcat(outputName, "_Plse_");
+  strcat(outputName, nRepeat);
+  strcat(outputName, "_");
+  strcat(outputName, pop);
+  strcat(outputName, "_output.txt");
+  FILE *output;
+  output = fopen(outputName, "a");
+  if (output == NULL)
+  {
+    printf("Arquivo não encontrado!\n");
+    exit(1);
+  }
+
+  fprintf(output, "%d \t", countInd);
+  fprintf(output, "%lf \t %lf \t %lf \t",
+      localSearch1RateControl[0].prob, localSearch1RateControl[1].prob, localSearch1RateControl[2].prob);
+  fprintf(output, "%lf \t %lf \t %lf\n",
+      localSearch2RateControl[0].prob, localSearch2RateControl[1].prob, localSearch2RateControl[2].prob);
+
+  fclose(output);
+  free(outputName);
+} //printLocalSearchProbabilities
 
 void printBestIndividual(char *fileName, char *nRepeat, int countGen)
 {
   char *outputName =
-        (char*)malloc((strlen(fileName) + 10)*sizeof(char));
+        (char*)malloc((strlen(fileName) + strlen(nRepeat) + 11)*sizeof(char));
   strcpy(outputName, fileName);
+  strcat(outputName, "_");
+  strcat(outputName, nRepeat);
   strcat(outputName, "_best.txt");
   FILE *output;
   output = fopen(outputName , "a");
@@ -919,16 +984,16 @@ void selection(int countInd)
     for(i = 1; i < popLenght; i++)
     {
       for(j = 0; j < nGenes; j++)
-        individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
-      individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+        individuals[i].jobsOrder[j] = selectedIndividuals[i - 1].jobsOrder[j];
+      individuals[i].fitMakespan = selectedIndividuals[i - 1].fitMakespan;
     }
   } else
   {
     for(i = (2 * popLenght - countInd); i < popLenght; i++)
     {
       for(j = 0; j < nGenes; j++)
-        individuals[i].jobsOrder[j] = selectedIndividuals[i].jobsOrder[j];
-      individuals[i].fitMakespan = selectedIndividuals[i].fitMakespan;
+        individuals[i].jobsOrder[j] = selectedIndividuals[i - 1].jobsOrder[j];
+      individuals[i].fitMakespan = selectedIndividuals[i - 1].fitMakespan;
     }
   }
 }
@@ -1055,15 +1120,15 @@ double localSearchRateSelection(int size, ProbabilitiesControl probControl[size]
 	x = (double)((double)rand() / (double)RAND_MAX);
 	if(x < probControl[0].prob)
 	{
-		return 0.030;
+		return 0.015;
 	}
 	else if(x < (probControl[1].prob + probControl[0].prob))
 	{
-		return 0.065;
+		return 0.030;
 	}
 	else
 	{
-		return 0.100;
+		return 0.045;
 	}
 } //localSearchRateSelection
 
@@ -1081,8 +1146,8 @@ void printMakespan(char *fileName, char *nRepeat)
     exit(1);
   }
 
-  fprintf(output, "%d \t %d \t %1.1lf \t %1.1lf \t %s \t %d\n",
-    popLenght, numGeneration, probCrossover, probMutation, nRepeat,
+  fprintf(output, "%d \t %d \t %1.3lf \t %1.3lf \t %1.3lf \t %s \t %d\n",
+    popLenght, numGeneration, probCrossover, probMutation, probLocalSearch, nRepeat,
                                                     individuals[0].fitMakespan);
 
   fclose(output);
