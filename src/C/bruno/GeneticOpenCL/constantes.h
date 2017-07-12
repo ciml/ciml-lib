@@ -7,22 +7,22 @@
 #define SEED    25
 #endif // SEED
 
-#define VAR     7
-#define CTE     8
+#define VAR     4
+#define CTE     3
 #define FBIN    2
 #define FUN     1
 
-#define PLUS    0
-#define MIN     1
-#define MULT    2
-#define DIV     3
+#define PLUS    10
+#define MIN     11
+#define MULT    12
+#define DIV     13
 
-#define SIN     4
-#define COS     5
-#define SQR     6
-#define EXP     12
+#define SIN     14
+#define COS     15
+#define SQR     16
+#define EXP     17
 
-#define LOG10   13
+#define LOG10   18
 
 ///MUDEI AQUI
 
@@ -44,7 +44,7 @@
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    50
+#define NUM_GERACOES    10
 
 
 #define MAX_TEXT_LINE_LENGTH 10000

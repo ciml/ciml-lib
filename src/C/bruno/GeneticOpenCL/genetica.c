@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "genetica.h"
 
-void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados){
     int i;
     while((num-indice)%MAX_DEPTH != 0){
-        criaCheia(&pop[indice], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+        criaCheia(&pop[indice], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
         indice++;
     }
 
@@ -15,7 +15,7 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
     for(i = indice; i < num; ){
             printf("prof = %d\n", prof);
         for(int j = 0; j < k; j++){
-            criaCheia(&pop[i], prof, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+            criaCheia(&pop[i], prof, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
             i++;
             if(i >= num) break;
         }
@@ -35,18 +35,19 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
 
 }
 
-void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
+                         int maxDados, int minDados){
     int i;
     for(i = indice; i < num; i++){
-        geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+        geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
     }
 
 }
 
-void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
+void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados){
 
-    inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
-    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
+    inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
+    inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
 //    int i;
 //    for(i = 0; i < NUM_INDIV/2; i++){
 //        geradorArvore(&pop[i], MAX_NOS); //sortear a quantidade de nós em determinado intervalo

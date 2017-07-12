@@ -2,9 +2,9 @@
 #define GENETICA_H_INCLUDED
 #include "arvore.h"
 
-void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
-void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
-void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed);
+void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados);
+void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados);
+void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados);
 
 
 

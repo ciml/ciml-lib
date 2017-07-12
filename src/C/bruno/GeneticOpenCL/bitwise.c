@@ -15,7 +15,7 @@
 *@return unsigned int: o inteiro desejado deslocado "TIPO" bits para a direita
 *********************************************************/
 unsigned int floatToInt(float floatVal){
-    return (*(int*)(&floatVal) >> TIPO);
+    return (*(unsigned int*)(&floatVal) >> TIPO);
 }
 
 
@@ -68,8 +68,10 @@ unsigned int packInt(int tipo, int valor){
 unsigned int packFloat(int tipo, float valor){
     unsigned int informacao = 0;
     unsigned int valorInt = floatToInt(valor);
+    //if(i == 1) printf("tipo ini = %d\n", tipo);
 
     informacao = (tipo << (32-TIPO)) | valorInt;
+    //if(i == 1) printf("tipo ini = %d\n", unpackTipo(informacao));
     return informacao;
 }
 
@@ -79,7 +81,7 @@ unsigned int packFloat(int tipo, float valor){
 *
 *@return int: o tipo
 *********************************************************/
-int unpackTipo(unsigned int info){
+unsigned int unpackTipo(unsigned int info){
     unsigned int tipo = (info>>(32-TIPO));
     return tipo;
 }
@@ -90,7 +92,7 @@ int unpackTipo(unsigned int info){
 *
 *@return int: a informação
 *********************************************************/
-int unpackInt(unsigned int info){
+unsigned int unpackInt(unsigned int info){
     int valor = (info << TIPO) >> TIPO;
     return valor;
 }

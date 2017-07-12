@@ -190,7 +190,7 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
     std::cout << "...fim." << std::endl;
 }
 
-std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize){
+std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize, float maxDados, float minDados){
     std::string program_src =
         "#define TIPO "  + ToString( TIPO ) + "\n"
         "#define SEED "  + ToString( SEED ) + "\n"
@@ -211,6 +211,8 @@ std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int loca
         "#define NUM_OPUN   "+ ToString( NUM_OPUN ) + "\n" +
         "#define M   "+ ToString( M ) + "\n" +
         "#define N   "+ ToString( N ) + "\n" +
+        "#define maxDados    "+ ToString( maxDados ) + "\n" +
+        "#define minDados    "+ ToString( minDados) + "\n" +
         "#define MAX_NOS     "+ ToString( MAX_NOS ) + "\n" +
         "#define MAX_DEPTH   "+ ToString( MAX_DEPTH ) + "\n" +
         "#define MAX_FILHOS  "+ ToString( MAX_FILHOS ) + "\n" +
@@ -231,8 +233,6 @@ int main(int argc, char** argv){
     float maxDados, minDados;
     minDados = std::numeric_limits<float>::max();
     maxDados = (-1) * minDados;
-    std::cout << minDados << " " << maxDados << std::endl;
-
 
     double tempoTotalAvaliacao = 0;
     double tempoTotalEvolucao = 0;
@@ -251,7 +251,7 @@ int main(int argc, char** argv){
 
     ///leituras de dados
     float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm, &maxDados, &minDados, argv[1]);
-    std::cout << minDados << " " << maxDados << std::endl;
+
 //    Arvore arv;
 //    leIndividuo("6sencos.txt",&arv, LABELS, dadosTreinamento, M, N);
 //    char c; std::cin >> c;
@@ -281,9 +281,11 @@ int main(int argc, char** argv){
     for(int i = 0; i < NUM_INDIV*MAX_NOS; i++){
         seeds[i] = rand();
     }
-    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0]);
+
+    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
-    imprimePopulacao(popAtual, LABELS);
+    std::cout << seeds[0] <<std::endl;
+
 
     #if AVALOCL || EVOLOCL
         cl_ulong inicio, fim;
@@ -365,7 +367,7 @@ int main(int argc, char** argv){
         ///Leitura do arquivo com o programa em C++
         std::ifstream sourceFileName("kernelAvalia.cl");
         std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
-        std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize) + sourceFile;
+        std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize, maxDados, minDados) + sourceFile;
         //std::cout << program_src << std::endl;
 
         ///Criar programa por Source
@@ -393,8 +395,10 @@ int main(int argc, char** argv){
 
     #endif // OPENCL
 
+    //imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
+
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
         startIt = getTime();
 
@@ -482,6 +486,7 @@ int main(int argc, char** argv){
                 }
             }
             #else
+            std::cout <<"ini " <<seeds[0] <<std::endl;
             for(int j = novosIndividuos; j < NUM_INDIV; j +=2){
                 int id = (j/2)-(novosIndividuos/2);
 
@@ -499,8 +504,8 @@ int main(int argc, char** argv){
                     crossOver(&popFutura[j+1], &popFutura[j], &seeds[id]);
                 }
                 if(mut <= PROB_MUT){
-                    mutacao(&popFutura[j+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
-                    mutacao(&popFutura[j], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id]);
+                    mutacao(&popFutura[j+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id], maxDados, minDados);
+                    mutacao(&popFutura[j], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id], maxDados, minDados);
                 }
             }
             #endif // EVOLOMP
@@ -508,7 +513,7 @@ int main(int argc, char** argv){
             tempoEvolucao = getTime() - start;
             tempoTotalEvolucao += tempoEvolucao;
             std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
-
+            std::cout <<"fim " <<seeds[0] <<std::endl;
         #endif // EVOLOCL
 
         #if AVALOCL
@@ -565,7 +570,7 @@ int main(int argc, char** argv){
     }
 
     printf("\nPOPULACAO FINAL \n");
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
     printf("*");
     imprimeMelhor(popAtual, LABELS);
     printf("\n\n");

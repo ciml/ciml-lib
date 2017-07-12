@@ -46,13 +46,16 @@ int randomFunctionUn(int NUM_OPUN){
 
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
-float randomConst(int* seed){
-    int superior = 6, inferior = 0;
-   // printf("aa = %d ",(rand2(seed)% (superior - inferior + 1) + inferior));
-   // float a = (rand2(seed)% (superior - inferior + 1) + inferior);
+float randomConst(int* seed, float maxDados, float minDados){
+    //int superior = 6, inferior = 0;
+    float random = (float)rand2(seed)/(float)(2147483647);
+    float range = maxDados - minDados;
+    //printf("aa = %d ",(rand2(seed)% (superior - inferior + 1) + inferior));
+    //float a = (rand2(seed)% (superior - inferior + 1) + inferior);
     //printf("a = %f", a);
-    return 6;//(float)(2147483647/2));
+    return (range*random) + minDados;//(float)(2147483647/2));
 }
+
 
 int randomType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     int tipoAleatorio = rand2(seed)%(NUM_OPBIN+NUM_OPUN+(1)+N-1);
@@ -70,6 +73,39 @@ int randomNodeType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
     return tipoAleatorio;
 }
 
+
+
+float proDiv(float num, float div){
+    if(div == 0){
+        return 1;
+    } else {
+        return (num/div);
+    }
+}
+
+float infDiv(float num, float div){
+    if(div == 0){
+        return INFINITY;
+    } else {
+        return (num/div);
+    }
+}
+
+float proSqrt(float num){
+    if(num < 0){
+        return 1;
+    } else {
+        return sqrt(num);
+    }
+}
+
+float infSqrt(float num){
+    if(num < 0){
+        return INFINITY;
+    } else {
+        return sqrt(num);
+    }
+}
 
 void fatal(char *msg) {
     printf("%s\n", msg);
@@ -256,39 +292,6 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 
     return dadosTreinamento;
 
-}
-
-
-float proDiv(float num, float div){
-    if(div == 0){
-        return 1;
-    } else {
-        return (num/div);
-    }
-}
-
-float infDiv(float num, float div){
-    if(div == 0){
-        return INFINITY;
-    } else {
-        return (num/div);
-    }
-}
-
-float proSqrt(float num){
-    if(num < 0){
-        return 1;
-    } else {
-        return sqrt(num);
-    }
-}
-
-float infSqrt(float num){
-    if(num < 0){
-        return INFINITY;
-    } else {
-        return sqrt(num);
-    }
 }
 
 void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){

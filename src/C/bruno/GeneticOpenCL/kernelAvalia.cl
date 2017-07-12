@@ -57,6 +57,7 @@ float desempilha2(PilhaEx* pilha){
 
 
 
+
 /*
 *Funcao para retornar um valor Int que representa um Float
 *@param floatVal  : valor a ser transformado
@@ -64,7 +65,7 @@ float desempilha2(PilhaEx* pilha){
 *@return unsigned int: o inteiro desejado deslocado "TIPO" bits para a direita
 *********************************************************/
 unsigned int floatToInt(float floatVal){
-    return (*(int*)(&floatVal) >> TIPO);
+    return (*(unsigned int*)(&floatVal) >> TIPO);
 }
 
 
@@ -117,8 +118,10 @@ unsigned int packInt(int tipo, int valor){
 unsigned int packFloat(int tipo, float valor){
     unsigned int informacao = 0;
     unsigned int valorInt = floatToInt(valor);
+    //if(i == 1) printf("tipo ini = %d\n", tipo);
 
     informacao = (tipo << (32-TIPO)) | valorInt;
+    //if(i == 1) printf("tipo ini = %d\n", unpackTipo(informacao));
     return informacao;
 }
 
@@ -128,7 +131,7 @@ unsigned int packFloat(int tipo, float valor){
 *
 *@return int: o tipo
 *********************************************************/
-int unpackTipo(unsigned int info){
+unsigned int unpackTipo(unsigned int info){
     unsigned int tipo = (info>>(32-TIPO));
     return tipo;
 }
@@ -139,7 +142,7 @@ int unpackTipo(unsigned int info){
 *
 *@return int: a informação
 *********************************************************/
-int unpackInt(unsigned int info){
+unsigned int unpackInt(unsigned int info){
     int valor = (info << TIPO) >> TIPO;
     return valor;
 }
@@ -155,6 +158,7 @@ float unpackFloat(unsigned int info){
     float valorF = intToFloat(info);
     return valorF;
 }
+
 
 
 int retornaTipo(__global Arvore* arv, int j){
@@ -367,7 +371,10 @@ float randomProb(int* seed){
 }
 
 float randomConst(int* seed){
-    return 6;//(float)rand2(seed) / (2147483647/2);//pown(2.0, 31);
+    float random = (float)rand2(seed)/(float)(2147483647);
+    float range = maxDados - minDados;
+
+    return (range*random) + minDados;
 }
 
 int randomType(int* seed){
@@ -657,7 +664,8 @@ __kernel void evolucao(__global Arvore* popA,
     int seed = seeds[group_id];
 
     //printf("id = %d\n", group_id);
-    //printf("seeds1 = %d\n", seed);
+    if(group_id == 0)
+        printf("ini = %d\n", seed);
     int ind1 = torneio(popA, &seed);
     int ind2 = torneio(popA, &seed);
     //printf("seeds2 = %d\n", seed);
@@ -692,6 +700,9 @@ __kernel void evolucao(__global Arvore* popA,
 
 
     seeds[group_id] = seed;
+    
+    if(group_id == 0)
+        printf("ini = %d\n", seed);
 }
 
 //TESTE inicial comparando openMP e openCL
