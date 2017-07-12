@@ -50,11 +50,11 @@
 #define MAX_TEXT_LINE_LENGTH 10000
 
 #ifndef TWODEVICES
-    #define TWODEVICES 1
+    #define TWODEVICES 0
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 1
+    #define EVOLOCL 0
 #endif // EVOLOCL
 
 #ifndef AVALOCL
@@ -66,7 +66,7 @@
 #endif // EVOLOMP
 
 #ifndef AVALGPU
-    #define AVALGPU 1
+    #define AVALGPU 0
 #endif // AVALGPU
 
 

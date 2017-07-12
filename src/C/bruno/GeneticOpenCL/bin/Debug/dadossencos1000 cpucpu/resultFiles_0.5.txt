@@ -1,0 +1,5 @@
+cpuCpu_seed_1_mutacao_0.5.txt
+cpuCpu_seed_2_mutacao_0.5.txt
+cpuCpu_seed_3_mutacao_0.5.txt
+cpuCpu_seed_4_mutacao_0.5.txt
+cpuCpu_seed_5_mutacao_0.5.txt

@@ -1,0 +1,5 @@
+seq_seed_1_mutacao_0.4.txt
+seq_seed_2_mutacao_0.4.txt
+seq_seed_3_mutacao_0.4.txt
+seq_seed_4_mutacao_0.4.txt
+seq_seed_5_mutacao_0.4.txt

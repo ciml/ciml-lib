@@ -12,6 +12,7 @@
 #include <sys/time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits>
 #ifdef __cplusplus
 extern "C"
 {
@@ -227,6 +228,11 @@ std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int loca
 int main(int argc, char** argv){
     std::cout << std::setprecision(32) << std::fixed;
     //comparar tudo sequencial com openmp+opencl com tudo opencl
+    float maxDados, minDados;
+    minDados = std::numeric_limits<float>::max();
+    maxDados = (-1) * minDados;
+    std::cout << minDados << " " << maxDados << std::endl;
+
 
     double tempoTotalAvaliacao = 0;
     double tempoTotalEvolucao = 0;
@@ -244,7 +250,11 @@ int main(int argc, char** argv){
     int NUM_OPBIN, NUM_OPUN, NUM_CTES;
 
     ///leituras de dados
-    float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm, argv[1]);
+    float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm, &maxDados, &minDados, argv[1]);
+    std::cout << minDados << " " << maxDados << std::endl;
+//    Arvore arv;
+//    leIndividuo("6sencos.txt",&arv, LABELS, dadosTreinamento, M, N);
+//    char c; std::cin >> c;
 
 //    for(int i = 0; i < M; i++){
 //        for(int j = 0; j < N; j++){
@@ -273,6 +283,7 @@ int main(int argc, char** argv){
     }
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0]);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
+    imprimePopulacao(popAtual, LABELS);
 
     #if AVALOCL || EVOLOCL
         cl_ulong inicio, fim;

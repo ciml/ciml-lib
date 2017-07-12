@@ -654,3 +654,112 @@ void realizaTestes(){
 //    imprimeArvoreNivel(&arvore2);
 //    printf("\n");
 }
+
+//TODO:fazer receber os dados também+labels.
+void leIndividuo(char *fileName, Arvore* individuo, char** LABELS, float** dados, int M, int N) {
+    //printf("%s", fileName);
+    FILE* arquivo = fopen(fileName, "r");
+    char cp[100000];
+    int posicao = 0;
+    int informacao;
+
+//    fseek(arquivo, 0, SEEK_END);
+//    long fsize = ftell(arquivo);
+//    fseek(arquivo, 0, SEEK_SET);
+
+
+    if (arquivo == NULL) {
+        fprintf(stderr, "Error opening data file.\n");
+        return;
+    }
+    const char delimiters[] = " ()";
+
+    while (fgets(cp, 100000, arquivo)) {
+
+        char *token;
+
+        token = strtok (cp, delimiters);      /* token => "words" */
+          //  printf("%s\n", token);
+
+        while(token != NULL){
+            //printf("%s\n", token);
+            if(strcmp(token, "+") == 0){
+                //printf("aaa\n");
+                informacao = packInt(FBIN, PLUS);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 2;
+            }
+            else if(strcmp(token, "-") == 0){
+                informacao = packInt(FBIN, MIN);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 2;
+            }
+            else if(strcmp(token, "*") == 0){
+                informacao = packInt(FBIN, MULT);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 2;
+            }
+            else if(strcmp(token, "/") == 0){
+                informacao = packInt(FBIN, DIV);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 2;
+            }
+            else if(strcmp(token, "sen") == 0){
+                informacao = packInt(FUN, SIN);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 1;
+            }
+            else if(strcmp(token, "cos") == 0){
+                informacao = packInt(FUN, COS);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 1;
+            }
+            else if(strcmp(token, "sqrt") == 0){
+                informacao = packInt(FUN, SQR);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 1;
+            }
+            else if(token[0] == 'x'){
+                token++;
+                informacao = packInt(VAR, atoll(token)-1);
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 0;
+            } else {
+                informacao = packFloat(CTE, atof(token));
+                individuo->informacao[posicao] = informacao;
+                individuo->numeroFilhos[posicao] = 0;
+            }
+            posicao++;
+            token = strtok (NULL, delimiters);
+        }
+        individuo->numNos = posicao;
+//        int i;
+//        for(i= 0; i < posicao-1; i++){
+//            printf("%d ", individuo->informacao[posicao]);
+//        }
+        imprimeArvorePre(individuo, LABELS);
+        printf("\nnos = %d\n", individuo->numNos);
+        //executa(individuo, dados[0], N);
+        int j;
+        float erro = 0;
+        for(j = 0; j < M; j++){
+            //printf("%d ", j);
+            erro = erro + executa(individuo, dados[j], N);
+        }
+        printf("erro = %.20f", erro);
+
+//        token = strtok (NULL, delimiters);    /* token => "separated" */
+//        printf("%s", token);
+//        token = strtok (NULL, delimiters);    /* token => "by" */
+//        printf("%s", token);
+//        token = strtok (NULL, delimiters);    /* token => "spaces" */
+//        printf("%s", token);
+//        token = strtok (NULL, delimiters);    /* token => "and" */
+//        printf("%s", token);
+//        token = strtok (NULL, delimiters);    /* token => "punctuation" */
+//        printf("%s", token);
+//        token = strtok (NULL, delimiters);    /* token => NULL */
+//        printf("%s", token);
+    }
+
+}

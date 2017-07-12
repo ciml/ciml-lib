@@ -47,7 +47,11 @@ int randomFunctionUn(int NUM_OPUN){
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
 float randomConst(int* seed){
-    return (rand2(seed)/(float)(2147483647/2));
+    int superior = 6, inferior = 0;
+   // printf("aa = %d ",(rand2(seed)% (superior - inferior + 1) + inferior));
+   // float a = (rand2(seed)% (superior - inferior + 1) + inferior);
+    //printf("a = %f", a);
+    return 6;//(float)(2147483647/2));
 }
 
 int randomType(int NUM_OPBIN, int NUM_OPUN, int N, int* seed){
@@ -73,12 +77,14 @@ void fatal(char *msg) {
 }
 
 
-float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm, char* filename){
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS,
+                         int** conjuntoOpTerm, float* maxDados, float* minDados, char* filename){
     FILE *arq;
     float** dadosTreinamento;
     int i = 0, j;
     int k;
     printf("Lendo Dados Arquivo... %s\n",filename);
+
 //    char nome[100];
 //    printf("\nDigite nome do arquivo:");
 //    gets(nome);
@@ -169,6 +175,11 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
             if(!fscanf(arq, "%f", &dadosTreinamento[i][j]))
                 break;
             //printf("%f ",(dadosTreinamento)[i][j]);
+        }
+        if(dadosTreinamento[i][j-1] > (*maxDados)){
+            (*maxDados) = dadosTreinamento[i][j-1];
+        } else if (dadosTreinamento[i][j-1] < (*minDados)){
+            (*minDados) = dadosTreinamento[i][j-1];
         }
     }
 
@@ -291,3 +302,4 @@ void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
     printf("* NUM_CTES: %d \t SEED: %d\n", NUM_CTES, SEED);
     printf("*------------------------------------------------------------------\n");
 }
+

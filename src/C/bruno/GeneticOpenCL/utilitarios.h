@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "arvore.h"
 
 void atribuiSemente(int i);
 float randomProb(int* seed);
@@ -27,7 +28,9 @@ int rand2(int *seed);
 
 
 
-float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS, int** conjuntoOpTerm, char* filename);
+
+float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM_OPUN, char*** LABELS,
+                         int** conjuntoOpTerm, float* maxDados, float* minDados, char* filename);
 
 //float** readTrainingData();
 

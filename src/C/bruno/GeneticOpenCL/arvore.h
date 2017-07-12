@@ -51,4 +51,7 @@ void testaPrint(Arvore* arvore); //Testa as três funções de impressão
 void realizaTestes();//testa algumas funções da árvore
 void testaExecuta(float* dados[]);//testa a função de executar
 
+
+void leIndividuo(char *fileName, Arvore* individuo, char** LABELS, float** dados, int M, int N);
+
 #endif // ARVORE_H_INCLUDED

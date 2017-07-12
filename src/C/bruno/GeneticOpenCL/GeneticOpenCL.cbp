@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="opencl_openmp" />
-				<Option parameters="f1-50.txt" />
+				<Option parameters="dadosSenCos1000.txt" />
 				<Compiler>
 					<Add option="-Wmissing-prototypes" />
 					<Add option="-Wmissing-declarations" />
@@ -67,8 +67,6 @@
 		</Unit>
 		<Unit filename="genetica.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="options.cpp" />
-		<Unit filename="options.hpp" />
 		<Unit filename="pilha.c">
 			<Option compilerVar="CC" />
 		</Unit>

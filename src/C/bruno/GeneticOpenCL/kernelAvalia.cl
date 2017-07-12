@@ -367,7 +367,7 @@ float randomProb(int* seed){
 }
 
 float randomConst(int* seed){
-    return (float)rand2(seed) / (2147483647/2);//pown(2.0, 31);
+    return 6;//(float)rand2(seed) / (2147483647/2);//pown(2.0, 31);
 }
 
 int randomType(int* seed){

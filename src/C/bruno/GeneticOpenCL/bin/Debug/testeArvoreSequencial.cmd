@@ -15,12 +15,12 @@ FOR %%i IN (%valores%) DO (
 	FOR %%j IN (%seeds%) DO (
 		PUSHD %Caminho%
 		make -f GeneticOpenCL.cbp.mak clean
-		make -f GeneticOpenCL.cbp.mak PROB_MUT=%%i SEED=%%j TWODEVICES=0 EVOLOCL=0 AVALOCL=0 EVOLOMP=0 AVALGPU=0
+		make -f GeneticOpenCL.cbp.mak PROB_MUT=%%i SEED=%%j TWODEVICES=0 EVOLOCL=1 AVALOCL=0 EVOLOMP=0 AVALGPU=0
 		POPD
 		SET nomeArquivo=seq_seed_%%j_%parameter%_%%i.txt
 		ECHO Extraindo dados para "!nomeArquivo!"
 		ECHO !nomeArquivo!>>resultFiles_%%i.txt
-		GeneticOpenCL.exe >!nomeArquivo!
+		GeneticOpenCL.exe dadosSenCos1000.txt >!nomeArquivo!
 	)
 )
 
