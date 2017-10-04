@@ -12,14 +12,14 @@ LD = g++.exe
 WINDRES = windres.exe
 
 INC = -IC:\\Users\\BrunoM\\Dropbox\\GET\\GIT\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\include
-CFLAGS = -DPROB_MUT="$(PROB_MUT)" -DSEED="$(SEED)" -DTWODEVICES="$(TWODEVICES)" -DEVOLOCL="$(EVOLOCL)" -DAVALOCL="$(AVALOCL)" -DEVOLOMP="$(EVOLOMP)" -DAVALGPU="$(AVALGPU)" -fexceptions -std=c++11 -fopenmp -Wall
+CFLAGS = -DNUM_INDIV="$(NUM_INDIV)" -DSEED="$(SEED)" -DTWODEVICES="$(TWODEVICES)" -DEVOLOCL="$(EVOLOCL)" -DAVALOCL="$(AVALOCL)" -DEVOLOMP="$(EVOLOMP)" -DAVALGPU="$(AVALGPU)" -DDIF_CONTEXT="$(DIF_CONTEXT)" -fexceptions -std=c++11 -fopenmp -Wall
 RESINC = 
 LIBDIR = -LC:\\Users\\BrunoM\\Dropbox\\GET\\GIT\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\x86
 LIB = 
 LDFLAGS = -lOpenCL -lgomp -pthread
 
 INC_DEBUG = $(INC)
-CFLAGS_DEBUG = $(CFLAGS) -Wmissing-prototypes -Wmissing-declarations
+CFLAGS_DEBUG = $(CFLAGS)
 RESINC_DEBUG = $(RESINC)
 RCFLAGS_DEBUG = $(RCFLAGS)
 LIBDIR_DEBUG = $(LIBDIR)

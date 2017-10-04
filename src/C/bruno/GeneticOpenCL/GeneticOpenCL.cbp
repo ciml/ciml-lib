@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="opencl_openmp" />
-				<Option parameters="dadosSenCos1000.txt" />
+				<Option parameters="dadosSenCos1000.txt &gt; testeaaa.txt" />
 				<Compiler>
 					<Add option="-Wmissing-prototypes" />
 					<Add option="-Wmissing-declarations" />
@@ -43,15 +43,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
-			<Add option="-std=c++11" />
 			<Add option="-fopenmp" />
-			<Add directory="include" />
+			<Add directory="C:/Program Files (x86)/Intel/OpenCL SDK/6.3/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lOpenCL" />
 			<Add option="-lgomp" />
 			<Add option="-pthread" />
-			<Add directory="x86" />
+			<Add directory="C:/Program Files (x86)/Intel/OpenCL SDK/6.3/lib/x86" />
 		</Linker>
 		<Unit filename="arvore.c">
 			<Option compilerVar="CC" />

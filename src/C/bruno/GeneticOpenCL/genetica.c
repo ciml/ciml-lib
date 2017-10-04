@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "genetica.h"
 
-void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados){
+void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
+                     float maxDados, float minDados){
     int i;
     while((num-indice)%MAX_DEPTH != 0){
         criaCheia(&pop[indice], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
@@ -10,10 +11,10 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
     }
 
     int k = (num - indice) / MAX_DEPTH;
-    printf("k = %d\n", k);
+    //printf("k = %d\n", k);
     int prof = 1;
     for(i = indice; i < num; ){
-            printf("prof = %d\n", prof);
+            //printf("prof = %d\n", prof);
         for(int j = 0; j < k; j++){
             criaCheia(&pop[i], prof, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
             i++;
@@ -36,7 +37,7 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
 }
 
 void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
-                         int maxDados, int minDados){
+                         float maxDados, float minDados){
     int i;
     for(i = indice; i < num; i++){
         geradorArvore(&pop[i], MAX_NOS, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
@@ -44,8 +45,7 @@ void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,
 
 }
 
-void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, int maxDados, int minDados){
-
+void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados){
     inicializaAleatorio(pop, NUM_INDIV/2, 0, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
     inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
 //    int i;
@@ -66,6 +66,8 @@ void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
         //printf("i = %d \n", i);
         for(j = 0; j < M; j++){
             erro = erro + executa(&pop[i], dados[j], N);
+            //if(i == 0)
+            //   printf("%f\n", erro);
         }
         //int k; scanf("%d", &k);
         pop[i].aptidao = erro; // + 2 * pop[i].numNos;
@@ -166,19 +168,32 @@ void testaSelection(Arvore pop[], int k){
 //    ordenaElite(pop, k);
 //    imprimePopulacao(pop);
 }
-
+float fabs2(float val1, float val2){
+    if(val1-val2 < 0){
+        return (-1* (val1-val2));
+    } else {
+        return (val1-val2);
+    }
+}
 int torneio(Arvore pop[], int* seed){
     int indiceMelhor = rand2(seed) % NUM_INDIV;
     int indice;
     int i;
     for(i = 0; i < NUM_TORNEIO-1; i++){
         indice = rand2(seed)%NUM_INDIV;
-        if(pop[indice].aptidao < pop[indiceMelhor].aptidao)
+        if(pop[indice].aptidao < pop[indiceMelhor].aptidao){
+        //if(fabs2(pop[indice].aptidao, pop[indiceMelhor].aptidao) < 0.0000001){
+            //printf("entrouTorneio %d\n", indiceMelhor);
             indiceMelhor = indice;
+        }
     }
     return indiceMelhor;
 }
 
 int criterioDeParada(int iteracoes){
-    return iteracoes < NUM_GERACOES;
+    int it = CARGA/NUM_INDIV;
+    //printf("%d\n", it);
+    return iteracoes < it;//NUM_GERACOES;
+    //return iteracoes < NUM_GERACOES;
+
 }

@@ -1,0 +1,6 @@
+f1-exp256.dat
+f1-exp1024.dat
+f1-exp1296.dat
+f1-exp4096.dat
+f1-exp10000.dat
+f1-exp16384.dat

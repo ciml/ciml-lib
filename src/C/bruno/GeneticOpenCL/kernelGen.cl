@@ -251,7 +251,7 @@ __kernel void evolucao(__global Arvore* popA,
 
 	int group_id = get_group_id(0);
 
-	int ind1 = torneio(popA, seeds)
+	int ind1 = torneio(popA, seeds);
 	int ind2 = torneio(popA, seeds);
 
 	popF[elite+2*group_id]	= popA[ind1];

@@ -113,14 +113,14 @@
 	"genetica.h"
 	<omp.h>
 
-1499839344 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+1504188460 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	<float.h>
 	"arvore.h"
 
-1499836866 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+1501967827 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
 	"pilha.h"
 	"utilitarios.h"
 	"bitwise.h"
@@ -128,9 +128,9 @@
 1474405533 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
 	"constantes.h"
 
-1499841306 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1506501821 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
-1499838675 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+1504189726 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
 	<stdio.h>
 	<stdlib.h>
@@ -146,15 +146,15 @@
 	"bitwise.h"
 	"constantes.h"
 
-1499836944 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.c
+1505697415 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.c
 	<stdio.h>
 	<stdlib.h>
 	"genetica.h"
 
-1499836895 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+1501958362 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
 	"arvore.h"
 
-1499841221 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+1506427402 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<CL/cl.hpp>
 	<omp.h>
 	<iostream>
@@ -166,6 +166,9 @@
 	<stdlib.h>
 	<stdio.h>
 	<limits>
+	<windows.h>
+	<chrono>
+	<climits>
 	"genetica.h"
 
 1499835431 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.c
@@ -173,7 +176,7 @@
 	<stdlib.h>
 	"pilha.h"
 
-1499839364 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
+1504189731 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
 	"utilitarios.h"
 	"constantes.h"
 
@@ -341,4 +344,76 @@
 
 1499838269 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitariosleitura.c
 	"utilitariosLeitura.h"
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl.hpp
+	<malloc.h>
+	<CL/cl_d3d10.h>
+	<CL/cl_dx9_media_sharing.h>
+	<intrin.h>
+	<CL/cl_ext.h>
+	<OpenCL/opencl.h>
+	<CL/opencl.h>
+	<atomic>
+	<utility>
+	<limits>
+	<iterator>
+	<exception>
+	<vector>
+	<string>
+	<alloca.h>
+	<cstring>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_d3d10.h
+	<d3d10.h>
+	<CL/cl.h>
+	<CL/cl_platform.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl.h
+	<OpenCL/cl_platform.h>
+	<CL/cl_platform.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_platform.h
+	<AvailabilityMacros.h>
+	<stdint.h>
+	<stddef.h>
+	<altivec.h>
+	<intrin.h>
+	<xmmintrin.h>
+	<intrin.h>
+	<emmintrin.h>
+	<mmintrin.h>
+	<intrin.h>
+	<immintrin.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_dx9_media_sharing.h
+	<CL/cl.h>
+	<CL/cl_platform.h>
+	<d3d9.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_ext.h
+	<OpenCL/cl.h>
+	<AvailabilityMacros.h>
+	<CL/cl.h>
+	<d3d9.h>
+	<dxvahd.h>
+	<wtypes.h>
+	<d3d9types.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\opencl.h
+	<OpenCL/cl.h>
+	<OpenCL/cl_gl.h>
+	<OpenCL/cl_gl_ext.h>
+	<OpenCL/cl_ext.h>
+	<CL/cl.h>
+	<CL/cl_gl.h>
+	<CL/cl_gl_ext.h>
+	<CL/cl_ext.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_gl.h
+	<OpenCL/cl.h>
+	<CL/cl.h>
+
+1478015564 c:\program files (x86)\intel\opencl sdk\6.3\include\cl\cl_gl_ext.h
+	<OpenCL/cl_gl.h>
+	<CL/cl_gl.h>
 

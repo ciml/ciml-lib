@@ -2,9 +2,24 @@
 #include "constantes.h"
 
 int rand2(int *seed){
+//    const int a = 16807;
+//    const int m = 2147483647;
+//    const int q = 127773; // m div a
+//    const int r = 2836; //m mod a
+//
+//    int lo, hi, test;
+//
+//    hi = *seed / q;
+//    lo = *seed % q;
+//    test = a*lo -r*hi;
+//    if(test > 0)
+//        *seed = test;
+//    else
+//        *seed = test+m;
     int s  = *seed;
-    s = abs((s * 16807) % 2147483647);//(int)(pown(2.0, 31)-1));
+    s = ((unsigned int)(s * 16807) % 2147483647);//(int)(pown(2.0, 31)-1));
     *seed = s;
+
     return s;
 }
 
@@ -46,14 +61,23 @@ int randomFunctionUn(int NUM_OPUN){
 
 //TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
+//float randomConst(int* seed, float maxDados, float minDados){
+//    //int superior = 6, inferior = 0;
+//    float random = (float)rand2(seed)/(float)(2147483647);
+//    float range = maxDados - minDados;
+//    //printf("aa = %d ",(rand2(seed)% (superior - inferior + 1) + inferior));
+//    //float a = (rand2(seed)% (superior - inferior + 1) + inferior);
+//    //printf("a = %f", as);
+//    float result = (float)(range*random) + minDados;
+//    return result;//(range*random) + minDados;//(float)(2147483647/2));
+//}
 float randomConst(int* seed, float maxDados, float minDados){
-    //int superior = 6, inferior = 0;
-    float random = (float)rand2(seed)/(float)(2147483647);
+    //printf("const = %.32f = %.32f \n",  maxDados, minDados);
+    float random = ((float)rand2(seed))/2147483647;
     float range = maxDados - minDados;
-    //printf("aa = %d ",(rand2(seed)% (superior - inferior + 1) + inferior));
-    //float a = (rand2(seed)% (superior - inferior + 1) + inferior);
-    //printf("a = %f", a);
-    return (range*random) + minDados;//(float)(2147483647/2));
+    float result = (range*random)+ minDados;
+    //printf("const = %.32f\n", result);
+    return result;
 }
 
 
@@ -205,11 +229,19 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //        printf ("%s\n", (*LABELS)[i]);
 //    }
     //printf("Lendo Dados...\n");
+//    double meta = 0;
+//
+//    printf("\b\b\b\b0%%");
     for(i = 0; i < (*M); i++){
         for(j = 0; j < (*N); j++){
                 //printf("a\n");
             if(!fscanf(arq, "%f", &dadosTreinamento[i][j]))
                 break;
+
+//            if((float)i/(*M) > meta){
+//                printf("\b\b\b\b%3.f%%", meta * 100);
+//                meta += 0.1;
+//            }
             //printf("%f ",(dadosTreinamento)[i][j]);
         }
         if(dadosTreinamento[i][j-1] > (*maxDados)){
@@ -218,12 +250,13 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
             (*minDados) = dadosTreinamento[i][j-1];
         }
     }
+//    printf("\b\b\b\b100%%\n");
 
     int boolOps;//, numOpBin, numOpUn;
     int tipo;
     int info;
 
-    //printf("Inicializando conjunto de operações...\n");
+    printf("Inicializando conjunto de operacoes...\n");
     fscanf(arq, "%d", &boolOps);
     if(boolOps){
         fscanf(arq, "%d %d", NUM_OPBIN, NUM_OPUN);

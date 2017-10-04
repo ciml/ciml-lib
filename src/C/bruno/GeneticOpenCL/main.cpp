@@ -13,6 +13,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits>
+#include <windows.h>
+#include <chrono>
+#include <climits>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -121,7 +125,7 @@ unsigned NextPowerOf2( unsigned n ){
 }
 
 std::string ToString( float t ){
-      std::stringstream ss; ss << t; return ss.str();
+      std::stringstream ss; ss << std::setprecision(32) << t; return ss.str();
 }
 
 void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::Device> devices){
@@ -131,7 +135,7 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
     }
     std::cout << std::endl;
 
-    std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    std::cout << "Available Devices for Platform " << platforms[2].getInfo<CL_PLATFORM_NAME>()<< ":\n";
     for(cl_uint i = 0; i < devices.size(); ++i) {
         std::cout<<"\t[" << i << "]"<<devices[i].getInfo<CL_DEVICE_NAME>() << std::endl;
     }
@@ -146,22 +150,49 @@ void setupOpenCL(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &
         exit(1);
     }
 
-    ///Encontrando os dispositivos disponiveis na plataforma 0
-    platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+    ///Encontrando os dispositivos disponiveis na plataforma 0.
+    #if AVALGPU
+        platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+    #else
+        platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+    #endif
+
     if(result != CL_SUCCESS){
         std::cout << "Erro ao encontrar devices." << std::endl;
         exit(1);
     }
 }
 
+void setupOpenCL2(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU){
+    ///Encontrando as plataformas disponiveis
+    int result = cl::Platform::get(&platforms);
+    if(result != CL_SUCCESS){
+        std::cout << "Erro ao encontrar plataformas." << std::endl;
+        exit(1);
+    }
+
+    ///Encontrando os dispositivos disponiveis na plataforma 0
+    platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devicesCPU);
+    platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devicesGPU);
+    ///AQUI
+    if(result != CL_SUCCESS){
+        std::cout << "Erro ao encontrar devices." << std::endl;
+        exit(1);
+    }
+
+}
+
 void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlags, size_t maxLocalSize, size_t numPoints, cl_device_type deviceType){
 //FOR GPU
     if(deviceType == CL_DEVICE_TYPE_GPU){
         std::cout << "Definindo NDRanges para GPU..." << std::endl;
-        if(numPoints < maxLocalSize)
+        if(numPoints < maxLocalSize){
+                //std::cout << "AQUI??????" <<std::endl;
           *localSize = numPoints;
-        else
+        }else{
+            //std::cout << "AQUI!!!!!!" <<std::endl;
           *localSize = maxLocalSize;
+        }
 
         // One individual per work-group
         *globalSize = (*localSize) * NUM_INDIV;
@@ -169,9 +200,6 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
 //        std::stringstream ss;
 //        ss << NextPowerOf2( localSize );
 //        std:string str = ss.str();
-
-        (*compileFlags) += " -D LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2="
-                    + ToString( NextPowerOf2(*localSize) );
 
         if( MAX_NOS > (*localSize) ) //MaximumTreeSize() > m_local_size )
           (*compileFlags) += " -D PROGRAM_TREE_DOES_NOT_FIT_IN_LOCAL_SIZE";
@@ -187,7 +215,9 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
         *localSize = 1;//m_num_points;
         *globalSize = NUM_INDIV;
     }
-    std::cout << "...fim." << std::endl;
+        (*compileFlags) += " -D LOCAL_SIZE_ROUNDED_UP_TO_POWER_OF_2="
+                        + ToString( NextPowerOf2(*localSize) );
+        std::cout << "...fim." << std::endl;
 }
 
 std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize, float maxDados, float minDados){
@@ -223,11 +253,23 @@ std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int loca
         "#define ELITISMO        "+ ToString( ELITISMO ) + "\n" +
         "#define NUM_GERACOES    "+ ToString( NUM_GERACOES) + "\n" +
         "#define LOCAL_SIZE " + ToString( localSize ) + "\n";
-
+        //std::cout <<ToString( maxDados ) << std::endl;
+        //std::cout <<maxDados<< std::endl;
     return program_src;
 }
 
+float mysqr(float f){
+    f *= f;
+    return f;
+}
+
+#define TESTA_INDIV 0
+
+typedef std::chrono::steady_clock::time_point timePoint;
+
+#if !DIF_CONTEXT
 int main(int argc, char** argv){
+
     std::cout << std::setprecision(32) << std::fixed;
     //comparar tudo sequencial com openmp+opencl com tudo opencl
     float maxDados, minDados;
@@ -237,7 +279,23 @@ int main(int argc, char** argv){
     double tempoTotalAvaliacao = 0;
     double tempoTotalEvolucao = 0;
     double tempoTotal = 0;
-    double tempoGeracao, start, startIt, endIt, tempoEvolucao, tempoAvaliacao;
+    double tempoGeracao;
+    //, start, startIt, endIt, tempoEvolucao,
+    double startAval;
+    double startIt;
+    double tempoEvolucao;
+    double tempoAvaliacao;
+    double start;
+    double end;
+
+   // timePoint startIt;
+   // timePoint startAval;
+    //timePoint start;
+    //timePoint end;
+
+
+
+    //std::chrono::steady_clock::time_point start, end;
 
     int i, indice1, indice2;
     int iteracoes = 0;
@@ -251,10 +309,12 @@ int main(int argc, char** argv){
 
     ///leituras de dados
     float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm, &maxDados, &minDados, argv[1]);
-
-//    Arvore arv;
-//    leIndividuo("6sencos.txt",&arv, LABELS, dadosTreinamento, M, N);
-//    char c; std::cin >> c;
+    std::cout << maxDados << " " << minDados << std::endl;
+    #if TESTA_INDIV
+    Arvore arv;
+    leIndividuo("individual.txt",&arv, LABELS, dadosTreinamento, M, N);
+    char c; std::cin >> c;
+    #endif
 
 //    for(int i = 0; i < M; i++){
 //        for(int j = 0; j < N; j++){
@@ -263,9 +323,12 @@ int main(int argc, char** argv){
 //        std::cout << std::endl;
 //    }
 
+
+
     ///transposicao de dados
     float* dadosTranspostos = new float [M*N];
     unsigned pos = 0;
+    std::cout << "Transpondo dados..." << std::endl;
     for( unsigned j = 0; j < N; ++j ){
         for( unsigned i = 0; i < M; ++i ){
             dadosTranspostos[pos++] = dadosTreinamento[i][j];
@@ -275,16 +338,43 @@ int main(int argc, char** argv){
     imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
     atribuiSemente(SEED);
 
+
     Arvore* popAtual = new Arvore[NUM_INDIV];
     Arvore* popFutura = new Arvore[NUM_INDIV];
     int* seeds = new int [NUM_INDIV*MAX_NOS];
     for(int i = 0; i < NUM_INDIV*MAX_NOS; i++){
         seeds[i] = rand();
     }
+//    //seeds[1] = 1;
+//    int teste[10] = {0};
+//    //for(int j = 0; j <NUM_INDIV*MAX_NOS; j++ ){
+//    for(int i = 1; i <10000; i++){
+//        int testerand = rand2(&seeds[0]);
+//        teste[testerand%10]++;
+//        //std::cout << seeds[1] << std::endl;
+//    }
+//    //}
+//    std::cout << seeds[1] << std::endl;
+//
+//    std::cout << UINT_MAX << std::endl;
+//    for(int i = 0; i < 10; i++){
+//        std::cout << teste[i] << " ";
+//    }
+//    std::cout << std::endl;
+//    char k;
+//    std::cin >> k;
+////    int t, n;
+//    float f, f2;
+//    for (t = n = 0; n < 1000000; n++){
+//        f = rand2(&seeds[0])/(float)2147483647;
+//        if (mysqr(f) != f*f) t++;
+//    }
+//    printf("%d of %d squares differ\n", t, n);
+    //return 0;
 
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
     avaliaIndividuos(popAtual, dadosTreinamento, M, N);
-    std::cout << seeds[0] <<std::endl;
+    //std::cout << seeds[0] <<std::endl;
 
 
     #if AVALOCL || EVOLOCL
@@ -308,12 +398,14 @@ int main(int argc, char** argv){
             exit(1);
         }
 
+
+
         ///Criando a fila de comando
         cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
 
         ///4 opções: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
         ///NUMDEVICES;FIRST
-
+try {
         cl::CommandQueue* cmdQueueEvol;
         cl::CommandQueue* cmdQueueAval;
 
@@ -327,7 +419,7 @@ int main(int argc, char** argv){
             #endif // AVALGPU
         #else
             #if AVALGPU
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR GPU */, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU */, commandQueueProperties, &result);
             #else
                 cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
             #endif // AVALGPU
@@ -350,10 +442,15 @@ int main(int argc, char** argv){
         cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
         cmdQueueAval->enqueueWriteBuffer(dados, CL_FALSE, 0, M*N * sizeof(float), dadosTranspostos);
 
-        cmdQueueEvol->enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
-        #if TWODEVICES
-            cmdQueueAval->enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
-        #endif // TWODEVICES
+        cmdQueueEvol->enqueueWriteBuffer(bufferOpTerm, CL_FALSE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
+        cmdQueueAval->finish();
+        cmdQueueEvol->finish();
+        //#if TWODEVICES
+          //  cmdQueueAval->enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
+        //#endif // TWODEVICES
+
+
+
 
 
         size_t globalSize, localSize;
@@ -362,7 +459,7 @@ int main(int argc, char** argv){
 
         size_t maxLocalSize = cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
         setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_TYPE>());
-
+        std::cout << "Global Size = " <<globalSize << std::endl << "Local size = " << localSize << std::endl;
 
         ///Leitura do arquivo com o programa em C++
         std::ifstream sourceFileName("kernelAvalia.cl");
@@ -376,14 +473,16 @@ int main(int argc, char** argv){
 
         //const char options[] = "-cl-opt-disable";
         //int error;
+        //compileFlags+=" -cl-opt-disable";
         try {
-            programa.build(devices/*, options*/);
+            programa.build(devices, compileFlags.c_str());
         } catch(cl::Error& e){
             std::cerr << getErrorString(e.err()) << std::endl
             << programa.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[0]);
             std::cout << e.what() << " : " << e.err() << std::endl;
             exit(1);
         }
+//        std::cout << programa.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[0]) << std::endl;
 
         #if AVALGPU
             cl::Kernel krnlAvalia(programa, "avaliaIndividuos");
@@ -393,14 +492,50 @@ int main(int argc, char** argv){
 
         cl::Kernel krnlEvolucao(programa, "evolucao");
 
+
     #endif // OPENCL
 
-    //imprimePopulacao(popAtual, LABELS);
+
+    /**/
+    #if TESTA_INDIV
+    popFutura[0] = arv;
+    popFutura[0].aptidao = -1;
+    cmdQueueAval->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, sizeof(Arvore), popFutura);
+    krnlAvalia.setArg(0, bufferPopF);
+    krnlAvalia.setArg(1, dados);
+    krnlAvalia.setArg(2, sizeof(float), NULL);
+    //std::cout << "aqui" << std::endl;
+    try {
+        result = cmdQueueAval->enqueueNDRangeKernel(krnlAvalia, cl::NullRange, cl::NDRange(1), cl::NDRange(1), NULL, &e_tempo);
+    } catch(cl::Error& e){
+        std::cerr << getErrorString(e.err()) << std::endl;
+        exit(1);
+    }
+    //std::cout << "aqui" << std::endl;
+    try {
+    cmdQueueAval->finish();
+    } catch(cl::Error& e){
+        std::cerr << getErrorString(e.err()) << std::endl;
+        exit(1);
+    }
+    cmdQueueAval->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+    std::cout << popFutura[0].aptidao << std::endl;
+    std::cin >> c;
+    #endif
+    /**/
+
+
+
+    imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
 
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
         startIt = getTime();
+
+
+        //startIt = std::chrono::steady_clock::now();
+        //std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
         #if EVOLOCL
 
@@ -447,6 +582,10 @@ int main(int argc, char** argv){
         #else // EVOLOCL
 
             start = getTime();
+            //struct timeval inicio;
+            //gettimeofday(&inicio, NULL);
+            //start = std::chrono::steady_clock::now();
+
             //Sleep(1000);
 
             int novosIndividuos = selecionaElite(popAtual, popFutura);
@@ -486,54 +625,100 @@ int main(int argc, char** argv){
                 }
             }
             #else
-            std::cout <<"ini " <<seeds[0] <<std::endl;
+            //std::cout <<"ini " <<seeds[0] <<std::endl;
             for(int j = novosIndividuos; j < NUM_INDIV; j +=2){
-                int id = (j/2)-(novosIndividuos/2);
+                    //std::cout<<"entrou"<<std::endl;
 
+                int id = (j/2)-(novosIndividuos/2);
+                //std::cout <<"ini " << id << " " << seeds[id] <<std::endl;
+                //std::cout <<"antes " << id << " " << seeds[id] <<std::endl;
                 indice1 = torneio(popAtual, &seeds[id]);
                 indice2 = torneio(popAtual, &seeds[id]);
+                //if(id == 0){
+                //std::cout <<"ini " <<seeds[0] <<std::endl;
+                //    printf("ind1 = %d\n", indice1);
+                //    printf("ind2 = %d\n\n", indice2);
+                //}
 
                 popFutura[j] = popAtual[indice1];
                 popFutura[j+1] = popAtual[indice2];
 
                 ///testar imprimir o que está retornando na parte randomica
                 float cross = randomProb(&seeds[id]);
+                //if(id == 0)
+                //std::cout <<"ini " <<seeds[0] <<std::endl;
                 float mut = randomProb(&seeds[id]);
+                //if(id == 0)
+                //std::cout <<"ini " <<seeds[0] <<std::endl;
+                //if(id == 0){
+                //for(int i = 0; i < popFutura[j+1].numNos; i++){
+                //        std::cout << popFutura[j+1].informacao[i] << " ";
+                //    }
+                //printf("cross/prob = %f, %f\n", PROB_CROSS, cross);
 
+                //}
+                //std::cout <<"antes " << id << " " << seeds[id] <<std::endl;
                 if(cross <= PROB_CROSS){
-                    crossOver(&popFutura[j+1], &popFutura[j], &seeds[id]);
+                    crossOver(&popFutura[j+1], &popFutura[j], &seeds[id], id);
                 }
+                //std::cout <<"cross " << id << " " << seeds[id] <<std::endl;
+                //if(id == 0)
+                //std::cout <<"cross " <<seeds[0] <<std::endl;
                 if(mut <= PROB_MUT){
                     mutacao(&popFutura[j+1], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id], maxDados, minDados);
                     mutacao(&popFutura[j], conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[id], maxDados, minDados);
                 }
+                //std::cout <<"mut " << id << " " << seeds[id] <<std::endl;
+                //if(id == 0)
+                //std::cout <<"mut " <<seeds[0] <<std::endl;
+                //std::cout <<"ini " << id << " " << seeds[id] <<std::endl;
             }
             #endif // EVOLOMP
 
-            tempoEvolucao = getTime() - start;
+//            end = std::chrono::steady_clock::now();
+
+            end = getTime();
+            //struct timeval fim;
+            //gettimeofday(&fim, NULL);
+            //std::cout << "Time: "  << (fim.tv_sec - inicio.tv_sec) + (1.0e-6) * (fim.tv_usec - inicio.tv_usec) << std::endl;
+
+            //printf("%f,\n%f \n\n", start, end);
+            //std::cout << start << "\n" << end << "\n\n";
+
+            tempoEvolucao = end - start;
             tempoTotalEvolucao += tempoEvolucao;
+
+            //std::chrono::duration<double> aaa = (end - start);
+            //std::cout <<"Tempo evolucao = " << aaa.count() << std::endl;
             std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
-            std::cout <<"fim " <<seeds[0] <<std::endl;
+            //std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
+            //std::cout <<"fim " <<seeds[0] <<std::endl;
         #endif // EVOLOCL
 
         #if AVALOCL
             #if TWODEVICES || !EVOLOCL
                 cmdQueueAval->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             #endif // TWODEVICES
-
+            //std::cout << "aqui" << std::endl;
             ///Dispondo argumentos para o kernel + executar
             krnlAvalia.setArg(0, bufferPopF);
             krnlAvalia.setArg(1, dados);
-            krnlAvalia.setArg(2, NUM_INDIV * sizeof(float), NULL);
-
+            krnlAvalia.setArg(2, localSize * sizeof(float), NULL);
+            //std::cout << "aqui" << std::endl;
             try {
                 result = cmdQueueAval->enqueueNDRangeKernel(krnlAvalia, cl::NullRange, cl::NDRange(globalSize), cl::NDRange(localSize), NULL, &e_tempo);
             } catch(cl::Error& e){
                 std::cerr << getErrorString(e.err()) << std::endl;
                 exit(1);
             }
+            //std::cout << "aqui" << std::endl;
+            try {
             cmdQueueAval->finish();
-
+            } catch(cl::Error& e){
+                std::cerr << getErrorString(e.err()) << std::endl;
+                exit(1);
+            }
+            //std::cout << "aqui" << std::endl;
             ///medir tempos
             e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
             e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
@@ -549,9 +734,9 @@ int main(int argc, char** argv){
 
 
         #else // AVALOCL
-            start = getTime();
+            startAval = getTime();
             avaliaIndividuos(popFutura, dadosTreinamento, M, N);
-            tempoAvaliacao = getTime() - start;
+            tempoAvaliacao = getTime() - startAval;
             tempoTotalAvaliacao += tempoAvaliacao;
             std::cout <<"Tempo de avaliacao = " << tempoAvaliacao << std::endl;
         #endif // AVALOCL
@@ -559,18 +744,339 @@ int main(int argc, char** argv){
         for(i = 0; i< NUM_INDIV; i++){
             popAtual[i] = popFutura[i];
         }
-
+        //std::chrono::steady_clock::time_point end= std::chrono::steady_clock::now();
+        //endIt = std::chrono::steady_clock::now();
         tempoGeracao = getTime() - startIt;
+
+        //tempoGeracao = (std::chrono::duration<double> (endIt - startIt).count());
         tempoTotal += tempoGeracao;
         std::cout <<"Tempo de geracao = " << tempoGeracao << std::endl;
 
+        //imprimePopulacao(popAtual, LABELS);
         imprimeMelhor(popAtual, LABELS);
         iteracoes++;
         //std::cout << "seed8 = " << seeds[8] <<std::endl;
     }
 
     printf("\nPOPULACAO FINAL \n");
-    //imprimePopulacao(popAtual, LABELS);
+    imprimePopulacao(popAtual, LABELS);
+    printf("*");
+    imprimeMelhor(popAtual, LABELS);
+    printf("\n\n");
+
+    std::cout << "Tempo total Evolucao = " << tempoTotalEvolucao << std::endl;
+    std::cout << "Tempo total Avaliacao = " << tempoTotalAvaliacao << std::endl;
+    std::cout << "Tempo total = " << tempoTotal << std::endl;
+
+    return 0;
+
+        } catch(cl::Error& e){
+            std::cerr << getErrorString(e.err()) << std::endl;
+            std::cout << e.what() << " : " << e.err() << std::endl;
+            exit(1);
+        }
+}
+
+#else
+int main(int argc, char** argv){
+
+    std::cout << std::setprecision(32) << std::fixed;
+    //comparar tudo sequencial com openmp+opencl com tudo opencl
+    float maxDados, minDados;
+    minDados = std::numeric_limits<float>::max();
+    maxDados = (-1) * minDados;
+
+    double tempoTotalAvaliacao = 0;
+    double tempoTotalEvolucao = 0;
+    double tempoTotal = 0;
+    double tempoGeracao;
+    //, start, startIt, endIt, tempoEvolucao,
+    double startIt, tempoEvolucao, tempoAvaliacao;
+
+    std::chrono::steady_clock::time_point start, end;
+
+    int i, indice1, indice2;
+    int iteracoes = 0;
+
+    ///variaveis lidas de arquivo
+    int M, N;
+    char** LABELS;
+    int* conjuntoOpTerm;
+    float* ctes; //TODO:ainda nao le constantes...
+    int NUM_OPBIN, NUM_OPUN, NUM_CTES;
+
+    ///leituras de dados
+    float** dadosTreinamento = readTrainingData(&M, &N, &NUM_CTES, &NUM_OPBIN, &NUM_OPUN, &LABELS, &conjuntoOpTerm, &maxDados, &minDados, argv[1]);
+/*
+    Arvore arv;
+    leIndividuo("6sencos.txt",&arv, LABELS, dadosTreinamento, M, N);
+    char c; std::cin >> c;
+
+    for(int i = 0; i < M; i++){
+        for(int j = 0; j < N; j++){
+            std::cout << dadosTreinamento[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+*/
+
+    ///transposicao de dados
+    float* dadosTranspostos = new float [M*N];
+    unsigned pos = 0;
+    for( unsigned j = 0; j < N; ++j ){
+        for( unsigned i = 0; i < M; ++i ){
+            dadosTranspostos[pos++] = dadosTreinamento[i][j];
+        }
+    }
+
+    imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
+    atribuiSemente(SEED);
+
+    Arvore* popAtual = new Arvore[NUM_INDIV];
+    Arvore* popFutura = new Arvore[NUM_INDIV];
+    int* seeds = new int [NUM_INDIV*MAX_NOS];
+    for(int i = 0; i < NUM_INDIV*MAX_NOS; i++){
+        seeds[i] = rand();
+    }
+//    int t, n;
+//    float f, f2;
+//    for (t = n = 0; n < 1000000; n++){
+//        f = rand2(&seeds[0])/(float)2147483647;
+//        if (mysqr(f) != f*f) t++;
+//    }
+//    printf("%d of %d squares differ\n", t, n);
+    //return 0;
+
+    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
+    avaliaIndividuos(popAtual, dadosTreinamento, M, N);
+    //std::cout << seeds[0] <<std::endl;
+
+
+
+        cl_ulong inicio, fim;
+        ///Evento para controlar tempo gasto
+        cl::Event e_tempo;
+
+
+        cl_int result; //Variavel para verificar erros
+        ///TODO: Colocar conferencias de erros pelo código
+
+    std::vector<cl::Platform> platforms;
+        std::vector<cl::Device> devicesCPU, devicesGPU;
+        setupOpenCL2(platforms,devicesCPU, devicesGPU);
+
+        cl::Context contextoCPU(devicesCPU, NULL, NULL, NULL, &result);
+        if(result != CL_SUCCESS){
+            std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
+            exit(1);
+        }
+
+        cl::Context contextoGPU(devicesGPU, NULL, NULL, NULL, &result);
+        if(result != CL_SUCCESS){
+            std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
+            exit(1);
+        }
+
+        //printPlatformsDevices(platforms, devices);
+
+
+
+        ///Criando a fila de comando
+        cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
+
+        ///4 opções: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
+        ///NUMDEVICES;FIRST
+
+        cl::CommandQueue* cmdQueueEvol;
+        cl::CommandQueue* cmdQueueAval;
+
+
+        #if AVALGPU
+            cmdQueueEvol = new cl::CommandQueue(contextoCPU, devicesCPU[0] /** SELECIONAR CPU */, commandQueueProperties, &result);
+            cmdQueueAval = new cl::CommandQueue(contextoGPU, devicesGPU[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+        #else
+            cmdQueueEvol = new cl::CommandQueue(contextoGPU, devicesGPU[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+            cmdQueueAval = new cl::CommandQueue(contextoCPU,devicesCPU[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+        #endif // AVALGPU
+
+
+        if(result != CL_SUCCESS){
+            std::cout << "Erro ao criar a Command Queue" << std::endl;
+            exit(1);
+        }
+
+        #if AVALGPU
+            cl::Buffer bufferPopA(contextoCPU, CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore)/*, popAtual*/);
+            cl::Buffer bufferPopFCPU(contextoCPU, CL_MEM_READ_WRITE/*|CL_MEM_USE_HOST_PTR*/, NUM_INDIV * sizeof(Arvore)/*, popFutura*/);
+
+            cl::Buffer bufferPopFGPU(contextoGPU, CL_MEM_READ_WRITE/*|CL_MEM_USE_HOST_PTR*/, NUM_INDIV * sizeof(Arvore)/*, popFutura*/);
+            cl::Buffer dados(contextoGPU, CL_MEM_READ_ONLY, M*N * sizeof(float));
+
+            cl::Buffer bufferOpTerm(contextoCPU, CL_MEM_READ_ONLY, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int));
+            cl::Buffer bufferSeeds(contextoCPU, CL_MEM_READ_WRITE, NUM_INDIV*MAX_NOS*sizeof(int));
+        #endif // 1
+
+        cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
+        cmdQueueAval->enqueueWriteBuffer(dados, CL_FALSE, 0, M*N * sizeof(float), dadosTranspostos);
+
+        cmdQueueEvol->enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
+
+        //cmdQueueAval->enqueueWriteBuffer(bufferOpTerm, CL_TRUE, 0, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int), conjuntoOpTerm);
+
+
+        size_t globalSize, localSize;
+        size_t numPoints = M;
+        std::string compileFlags;
+
+        size_t maxLocalSize = cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
+        setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_TYPE>());
+        std::cout << globalSize << std::endl << localSize << std::endl;
+
+        ///Leitura do arquivo com o programa em C++
+        std::ifstream sourceFileName("kernelAvalia.cl");
+        std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
+        std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize, maxDados, minDados) + sourceFile;
+        //std::cout << program_src << std::endl;
+
+        ///Criar programa por Source
+        cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
+        cl::Program programaCPU(contextoCPU, source);
+        cl::Program programaGPU(contextoGPU, source);
+
+        //const char options[] = "-cl-opt-disable";
+        //int error;
+        try {
+            programaCPU.build(devicesCPU, compileFlags.c_str());
+        } catch(cl::Error& e){
+            std::cerr << getErrorString(e.err()) << std::endl
+            << programaCPU.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devicesCPU[0]);
+            std::cout << e.what() << " : " << e.err() << std::endl;
+            exit(1);
+        }
+
+        try {
+            programaGPU.build(devicesGPU, compileFlags.c_str());
+        } catch(cl::Error& e){
+            std::cerr << getErrorString(e.err()) << std::endl
+            << programaGPU.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devicesGPU[0]);
+            std::cout << e.what() << " : " << e.err() << std::endl;
+            exit(1);
+        }
+//        std::cout << programa.getBuildInfo<CL_PROGRAM_BUILD_LOG>(devices[0]) << std::endl;
+
+        #if AVALGPU
+            cl::Kernel krnlAvalia(programaGPU, "avaliaIndividuos");
+            cl::Kernel krnlEvolucao(programaCPU, "evolucao");
+        #else
+            cl::Kernel krnlAvalia(programaCPU, "avaliaIndividuosCPU");
+            cl::Kernel krnlEvolucao(programaGPU, "evolucao");
+        #endif // AVALGPU
+
+
+    imprimePopulacao(popAtual, LABELS);
+
+    while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
+        printf("\n-----------\nGERACAO %d: \n", iteracoes);
+        startIt = getTime();
+
+
+            int novosIndividuos = selecionaElite(popAtual, popFutura);
+
+            cmdQueueEvol->enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            cmdQueueEvol->enqueueWriteBuffer(bufferPopFCPU, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            cmdQueueEvol->finish();
+
+            //std::cout << "novos = " << novosIndividuos << std::endl;
+            ///Evento para controlar tempo gasto
+            //cl::Event e_tempo;
+            ///Dispondo argumentos para o kernel + executar
+            krnlEvolucao.setArg(0, bufferPopA);
+            krnlEvolucao.setArg(1, bufferPopFCPU);
+            krnlEvolucao.setArg(2, novosIndividuos);
+            krnlEvolucao.setArg(3, bufferOpTerm);
+            krnlEvolucao.setArg(4, bufferSeeds);
+
+
+            try {
+                result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((NUM_INDIV-novosIndividuos)/2), cl::NDRange(1),NULL, &e_tempo);
+            } catch(cl::Error& e){
+                std::cerr << getErrorString(e.err()) << std::endl;
+                exit(1);
+            }
+
+            cmdQueueEvol->finish();
+
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
+            tempoEvolucao = (fim-inicio)/1.0E9;
+
+            tempoTotalEvolucao += tempoEvolucao;
+            std::cout <<"Tempo evolucao = " << tempoEvolucao << std::endl;
+
+            cmdQueueEvol->enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            cmdQueueEvol->enqueueReadBuffer(bufferPopFCPU, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            cmdQueueEvol->finish();
+
+
+
+
+            cmdQueueAval->enqueueWriteBuffer(bufferPopFGPU, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+
+            //std::cout << "aqui" << std::endl;
+            ///Dispondo argumentos para o kernel + executar
+            krnlAvalia.setArg(0, bufferPopFGPU);
+            krnlAvalia.setArg(1, dados);
+            krnlAvalia.setArg(2, localSize * sizeof(float), NULL);
+            //std::cout << "aqui" << std::endl;
+            try {
+                result = cmdQueueAval->enqueueNDRangeKernel(krnlAvalia, cl::NullRange, cl::NDRange(globalSize), cl::NDRange(localSize), NULL, &e_tempo);
+            } catch(cl::Error& e){
+                std::cerr << getErrorString(e.err()) << std::endl;
+                exit(1);
+            }
+
+            //std::cout << "aqui" << std::endl;
+
+            try {
+                cmdQueueAval->finish();
+            } catch(cl::Error& e){
+                std::cerr << getErrorString(e.err()) << std::endl;
+                exit(1);
+            }
+            //std::cout << "aqui" << std::endl;
+            ///medir tempos
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
+            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
+            tempoAvaliacao = (fim-inicio)/1.0E9;
+
+            tempoTotalAvaliacao += tempoAvaliacao;
+            std::cout  << "Tempo de avaliacao = " << tempoAvaliacao << std::endl;
+
+            cmdQueueAval->enqueueReadBuffer(bufferPopFGPU, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+
+            //popFutura = (Arvore*)cmdQueueGPU.enqueueMapBuffer(bufferPop,CL_FALSE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
+
+            cmdQueueAval->finish();
+
+
+
+        for(i = 0; i< NUM_INDIV; i++){
+            popAtual[i] = popFutura[i];
+        }
+
+        tempoGeracao = getTime() - startIt;
+
+        tempoTotal += tempoGeracao;
+        std::cout <<"Tempo de geracao = " << tempoGeracao << std::endl;
+
+        //imprimePopulacao(popAtual, LABELS);
+        imprimeMelhor(popAtual, LABELS);
+        iteracoes++;
+        //std::cout << "seed8 = " << seeds[8] <<std::endl;
+    }
+
+    printf("\nPOPULACAO FINAL \n");
+    imprimePopulacao(popAtual, LABELS);
     printf("*");
     imprimeMelhor(popAtual, LABELS);
     printf("\n\n");
@@ -581,3 +1087,4 @@ int main(int argc, char** argv){
 
     return 0;
 }
+#endif

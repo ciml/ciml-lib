@@ -1,11 +1,10 @@
 #ifndef UTILITARIOS_H_INCLUDED
 #define UTILITARIOS_H_INCLUDED
-#if !(AVALOCL || EVOLOCL)
-    #include "math.h"
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <string.h>
-#endif // AVALOCL
+
+#include "math.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "constantes.h"
 #include "bitwise.h"
 

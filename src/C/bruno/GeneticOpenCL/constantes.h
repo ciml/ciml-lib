@@ -26,35 +26,39 @@
 
 ///MUDEI AQUI
 
-#define MAX_NOS     1025
-#define MAX_DEPTH   8
+#define MAX_NOS     1024
+#define MAX_DEPTH   9
 #define MAX_FILHOS  2
 
-#define NUM_INDIV   500
+#ifndef NUM_INDIV
+#define NUM_INDIV   1024
+#endif // NUM_INDIV
 
 #ifndef PROB_CROSS
 #define PROB_CROSS  0.9
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
-#define PROB_MUT    0.1
+#define PROB_MUT    0.9
 #endif // PROB_MUT
 
-#define NUM_TORNEIO     2
+#define NUM_TORNEIO     3
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    10
+#define NUM_GERACOES    100
 
+#define CARGA 200000
 
-#define MAX_TEXT_LINE_LENGTH 10000
+#define MAX_TEXT_LINE_LENGTH 100000
+
 
 #ifndef TWODEVICES
-    #define TWODEVICES 0
+    #define TWODEVICES 1
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 0
+    #define EVOLOCL 1
 #endif // EVOLOCL
 
 #ifndef AVALOCL
@@ -66,11 +70,14 @@
 #endif // EVOLOMP
 
 #ifndef AVALGPU
-    #define AVALGPU 0
+    #define AVALGPU 1
 #endif // AVALGPU
 
+#ifndef DIF_CONTEXT
+    #define DIF_CONTEXT 1
+#endif // DIF_CONTEXT
 
-//tem como mudar a constantate antes
+
 
 
 #endif // CONSTANTES_H_INCLUDED
