@@ -11,6 +11,7 @@ using namespace std;
 
 class BaseClonalg {
 
+
 public:
 	BaseClonalg(int generations,
 			int popsize,
