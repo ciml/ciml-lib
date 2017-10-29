@@ -1,0 +1,1 @@
+Prob. Mutacao                  | Melhor                              | Mediana                             | Media                               | Desvio Padrão                       | Pior                                | Modelo (Melhor)                    

@@ -16,7 +16,7 @@ typedef struct{
 void empilha(Pilha* pilha, int info);
 int desempilha(Pilha* pilha);
 
-void empilha2(PilhaEx* pilha, float info);
-float desempilha2(PilhaEx* pilha);
+void empilhaF(PilhaEx* pilha, float info);
+float desempilhaF(PilhaEx* pilha);
 
 #endif // PILHA_H_INCLUDED

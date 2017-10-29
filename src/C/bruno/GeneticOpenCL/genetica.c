@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "genetica.h"
 
+
 void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
                      float maxDados, float minDados){
     int i;
@@ -11,11 +12,10 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
     }
 
     int k = (num - indice) / MAX_DEPTH;
-    //printf("k = %d\n", k);
     int prof = 1;
     for(i = indice; i < num; ){
-            //printf("prof = %d\n", prof);
-        for(int j = 0; j < k; j++){
+        int j;
+        for(j = 0; j < k; j++){
             criaCheia(&pop[i], prof, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
             i++;
             if(i >= num) break;
@@ -23,16 +23,6 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
         prof++;
     }
 
-//    for(i = indice; i < num/3; i++){
-//        criaCheia(&pop[i], MAX_DEPTH/4, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
-//    }
-//    for(i = indice; i < 2*num/3; i++){
-//        criaCheia(&pop[i], MAX_DEPTH/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
-//    }
-//
-//    for( ; i < num; i++){
-//        criaCheia(&pop[i], MAX_DEPTH, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed);
-//    }
 
 }
 
@@ -58,7 +48,7 @@ void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int N
 }
 
 
-void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
+void avaliaIndividuos(Arvore pop[], float** dados, int M, int N){
 
     int i, j = 0;
     float erro = 0;
@@ -73,6 +63,89 @@ void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N){
         pop[i].aptidao = erro; // + 2 * pop[i].numNos;
         erro = 0;
     }
+
+return;
+
+//    int k, l;
+//
+//
+//    //int local_id = get_local_id(0);
+//    //int local_size = get_local_size(0);
+//    //int group_id = get_group_id(0);
+//    //printf("%d\n", group_id);
+//
+//    PilhaEx pilhaEx;
+//    pilhaEx.topo = -1;
+//
+//    float num, div;
+//    for(l = 0; l < NUM_INDIV; l++){
+//    float erro = 0;
+//
+//        for(k = 0; k < M ; k++){
+//
+//            int j;
+//            int tipo;
+//            for(j = pop[l].numNos -1; j>=0; j--){
+//                tipo = retornaTipo(&pop[l], j);
+//                switch(tipo){
+//                    case PLUS:
+//                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) + desempilhaF(&pilhaEx));
+//                        //printf("plus = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case MIN:
+//                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) - desempilhaF(&pilhaEx));
+//                        //printf("min = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case MULT:
+//                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) * desempilhaF(&pilhaEx));
+//                        //printf("mult = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case DIV:
+//                        num = desempilhaF(&pilhaEx);
+//                        div = desempilhaF(&pilhaEx);
+//                        empilhaF(&pilhaEx,proDiv(num,div));
+//                        break;
+//                    case SIN:
+//                        empilhaF(&pilhaEx,sin(desempilhaF(&pilhaEx)));
+//                        //printf("sin = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case COS:
+//                        empilhaF(&pilhaEx,cos(desempilhaF(&pilhaEx)));
+//                        //printf("cos = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case SQR:
+//                       empilhaF(&pilhaEx,proSqrt(desempilhaF(&pilhaEx)));
+//                       //printf("sqr = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case EXP:
+//                        empilhaF(&pilhaEx,exp(desempilhaF(&pilhaEx)));
+//                        //printf("exp = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                    case CTE:;//This is an empty statement.
+//                        //int c; scanf("%d", c);
+//                        float valorF = unpackFloat(pop[l].informacao[j]);
+//                        empilhaF(&pilhaEx, valorF);
+//                        //printf("cte = %.20f\n", pilhaEx.info[pilhaEx.topo]);
+//                        //empilhaF(&pilhaEx, as_float(pop[group_id].informacao[j]<<TIPO));
+//                        break;
+//                    case VAR:;
+//                        int valor2 = unpackInt(pop[l].informacao[j]);
+//                        empilhaF(&pilhaEx, dados[k+valor2*M]);
+//                        //printf("var = %f\n", pilhaEx.info[pilhaEx.topo]);
+//                        break;
+//                }
+//            }
+//
+//            float erroF = desempilhaF(&pilhaEx)-dados[k+M*(N-1)];
+//            //printf("%f - %f\n", erroF, dados[k+M*(N-1)]);
+//            erro = erro + (erroF*erroF);//pown(erroF, 2);//pown(erroF,2);
+//
+//            //if(group_id == 0)
+//            //printf("%.20f\n", erro);
+//        }
+//
+//        pop[l].aptidao = ( isinf( erro ) || isnan( erro ) ) ? INFINITY : erro; //erro;
+//    }
 }
 
 //TODO: imprimir profundidade tambem
@@ -163,11 +236,7 @@ int selecionaElite(Arvore popAtual[], Arvore popFutura[]){
     return cont;
 }
 
-void testaSelection(Arvore pop[], int k){
-    //imprimePopulacao(pop);
-//    ordenaElite(pop, k);
-//    imprimePopulacao(pop);
-}
+
 float fabs2(float val1, float val2){
     if(val1-val2 < 0){
         return (-1* (val1-val2));
@@ -175,6 +244,7 @@ float fabs2(float val1, float val2){
         return (val1-val2);
     }
 }
+
 int torneio(Arvore pop[], int* seed){
     int indiceMelhor = rand2(seed) % NUM_INDIV;
     int indice;
@@ -193,7 +263,7 @@ int torneio(Arvore pop[], int* seed){
 int criterioDeParada(int iteracoes){
     int it = CARGA/NUM_INDIV;
     //printf("%d\n", it);
-    return iteracoes < it;//NUM_GERACOES;
-    //return iteracoes < NUM_GERACOES;
+    //return iteracoes < it;
+    return iteracoes < NUM_GERACOES;
 
 }

@@ -59,7 +59,6 @@ int randomFunctionUn(int NUM_OPUN){
 }
 ///.....................................
 
-//TODO(-): selecionar constante aleatoria de acordo com o maior e menor valor dos dados
 
 //float randomConst(int* seed, float maxDados, float minDados){
 //    //int superior = 6, inferior = 0;
@@ -159,14 +158,14 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //    printf("\nN = %d\n\n", *N);
 //    printf("\nM = %d\n\n", *M);
 
-    dadosTreinamento = malloc((*M)* sizeof(float*));
+    dadosTreinamento = (float**)malloc((*M)* sizeof(float**));
     for(k = 0; k < (*M); k++){
-        (dadosTreinamento)[k] = malloc((*N)*sizeof(float));
+        (dadosTreinamento)[k] = (float*)malloc((*N)*sizeof(float*));
     }
 
     //float dadosTreinamento[M][N];
     //printf("Inicializando Labels...\n");
-    *LABELS = malloc((*N) * sizeof(char*));
+    *LABELS = (char**)malloc((*N) * sizeof(char**));
 //    for(k = 0; k < *N; k++){
 //        (*LABELS)[k] = (char*)malloc(10*sizeof(char));
 //    }
@@ -181,7 +180,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
         char format [32];
         //char* labels[n];
 
-        if ((word = malloc(size)) == NULL)                  // word memory
+        if ((word = (char*)malloc(size)) == NULL)                  // word memory
             fatal("Failed to allocate memory");
         sprintf (format, "%%%us", (unsigned)size-1);        // format for fscanf''
 
@@ -189,7 +188,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
             while (strlen(word) >= size-1) {                // is buffer full?
                 size *= 2;                                  // double buff size
                 //printf ("** doubling to %u **\n", (unsigned)size);
-                if ((word = realloc(word, size)) == NULL)
+                if ((word = (char*)realloc(word, size)) == NULL)
                     fatal("Failed to reallocate memory");
                 sprintf (format, "%%%us", (unsigned)size-1);// new format spec
                 fseek(arq, fpos, SEEK_SET);                  // re-read the line
@@ -264,7 +263,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
 //        NUM_OPUN = numOpUn;
 
         //operacoesBin = malloc(numOpBin * sizeof(int));
-        *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
+        *conjuntoOpTerm = (int*)malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int*));
 
         for (i = 0; i < (*NUM_OPBIN); i++){
             if(!fscanf(arq, "%d", &info))
@@ -291,7 +290,7 @@ float** readTrainingData(int* M, int* N, int* NUM_CTES, int* NUM_OPBIN, int* NUM
         *NUM_OPBIN = 4;
         *NUM_OPUN = 4;
         *NUM_CTES = 1;
-        *conjuntoOpTerm = malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int));
+        *conjuntoOpTerm = (int*)malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int*));
 
         i = 0;
 

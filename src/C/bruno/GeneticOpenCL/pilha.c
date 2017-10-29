@@ -22,7 +22,7 @@ int desempilha(Pilha* pilha){
     }
 }
 
-void empilha2(PilhaEx* pilha, float info){
+void empilhaF(PilhaEx* pilha, float info){
     (pilha->topo)++;
     if(pilha->topo < MAX_NOS){
         //printf("Sucesso Empilhar 2\n");
@@ -32,7 +32,7 @@ void empilha2(PilhaEx* pilha, float info){
     }
 }
 
-float desempilha2(PilhaEx* pilha){
+float desempilhaF(PilhaEx* pilha){
     if(pilha->topo >= 0){
         //printf("Sucesso Desempilhar 2\n");
         float val = pilha->info[pilha->topo];

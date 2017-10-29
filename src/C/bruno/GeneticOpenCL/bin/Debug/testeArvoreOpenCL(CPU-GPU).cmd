@@ -11,8 +11,6 @@ SET seeds=9,10,11,12,13
 
 break>resultFiles.txt
 FOR %%i IN (%popVal%) DO (
-	break>resultFiles_%%i.txt
-	ECHO resultFiles_%%i.txt>>resultFiles.txt
 	FOR %%j IN (%seeds%) DO (
 		PUSHD %Caminho%
 		make -f GeneticOpenCL.cbp.mak clean
@@ -22,8 +20,8 @@ FOR %%i IN (%popVal%) DO (
 		for %%F in ("*.dat") do (
 			SET nomeArquivo=%%~nF_cpuGpu_seed_%%j_%parameter%_%%i.txt
 			ECHO Extraindo dados para "!nomeArquivo!"
-			ECHO !nomeArquivo!>>resultFiles_%%i.txt
-			GeneticOpenCL.exe %%F>"resultadosIni\cpugpu\!nomeArquivo!"
+			ECHO !nomeArquivo!>>"resultadosIni\cpugpu2\resultFiles.txt"
+			GeneticOpenCL.exe %%F>"resultadosIni\cpugpu2\!nomeArquivo!"
 		)
 	)
 )

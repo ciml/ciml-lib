@@ -33,24 +33,13 @@ void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed, int id); ///Troca in
 void trocaSubArv(Arvore* arvMaior,Arvore* arvMenor,int ind1,int ind2,int tamanhoSubMenor, int tamanhoSubMaior);
 
 void imprimeSinxate(Arvore* arv, int j, char** LABELS);///
-//void imprimeSinxate(int info, char** LABELS);///
-
 
 float executa(Arvore* individuo, float dados[], int N);///Interpreta um programa sob determinado conjunto de dados.
 
 float opBinaria(int operador, float valor1, float valor2);
 float opUnaria(int k, float valor1);
 
-void generate(Arvore* arv,int min, int max);
-
 int retornaTipo(Arvore* arv, int j);
-
-
-void criaArvTeste(Arvore* arvore1);//Cria uma árvore de forma conhecida para testes.
-void testaPrint(Arvore* arvore); //Testa as três funções de impressão
-void realizaTestes();//testa algumas funções da árvore
-void testaExecuta(float* dados[]);//testa a função de executar
-
 
 void leIndividuo(char *fileName, Arvore* individuo, char** LABELS, float** dados, int M, int N);
 

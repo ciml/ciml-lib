@@ -1,5 +1,3 @@
-
-
 typedef struct{
     int numeroFilhos[MAX_NOS];
     int informacao[MAX_NOS];
@@ -37,7 +35,7 @@ int desempilha(Pilha* pilha){
     }
 }
 
-void empilha2(PilhaEx* pilha, float info){
+void empilhaF(PilhaEx* pilha, float info){
     (pilha->topo)++;
     if(pilha->topo < MAX_NOS){
         pilha->info[pilha->topo] = info;
@@ -46,7 +44,7 @@ void empilha2(PilhaEx* pilha, float info){
     }
 }
 
-float desempilha2(PilhaEx* pilha){
+float desempilhaF(PilhaEx* pilha){
     if(pilha->topo >= 0){
         float val = pilha->info[pilha->topo];
         pilha->topo--;
@@ -194,10 +192,7 @@ float proSqrt(float num){
 __kernel void avaliaIndividuos(__global Arvore* pop,
                                __global float* dados,
                                __local float* error
-                              
                                ){
-
-
 
     int i, k = 0;
     float erro = 0;
@@ -230,43 +225,43 @@ __kernel void avaliaIndividuos(__global Arvore* pop,
 
                 switch(tipo){
                     case PLUS:
-                        empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) + desempilhaF(&pilhaEx));
                         break;
                     case MIN:
-                        empilha2(&pilhaEx,desempilha2(&pilhaEx) - desempilha2(&pilhaEx));
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) - desempilhaF(&pilhaEx));
                         break;
                     case MULT:
-                        empilha2(&pilhaEx,desempilha2(&pilhaEx) * desempilha2(&pilhaEx));
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) * desempilhaF(&pilhaEx));
                         break;
                     case DIV:
-                        num = desempilha2(&pilhaEx);
-                        div = desempilha2(&pilhaEx);
-                        empilha2(&pilhaEx,proDiv(num,div));
+                        num = desempilhaF(&pilhaEx);
+                        div = desempilhaF(&pilhaEx);
+                        empilhaF(&pilhaEx,proDiv(num,div));
                         break;
                     case SIN:
-                        empilha2(&pilhaEx,sin(desempilha2(&pilhaEx)));
+                        empilhaF(&pilhaEx,sin(desempilhaF(&pilhaEx)));
                         break;
                     case COS:
-                        empilha2(&pilhaEx,cos(desempilha2(&pilhaEx)));
+                        empilhaF(&pilhaEx,cos(desempilhaF(&pilhaEx)));
                         break;
                     case SQR:
-                       empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
+                       empilhaF(&pilhaEx,proSqrt(desempilhaF(&pilhaEx)));
                         break;
                     case EXP:
-                        empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
+                        empilhaF(&pilhaEx,exp(desempilhaF(&pilhaEx)));
                         break;
                     case CTE:;
                         float valorF = unpackFloat(pop[group_id].informacao[j]);
-                        empilha2(&pilhaEx, valorF);
+                        empilhaF(&pilhaEx, valorF);
                         break;
                     case VAR:;
                         int valor2 = unpackInt(pop[group_id].informacao[j]);
-                        empilha2(&pilhaEx, dados[k*LOCAL_SIZE+local_id+(valor2*M)]);
+                        empilhaF(&pilhaEx, dados[k*LOCAL_SIZE+local_id+(valor2*M)]);
                         break;
                 }
             }
 
-            float erroF = desempilha2(&pilhaEx)- dados[k*LOCAL_SIZE+local_id+M*(N-1)];
+            float erroF = desempilhaF(&pilhaEx)- dados[k*LOCAL_SIZE+local_id+M*(N-1)];
             erro = erro + (erroF * erroF);
             //if( isinf( erro ) || isnan( erro ) ) break;
 
@@ -334,54 +329,54 @@ __kernel void avaliaIndividuosCPU(__global Arvore* pop,
             tipo = retornaTipo(&pop[group_id], j);
             switch(tipo){
                 case PLUS:
-                    empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
+                    empilhaF(&pilhaEx,desempilhaF(&pilhaEx) + desempilhaF(&pilhaEx));
                     //printf("plus = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case MIN:
-                    empilha2(&pilhaEx,desempilha2(&pilhaEx) - desempilha2(&pilhaEx));
+                    empilhaF(&pilhaEx,desempilhaF(&pilhaEx) - desempilhaF(&pilhaEx));
                     //printf("min = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case MULT:
-                    empilha2(&pilhaEx,desempilha2(&pilhaEx) * desempilha2(&pilhaEx));
+                    empilhaF(&pilhaEx,desempilhaF(&pilhaEx) * desempilhaF(&pilhaEx));
                     //printf("mult = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case DIV:
-                    num = desempilha2(&pilhaEx);
-                    div = desempilha2(&pilhaEx);
-                    empilha2(&pilhaEx,proDiv(num,div));
+                    num = desempilhaF(&pilhaEx);
+                    div = desempilhaF(&pilhaEx);
+                    empilhaF(&pilhaEx,proDiv(num,div));
                     break;
                 case SIN:
-                    empilha2(&pilhaEx,sin(desempilha2(&pilhaEx)));
+                    empilhaF(&pilhaEx,sin(desempilhaF(&pilhaEx)));
                     //printf("sin = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case COS:
-                    empilha2(&pilhaEx,cos(desempilha2(&pilhaEx)));
+                    empilhaF(&pilhaEx,cos(desempilhaF(&pilhaEx)));
                     //printf("cos = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case SQR:
-                   empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
+                   empilhaF(&pilhaEx,proSqrt(desempilhaF(&pilhaEx)));
                    //printf("sqr = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case EXP:
-                    empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
+                    empilhaF(&pilhaEx,exp(desempilhaF(&pilhaEx)));
                     //printf("exp = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
                 case CTE:;//This is an empty statement.
                     //int c; scanf("%d", c);
                     float valorF = unpackFloat(pop[group_id].informacao[j]);
-                    empilha2(&pilhaEx, valorF);
+                    empilhaF(&pilhaEx, valorF);
                     //printf("cte = %.20f\n", pilhaEx.info[pilhaEx.topo]);
-                    //empilha2(&pilhaEx, as_float(pop[group_id].informacao[j]<<TIPO));
+                    //empilhaF(&pilhaEx, as_float(pop[group_id].informacao[j]<<TIPO));
                     break;
                 case VAR:;
                     int valor2 = unpackInt(pop[group_id].informacao[j]);
-                    empilha2(&pilhaEx, dados[k+valor2*M]);
+                    empilhaF(&pilhaEx, dados[k+valor2*M]);
                     //printf("var = %f\n", pilhaEx.info[pilhaEx.topo]);
                     break;
             }
         }
 
-        float erroF = desempilha2(&pilhaEx)-dados[k+M*(N-1)];
+        float erroF = desempilhaF(&pilhaEx)-dados[k+M*(N-1)];
         //printf("%f - %f\n", erroF, dados[k+M*(N-1)]);
         erro = erro + (erroF*erroF);//pown(erroF, 2);//pown(erroF,2);
 
@@ -597,7 +592,7 @@ void  trocaSubArv(__global Arvore* arvMaior, __global Arvore* arvMenor,int ind1,
 }
 
 
-void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed, int id){
+void crossOver(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
 
     int espacoLivre1, espacoLivre2, indiceSub1, indiceSub2, tamanhoSub1, tamanhoSub2;
     int cont = 0;
@@ -684,11 +679,6 @@ void crossOverP(__global Arvore* arvore1, __global Arvore* arvore2, int* seed){
         trocaSubArv(arvore2, arvore1, indiceSub2, indiceSub1, tamanhoSub2, tamanhoSub1);
         shift(arvore2, tamShift2, indiceSub2+tamanhoSub2);
     }
-    
-    
-    //printf("c\n");
-
-
 }
 
 float fabs2(float val1, float val2){
@@ -735,7 +725,7 @@ __kernel void evolucao(__global Arvore* popA,
     float mut = randomProb(&seed);
 
     if(cross<=PROB_CROSS){
-        crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id], &seed, group_id);
+        crossOver(&popF[elite+2*group_id+1], &popF[elite+2*group_id], &seed);
 
     }
 
@@ -744,11 +734,143 @@ __kernel void evolucao(__global Arvore* popA,
         mutacao(&popF[elite+2*group_id], conjuntoOpTerm, &seed);
     }
 
-
-
     seeds[group_id] = seed;
 
 }
+
+__kernel void evolucaoSequencial(__global Arvore* popA,
+                                 __global Arvore* popF,
+                                 __const int elite,    
+                                 __global int* conjuntoOpTerm,
+                                 __global int* seeds ) {
+
+    int j;
+    for(j = elite; j < NUM_INDIV; j +=2){
+
+        int id = (j/2)-(elite/2);
+        int seed = seeds[id];
+
+        int indice1 = torneio(popA, &seed);
+        int indice2 = torneio(popA, &seed);
+
+
+        popF[j] = popA[indice1];
+        popF[j+1] = popA[indice2];
+
+        ///testar imprimir o que está retornando na parte randomica
+        float cross = randomProb(&seed);
+        float mut = randomProb(&seed);
+
+        if(cross <= PROB_CROSS){
+            crossOver(&popF[j+1], &popF[j], &seed);
+        }
+
+        if(mut <= PROB_MUT){
+            mutacao(&popF[j+1], conjuntoOpTerm,  &seed);
+            mutacao(&popF[j], conjuntoOpTerm, &seed);
+        }
+        seeds[id] = seed;
+    }
+}
+
+
+
+
+
+__kernel void  avaliaIndividuosSequencial(__global Arvore* pop,
+                                          __global float* dados,
+                                          __local float* error ){
+
+    int k, l;
+
+    //int local_id = get_local_id(0);
+    //int local_size = get_local_size(0);
+    //int group_id = get_group_id(0);
+    //printf("%d\n", group_id);
+
+    PilhaEx pilhaEx;
+    pilhaEx.topo = -1;
+
+    float num, div;
+    //__attribute__((opencl_unroll_hint(1)))
+
+
+    for(l = 0; l < NUM_INDIV; l++){
+
+    //printf("%d\n", l);
+    float erro = 0;
+    
+        for(k = 0; k < M; k++){
+
+            int j;
+            int tipo;
+            for(j = pop[l].numNos -1; j>=0; j--){
+                tipo = retornaTipo(&pop[l], j);
+                switch(tipo){
+                    case PLUS:
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) + desempilhaF(&pilhaEx));
+                        //printf("plus = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case MIN:
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) - desempilhaF(&pilhaEx));
+                        //printf("min = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case MULT:
+                        empilhaF(&pilhaEx,desempilhaF(&pilhaEx) * desempilhaF(&pilhaEx));
+                        //printf("mult = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case DIV:
+                        num = desempilhaF(&pilhaEx);
+                        div = desempilhaF(&pilhaEx);
+                        empilhaF(&pilhaEx,proDiv(num,div));
+                        break;
+                    case SIN:
+                        empilhaF(&pilhaEx,sin(desempilhaF(&pilhaEx)));
+                        //printf("sin = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case COS:
+                        empilhaF(&pilhaEx,cos(desempilhaF(&pilhaEx)));
+                        //printf("cos = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case SQR:
+                       empilhaF(&pilhaEx,proSqrt(desempilhaF(&pilhaEx)));
+                       //printf("sqr = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case EXP:
+                        empilhaF(&pilhaEx,exp(desempilhaF(&pilhaEx)));
+                        //printf("exp = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                    case CTE:;//This is an empty statement.
+                        //int c; scanf("%d", c);
+                        float valorF = unpackFloat(pop[l].informacao[j]);
+                        empilhaF(&pilhaEx, valorF);
+                        //printf("cte = %.20f\n", pilhaEx.info[pilhaEx.topo]);
+                        //empilhaF(&pilhaEx, as_float(pop[group_id].informacao[j]<<TIPO));
+                        break;
+                    case VAR:;
+                        int valor2 = unpackInt(pop[l].informacao[j]);
+                        empilhaF(&pilhaEx, dados[k+valor2*M]);
+                        //printf("var = %f\n", pilhaEx.info[pilhaEx.topo]);
+                        break;
+                }
+                barrier(CLK_GLOBAL_MEM_FENCE);
+            }
+             barrier(CLK_GLOBAL_MEM_FENCE);
+
+            float erroF = desempilhaF(&pilhaEx)-dados[k+M*(N-1)];
+            //printf("%f - %f\n", erroF, dados[k+M*(N-1)]);
+            erro = erro + (erroF*erroF);//pown(erroF, 2);//pown(erroF,2);
+
+        }
+
+        pop[l].aptidao = ( isinf( erro ) || isnan( erro ) ) ? INFINITY : erro; //erro;
+        barrier(CLK_GLOBAL_MEM_FENCE);
+    }
+
+}
+
+
+
 
 //TESTE inicial comparando openMP e openCL
 /*

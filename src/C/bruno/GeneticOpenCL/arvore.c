@@ -34,7 +34,6 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
     int aux[MAX_NOS];
     int sorteio, j, num, tipo;
 
-    //usar 'num' o inves de j pra nao ter variavel sobrando...
     for(j = 0; j < MAX_NOS; j++){
         aux[j] = 0;
     }
@@ -46,14 +45,8 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
         indice = desempilha(&pilha);
 
         if(aux[indice] == 0){
-
-            //int rdmType = randomType(NUM_OPBIN, NUM_OPUN, N, seed);
-            //printf("RDMtipo = %d\n", rdmType);
-//
             sorteio = conjuntoOpTerm[randomType(NUM_OPBIN, NUM_OPUN, N, seed)];
             tipo = unpackTipo(sorteio);
-            //printf("sorteio = %d\n", sorteio);
-            //printf("tipo = %d\n", tipo);
 
             if(tipo == VAR || tipo == CTE){
                 num = 0;
@@ -67,29 +60,19 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
             arv->numNos++;
             soma += num;
 
-        if(soma > maxTam){
-            soma-=arv->numeroFilhos[indice];
-            arv->numeroFilhos[indice] = 0;
-            sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N,seed)];
-            num = 0;
-            tipo = unpackTipo(sorteio);
+            if(soma > maxTam){
+                soma-=arv->numeroFilhos[indice];
+                arv->numeroFilhos[indice] = 0;
+                sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N,seed)];
+                num = 0;
+                tipo = unpackTipo(sorteio);
+            }
+
+            if(tipo == CTE){
+                sorteio = packFloat(CTE, randomConst(seed, maxDados, minDados));
+            }
+            arv->informacao[indice] = sorteio;
         }
-
-        if(tipo == CTE){
-            /**AQUI*/
-            //printf("tipooooooo = %d\n", tipo);
-
-            //printf("RandomConst = %f\n", constante);
-            sorteio = packFloat(CTE, randomConst(seed, maxDados, minDados));
-            //printf("tipo = %d\n", unpackTipo(sorteio));
-            //printf("RandomConstUnpacked = %f\n", unpackFloat(sorteio));
-
-            //char c;
-            //scanf("%c", &c);
-        }
-        arv->informacao[indice] = sorteio;
-
-    }
 
         if(aux[indice] < arv->numeroFilhos[indice]){
             empilha(&pilha, indice);
@@ -121,7 +104,6 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
 
     int aux[MAX_NOS];
 
-    //usar 'num' o inves de j pra nao ter variavel sobrando...
     for(j = 0; j < MAX_NOS; j++){
         aux[j] = 0;
     }
@@ -133,8 +115,6 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
 
         if(aux[indice] == 0){
             if(pilha.topo+1 != maxDepth){
-                //int teste = randomNodeType(NUM_OPBIN, NUM_OPUN, N,seed);
-                //printf("teste = %d\n", teste);
                 sorteio = conjuntoOpTerm[randomNodeType(NUM_OPBIN, NUM_OPUN, N,seed)];
                 tipo = unpackTipo(sorteio);
                 if (tipo == FUN){
@@ -147,16 +127,7 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
                 sorteio = conjuntoOpTerm[randomLeafType(NUM_OPBIN, NUM_OPUN, N,seed)];
                 tipo = unpackTipo(sorteio);
                 if(tipo == CTE){
-                    /**AQUI*/
-                    //printf("tipooooooo = %d\n", tipo);
-                    //float constante = randomConst(seed);
-                   // printf("RandomConst = %f\n", constante);
                     sorteio = packFloat(CTE, randomConst(seed, maxDados, minDados));
-                    //printf("tipo = %d\n", unpackTipo(sorteio));
-                    //printf("RandomConstUnpacked = %f\n", unpackFloat(sorteio));
-
-            //char c;
-            //scanf("%c", &c);
                 }
                 num = 0;
             }
@@ -181,7 +152,6 @@ void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, in
     }
 }
 
-//pos ordem -avaliar / conversor
 void imprimeArvoreNivel(Arvore* arv){
     Pilha pilha;
     pilha.topo = -1;
@@ -212,7 +182,6 @@ void imprimeArvoreNivel(Arvore* arv){
                 printf("%f | %d\n", unpackFloat(arv->informacao[indice]), arv->numeroFilhos[indice]);
             else
                 printf("%d | %d\n", unpackInt(arv->informacao[indice]), arv->numeroFilhos[indice]);
-                //printf("%d | %d\n", arv->informacao[indice], arv->numeroFilhos[indice]);
         }
 
         if(aux[indice] < arv->numeroFilhos[indice]){
@@ -244,9 +213,7 @@ void imprimeArvorePre(Arvore* arv, char** LABELS){
     while(pilha.topo != -1){
         indice = desempilha(&pilha);
         if(aux[indice] == 0){
-            printf("("/*%d", arv->informacao[indice]*/);
-
-            //imprimeSinxate(arv->informacao[indice], LABELS); //arv->informacao[indice], arv->numeroFilhos[indice]);
+            printf("(");
             imprimeSinxate(arv, indice, LABELS);
         }
 
@@ -283,7 +250,6 @@ void imprimeArvorePos(Arvore* arv, char** LABELS){
         indice = desempilha(&pilha);
 
         if(aux[indice] == arv->numeroFilhos[indice]){
-            //imprimeSinxate(arv->informacao[indice], LABELS);
             imprimeSinxate(arv, indice, LABELS);
             printf(")");
         }
@@ -333,14 +299,12 @@ void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, i
     //inicializaArvore(&novaArvore);
     geradorArvore(&novaArvore, espacoLivre, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N,seed, maxDados, minDados);
 
-
     //determina o tamanho do deslocamento da arvore
 
-//TODO: colocar if para raiz?
-//if(indiceSub != 0 && indiceSub != arvore->numNos-1){
-        int tamShift = novaArvore.numNos - tamanhoSub;
-        shift(arvore, tamShift, indiceSub+tamanhoSub);
-
+    //TODO: colocar if para raiz?
+    //if(indiceSub != 0 && indiceSub != arvore->numNos-1){
+    int tamShift = novaArvore.numNos - tamanhoSub;
+    shift(arvore, tamShift, indiceSub+tamanhoSub);
 
     //troca a informação
     for(i = 0; i < novaArvore.numNos; i++){
@@ -356,32 +320,18 @@ void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed, int id){
     do{
         indiceSub1 = rand2(seed) % (arvore1->numNos);
         tamanhoSub1 = calculaTamanhoSubArvore(arvore1, indiceSub1);
-        //if(id==0){
-        //    printf("seed %d\n",arvore1->numNos);
-        //}
+
         indiceSub2 = rand2(seed) % (arvore2->numNos);
         tamanhoSub2 = calculaTamanhoSubArvore(arvore2, indiceSub2);
-        //if(id==0){
-        //    printf("seed %d\n",arvore2->numNos);
-        //}
+
         espacoLivre1 = MAX_NOS-(arvore1->numNos)+tamanhoSub1;
         espacoLivre2 = MAX_NOS-(arvore2->numNos)+tamanhoSub2;
-        //if(id==0){
-        //    printf("el1 = %d\n el2 = %d\n", espacoLivre1, espacoLivre2);
-        //}
+
         if(cont++ == 5) return;
-    }while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
-        //if(id == 0)
-        //printf("cont = %d\n", cont);
-//    Arvore arvAux;
-//    for(i = 0; i < tamanhoSub1; i++){
-//        arvAux.informacao[i] = arvore1->informacao[indiceSub1+i];
-//        arvAux.numeroFilhos[i] = arvore1->numeroFilhos[indiceSub1+i];
-//    }
+    } while(espacoLivre1-tamanhoSub2 < 0 || espacoLivre2-tamanhoSub1 < 0);
 
     int tamShift1 = tamanhoSub2 - tamanhoSub1;
     //shift(arvore1, tamShift1, indiceSub1+tamanhoSub1);
-
     int tamShift2 = tamanhoSub1 - tamanhoSub2;
 
 
@@ -394,16 +344,6 @@ void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed, int id){
         trocaSubArv(arvore2, arvore1, indiceSub2, indiceSub1, tamanhoSub2, tamanhoSub1);
         shift(arvore2, tamShift2, indiceSub2+tamanhoSub2);
     }
-
-//    for(i = 0; i < tamanhoSub2; i++){
-//        arvore1->numeroFilhos[i+indiceSub1] = arvore2->numeroFilhos[i+indiceSub2];
-//        arvore1->informacao[i+indiceSub1] = arvore2->informacao[i+indiceSub2];
-//    }
-//
-//    for(i = 0; i < tamanhoSub1; i++){
-//        arvore2->numeroFilhos[i+indiceSub2] = arvAux.numeroFilhos[i];
-//        arvore2->informacao[i+indiceSub2] = arvAux.informacao[i];
-//    }
 }
 
 void  trocaSubArv(Arvore* arvMaior,Arvore* arvMenor,int ind1,int ind2,int tamanhoSubMenor, int tamanhoSubMaior){
@@ -423,7 +363,7 @@ void  trocaSubArv(Arvore* arvMaior,Arvore* arvMenor,int ind1,int ind2,int tamanh
     }
 }
 
-void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){ //int id, int tipo){
+void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){
     int tipo = retornaTipo(arv, j);
     int info = arv->informacao[j];
     //unpackTipo(info);
@@ -452,14 +392,20 @@ void imprimeSinxate(Arvore* arv, int j, char* LABELS[]){ //int id, int tipo){
         case EXP:
             printf("exp");
             break;
-        case CTE:;//This is an empty statement.
+        case CTE:
+            {
+
+
             float valorF = unpackFloat(info);
             printf("%.20f", valorF);
             break;
-        case VAR:;
+            }
+        case VAR:
+            {
             int valor2 = unpackInt(info);
             printf("%s", LABELS[valor2]);
             break;
+            }
         default:
             break;
 
@@ -486,56 +432,55 @@ float executa(Arvore* arv, float dados[], int N){
 
     for(j = arv->numNos -1; j>=0; j--){
         tipo = retornaTipo(arv, j);
-        //unpackTipo(arv->informacao[j]);
         //printf("tipo = %d\n", tipo);
         switch(tipo){
             case PLUS:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) + desempilha2(&pilhaEx));
+                empilhaF(&pilhaEx,desempilhaF(&pilhaEx) + desempilhaF(&pilhaEx));
                 break;
             case MIN:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) - desempilha2(&pilhaEx));
-                //printf("min = %f\n", pilhaEx.info[pilhaEx.topo]);
+                empilhaF(&pilhaEx,desempilhaF(&pilhaEx) - desempilhaF(&pilhaEx));
                 break;
             case MULT:
-                empilha2(&pilhaEx,desempilha2(&pilhaEx) * desempilha2(&pilhaEx));
+                empilhaF(&pilhaEx,desempilhaF(&pilhaEx) * desempilhaF(&pilhaEx));
                 break;
             case DIV:
-                //printf("topo = %f\n", pilhaEx.info[pilhaEx.topo]);
-                num = desempilha2(&pilhaEx);
-                div = desempilha2(&pilhaEx);
-                empilha2(&pilhaEx,proDiv(num,div));
+                num = desempilhaF(&pilhaEx);
+                div = desempilhaF(&pilhaEx);
+                empilhaF(&pilhaEx,proDiv(num,div));
                 break;
             case SIN:
-                empilha2(&pilhaEx,sin(desempilha2(&pilhaEx)));
+                empilhaF(&pilhaEx,sin(desempilhaF(&pilhaEx)));
                 break;
             case COS:
-                empilha2(&pilhaEx,cos(desempilha2(&pilhaEx)));
+                empilhaF(&pilhaEx,cos(desempilhaF(&pilhaEx)));
                 break;
             case SQR:
-               empilha2(&pilhaEx,proSqrt(desempilha2(&pilhaEx)));
-               //printf("sqr = %f\n", pilhaEx.info[pilhaEx.topo]);
+               empilhaF(&pilhaEx,proSqrt(desempilhaF(&pilhaEx)));
                 break;
             case EXP:
-                empilha2(&pilhaEx,exp(desempilha2(&pilhaEx)));
+                empilhaF(&pilhaEx,exp(desempilhaF(&pilhaEx)));
                 break;
-            case CTE:;//This is an empty statement.
-                //int c; scanf("%d", c);
+            case CTE:
+                {
+
+
                 float valorF = unpackFloat(arv->informacao[j]);
-                //printf("valorCte = %f", valorF);
-                empilha2(&pilhaEx, valorF);
+                empilhaF(&pilhaEx, valorF);
                 break;
-            case VAR:;
+                }
+            case VAR:
+                {
+
+
                 int valor2 = unpackInt(arv->informacao[j]);
-                empilha2(&pilhaEx, dados[valor2]);
+                empilhaF(&pilhaEx, dados[valor2]);
                 break;
+                }
         }
-        //printf("topo = %f\n", pilhaEx.info[pilhaEx.topo]);
     }
 
-    float erro = desempilha2(&pilhaEx)- dados[N-1];
-    //printf("%f - %f\n", erro, dados[(N-1)]);
+    float erro = desempilhaF(&pilhaEx)- dados[N-1];
     erro = ( isinf( erro ) || isnan( erro ) ) ? /*FLT_MAX*/ INFINITY : erro;
-    //printf("erro = %f\n", erro*erro);
     return erro*erro;//pow(erro, 2);
 }
 
@@ -567,134 +512,6 @@ float opUnaria(int operador, float valor){
     return -1;
 }
 
-void testaExecuta(float* dados[]){
-//    Arvore arvore1;
-//    criaArvTeste(&arvore1);
-//    imprimeArvorePre(&arvore1);
-
-//    int i, j;
-//    for(i = 0; i < M; i++){
-//        for(j = 0; j < N; j++){
-//            printf("%.2f ", dados[i][j]);
-//        }
-//        printf("\n");
-//    }
-
-//    printf("%f", executa(&arvore1, dados[1]));
-}
-
-void generate(Arvore* arv, int min, int max){
-    int j;
-    int tamanho = min + randomSuperior(max-min+1);
-    arv->numNos = tamanho;
-    //printf("p=%d\n", tamanho);
-    int d[max];
-    arv->numeroFilhos[0] = randomSuperior(tamanho-1)%3;
-    //printf("numF=%d", arv->numeroFilhos[0]);
-    d[0] = tamanho-1;
-
-    for(j = 1; j < tamanho-1; j++){
-        //printf("aaaaaaa\n");
-        d[j] = d[j-1]-arv->numeroFilhos[j-1];
-        if(d[j] == (tamanho-j-1)){
-            //printf("bbbbbbb\n");
-            arv->numeroFilhos[j] = 1 + randomSuperior(d[j])%2;
-
-        } else {
-            //printf("ccccccc\n");
-            //printf("%d\n", d[j]);
-            arv->numeroFilhos[j] = randomSuperior(d[j])%3;
-
-        }
-    }
-    arv->numeroFilhos[tamanho-1] = 0;
-    return;
-}
-
-void testaPrint(Arvore *arvore){
-//    printf("POR NIVEL: \n");
-//    imprimeArvoreNivel(arvore);
-//    printf("\nPOS ORDEM: \n");
-//    imprimeArvorePos(arvore);
-//    printf("\nPRE ORDEM: \n");
-//    imprimeArvorePre(arvore);
-}
-
-void criaArvTeste(Arvore *arvore1){
-    arvore1->numeroFilhos[0] = 2;
-    arvore1->numeroFilhos[1] = 0;
-    arvore1->numeroFilhos[2] = 2;
-    arvore1->numeroFilhos[3] = 2;
-    arvore1->numeroFilhos[4] = 1;
-    arvore1->numeroFilhos[5] = 1;
-    arvore1->numeroFilhos[6] = 0;
-    arvore1->numeroFilhos[7] = 0;
-    arvore1->numeroFilhos[8] = 0;
-
-
-    arvore1->informacao[0] = packInt(FBIN, 1);
-    arvore1->informacao[1] = packInt(VAR, 0);
-    arvore1->informacao[2] = packInt(FBIN, 2);
-    arvore1->informacao[3] = packInt(FBIN, 1);
-    arvore1->informacao[4] = packInt(FUN, 5);
-    arvore1->informacao[5] = packInt(FUN, 6);
-    arvore1->informacao[6] = packInt(VAR, 0);
-    arvore1->informacao[7] = packInt(VAR, 0);
-    arvore1->informacao[8] = packInt(VAR, 0);
-
-    arvore1->numNos = 9;
-}
-
-void realizaTestes(){
-
-    int i;
-    Arvore arvore1, arvore2;
-
-
-    inicializaArvore(&arvore1);
-    inicializaArvore(&arvore2);
-    for(i = 0; i < MAX_NOS ; i++){
-        arvore1.numeroFilhos[i]=-99;
-    }
-    //teste(&arvore1);
-    generate(&arvore1,5, 10);
-    //geradorArvore(&arvore1, MAX_NOS);
-//    criaCheia(&arvore2, 2);
-//
-//    imprimeArvoreNivel(&arvore1);
-//    printf("\n\n");
-//    imprimeArvoreNivel(&arvore2);
-//    printf("\n\n");
-
-    for(i = 0; i < MAX_NOS ; i++){
-        printf("%d ", arvore1.numeroFilhos[i]);
-    }
-
-    printf("\n");
-
-
-
-//    for(i = 0; i < arvore2.numNos ; i++){
-//        printf("%d ", arvore2.numeroFilhos[i]);
-//    }
-//
-//    printf("\n\n");
-//
-//    printf("MUTAÇÃO ARVORE 1: \n");
-//    mutacao(&arvore1);
-//    imprimeArvoreNivel(&arvore1);
-//    printf("\n\n");
-//
-//    printf("CROSS OVER ARVORES 1 E 2: \n");
-//    crossOver(&arvore1, &arvore2);
-//
-//    imprimeArvoreNivel(&arvore1);
-//    printf("\n");
-//    imprimeArvoreNivel(&arvore2);
-//    printf("\n");
-}
-
-//TODO:fazer receber os dados também+labels.
 void leIndividuo(char *fileName, Arvore* individuo, char** LABELS, float** dados, int M, int N) {
     //printf("%s", fileName);
     FILE* arquivo = fopen(fileName, "r");

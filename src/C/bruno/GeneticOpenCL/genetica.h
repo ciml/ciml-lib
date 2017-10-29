@@ -6,9 +6,7 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int
 void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);
 void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);
 
-
-
-void avaliaIndividuos(Arvore pop[], float* dados[], int M, int N);
+void avaliaIndividuos(Arvore pop[], float** dados, int M, int N);
 
 void imprimePopulacao(Arvore pop[], char** LABELS);
 void imprimeMelhor(Arvore pop[], char** LABELS);

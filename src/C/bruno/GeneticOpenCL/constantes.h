@@ -39,14 +39,14 @@
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
-#define PROB_MUT    0.9
+#define PROB_MUT    0.1
 #endif // PROB_MUT
 
 #define NUM_TORNEIO     3
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    100
+#define NUM_GERACOES    50
 
 #define CARGA 200000
 
@@ -54,15 +54,15 @@
 
 
 #ifndef TWODEVICES
-    #define TWODEVICES 1
+    #define TWODEVICES 0
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 1
+    #define EVOLOCL 0
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 1
+    #define AVALOCL 0
 #endif // AVALOCL
 
 #ifndef EVOLOMP
@@ -70,11 +70,11 @@
 #endif // EVOLOMP
 
 #ifndef AVALGPU
-    #define AVALGPU 1
+    #define AVALGPU 0
 #endif // AVALGPU
 
 #ifndef DIF_CONTEXT
-    #define DIF_CONTEXT 1
+    #define DIF_CONTEXT 0
 #endif // DIF_CONTEXT
 
 
