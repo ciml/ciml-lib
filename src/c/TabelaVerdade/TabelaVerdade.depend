@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1512482703 source:/home/lucasmuller/Área de Trabalho/IC/TabelaVerdade/main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1512655251 source:/home/lucasmuller/Documentos/IC/TabelaVerdade/main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
