@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define M1 2 /// CONJUNTO DE VARIÁVEIS 1
-#define M2 2 /// CONJUNTO DE VARIÁVEIS 2
+#define M1 3 /// CONJUNTO DE VARIÁVEIS 1
+#define M2 3 /// CONJUNTO DE VARIÁVEIS 2
 #define PROBLEMA 1 /// 1- MULTIPLICADOR/SOMADOR 2- EVEN PARITY 3- MULTIPLEXER
 #define OPERACAO '*'
 

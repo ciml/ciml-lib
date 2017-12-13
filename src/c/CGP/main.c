@@ -2,22 +2,21 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define NCOL 100 /// NÚMERO DE COLUNAS
 #define NLIN 1 /// NÚMERO DE LINHAS
 #define LB 50 /// LEVEL-BACK
 #define PORTAS 5 /// NÚMERO DE PORTAS
 #define NPOPULACAO 4 /// NÚMERO DE INDIVÍDUOS NA POPULAÇÃO
-#define M1 2 /// CONJUNTO DE VARIÁVEIS 1
-#define M2 2  /// CONJUNTO DE VARIÁVEIS 2
+#define M1 3 /// CONJUNTO DE VARIÁVEIS 1
+#define M2 3  /// CONJUNTO DE VARIÁVEIS 2
 ///#define SAIDAS (M1 + M2) /// NÚMERO DE SAÍDAS DE CADA INDIVÍDUO
 #define NMUTACOES 1 /// QUANTAS MUTAÇÕES SERÃO FEITAS NO INDIVÍDUO
 
 
 /// Lucas Augusto Müller de Souza
-/// Engenharia Computacional - UFJF
 
 /*
 PORTAS:
@@ -44,6 +43,7 @@ typedef struct
     int lig1;
     int lig2;
     int porta;
+    int *saidas;
 
 } Gene;
 
@@ -53,107 +53,23 @@ int numAleatorio(int a, int b); /// gera número aleatório de 'a' a 'b'
 void criaTabela(int vet[][M1+M2+1], int nL, int nC); /// cria tabela verdade
 int bin_to_dec(int bin); /// transforma número binário em decimal
 int dec_to_bin(int dec); /// transforma núemro decimal em binário
-void mutacao(Gene pop[NPOPULACAO][NLIN][NCOL],int portas[PORTAS]); /// iguala os filhos ao pai e faz as mutações neles
+void mutacao(Gene pop[NPOPULACAO][NLIN][NCOL],int portas[PORTAS],int flag); /// iguala os filhos ao pai e faz as mutações neles
 void sorteiaSaidas(int saidas[],int numSaidas); /// sorteia os genes de saida
-int retornaValor(Gene pop[NLIN][NCOL], int linha[], int saida); /// retorna o valor da saida em determinada linha da tabela
+int* retornaValor(int nL,Gene pop[NLIN][NCOL],int saida,int entrada[][nL]); /// retorna o valor da saida em determinada linha da tabela
 void zeraPontuacao(int pontuacaoIndividuos[]); /// zera a pontuação dos indivíduos
 void leTxt(int nC,int tabela[][nC],int nL); /// le tabela verdade do txt e salva na matriz
 void imprimeTabela(int nC,int vet[][nC], int nL); /// imprime tabela verdade
 int calculaPortasAtivas(Gene pop[NLIN][NCOL],int saida);
+int avaliaSaida(int r1,int r2,int porta);
+void evoluiIndividuos(int portas[PORTAS],Gene pop[NPOPULACAO][NLIN][NCOL],int inicializa);
 ///******
 
 int main()
 {
-
-    int numSaidas;
-    int linhaTabela;
-    int colunaTabela;
-    scanf("%d %d %d",&linhaTabela,&colunaTabela,&numSaidas);
     Gene pop[NPOPULACAO][NLIN][NCOL];
-    int tabela[linhaTabela][colunaTabela+numSaidas];
-    int saidas[numSaidas];
-    int pontuacaoMaxima = linhaTabela*numSaidas;
-    int resultados[NPOPULACAO][numSaidas];
-    int pontuacaoIndividuos[NPOPULACAO];
     int portas[PORTAS] = {0,1,2,3,4};
-
-
-    leTxt(colunaTabela+numSaidas,tabela,linhaTabela);
-    imprimeTabela(colunaTabela+numSaidas,tabela,linhaTabela);
-
-
-    srand(time(NULL));
-    criaInd(pop[0],portas); /// iniciando primeiro indivíduo
-    sorteiaSaidas(saidas,numSaidas);
-    zeraPontuacao(pontuacaoIndividuos);
-    int ponttt;
-    while(pontuacaoIndividuos[0] != pontuacaoMaxima)
-    {
-
-        zeraPontuacao(pontuacaoIndividuos);
-        mutacao(pop,portas);
-        int i, j, z;
-        for(z = 0; z < linhaTabela; z++)
-        {
-            for(i = 0; i < NPOPULACAO; i++)
-            {
-                for(j = 0; j < numSaidas; j++)
-                {
-                    resultados[i][j] = retornaValor(pop[i], tabela[z], saidas[j]);
-                }
-                int pontuacao = 0;
-                for(j = 0; j < numSaidas; j++)
-                {
-                    if(tabela[z][numSaidas+j] == resultados[i][j])  ///compara o numero de bits iguais na tabela verdade e na saida calculada
-                        pontuacao+=1;
-                }
-                pontuacaoIndividuos[i] += pontuacao;
-                //printf("Individuo : %d   Pontuacao: %d\n", i, pontuacaoIndividuos[i]);
-            }
-        }
-        int maiorPont = 0; /// guarda o indice do individuo com maior pontuacao
-        for(i = 0; i < NPOPULACAO; i++)
-        {
-            if(pontuacaoIndividuos[i] >= pontuacaoIndividuos[maiorPont])
-            {
-                maiorPont = i;
-            }
-        }
-
-        pontuacaoIndividuos[0] = pontuacaoIndividuos[maiorPont];
-        printf("Individuo de maior pontuacao: %d    PONTUACAO: %d    PONTUACAO DESEJADA: %d\n", maiorPont, pontuacaoIndividuos[0], pontuacaoMaxima);
-        for(i = 0 ; i < NLIN; i++)
-        {
-            for(j = 0; j< NCOL; j++)
-            {
-                pop[0][i][j].lig1 = pop[maiorPont][i][j].lig1;
-                pop[0][i][j].lig2 = pop[maiorPont][i][j].lig2;
-                pop[0][i][j].porta = pop[maiorPont][i][j].porta;
-            }
-        }
-        ponttt = maiorPont;
-    }
-
-
-
-    printf("ACHOU!!!  INDIVIDUO %d\n", ponttt);
-    printf("PONTUAÇÃO: %d\n", pontuacaoMaxima);
-    printf("\a");
-
-    int i, j;
-    for(i = 0; i < NCOL; i++) ///criei esse for apenas pra analisar se os dados estavam entrando na matriz de forma correta
-    {
-        for(j = 0; j < NLIN; j++)
-        {
-            printf("Número do gene: %d.\n", (M1+M2) + i*NLIN+ j);
-            printf("Lig 1: %d \t Lig2: %d \t Porta: %d \n\n", pop[0][j][i].lig1, pop[0][j][i].lig2, pop[0][j][i].porta);
-        }
-    }
-    for(i = 0; i < numSaidas; i++)
-    {
-        printf("Saida: %d\n", saidas[i]);
-        printf("Numero de portas ativas: %d\n",calculaPortasAtivas(pop[0],saidas[i]));
-    }
+    evoluiIndividuos(portas,pop,1);
+    //evoluiIndividuos(portas,pop,0);
 }
 
 ///LE A TABELA VERDADE DO TXT
@@ -223,6 +139,7 @@ void criaInd(Gene ind[NLIN][NCOL],int portas[PORTAS])
             }
             auxiliar = numAleatorio(0, PORTAS);
             ind[i][j].porta = portas[auxiliar];
+            ind[i][j].saidas = NULL;
         }
     }
 }
@@ -277,11 +194,10 @@ void imprimeTabela(int nC,int vet[][nC], int nL)
 }
 
 /// ESSA FUNÇÃO IGUALA OS INDIVÍDUOS AO PAI E REALIZA A MUTAÇÃO NELES
-void mutacao(Gene pop[NPOPULACAO][NLIN][NCOL],int portas[PORTAS])
+void mutacao(Gene pop[NPOPULACAO][NLIN][NCOL],int portas[PORTAS],int flag)
 {
 
     int i, j, z,auxiliar;
-
 
     for(i = 1; i < NPOPULACAO; i++)
     {
@@ -292,6 +208,15 @@ void mutacao(Gene pop[NPOPULACAO][NLIN][NCOL],int portas[PORTAS])
                 pop[i][j][z].lig1 = pop[0][j][z].lig1;
                 pop[i][j][z].lig2 = pop[0][j][z].lig2;
                 pop[i][j][z].porta = pop[0][j][z].porta;
+                if(flag == 1)
+                {
+                    pop[i][j][z].saidas = NULL;
+                }
+                else if(pop[i][j][z].saidas != NULL)
+                {
+                    free(pop[i][j][z].saidas);
+                    pop[i][j][z].saidas = NULL;
+                }
             }
         }
     }
@@ -385,137 +310,150 @@ void sorteiaSaidas(int saidas[], int numSaidas)
     }
 }
 
+int avaliaSaida(int r1,int r2,int porta)
+{
+    /// Váriaveis que serão usadas apenas se a porta for XOR
+    int r1n;
+    int r2n;
+    int op1;
+    int op2;
+    ///
+    switch(porta)
+    {
+    case 0: /// AND
+        if(r1 == 1 && r2 == 1)
+            return 1;
+        else
+            return 0;
+        break;
+
+    case 1: /// OR
+        if(r1 == 1 || r2 == 1)
+            return 1;
+        else
+            return 0;
+        break;
+
+    case 2: /// NAND
+        if(r1 == 1 && r2 == 1)
+            return 0;
+        else
+            return 1;
+        break;
+
+    case 3: /// NOR
+        if(r1 == 1 || r2 == 1)
+            return 0;
+        else
+            return 1;
+        break;
+
+    case 4: /// XOR
+        if(r1 == 1)
+            r1n = 0;
+        else
+            r1n = 1;
+
+        if(r2 == 1)
+            r2n = 0;
+        else
+            r2n = 1;
+
+        if(r1n == 1 && r2 == 1)
+            op1 = 1;
+        else
+            op1 = 0;
+
+        if(r1 == 1 && r2n == 1)
+            op2 = 1;
+        else
+            op2 = 0;
+
+        if(op1 == 1 || op2 == 1)
+            return 1;
+        else
+            return 0;
+        break;
+    case 5: /// XNOR
+        if(r1 == r2)
+            return 1;
+        else
+            return 0;
+        break;
+    case 6: /// A AND NOT B
+        if(r1 == 1 && r2 == 0)
+            return 1;
+        else
+            return 0;
+        break;
+    case 7: /// A
+        return r1;
+        break;
+    case 8: /// B AND NOT A
+        if(r1 == 0 && r2 == 1)
+            return 1;
+        else
+            return 0;
+        break;
+    case 9: /// B
+        return r2;
+        break;
+    case 10: /// NOT B
+        if(r2 == 1)
+            return 0;
+        else
+            return 1;
+        break;
+    case 11: /// A OR NOT B
+        if(r1 == 0 && r2 == 1)
+            return 0;
+        else
+            return 1;
+        break;
+    case 12: /// NOT A
+        if(r1 == 1)
+            return 0;
+        else
+            return 1;
+        break;
+    case 13: /// B OR NOT A
+        if(r1 == 1 && r2 == 0)
+            return 0;
+        else
+            return 1;
+        break;
+    }
+    return 0;
+}
+
 /// ESSA FUNÇÃO RETORNA O VALOR DA SAIDA
-int retornaValor(Gene pop[NLIN][NCOL], int linha[], int saida)
+int* retornaValor(int nL,Gene pop[NLIN][NCOL], int saida,int entrada[][nL])
 {
     if(saida >= 0 && saida < (M1+M2))
     {
-        return linha[saida];
+        return entrada[saida];
     }
     else
     {
         if(saida >= (M1+M2))
         {
+            int i;
             int numeroLinha = (saida - (M1+M2))%(NLIN);
             int numeroColuna = (saida - (M1+M2))/(NLIN);
-
-            int r1 = retornaValor(pop, linha, pop[numeroLinha][numeroColuna].lig1);
-            int r2 = retornaValor(pop, linha, pop[numeroLinha][numeroColuna].lig2);
-
-            /// Váriaveis que serão usadas apenas se a porta for XOR
-            int r1n;
-            int r2n;
-            int op1;
-            int op2;
-            ///
-            switch(pop[numeroLinha][numeroColuna].porta)
+            if(pop[numeroLinha][numeroColuna].saidas == NULL)
             {
-            case 0: /// AND
-                if(r1 == 1 && r2 == 1)
-                    return 1;
-                else
-                    return 0;
-                break;
-
-            case 1: /// OR
-                if(r1 == 1 || r2 == 1)
-                    return 1;
-                else
-                    return 0;
-                break;
-
-            case 2: /// NAND
-                if(r1 == 1 && r2 == 1)
-                    return 0;
-                else
-                    return 1;
-                break;
-
-            case 3: /// NOR
-                if(r1 == 1 || r2 == 1)
-                    return 0;
-                else
-                    return 1;
-                break;
-
-            case 4: /// XOR
-                if(r1 == 1)
-                    r1n = 0;
-                else
-                    r1n = 1;
-
-                if(r2 == 1)
-                    r2n = 0;
-                else
-                    r2n = 1;
-
-                if(r1n == 1 && r2 == 1)
-                    op1 = 1;
-                else
-                    op1 = 0;
-
-                if(r1 == 1 && r2n == 1)
-                    op2 = 1;
-                else
-                    op2 = 0;
-
-                if(op1 == 1 || op2 == 1)
-                    return 1;
-                else
-                    return 0;
-                break;
-            case 5: /// XNOR
-                if(r1 == r2)
-                    return 1;
-                else
-                    return 0;
-                break;
-            case 6: /// A AND NOT B
-                if(r1 == 1 && r2 == 0)
-                    return 1;
-                else
-                    return 0;
-                break;
-            case 7: /// A
-                return r1;
-                break;
-            case 8: /// B AND NOT A
-                if(r1 == 0 && r2 == 1)
-                    return 1;
-                else
-                    return 0;
-                break;
-            case 9: /// B
-                return r2;
-                break;
-            case 10: /// NOT B
-                if(r2 == 1)
-                    return 0;
-                else
-                    return 1;
-                break;
-            case 11: /// A OR NOT B
-                if(r1 == 0 && r2 == 1)
-                    return 0;
-                else
-                    return 1;
-                break;
-            case 12: /// NOT A
-                if(r1 == 1)
-                    return 0;
-                else
-                    return 1;
-                break;
-            case 13: /// B OR NOT A
-                if(r1 == 1 && r2 == 0)
-                    return 0;
-                else
-                    return 1;
-                break;
+                int* r1 = retornaValor(nL,pop,pop[numeroLinha][numeroColuna].lig1,entrada);
+                int* r2 = retornaValor(nL,pop,pop[numeroLinha][numeroColuna].lig2,entrada);
+                pop[numeroLinha][numeroColuna].saidas = malloc(sizeof(int)*nL);
+                for(i = 0; i < nL; i++)
+                {
+                    pop[numeroLinha][numeroColuna].saidas[i] = avaliaSaida(r1[i],r2[i],pop[numeroLinha][numeroColuna].porta);
+                }
             }
+            return pop[numeroLinha][numeroColuna].saidas;
         }
     }
-    return 0;
+    return NULL;
 }
 
 int calculaPortasAtivas(Gene pop[NLIN][NCOL],int saida)
@@ -539,3 +477,112 @@ void zeraPontuacao(int pontuacaoIndividuos[])
         pontuacaoIndividuos[i] = 0;
     }
 }
+
+void evoluiIndividuos(int portas[PORTAS], Gene pop[NPOPULACAO][NLIN][NCOL],int inicializa)
+{
+
+    int numSaidas;
+    int linhaTabela;
+    int colunaTabela;
+    scanf("%d %d %d",&linhaTabela,&colunaTabela,&numSaidas);
+    int tabela[linhaTabela][colunaTabela+numSaidas];
+    int entrada[colunaTabela][linhaTabela];
+    int saidas[numSaidas];
+    int pontuacaoMaxima = linhaTabela*numSaidas;
+    int *resultados;
+    int pontuacaoIndividuos[NPOPULACAO];
+    int i,j,geracao = 0;
+
+    leTxt(colunaTabela+numSaidas,tabela,linhaTabela);
+    imprimeTabela(colunaTabela+numSaidas,tabela,linhaTabela);
+    for(i = 0; i < linhaTabela; i++)
+    {
+        for(j = 0; j < colunaTabela; j++)
+        {
+            entrada[j][i] = tabela[i][j];
+        }
+    }
+    srand(time(NULL));
+    if(inicializa == 1)
+        criaInd(pop[0],portas); /// iniciando primeiro indivíduo
+    sorteiaSaidas(saidas,numSaidas);
+    zeraPontuacao(pontuacaoIndividuos);
+    int ponttt;
+    while(pontuacaoIndividuos[0] != pontuacaoMaxima)
+    {
+
+        zeraPontuacao(pontuacaoIndividuos);
+        if(geracao == 0)
+            mutacao(pop,portas,1);
+        else
+            mutacao(pop,portas,0);
+        geracao++;
+        int i,j,z;
+        for(i = 0; i < NPOPULACAO; i++)
+        {
+            int pontuacao = 0;
+            for(j = 0; j < numSaidas; j++)
+            {
+                resultados = retornaValor(linhaTabela,pop[i], saidas[j],entrada);
+                for(z = 0; z < linhaTabela; z++)
+                {
+                    if(tabela[z][colunaTabela+j] == resultados[z])  ///compara o numero de bits iguais na tabela verdade e na saida calculada
+                        pontuacao+=1;
+                }
+                resultados = NULL;
+            }
+            pontuacaoIndividuos[i] = pontuacao;
+            //printf("Individuo : %d   Pontuacao: %d\n", i, pontuacaoIndividuos[i]);
+        }
+        int maiorPont = 0; /// guarda o indice do individuo com maior pontuacao
+        for(i = 0; i < NPOPULACAO; i++)
+        {
+            if(pontuacaoIndividuos[i] >= pontuacaoIndividuos[maiorPont])
+            {
+                maiorPont = i;
+            }
+        }
+
+        pontuacaoIndividuos[0] = pontuacaoIndividuos[maiorPont];
+        if(geracao%10000 == 0)
+            printf("Individuo de maior pontuacao:%d PONTUACAO:%d PONTUACAO DESEJADA:%d GERACAO:%d\n", maiorPont, pontuacaoIndividuos[0], pontuacaoMaxima,geracao);
+        for(i = 0 ; i < NLIN; i++)
+        {
+            for(j = 0; j< NCOL; j++)
+            {
+                pop[0][i][j].lig1 = pop[maiorPont][i][j].lig1;
+                pop[0][i][j].lig2 = pop[maiorPont][i][j].lig2;
+                pop[0][i][j].porta = pop[maiorPont][i][j].porta;
+                if(pop[0][i][j].saidas != NULL)
+                {
+                    free(pop[0][i][j].saidas);
+                    pop[0][i][j].saidas = NULL;
+                }
+                pop[0][i][j].saidas = pop[maiorPont][i][j].saidas;
+                pop[maiorPont][i][j].saidas = NULL;
+            }
+        }
+        ponttt = maiorPont;
+    }
+
+
+
+    printf("ACHOU!!!  INDIVIDUO %d\n", ponttt);
+    printf("PONTUAÇÃO: %d\n", pontuacaoMaxima);
+    printf("\a");
+
+    for(i = 0; i < NCOL; i++) ///criei esse for apenas pra analisar se os dados estavam entrando na matriz de forma correta
+    {
+        for(j = 0; j < NLIN; j++)
+        {
+            printf("Número do gene: %d.\n", (M1+M2) + i*NLIN+ j);
+            printf("Lig 1: %d \t Lig2: %d \t Porta: %d \n\n", pop[0][j][i].lig1, pop[0][j][i].lig2, pop[0][j][i].porta);
+        }
+    }
+    for(i = 0; i < numSaidas; i++)
+    {
+        printf("Saida: %d\n", saidas[i]);
+        printf("Numero de portas ativas: %d\n",calculaPortasAtivas(pop[0],saidas[i]));
+    }
+}
+
