@@ -1,0 +1,11 @@
+Os dados de entrada estão organizados nesta ordem:
+
+1 - Matriz E de restrições;
+2 - Vetor c de restrições;
+3 - Matriz Z cujas colunas foram uma base para o núcleo de E -- Nu(E);
+Esta matriz é utilizada apenas no código da nova implementação.
+4 - No problema 19, antes da descrição de Z, tem a descrição da matriz A de coeficientes;
+A matriz A contêm os coeficientes a_ij da função objetivo descrita em ".deleqc22017\extras\problema_119.pdf".
+
+- A matriz Z foi gerada utilizando o comando null(E,'r') no Matlab.
+- O problema 13 está descrito em Abel

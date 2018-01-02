@@ -1,0 +1,165 @@
+# depslib dependency file v1.0
+1421328179 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"LU.h"
+
+1418903383 source:/home/lemao/Downloads/Mestrado/DE/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
+1421248576 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1421178057 /home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE/LU.h
+
+1421248576 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/Problemas Testes/Problema 2/DE/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1421248576 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/Problemas Testes/Problema 1/DE/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1421415209 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/Problemas Testes/Problema 1/DE/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"LU.h"
+
+1421178057 /home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/Problemas Testes/Problema 1/DE/LU.h
+
+1421248576 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE + Proposto/Problema 1/DE/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1421248576 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE + Proposto/Problemas/DE/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1422631401 source:/home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE + Proposto/Problemas/DE/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"LU.h"
+
+1422629736 /home/lemao/Dropbox/Mestrado/Dissertacao/Codigo/DE + Proposto/Problemas/DE/LU.h
+
+1422710325 source:/home/hedersb/publications/gecco2015_delec/experiments/src/proposal/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1422754216 source:/home/hedersb/publications/gecco2015_delec/experiments/src/proposal/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"LU.h"
+
+1422710325 /home/hedersb/publications/gecco2015_delec/experiments/src/proposal/LU.h
+
+1485865574 source:/home/hedersb/publications/capgippi2013/experiments/src/proposal/funcoes_teste.c
+	"funcoes_teste.h"
+	"stdio.h"
+	"math.h"
+	"stdlib.h"
+
+1485865574 /home/hedersb/publications/capgippi2013/experiments/src/proposal/funcoes_teste.h
+	"stdlib.h"
+
+1484742910 source:/home/hedersb/publications/capgippi2013/experiments/src/proposal/LU.c
+	<stdlib.h>
+	<stdio.h>
+
+1485866507 source:/home/hedersb/publications/capgippi2013/experiments/src/proposal/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"LU.h"
+	"funcoes_teste.h"
+
+1484742910 /home/hedersb/publications/capgippi2013/experiments/src/proposal/LU.h
+
+1494042709 source:/home/hedersb/publications/gecco2015/.deleqc22017/experiments/deleqc/funcoes_teste.c
+	"funcoes_teste.h"
+	"stdio.h"
+	"math.h"
+	"stdlib.h"
+
+1494042709 /home/hedersb/publications/gecco2015/.deleqc22017/experiments/deleqc/funcoes_teste.h
+	"stdlib.h"
+
+1494908518 source:/home/hedersb/publications/gecco2015/.deleqc22017/experiments/deleqc/LU.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1494910728 source:/home/hedersb/publications/gecco2015/.deleqc22017/experiments/deleqc/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	<float.h>
+	"LU.h"
+	"funcoes_teste.h"
+
+1494042709 /home/hedersb/publications/gecco2015/.deleqc22017/experiments/deleqc/LU.h
+
+1495891002 source:/home/hedersb/publications/capgippi2013/.deleqc22017/experiments/deleqc/funcoes_teste.c
+	"funcoes_teste.h"
+	"stdio.h"
+	"math.h"
+	"stdlib.h"
+
+1485894414 /home/hedersb/publications/capgippi2013/.deleqc22017/experiments/deleqc/funcoes_teste.h
+	"stdlib.h"
+
+1495891002 source:/home/hedersb/publications/capgippi2013/.deleqc22017/experiments/deleqc/LU.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1499529410 source:/home/hedersb/publications/capgippi2013/.deleqc22017/experiments/deleqc/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	<float.h>
+	"LU.h"
+	"funcoes_teste.h"
+
+1485894414 /home/hedersb/publications/capgippi2013/.deleqc22017/experiments/deleqc/LU.h
+
+1514137533 source:/home/hedersb/workspace/ciml-lib/src/c/deleqc-ii/LU.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1514392031 source:/home/hedersb/workspace/ciml-lib/src/c/deleqc-ii/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	<float.h>
+	"LU.h"
+	"funcoes_teste.h"
+
+1514137533 /home/hedersb/workspace/ciml-lib/src/c/deleqc-ii/LU.h
+
+1514465881 /home/hedersb/workspace/ciml-lib/src/c/deleqc-ii/funcoes_teste.h
+	"stdlib.h"
+
+1514465870 source:/home/hedersb/workspace/ciml-lib/src/c/deleqc-ii/funcoes_teste.c
+	"funcoes_teste.h"
+	"stdio.h"
+	"math.h"
+	"stdlib.h"
+
