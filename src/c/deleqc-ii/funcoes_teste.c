@@ -3,6 +3,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "stdlib.h"
+#include <float.h>
 
 
 #ifndef VARIABLES
@@ -590,6 +591,10 @@ void Avalia(double *id, int N_Coordenada, int prob, double **A, double** bounds,
         case 104:
 		
 			id[N_Coordenada] = pow(id[0], 0.6) + pow(id[1], 0.6) + pow(id[2], 0.4) - 4.0 * id[2] + 2.0 * id[3] + 5.0 * id[4] - id[5];
+			//as same search techniques also consider candidate solutions outside of the bound constraints, this evaluation can generate a "nan" (pow with a non-integer base and a negative value)
+			if ( isnan( id[N_Coordenada] ) ) {
+				id[N_Coordenada] = DBL_MAX / 4.0; // the max value is divided by 2 because of constraint handling via penalty methods ==> values are added to the objective function value
+			}
 			
 			id[N_Coordenada+1] = id[0] + 2.0 * id[3] - 4.0;
 			id[N_Coordenada+2] = id[1] + id[4] - 4.0;
@@ -711,7 +716,7 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
     individual[ idSumViolationWithoutLE ] = 0;
     individual[ iSumAllViolation ] = 0;
     for (j = dimension+1; j < dimension+1+nGs+nHs+dimension; j++) {
-		if (individual[ j ] > 0 && maxConstraints[ j ] > 0) {
+		if (individual[ j ] > 0 && maxConstraints != NULL && maxConstraints[ j ] > 0) {
 			//if individual is unfeasible and
 			//any solution is unfeasible with respect to the j-th constraint
 			individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //g(x)<=0, h(x)=0 where h(x) is non-linear, and the bound constraints
@@ -723,7 +728,7 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
     }
     //individual[ iSumViolation ] += individual[ iSumViolation-1 ]; //bound constraints
     for(j=iSumViolation+2; j<iSumViolation+2+nLHs; j++) {
-		if (individual[ j ] > 0 && maxConstraints[ j ] > 0) {
+		if (individual[ j ] > 0 && maxConstraints != NULL && maxConstraints[ j ] > 0) {
 			individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //h(x)=0 where h(x) is linear
 		}
 		if (individual[ j ] > 0) {

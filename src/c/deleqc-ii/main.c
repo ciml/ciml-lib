@@ -55,8 +55,8 @@ int bestIndividualTS( double* individual1, double* individual2, int dimension, i
 void reduceVariationKeepingSolutionInFeasibleRegion(double *oldIndividual, double *newIndividual, int dimension, double** bounds, double* diff, double additionalScale);
 double** createInitialPopulationSimple(int Restricoes, int N_Coordenada, int N_Individuo, int prob, double** bounds, int nGs, int nHs, int* numberOfValuesInEachIndividual);
 void printPopulation( double **populacao, int coordenadas, int id, int geracao, int restricoes, int nReparos, int numberOfValuesInEachIndividual, int nGs, int nHs, int populationSize );
-void APMCalculatePenaltyCoefficients( int populationSize, double** population, int dimension, int nLECs, int nGs, int nHs, double* penaltyCoefficients, double* averageObjectiveFunctionValues, int idGConstraints, int idBoundConstraints, int idLinearEqualityConstraints, int sizeOfIndividual );
-double APMcalculateFitness( double* individual, int dimension, int nLECs, int nGs, int nHs, double* penaltyCoefficients, double averageObjectiveFunctionValues, int idGConstraints,	int idBoundConstraints,	int idLinearEqualityConstraints);
+void APMCalculatePenaltyCoefficients( int populationSize, double** population1, double** population2, int dimension, int nLECs, int nGs, int nHs, double* penaltyCoefficients, double* averageObjectiveFunctionValues, int idGConstraints, int idBoundConstraints, int idLinearEqualityConstraints, int sizeOfIndividual );
+double APMcalculateFitness( double* individual, int dimension, int nLECs, int nGs, int nHs, double* penaltyCoefficients, double averageObjectiveFunctionValues, int idGConstraints,	int idBoundConstraints,	int idLinearEqualityConstraints, int constraintHandler);
 int procuraMelhorAPM( double **populacao, int n_pop, int idFitnessAPM );
 int bestIndividualAPM( double* individual1, double* individual2, int idFitnessAPM );
 
@@ -112,33 +112,22 @@ int main( int argc, char** argv ) {
 	//Problema_Teste(prob, &Restricoes, &N_Coordenada, &melhorF, bounds);
 	Problema_Teste(prob, &Restricoes, &N_Coordenada, &melhorF, &bounds, N_CoordenadaNova, RestricoesNova, &nGs, &nHs);
 
-	printf("constraint handler: %d\n", constraintHandler);
+	//printf("constraint handler: %d\n", constraintHandler);
 
 	if (constraintHandler == DELEQC_ONLY || constraintHandler == DELEQC_TS || constraintHandler == DELEQC_APM ) {
 		populacao = Inicializa_Populacao(Restricoes, N_Coordenada, N_Individuo, prob, bounds, nGs, nHs, &numberOfValuesInEachIndividual);
 	} else if (constraintHandler == TS_ONLY || constraintHandler == APM_ONLY) {
-		printf("-----------------OK---------------------");
+		//printf("-----------------OK---------------------");
 		populacao = createInitialPopulationSimple(Restricoes, N_Coordenada, N_Individuo, prob, bounds, nGs, nHs, &numberOfValuesInEachIndividual);
 	} else {
 		printf("It is not implemented yet.");
 		exit(4);
 	}
+
 	
-	double sol[48] = {0, 85.714, 77.143, 137.143, 57.143, 24.286, 0, 24.286, 32.857, 0, 32.857, 0, 85.714, 57.143, 57.143, 0, 0, 28.571, 0, 28.571, 
-		28.571, 28.571, 
-		24.286, 28.571, 
-		4.286, 28.571, 
-		0.5, 1.0, 0.13, 0.333, 0.5, 0, 
-		0.425, 0, 0.739, 0.333, 0.425, 0.15, 
-		0.075, 0, 0.13, 0.333, 0.075, 0.85, 
-		0.85, 1.0, 
-		0.85, 0.85};
-	for(int w=0; w<48; w++) {
-		populacao[0][w] = sol[w];
-	}
-	
+
 	Avalia_Populacao(populacao, N_Individuo, N_Coordenada, prob, bounds, epsilonCorrecao);
-	
+
 	diff = (double*) malloc( N_Coordenada * sizeof( double ) );
 	idSumViolations = N_Coordenada + 1 + nGs + nHs + N_Coordenada + 1;
 	idLinearEqualityConstraints = N_Coordenada + 1 + nGs + nHs + N_Coordenada + 1 + 1 + 1;
@@ -149,12 +138,12 @@ int main( int argc, char** argv ) {
 	idFitnessAPM = N_Coordenada + 1 + nGs + nHs + N_Coordenada + 1 + 1;
 
 	if (constraintHandler == TS_ONLY || constraintHandler == DELEQC_TS || constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM) {
-		
+
 		for(i=0; i<N_Individuo; i++) {
 			boundConstraints(populacao[i], N_Coordenada, nGs, nHs, bounds);
 			calculateLinearEqualityConstraints(populacao, N_Coordenada, i, Restricoes, nGs, nHs, epsilonCorrecao);
 		}
-		
+
 		if (constraintHandler == TS_ONLY || constraintHandler == DELEQC_TS) {
 			maxConstraints = (double*) malloc(numberOfValuesInEachIndividual * sizeof(double));
 			maxValues( populacao, NULL, maxConstraints, N_Individuo, numberOfValuesInEachIndividual);
@@ -162,11 +151,13 @@ int main( int argc, char** argv ) {
 				sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, maxConstraints);
 			}
 		} else if (constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM) {
-			//TODO -- to calculate fitness using APM
 			penaltyCoefficients = (double*) malloc(numberOfValuesInEachIndividual * sizeof(double));
-			APMCalculatePenaltyCoefficients(N_Individuo, populacao, N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, &averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, numberOfValuesInEachIndividual);
+			APMCalculatePenaltyCoefficients(N_Individuo, populacao, NULL, N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, &averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, numberOfValuesInEachIndividual);
+			//printf("Initial population: \n");
 			for(i=0; i<N_Individuo; i++) {
-				APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints);
+				sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
+				populacao[i][ idFitnessAPM ] = APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
+				//printf("populacao[%d] = %f\n", i, populacao[i][ idFitnessAPM ]);
 			}
 		}
 	}
@@ -193,11 +184,11 @@ int main( int argc, char** argv ) {
 			printf("It was not implemented yet.");
 			exit(1);
 		}
-		
+
 		//printf("Best ID: %d\n", idMelhorIndividuo);
-		
+
 		//printPopulation(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs, N_Individuo);
-		
+
 		imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
 
         double **novos_ind = (double**) malloc(N_Individuo * sizeof(double*));
@@ -265,9 +256,9 @@ int main( int argc, char** argv ) {
                     novos_ind[i][j] = populacao[i][j]*(1-cross_prob) + cross_prob*novos_ind[i][j];
 
                 }
-                
+
                 ///fix bound constraints violations
-                
+
                 if ( boundHandler == BOUND_TO_BOUND ) {
 					if ( constraintHandler == TS_ONLY || constraintHandler == APM_ONLY ) {
 						//if Deb's TS or APM, then the bounds can be fixed
@@ -284,9 +275,9 @@ int main( int argc, char** argv ) {
 						exit(6);
 					}
 				} else if ( boundHandler == BOUND_DIFF_SCALED || boundHandler == BOUND_DIFF_SCALED_RANDOMLY ) {
-					
+
 					boundConstraints(novos_ind[i], N_Coordenada, nGs, nHs, bounds);
-					
+
 					if ( boundHandler == BOUND_DIFF_SCALED ) {
 						if ( novos_ind[ i ][ idSumBoundViolations ] > 0 && populacao[ i ][ idSumBoundViolations ] == 0 ) {
 							//if DELEqC+TS is used, and (i) the new individual violates the bound constraints and (ii) the old individual is feasible with respect to the bound constraints, then fix the new individual
@@ -298,7 +289,7 @@ int main( int argc, char** argv ) {
 							reduceVariationKeepingSolutionInFeasibleRegion( populacao[i], novos_ind[i], N_Coordenada, bounds, diff, ( (rand()%1000000) / 1000000.f ) );
 						}
 					}
-					
+
 				} else if ( boundHandler != BOUND_NONE ) {
 					printf("This bound handling is not implemented.");
 					exit(7);
@@ -383,17 +374,30 @@ int main( int argc, char** argv ) {
 					exit(5);
 				}
 			} else if ( constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM ) {
-				
-				//TODO: The penalty coefficients must include both new and old individuals
-				APMCalculatePenaltyCoefficients(N_Individuo, populacao, N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, &averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, numberOfValuesInEachIndividual);
+
+				APMCalculatePenaltyCoefficients(N_Individuo, populacao, novos_ind, N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, &averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, numberOfValuesInEachIndividual);
 				for(i=0; i<N_Individuo; i++) {
-					APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints);
+					sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
+					populacao[i][ idFitnessAPM ] = APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
+					//printf("populacao[%d] = %f\n", i, populacao[i][ idFitnessAPM ]);
 				}
 				for(i=0; i<N_Individuo; i++) {
-					APMcalculateFitness(novos_ind[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints);
+					sumViolation(novos_ind[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
+					novos_ind[i][ idFitnessAPM ] = APMcalculateFitness(novos_ind[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
+					//printf("novos_ind[%d] = %f\n", i, novos_ind[i][ idFitnessAPM ]);
 				}
 				
-				
+				//replacement
+				for(i=0; i<N_Individuo; i++) {
+					if(novos_ind[i][idFitnessAPM] < populacao[i][idFitnessAPM]){
+
+						for (j = 0; j < numberOfValuesInEachIndividual; ++j) {
+								populacao[i][j] = novos_ind[i][j];
+						}
+
+					}
+				}
+
 			} else {
 				printf("It is not implemented yet.");
 				exit(9);
@@ -407,22 +411,22 @@ int main( int argc, char** argv ) {
 				if ( constraintHandler == DELEQC_ONLY ) {
 					//acha o melhor individuo
 					idMelhorIndividuo = procuraMelhor( populacao, N_Individuo, N_Coordenada );
-					
+
 				} else if ( constraintHandler == DELEQC_TS ) {
-					
+
 					idMelhorIndividuo = procuraMelhorRestricoesTS( populacao, N_Individuo, N_Coordenada, idSumViolationsWithoutLE );
-					
+
 				} else if ( constraintHandler == DELEQC_APM ) {
-					
+
 					idMelhorIndividuo = procuraMelhorAPM( populacao, N_Individuo, idFitnessAPM );
-					
+
 				} else {
-					
+
 					printf("Not implemented yet.");
 					exit(1);
-					
+
 				}
-				
+
 				//printf("\n\nidMelhor: %d\n\n", idMelhorIndividuo);
 
 				if ( individuoViolaRestricaoNormaInfinito( populacao, N_Coordenada, idMelhorIndividuo, g, Restricoes, epsilonCorrecao ) == 0 ) {
@@ -446,26 +450,33 @@ int main( int argc, char** argv ) {
 
 						//acha o melhor individuo
 						//idMelhorIndividuo = procuraMelhor( populacao, N_Individuo, N_Coordenada );
-						
+
 						//acha o melhor individuo
 						if ( constraintHandler == DELEQC_ONLY ) {
 							idMelhorIndividuo = procuraMelhor( populacao, N_Individuo, N_Coordenada );
 							best = bestIndividualObjectiveFunction( melhor_ind, populacao[ idMelhorIndividuo ], N_Coordenada );
 						} else if ( constraintHandler == DELEQC_TS ) {
+							for(i=0; i<N_Individuo; i++) {
+								sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, maxConstraints);
+							}
 							idMelhorIndividuo = procuraMelhorRestricoesTS( populacao, N_Individuo, N_Coordenada, idSumViolationsWithoutLE );
 							best = bestIndividualTS( melhor_ind, populacao[ idMelhorIndividuo ], N_Coordenada, idSumViolationsWithoutLE );
 						} else if ( constraintHandler == DELEQC_APM ) {
+							for(i=0; i<N_Individuo; i++) {
+								sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
+								populacao[i][ idFitnessAPM ] = APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
+							}
 							idMelhorIndividuo = procuraMelhorAPM( populacao, N_Individuo, idFitnessAPM );
 							best = bestIndividualAPM( melhor_ind, populacao[ idMelhorIndividuo ], idFitnessAPM );
 						} else {
 							printf("It was not implemented yet.");
 							exit(3);
 						}
-						
+
 						// se o melhor individuo piorar
 						//if ( melhor_ind[ N_Coordenada ] < populacao[ idMelhorIndividuo ][ N_Coordenada ] ) {
-						if ( best == 0 ) { 
-							/// the new best individual is worse than the previous one ==> 
+						if ( best == 0 ) {
+							/// the new best individual is worse than the previous one ==>
 							/// the previous best individual is put in the new population
 							/// thus, the quality of the best solution never decreases
 							//volta com o antigo melhor individuo para a populacao na mesma posicao que ele estava
@@ -483,20 +494,22 @@ int main( int argc, char** argv ) {
 					//caso contrario nada deve ser feito e o melhor individuo deve ser impresso
 					imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
 				}
-				
+
 			} else if ( constraintHandler == TS_ONLY ) {
 				idMelhorIndividuo = procuraMelhorRestricoesTS( populacao, N_Individuo, N_Coordenada, idSumViolations );
 				imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
-			}  else if ( constraintHandler == TS_ONLY ) {
+			}  else if ( constraintHandler == APM_ONLY ) {
 				idMelhorIndividuo = procuraMelhorAPM( populacao, N_Individuo, idFitnessAPM );
 				imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
 			} else {
 				printf("It was not implemented yet.");
 				exit(10);
 			}
-			
+
+			printf("populacao[ best ][ %d ] = %f\n", idMelhorIndividuo, populacao[idMelhorIndividuo][ idFitnessAPM ] );
+
 			//printPopulation(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs, N_Individuo);
-			
+
             geracoes++;
 
             //-- EXIBE O VALOR DA VIOLACAO DAS RESTRICOES --------------------
@@ -522,7 +535,7 @@ int main( int argc, char** argv ) {
 	free(populacao);
 
 	//libera memoria das matrizes
-	
+
 	if ( Matriz_E != NULL ) {
 		for (i = 0; i < Restricoes; i++) {
 			free(Matriz_E[i]);
@@ -543,28 +556,28 @@ int main( int argc, char** argv ) {
 		}
 		free(Matriz_E_Transposto);
 	}
-    
+
     if (Matriz_Coef != NULL) {
 		for (i = 0; i < N_Coordenada; i++) {
 			free(Matriz_Coef[i]);
 		}
 		free(Matriz_Coef);
 	}
-    
+
     if ( base != NULL ) {
 		free(base);
 	}
-    
+
     if ( p != NULL ) {
 		free(p);
 	}
-    
+
     for (i = 0; i < N_Coordenada; i++) {
         free(bounds[i]);
     }
-    
+
     free(bounds);
-    
+
     if ( b != NULL ) {
 		free(b);
 	}
@@ -574,6 +587,8 @@ int main( int argc, char** argv ) {
     ///free variables used by each constraint handling
     if (constraintHandler == TS_ONLY || constraintHandler == DELEQC_TS) {
 		free( maxConstraints );
+	} else if (constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM) {
+		free(penaltyCoefficients);
 	}
 
     //desnecessario
@@ -1598,7 +1613,7 @@ void Inicializa_Parametros(int argc, char **argv, int *n_pop, double *cross_prob
             *nRestricoesNova = atoi(argv[10]);
         } else if ( argc == 11 && ( *problema_numero > 100 || *problema_numero == 20 ) ) { // USED IN TEST-PROBLEMS 101-...
 			*constraintHandler = atoi(argv[9]); // 0- DELEqC+TS, 1- DELEqC+APM, 2- TS, 3- APM
-			*boundHandler = atoi(argv[10]); // 
+			*boundHandler = atoi(argv[10]); //
 			//printf("CH: %d\nBH: %d\n", *constraintHandler, *boundHandler);
         }
 
@@ -1695,7 +1710,7 @@ int procuraMelhorRestricoesTS( double **populacao, int n_pop, int dimension, int
     int k = 0;
 
     for(k = 1; k<n_pop; k++ ) {
-		
+
 		if ( populacao[k][idSumConstraints] < populacao[melhor][idSumConstraints] ) {
 			melhor = k;
 		} else if ( populacao[k][idSumConstraints] == populacao[melhor][idSumConstraints] && populacao[k][dimension] < populacao[melhor][dimension] ) {
@@ -1703,7 +1718,7 @@ int procuraMelhorRestricoesTS( double **populacao, int n_pop, int dimension, int
         }
 
     }
-    
+
     return melhor;
 }
 
@@ -1723,13 +1738,13 @@ int procuraMelhorAPM( double **populacao, int n_pop, int idFitnessAPM ) {
 }
 
 void printPopulation( double **populacao, int coordenadas, int id, int geracao, int restricoes, int nReparos, int numberOfValuesInEachIndividual, int nGs, int nHs, int populationSize ) {
-	
+
 	printf("------------------------------------\nPopulation at generation %d:\n", geracao);
 	for(int i=0; i<populationSize; i++) {
 		imprimirIndividuo( populacao, coordenadas, i, geracao, restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
 	}
 	printf("------------------------------------\n\n");
-	
+
 }
 
 void imprimirIndividuo( double **populacao, int coordenadas, int id, int geracao, int restricoes, int nReparos, int numberOfValuesInEachIndividual, int nGs, int nHs ) {
@@ -1769,7 +1784,7 @@ void imprimirIndividuo( double **populacao, int coordenadas, int id, int geracao
 
     //printf(" | %f", somaViolacoes);
     printf("\n");
-    
+
     //printf("Size of the individuals: %d\n", numberOfValuesInEachIndividual);
 
     //o codigo que segue eh necessario quando ha individuos factiveis na populacao (nao eh o caso aqui)
@@ -1953,7 +1968,7 @@ void maxValues( double** population1, double** population2, double* maxV, int nI
 
 	for(j=0; j<sizeIndividual; j++) {
 		maxV[j] = population1[0][j];
-	} 
+	}
 	for(i=1; i<nIndividuals; i++) {
 		for(j=0; j<sizeIndividual; j++) {
 			if (maxV[j] < population1[i][j]) {
@@ -1970,7 +1985,7 @@ void maxValues( double** population1, double** population2, double* maxV, int nI
 			}
 		}
 	}
-	
+
 	//print max values
 	/*printf("MAX");
 	for(j=0; j<sizeIndividual; j++) {
@@ -2007,9 +2022,9 @@ void reduceVariationKeepingSolutionInFeasibleRegion(double *oldIndividual, doubl
 	int i;
 	double alpha = 1;
 	double f;
-	
+
 	//printf("Fixing the violation of the bound constraints:\n");
-	
+
 	for (i = 0; i < dimension; ++i) {
 		diff[i] = newIndividual[ i ] - oldIndividual[ i ];
 		if (diff[i] != 0) {
@@ -2071,7 +2086,7 @@ void reduceVariationKeepingSolutionInFeasibleRegion(double *oldIndividual, doubl
 
 double** createInitialPopulationSimple(int Restricoes, int N_Coordenada, int N_Individuo, int prob, double** bounds, int nGs, int nHs, int* numberOfValuesInEachIndividual) {
 	int i, j;
-	
+
 	double** populacao = (double**) malloc(N_Individuo *sizeof(double*));
 
   	///more general version: used in the test-problems after the paper submitted to CEC 2018
@@ -2102,14 +2117,14 @@ double** createInitialPopulationSimple(int Restricoes, int N_Coordenada, int N_I
 		}
 		//printf("\n");
     }
-    
+
     b = (double*) malloc( Restricoes * sizeof(double) );
     Matriz_E = (double**) malloc( Restricoes * sizeof(double*) );
     for(i=0; i<Restricoes; i++) {
         Matriz_E[i] = (double*) malloc( N_Coordenada * sizeof(double) );
     }
     linearConstraintsData(prob, Matriz_E, NULL, b);
-    
+
     return populacao;
 }
 
@@ -2119,12 +2134,13 @@ double** createInitialPopulationSimple(int Restricoes, int N_Coordenada, int N_I
  */
 void APMCalculatePenaltyCoefficients(
 	int populationSize,
-	double** population,
+	double** population1,
+	double** population2,
 	int dimension,
 	int nLECs,
 	int nGs,
 	int nHs,
-	double* penaltyCoefficients, 
+	double* penaltyCoefficients,
 	double* averageObjectiveFunctionValues,
 	int idGConstraints,
 	int idBoundConstraints,
@@ -2135,21 +2151,32 @@ void APMCalculatePenaltyCoefficients(
 	int j;
 	int l;
 	double sumObjectiveFunction = 0;
-	int numberOfConstraints = nGs + nHs + dimension + nLECs;
-	
+	//int numberOfConstraints = nGs + nHs + dimension + nLECs;
+
 	//foreach candidate solution
 	for (i = 0; i < populationSize; i++) {
 
-		sumObjectiveFunction += population[ i ][ dimension ];
+		printf("population1[ %d ] = %f\n", i, population1[ i ][ dimension ]);
+		sumObjectiveFunction += population1[ i ][ dimension ];
 
 	}
+	
+	printf("1-sumObjectiveFunction: %f\n", sumObjectiveFunction);
+
+	if ( population2 != NULL ) {
+        for (i = 0; i < populationSize; i++) {
+            sumObjectiveFunction += population2[ i ][ dimension ];
+        }
+	}
+	printf("2-sumObjectiveFunction: %f\n", sumObjectiveFunction);
+	
 	//the absolute of the sumObjectiveFunction
 	if (sumObjectiveFunction < 0) {
 		sumObjectiveFunction = -sumObjectiveFunction;
 	}
-	
+
 	//the average of the objective function values
-	*averageObjectiveFunctionValues = sumObjectiveFunction / populationSize;
+	*averageObjectiveFunctionValues = population2 == NULL? sumObjectiveFunction / populationSize: sumObjectiveFunction / ( 2* populationSize);
 
 	//the denominator of the equation of the penalty coefficients
 	double denominator = 0;
@@ -2161,36 +2188,88 @@ void APMCalculatePenaltyCoefficients(
 
 		sumViolation[ l ] = 0;
 		for (i = 0; i < populationSize; i++) {
-			sumViolation[ l ] += population[ i ][ l ] > 0? population[ i ][ l ]: 0;
+			sumViolation[ l ] += population1[ i ][ l ] > 0? population1[ i ][ l ]: 0;
 		}
 		denominator += sumViolation[ l ] * sumViolation[ l ];
 	}
-	
+
 	//bound constraints
 	for (l = idBoundConstraints; l < idBoundConstraints + dimension; l++) {
 
 		sumViolation[ l ] = 0;
 		for (i = 0; i < populationSize; i++) {
-			sumViolation[ l ] += population[ i ][ l ] > 0? population[ i ][ l ]: 0;
+			sumViolation[ l ] += population1[ i ][ l ] > 0? population1[ i ][ l ]: 0;
 		}
 		denominator += sumViolation[ l ] * sumViolation[ l ];
 	}
-	
+
 	//linear equality constraints
 	for (l = idLinearEqualityConstraints; l < idLinearEqualityConstraints + nLECs; l++) {
 
 		sumViolation[ l ] = 0;
 		for (i = 0; i < populationSize; i++) {
-			sumViolation[ l ] += population[ i ][ l ] > 0? population[ i ][ l ]: 0;
+			sumViolation[ l ] += population1[ i ][ l ] > 0? population1[ i ][ l ]: 0;
 		}
 		denominator += sumViolation[ l ] * sumViolation[ l ];
-		
+
+	}
+
+	if ( population2 != NULL ) {
+        //sum Gs + Hs (non-linear)
+        for (l = idGConstraints; l < idGConstraints + nGs + nHs; l++) {
+
+            sumViolation[ l ] = 0;
+            for (i = 0; i < populationSize; i++) {
+                sumViolation[ l ] += population2[ i ][ l ] > 0? population2[ i ][ l ]: 0;
+            }
+            denominator += sumViolation[ l ] * sumViolation[ l ];
+        }
+
+        //bound constraints
+        for (l = idBoundConstraints; l < idBoundConstraints + dimension; l++) {
+
+            sumViolation[ l ] = 0;
+            for (i = 0; i < populationSize; i++) {
+                sumViolation[ l ] += population2[ i ][ l ] > 0? population2[ i ][ l ]: 0;
+            }
+            denominator += sumViolation[ l ] * sumViolation[ l ];
+        }
+
+        //linear equality constraints
+        for (l = idLinearEqualityConstraints; l < idLinearEqualityConstraints + nLECs; l++) {
+
+            sumViolation[ l ] = 0;
+            for (i = 0; i < populationSize; i++) {
+                sumViolation[ l ] += population2[ i ][ l ] > 0? population2[ i ][ l ]: 0;
+            }
+            denominator += sumViolation[ l ] * sumViolation[ l ];
+
+        }
 	}
 
 	//the penalty coefficients are calculated
-	for (j = 0; j < numberOfConstraints; j++) {
+	//sum Gs + Hs (non-linear)
+	for (j = idGConstraints; j < idGConstraints + nGs + nHs; j++) {
 
 		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
+		//printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
+		
+	}
+
+	//bound constraints
+	for (j = idBoundConstraints; j < idBoundConstraints + dimension; j++) {
+
+		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
+		//printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
+		
+	}
+
+	//linear equality constraints
+	for (j = idLinearEqualityConstraints; j < idLinearEqualityConstraints + nLECs; j++) {
+
+		printf("(%f / %f) * %f\n", sumObjectiveFunction, denominator, sumViolation[ j ]);
+		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
+		printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
 
 	}
 
@@ -2209,10 +2288,11 @@ double APMcalculateFitness(
 	double averageObjectiveFunctionValues,
 	int idGConstraints,
 	int idBoundConstraints,
-	int idLinearEqualityConstraints) {
+	int idLinearEqualityConstraints,
+	int constraintHandler) {
 
 	//indicates if the candidate solution is infeasible
-	_Bool infeasible;
+	int infeasible;
 	int j;
 	//the penalty value
 	double penalty;
@@ -2221,7 +2301,22 @@ double APMcalculateFitness(
 	infeasible = 0;
 	penalty = 0;
 
-	for (j = idGConstraints; j < nGs + nHs; j++) {
+	for (j = idGConstraints; j < idGConstraints + nGs + nHs; j++) {
+
+		//printf("individual[ %d ] = %f\n", j, individual[ j ]);
+		
+		if ( individual[ j ] > 0 ) {
+			//the candidate solution is infeasible if some constraint is violated
+			infeasible = 1;
+			//the penalty value is updated
+			penalty += penaltyCoefficients[ j ] * individual[ j ];
+		}
+
+	}
+
+	for (j = idBoundConstraints; j < idBoundConstraints + dimension; j++) {
+
+		//printf("individual[ %d ] = %f\n", j, individual[ j ]);
 
 		if ( individual[ j ] > 0 ) {
 			//the candidate solution is infeasible if some constraint is violated
@@ -2230,35 +2325,34 @@ double APMcalculateFitness(
 			penalty += penaltyCoefficients[ j ] * individual[ j ];
 		}
 
+	}
+
+	if (constraintHandler == APM_ONLY) { //otherwise, the linear equality constraints are handled by DELEqC
+        for (j = idLinearEqualityConstraints; j < idLinearEqualityConstraints + nLECs; j++) {
+
+			//printf("individual[ %d ] = %f\n", j, individual[ j ]);
+
+            if ( individual[ j ] > 0 ) {
+                //the candidate solution is infeasible if some constraint is violated
+                infeasible = 1;
+                //the penalty value is updated
+                penalty += penaltyCoefficients[ j ] * individual[ j ];
+            }
+        }
 	}
 	
-	for (j = idBoundConstraints; j < dimension; j++) {
-
-		if ( individual[ j ] > 0 ) {
-			//the candidate solution is infeasible if some constraint is violated
-			infeasible = 1;
-			//the penalty value is updated
-			penalty += penaltyCoefficients[ j ] * individual[ j ];
-		}
-
+	printf("penalty: %f\n", penalty);
+	if (infeasible == 1) {
+		printf("Unfeasible.\nFitness: %f\n", (individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty));
+	} else {
+		printf("Feasible.\n");
 	}
 
-	for (j = idLinearEqualityConstraints; j < nLECs; j++) {
-
-		if ( individual[ j ] > 0 ) {
-			//the candidate solution is infeasible if some constraint is violated
-			infeasible = 1;
-			//the penalty value is updated
-			penalty += penaltyCoefficients[ j ] * individual[ j ];
-		}
-
-	}
-
-	//the fitness is the sum of the objective function and penalty values 
-	//if the candidate solution is infeasible and just the objective function value,
-	//otherwise
-	return infeasible ? 
-		(individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty) : 
+	//the fitness is the sum of the objective function and penalty values
+	//if the candidate solution is infeasible
+	//otherwise, it is only the objective function value
+	return infeasible == 1 ?
+		(individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty) :
 		individual[ dimension ];
 
 }
