@@ -124,7 +124,7 @@ int main( int argc, char** argv ) {
 		exit(4);
 	}
 
-	
+
 
 	Avalia_Populacao(populacao, N_Individuo, N_Coordenada, prob, bounds, epsilonCorrecao);
 
@@ -386,7 +386,7 @@ int main( int argc, char** argv ) {
 					novos_ind[i][ idFitnessAPM ] = APMcalculateFitness(novos_ind[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
 					//printf("novos_ind[%d] = %f\n", i, novos_ind[i][ idFitnessAPM ]);
 				}
-				
+
 				//replacement
 				for(i=0; i<N_Individuo; i++) {
 					if(novos_ind[i][idFitnessAPM] < populacao[i][idFitnessAPM]){
@@ -506,7 +506,7 @@ int main( int argc, char** argv ) {
 				exit(10);
 			}
 
-			printf("populacao[ best ][ %d ] = %f\n", idMelhorIndividuo, populacao[idMelhorIndividuo][ idFitnessAPM ] );
+			//printf("populacao[ best ][ %d ] = %f\n", idMelhorIndividuo, populacao[idMelhorIndividuo][ idFitnessAPM ] );
 
 			//printPopulation(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs, N_Individuo);
 
@@ -2156,20 +2156,25 @@ void APMCalculatePenaltyCoefficients(
 	//foreach candidate solution
 	for (i = 0; i < populationSize; i++) {
 
-		printf("population1[ %d ] = %f\n", i, population1[ i ][ dimension ]);
-		sumObjectiveFunction += population1[ i ][ dimension ];
+		//printf("population1[ %d ] = %f\n", i, population1[ i ][ dimension ]);
+		if ( population1[ i ][ dimension ] != DBL_MAX ) {
+            sumObjectiveFunction += population1[ i ][ dimension ];
+		}
 
 	}
-	
-	printf("1-sumObjectiveFunction: %f\n", sumObjectiveFunction);
+
+	//printf("1-sumObjectiveFunction: %f\n", sumObjectiveFunction);
 
 	if ( population2 != NULL ) {
         for (i = 0; i < populationSize; i++) {
-            sumObjectiveFunction += population2[ i ][ dimension ];
+            //printf("population2[ %d ] = %f\n", i, population2[ i ][ dimension ]);
+            if ( population2[ i ][ dimension ] != DBL_MAX ) {
+                sumObjectiveFunction += population2[ i ][ dimension ];
+            }
         }
 	}
-	printf("2-sumObjectiveFunction: %f\n", sumObjectiveFunction);
-	
+	//printf("2-sumObjectiveFunction: %f\n", sumObjectiveFunction);
+
 	//the absolute of the sumObjectiveFunction
 	if (sumObjectiveFunction < 0) {
 		sumObjectiveFunction = -sumObjectiveFunction;
@@ -2253,7 +2258,7 @@ void APMCalculatePenaltyCoefficients(
 
 		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
 		//printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
-		
+
 	}
 
 	//bound constraints
@@ -2261,15 +2266,15 @@ void APMCalculatePenaltyCoefficients(
 
 		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
 		//printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
-		
+
 	}
 
 	//linear equality constraints
 	for (j = idLinearEqualityConstraints; j < idLinearEqualityConstraints + nLECs; j++) {
 
-		printf("(%f / %f) * %f\n", sumObjectiveFunction, denominator, sumViolation[ j ]);
+		//printf("(%f / %f) * %f\n", sumObjectiveFunction, denominator, sumViolation[ j ]);
 		penaltyCoefficients[ j ] = denominator == 0? 0: (sumObjectiveFunction / denominator) * sumViolation[ j ];
-		printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
+		//printf("penaltyCoefficients[%i]=%f\n", j, penaltyCoefficients[j]);
 
 	}
 
@@ -2304,7 +2309,7 @@ double APMcalculateFitness(
 	for (j = idGConstraints; j < idGConstraints + nGs + nHs; j++) {
 
 		//printf("individual[ %d ] = %f\n", j, individual[ j ]);
-		
+
 		if ( individual[ j ] > 0 ) {
 			//the candidate solution is infeasible if some constraint is violated
 			infeasible = 1;
@@ -2340,18 +2345,18 @@ double APMcalculateFitness(
             }
         }
 	}
-	
-	printf("penalty: %f\n", penalty);
-	if (infeasible == 1) {
+
+	//printf("penalty: %f\n", penalty);
+	/*if (infeasible == 1) {
 		printf("Unfeasible.\nFitness: %f\n", (individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty));
 	} else {
 		printf("Feasible.\n");
-	}
+	}*/
 
 	//the fitness is the sum of the objective function and penalty values
 	//if the candidate solution is infeasible
 	//otherwise, it is only the objective function value
-	return infeasible == 1 ?
+	return infeasible == 1 && individual[ dimension ] != DBL_MAX ?    // if individual[ dimension ] == DBL_MAX ==> fitness is DBL_MAX
 		(individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty) :
 		individual[ dimension ];
 

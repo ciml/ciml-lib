@@ -6,3 +6,4 @@
 # a test using valgrind
 
 valgrind -v --leak-check=full --track-origins=yes ./bin/Debug/DE 100 0.9 0.6 100 104 3 1 0.000001 3 1
+
