@@ -163,3 +163,29 @@
 	"math.h"
 	"stdlib.h"
 
+1517002027 source:/home/hedersb/workspace/ciml-lib-new/src/c/deleqc-ii/LU.c
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1517009009 source:/home/hedersb/workspace/ciml-lib-new/src/c/deleqc-ii/funcoes_teste.c
+	"funcoes_teste.h"
+	"stdio.h"
+	"math.h"
+	"stdlib.h"
+	<float.h>
+
+1517002027 /home/hedersb/workspace/ciml-lib-new/src/c/deleqc-ii/funcoes_teste.h
+	"stdlib.h"
+
+1517009004 source:/home/hedersb/workspace/ciml-lib-new/src/c/deleqc-ii/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	<float.h>
+	"LU.h"
+	"funcoes_teste.h"
+
+1517002027 /home/hedersb/workspace/ciml-lib-new/src/c/deleqc-ii/LU.h
+

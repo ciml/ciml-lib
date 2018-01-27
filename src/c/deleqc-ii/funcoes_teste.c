@@ -394,7 +394,7 @@ void Problema_Teste(int prob, int *Restricoes, int *N_Coordenada, double *soluca
 		{
 			int i;
 			*Restricoes = 13;
-			*N_Coordenada = 48; //solution is F1-F20, fa(5, 13), fb(5, 13), fc(5, 13), xa(5, 6, 9, 13, 14, 18), xb(5, 6, 9, 13, 14, 18), xc(5, 6, 9, 13, 14, 18), ra1, rb1, rb2, rc2
+			*N_Coordenada = 48; //a candidate solution is represented as F1-F20, fa(5, 13), fb(5, 13), fc(5, 13), xa(5, 6, 9, 13, 14, 18), xb(5, 6, 9, 13, 14, 18), xc(5, 6, 9, 13, 14, 18), ra1, rb1, rb2, rc2
 			*solucao = 1.5671;
 
 			bounds = (double**) malloc( (*N_Coordenada)*sizeof(double*) );
@@ -402,8 +402,9 @@ void Problema_Teste(int prob, int *Restricoes, int *N_Coordenada, double *soluca
 			//these bound constraints are not in the reference
 			for (i = 0; i < (*N_Coordenada)-4; i++) {
 				bounds[i] = (double*) malloc( 2*sizeof(double) );
-				bounds[i][0] = 0;
-                bounds[i][1] = 200;
+				bounds[i][0] = 0.0;
+                //bounds[i][1] = 200;
+                bounds[i][1] = 150.0;
 			}
 			//bound constraints for rs
 			for(; i< *N_Coordenada; i++) {
@@ -603,6 +604,13 @@ void Avalia(double *id, int N_Coordenada, int prob, double **A, double** bounds,
             break;
 
         case 105:
+
+            //solution is represented as:
+            //0, 1: A, B
+            //2, 3: Cx, Cy
+            //4, 5: Px, Py
+            //6, 7: x, y
+            //8: p
 
 			id[N_Coordenada] = 6.0 * id[0] + 16.0 * id[1] + 10.0 * id[2] + 10.0 * id[3] - 9.0 * id[6] - 15.0 * id[7];
 
@@ -1029,6 +1037,22 @@ double sol[48] = {0, 85.714, 77.143, 137.143, 57.143, 24.286, 0, 24.286, 32.857,
 */
 
 /*
+//solution for the test-problem 106 -- adjusted after fixed
+double sol[48] = {0, 85.714, 77.143, 137.143, 57.143, 24.286, 0, 24.286, 32.857, 0, 32.857, 0, 85.714, 57.143, 57.143, 0, 0, 28.571, 0, 28.571,
+		28.571, 28.571,
+		24.286, 28.571,
+		4.286, 28.571,
+		0.5, 1.0, 0.1305, 1/3.0, 0.5, 0,
+		0.425, 0, 0.739, 1/3.0, 0.425, 0.15,
+		0.075, 0, 0.1305, 1/3.0, 0.075, 0.85,
+		0.85, 1.0,
+		0.85, 0.85};
+	for(int w=0; w<48; w++) {
+		populacao[0][w] = sol[w];
+	}
+*/
+
+/*
 //solution for the test-problem 20-- fixed with respect to that presented in reference paper
 double sol[24] = {	6, 2, 0, 0,
 					0, 3, 0, 21,
@@ -1041,3 +1065,18 @@ double sol[24] = {	6, 2, 0, 0,
 	}
 */
 
+/*
+//solution for the test-problem 103 -- fixed with respect to that presented in reference paper
+double sol[10] = {0, 100, 0, 100, 0, 100, 0, 100, 200, 1};
+	for(int w=0; w<10; w++) {
+		populacao[0][w] = sol[w];
+	}
+*/
+
+/*
+//solution for the test-problem 105
+double sol[9] = {300, 0, 300, 0, 300, 0, 600, 0, 3};
+	for(int w=0; w<9; w++) {
+		populacao[0][w] = sol[w];
+	}
+*/

@@ -124,7 +124,12 @@ int main( int argc, char** argv ) {
 		exit(4);
 	}
 
-
+	/*
+    double sol[9] = {300, 0, 300, 0, 300, 0, 600, 0, 3};
+	for(int w=0; w<9; w++) {
+		populacao[0][w] = sol[w];
+	}
+	*/
 
 	Avalia_Populacao(populacao, N_Individuo, N_Coordenada, prob, bounds, epsilonCorrecao);
 
@@ -185,10 +190,14 @@ int main( int argc, char** argv ) {
 			exit(1);
 		}
 
-		//printf("Best ID: %d\n", idMelhorIndividuo);
+		/*
+		printf("Best ID: %d\n", idMelhorIndividuo);
 
-		//printPopulation(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs, N_Individuo);
+		printPopulation(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs, N_Individuo);
 
+		imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
+		getchar();
+		*/
 		imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, 0, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
 
         double **novos_ind = (double**) malloc(N_Individuo * sizeof(double*));
