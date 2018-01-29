@@ -587,6 +587,14 @@ void Avalia(double *id, int N_Coordenada, int prob, double **A, double** bounds,
                 id[ j ] = fabs(id[j]) - epsilonEqualityConstraints;
             }
 
+            /*if (id[N_Coordenada] == 0) {
+                printf("ERROR?\n");
+                for (j = 0; j < 30; j++) {
+                    printf("%f ", id[ j ]);
+                }
+                getchar();
+			}*/
+
             break;
 
         case 104:
@@ -713,11 +721,20 @@ void boundConstraints(double *individual, int dimension, int nGs, int nHs, doubl
 
 }
 
-void sumViolation(double *individual, int dimension, int nGs, int nHs, double** bounds, double nLHs, double* maxConstraints) {
+void sumViolation(double *individual, int dimension, int nGs, int nHs, double** bounds, int nLHs, double* maxConstraints) {
     int j;
     int iSumViolation = dimension+1+nGs+nHs+dimension+1;
     int idSumViolationWithoutLE = dimension+1+nGs+nHs+dimension+1+1+1+nLHs;
     int iSumAllViolation = dimension+1+nGs+nHs+dimension+1+1+1+nLHs+1;
+
+//    printf("nLHs = %d\n", nLHs);
+//    printf("iSumViolation = %d\n", iSumViolation);
+//    printf("idSumViolationWithoutLE = %d\n", idSumViolationWithoutLE);
+//    printf("iSumAllViolation = %d\n", iSumAllViolation);
+//    printf("variables = from %d to %d\n", 0, dimension-1);
+//    printf("constraints Gs and Hs (nonlinear) = from %d to %d\n", dimension+1, dimension+1+nGs+nHs-1);
+//    printf("bound constraints = from %d to %d\n", dimension+1+nGs+nHs, dimension+1+nGs+nHs+dimension-1);
+//    printf("linear equality constraints = from %d to %d\n", dimension+1+nGs+nHs+dimension+3, dimension+1+nGs+nHs+dimension+3+nLHs-1);
 
     ///Sum of the normalized violation values
     individual[ iSumViolation ] = 0;

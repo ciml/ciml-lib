@@ -81,7 +81,7 @@ int main( int argc, char** argv ) {
 	//double epsilon = 0.0001;
 	int idMelhorIndividuo;
 	int idAntigoMelhorIndividuo;
-	double epsilonCorrecao = 0.001;
+	double epsilonCorrecao = 0.0001;
 	int nReparos = 0;
 	int numberOfValuesInEachIndividual;
 	int constraintHandler = -1;
@@ -236,7 +236,7 @@ int main( int argc, char** argv ) {
                      id3 = rand() % N_Individuo;
                 }
 
-                //int jRand = rand()%N_Coordenada;
+                int jRand = rand()%N_Coordenada;
                 //imprimirIndividuoVetor(novo_id, N_Coordenada);
 
                 for(j = 0; j < N_Coordenada; j++){
@@ -261,8 +261,20 @@ int main( int argc, char** argv ) {
                             return EXIT_FAILURE; // termina a execucao com erro
                     }
 
-                    //crossover via combinacao convexa usando o CR como parametro que define a proximidade com o vetor gerado
-                    novos_ind[i][j] = populacao[i][j]*(1-cross_prob) + cross_prob*novos_ind[i][j];
+                    if ( constraintHandler == DELEQC_ONLY || constraintHandler == DELEQC_APM || constraintHandler == DELEQC_TS ) {
+                        //crossover via combinacao convexa usando o CR como parametro que define a proximidade com o vetor gerado
+                        novos_ind[i][j] = populacao[i][j]*(1-cross_prob) + cross_prob*novos_ind[i][j];
+                    } else if ( constraintHandler == APM_ONLY || constraintHandler == TS_ONLY ) {
+                        //if ( ! ( j == jRand || ( (rand()%1000000) / 1000000.f ) <= cross_prob ) ) {
+                        if ( j != jRand && ( (rand()%1000000) / 1000000.f ) > cross_prob ) {
+                            //change to the value in the target vector
+                            novos_ind[i][j] = populacao[i][j];
+                        }
+                    } else {
+                        printf("There is no definition of crossover for the indicated constraint handling technique.");
+                        exit(13);
+                    }
+
 
                 }
 
@@ -274,10 +286,13 @@ int main( int argc, char** argv ) {
 						//we assume the bound when the current value is larger or smaller than it
 						for(j = 0; j < N_Coordenada; j++) {
 							if ( novos_ind[i][j] < bounds[j][0] ) {
+                                //printf("Bounds -- Before: %f\t After: %f\n", novos_ind[i][j], bounds[j][0]);
 								novos_ind[i][j] = bounds[j][0];
 							} else if ( novos_ind[i][j] > bounds[j][1] ) {
+								//printf("Bounds -- Before: %f\t After: %f\n", novos_ind[i][j], bounds[j][0]);
 								novos_ind[i][j] = bounds[j][1];
 							}
+							//printf("Bounds -- OK: %f\n", novos_ind[i][j]);
 						}
 					} else {
 						printf("DELEqC methods cannot use this bound handling strategy.");
@@ -304,12 +319,20 @@ int main( int argc, char** argv ) {
 					exit(7);
 				}
 
+				//imprimirIndividuo(novos_ind, N_Coordenada, i, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+
                 Avalia(novos_ind[i], N_Coordenada, prob, Matriz_Coef, bounds, epsilonCorrecao);
                 //CEC2018
                 //evaluate the bound and linear violations: APM and DEb's TS
                 if (constraintHandler != DELEQC_ONLY) {
+                    //printf("constraintHandler != DELEQC_ONLY\n");
 					boundConstraints(novos_ind[i], N_Coordenada, nGs, nHs, bounds);
 					calculateLinearEqualityConstraints(novos_ind, N_Coordenada, i, Restricoes, nGs, nHs, epsilonCorrecao);
+					/*if ( novos_ind[i][ N_Coordenada ] == 0 ) {
+                        printf("new individual generated with obj=0.\n");
+                        imprimirIndividuo(novos_ind, N_Coordenada, i, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                        getchar();
+					}*/
 				}
 
             }
@@ -384,16 +407,54 @@ int main( int argc, char** argv ) {
 				}
 			} else if ( constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM ) {
 
+                /*if ( novos_ind[71][ N_Coordenada ] == 0 ) {
+                    printf("Individual 71 -- before the penalty coefficients are calculated\n");
+                    imprimirIndividuo(novos_ind, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                    getchar();
+                }*/
 				APMCalculatePenaltyCoefficients(N_Individuo, populacao, novos_ind, N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, &averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, numberOfValuesInEachIndividual);
+				/*if ( novos_ind[71][ N_Coordenada ] == 0 ) {
+                    printf("Individual 71 -- after the penalty coefficients are calculated\n");
+                    imprimirIndividuo(novos_ind, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                    getchar();
+                }*/
 				for(i=0; i<N_Individuo; i++) {
 					sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
 					populacao[i][ idFitnessAPM ] = APMcalculateFitness(populacao[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
 					//printf("populacao[%d] = %f\n", i, populacao[i][ idFitnessAPM ]);
+					//if ( populacao[i][ idFitnessAPM ] == 0 ) {
+                    //    printf("Zero fitness\n");
+                    //    imprimirIndividuo(populacao, N_Coordenada, i, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                    //    getchar();
+					//}
 				}
 				for(i=0; i<N_Individuo; i++) {
+                    /*if ( i == 71 && novos_ind[71][ N_Coordenada ] == 0 ) {
+                        printf("Individual 71 -- before sumViolation\n");
+                        imprimirIndividuo(novos_ind, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                        getchar();
+                    }*/
+//                    printf("idFitnessAPM = %d\n", idFitnessAPM );
+//                    printf("nLHs = %d\n", Restricoes );
+//                    for (j = 0; j < numberOfValuesInEachIndividual; ++j) {
+//                        printf("ind[%d] = %f, ", j, novos_ind[i][j]);
+//                    }
+//                    printf("\n");
 					sumViolation(novos_ind[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
+					//getchar();
+//					if ( i == 71 && novos_ind[71][ N_Coordenada ] == 0 ) {
+//                        printf("Individual 71 -- after sumViolation\n");
+//                        imprimirIndividuo(novos_ind, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+//                        getchar();
+//                    }
 					novos_ind[i][ idFitnessAPM ] = APMcalculateFitness(novos_ind[i], N_Coordenada, Restricoes, nGs, nHs, penaltyCoefficients, averageObjectiveFunctionValues, idGConstraints, idBoundConstraints, idLinearEqualityConstraints, constraintHandler);
+					/*if ( i == 71 && novos_ind[71][ N_Coordenada ] == 0 ) {
+                        printf("Individual 71 -- after fitness\n");
+                        imprimirIndividuo(novos_ind, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                        getchar();
+                    }*/
 					//printf("novos_ind[%d] = %f\n", i, novos_ind[i][ idFitnessAPM ]);
+					//imprimirIndividuo(novos_ind, N_Coordenada, i, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
 				}
 
 				//replacement
@@ -406,6 +467,11 @@ int main( int argc, char** argv ) {
 
 					}
 				}
+				/*if ( populacao[71][ N_Coordenada ] == 0 ) {
+                    printf("Individual 71\n");
+                    imprimirIndividuo(populacao, N_Coordenada, 71, 0, Restricoes, 0, numberOfValuesInEachIndividual, nGs, nHs);
+                    getchar();
+                }*/
 
 			} else {
 				printf("It is not implemented yet.");
@@ -2342,6 +2408,8 @@ double APMcalculateFitness(
 	}
 
 	if (constraintHandler == APM_ONLY) { //otherwise, the linear equality constraints are handled by DELEqC
+        //printf("constraint handler: %d == %d\n", constraintHandler, APM_ONLY);
+
         for (j = idLinearEqualityConstraints; j < idLinearEqualityConstraints + nLECs; j++) {
 
 			//printf("individual[ %d ] = %f\n", j, individual[ j ]);
@@ -2360,6 +2428,10 @@ double APMcalculateFitness(
 		printf("Unfeasible.\nFitness: %f\n", (individual[ dimension ] > averageObjectiveFunctionValues? individual[ dimension ] + penalty: averageObjectiveFunctionValues + penalty));
 	} else {
 		printf("Feasible.\n");
+	}
+
+	if (individual[ dimension ] == 0) {
+        getchar();
 	}*/
 
 	//the fitness is the sum of the objective function and penalty values
