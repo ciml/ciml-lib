@@ -90,7 +90,7 @@ int main( int argc, char** argv ) {
 	int id1, id2, id3;
 	int j;
 	int best = -1;
-	double* maxConstraints = NULL;
+	double* maxConstraints = NULL;   ///TODO: to remove the use of maxConstraints as it is not used now
 	double* penaltyCoefficients = NULL;
 	int idSumViolations = -1;
 	int idLinearEqualityConstraints = -1;

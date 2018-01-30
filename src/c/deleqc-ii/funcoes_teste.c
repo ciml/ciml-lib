@@ -736,7 +736,7 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
 //    printf("bound constraints = from %d to %d\n", dimension+1+nGs+nHs, dimension+1+nGs+nHs+dimension-1);
 //    printf("linear equality constraints = from %d to %d\n", dimension+1+nGs+nHs+dimension+3, dimension+1+nGs+nHs+dimension+3+nLHs-1);
 
-    ///Sum of the normalized violation values
+
     individual[ iSumViolation ] = 0;
     individual[ idSumViolationWithoutLE ] = 0;
     individual[ iSumAllViolation ] = 0;
@@ -744,8 +744,12 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
 		if (individual[ j ] > 0 && maxConstraints != NULL && maxConstraints[ j ] > 0) {
 			//if individual is unfeasible and
 			//any solution is unfeasible with respect to the j-th constraint
-			individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //g(x)<=0, h(x)=0 where h(x) is non-linear, and the bound constraints
-			individual[ idSumViolationWithoutLE ] += individual[ j ] / maxConstraints[ j ];
+			//Sum of the normalized violation values
+			//individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //g(x)<=0, h(x)=0 where h(x) is non-linear, and the bound constraints
+			//individual[ idSumViolationWithoutLE ] += individual[ j ] / maxConstraints[ j ];
+			///Sum of the normalized violation values -- it is not normalized as the normalization can cause instability when maxConstraints ~ 0
+			individual[ iSumViolation ] += individual[ j ]; //g(x)<=0, h(x)=0 where h(x) is non-linear, and the bound constraints
+			individual[ idSumViolationWithoutLE ] += individual[ j ];
 		}
 		if (individual[ j ] > 0) {
 			individual[ iSumAllViolation ] += individual[ j ];
@@ -753,8 +757,10 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
     }
     //individual[ iSumViolation ] += individual[ iSumViolation-1 ]; //bound constraints
     for(j=iSumViolation+2; j<iSumViolation+2+nLHs; j++) {
-		if (individual[ j ] > 0 && maxConstraints != NULL && maxConstraints[ j ] > 0) {
-			individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //h(x)=0 where h(x) is linear
+		//if (individual[ j ] > 0 && maxConstraints != NULL && maxConstraints[ j ] > 0) {
+		if (individual[ j ] > 0 && maxConstraints != NULL) {
+			//individual[ iSumViolation ] += individual[ j ] / maxConstraints[ j ]; //h(x)=0 where h(x) is linear
+			individual[ iSumViolation ] += individual[ j ]; //h(x)=0 where h(x) is linear
 		}
 		if (individual[ j ] > 0) {
 			individual[ iSumAllViolation ] += individual[ j ];
