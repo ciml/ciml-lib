@@ -140,6 +140,7 @@ int main( int argc, char** argv ) {
 	idGConstraints = N_Coordenada + 1;
 	idSumBoundViolations = N_Coordenada + 1 + nGs + nHs + N_Coordenada;
 	idSumViolationsWithoutLE = N_Coordenada+1+nGs+nHs+N_Coordenada+1+1+1+Restricoes;
+	//printf("idSumViolationsWithoutLE: %d\n", idSumViolationsWithoutLE);
 	idFitnessAPM = N_Coordenada + 1 + nGs + nHs + N_Coordenada + 1 + 1;
 
 	if (constraintHandler == TS_ONLY || constraintHandler == DELEQC_TS || constraintHandler == APM_ONLY || constraintHandler == DELEQC_APM) {
@@ -517,8 +518,15 @@ int main( int argc, char** argv ) {
 							//CEC2018
 							//evaluate the bound and linear violations: APM and DEb's TS
 							if (constraintHandler != DELEQC_ONLY) {
+//								printf("ID: %d\n", i);
+//								printf("boundConstraints before (wrong):\n");
+								//imprimirIndividuoVetor(populacao[i], numberOfValuesInEachIndividual);
 								boundConstraints(populacao[i], N_Coordenada, nGs, nHs, bounds);
+//								printf("boundConstraints after (?):\n");
+//								imprimirIndividuoVetor(populacao[i], numberOfValuesInEachIndividual);
 								calculateLinearEqualityConstraints(populacao, N_Coordenada, i, Restricoes, nGs, nHs, epsilonCorrecao);
+//								printf("boundConstraints after again (correct?):\n");
+//								imprimirIndividuoVetor(populacao[i], numberOfValuesInEachIndividual);
 							}
 						}
 						nReparos += N_Individuo;
@@ -536,6 +544,17 @@ int main( int argc, char** argv ) {
 							}
 							idMelhorIndividuo = procuraMelhorRestricoesTS( populacao, N_Individuo, N_Coordenada, idSumViolationsWithoutLE );
 							best = bestIndividualTS( melhor_ind, populacao[ idMelhorIndividuo ], N_Coordenada, idSumViolationsWithoutLE );
+//							printf("populacao[%d][%d] = %f\n", idMelhorIndividuo, idSumViolationsWithoutLE, populacao[idMelhorIndividuo][idSumViolationsWithoutLE]);
+//							printf("melhor_ind[%d] = %f\n", idSumViolationsWithoutLE, melhor_ind[idSumViolationsWithoutLE]);
+//
+//							printf("evaluating the changes.\nbest new individual:\n");
+//							imprimirIndividuo(populacao, N_Coordenada, idMelhorIndividuo, geracoes, Restricoes, nReparos, numberOfValuesInEachIndividual, nGs, nHs);
+//							printf("best new individual:\n");
+//							imprimirIndividuoVetor(populacao[idMelhorIndividuo], numberOfValuesInEachIndividual);
+//							printf("best old individual:\n");
+//							imprimirIndividuoVetor(melhor_ind, numberOfValuesInEachIndividual);
+//							printf("Best (0 indicates that the old one is better): %d\n", best);
+
 						} else if ( constraintHandler == DELEQC_APM ) {
 							for(i=0; i<N_Individuo; i++) {
 								sumViolation(populacao[i], N_Coordenada, nGs, nHs, bounds, Restricoes, NULL);
@@ -2074,13 +2093,19 @@ int bestIndividualObjectiveFunction( double* individual1, double* individual2, i
 }
 
 int bestIndividualTS( double* individual1, double* individual2, int dimension, int idSumConstraints ) {
+//	printf("obj1: %f, const1: %f\n", individual1[dimension], individual1[idSumConstraints]);
+//	printf("obj2: %f, const2: %f\n", individual2[dimension], individual2[idSumConstraints]);
 	if ( individual1[idSumConstraints] < individual2[idSumConstraints] ) {
+//		printf("1-0\n");
 		return 0;
 	} else if ( individual1[idSumConstraints] > individual2[idSumConstraints] ) {
+//		printf("2-1\n");
 		return 1;
 	} else if ( individual1[dimension] < individual2[dimension] ) {
+//		printf("3-0\n");
 		return 0;
 	} else {
+//		printf("4-1\n");
 		return 1;
 	}
 }

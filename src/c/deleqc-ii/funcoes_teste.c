@@ -711,7 +711,7 @@ void boundConstraints(double *individual, int dimension, int nGs, int nHs, doubl
         if ( individual[ i ] < bounds[ i ][ 0 ] ) {
             individual[ j ] = bounds[ i ][ 0 ] - individual[ i ];
         } else if ( individual[ i ] > bounds[ i ][ 1 ] ) {
-            individual[ j ] = individual[ i ] - bounds[ i ][ 0 ];
+            individual[ j ] = individual[ i ] - bounds[ i ][ 1 ];
         } else {
             individual[ j ] = 0;
         }
@@ -727,6 +727,7 @@ void sumViolation(double *individual, int dimension, int nGs, int nHs, double** 
     int idSumViolationWithoutLE = dimension+1+nGs+nHs+dimension+1+1+1+nLHs;
     int iSumAllViolation = dimension+1+nGs+nHs+dimension+1+1+1+nLHs+1;
 
+//    printf("\n\n---- sumViolation ----\n\n");
 //    printf("nLHs = %d\n", nLHs);
 //    printf("iSumViolation = %d\n", iSumViolation);
 //    printf("idSumViolationWithoutLE = %d\n", idSumViolationWithoutLE);
