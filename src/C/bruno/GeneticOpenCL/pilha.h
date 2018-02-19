@@ -1,6 +1,9 @@
 #ifndef PILHA_H_INCLUDED
 #define PILHA_H_INCLUDED
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "constantes.h"
 
 typedef struct{

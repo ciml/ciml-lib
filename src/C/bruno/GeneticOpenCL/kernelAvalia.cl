@@ -1,3 +1,5 @@
+//#pragma OPENCL EXTENSION all : disable
+
 typedef struct{
     int numeroFilhos[MAX_NOS];
     int informacao[MAX_NOS];
@@ -866,7 +868,6 @@ __kernel void  avaliaIndividuosSequencial(__global Arvore* pop,
         pop[l].aptidao = ( isinf( erro ) || isnan( erro ) ) ? INFINITY : erro; //erro;
         barrier(CLK_GLOBAL_MEM_FENCE);
     }
-
 }
 
 

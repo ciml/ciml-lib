@@ -1,6 +1,9 @@
 #ifndef BITWISE_H_INCLUDED
 #define BITWISE_H_INCLUDED
 
+#include <stdio.h>
+#include <stdlib.h>
+
 unsigned int floatToInt(float floatVal);
 float intToFloat(unsigned int intVal);
 unsigned int packInfo(int tipo, int valor);

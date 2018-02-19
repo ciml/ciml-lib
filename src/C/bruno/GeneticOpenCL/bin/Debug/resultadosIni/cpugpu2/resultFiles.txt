@@ -1,1 +1,0 @@
-f1-exp10000_cpuGpu_seed_9_popVal_512.txt

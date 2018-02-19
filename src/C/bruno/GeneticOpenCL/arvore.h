@@ -1,6 +1,11 @@
 #ifndef ARVORE_H_INCLUDED
 #define ARVORE_H_INCLUDED
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <float.h>
+
 #include "pilha.h"
 #include "utilitarios.h"
 #include "bitwise.h"

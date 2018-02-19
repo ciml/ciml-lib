@@ -1,5 +1,9 @@
 #ifndef GENETICA_H_INCLUDED
 #define GENETICA_H_INCLUDED
+
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "arvore.h"
 
 void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);

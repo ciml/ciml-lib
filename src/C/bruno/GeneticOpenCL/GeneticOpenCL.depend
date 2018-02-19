@@ -113,36 +113,51 @@
 	"genetica.h"
 	<omp.h>
 
-1508817042 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+1509248420 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	<float.h>
 	"arvore.h"
 
-1508812257 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+1509475505 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<float.h>
 	"pilha.h"
 	"utilitarios.h"
 	"bitwise.h"
 
-1508812254 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+1509475258 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+	<stdio.h>
+	<stdlib.h>
 	"constantes.h"
 
-1507748049 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1512524423 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
-1508816942 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+1509506691 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
 	"constantes.h"
 	"bitwise.h"
 
-1499842931 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
-
-1499842931 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
+1509248424 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
 	<stdio.h>
 	<stdlib.h>
+
+1509248423 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
 	"bitwise.h"
 	"constantes.h"
 
@@ -151,25 +166,19 @@
 	<stdlib.h>
 	"genetica.h"
 
-1508812057 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+1509458184 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+	<stdio.h>
+	<stdlib.h>
 	"arvore.h"
 
-1508817281 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+1512524276 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<omp.h>
 	<iostream>
-	<sstream>
-	<fstream>
-	<vector>
+	<string>
 	<iomanip>
-	<sys/time.h>
-	<stdlib.h>
-	<stdio.h>
-	<limits>
-	<windows.h>
-	<chrono>
-	<climits>
 	"genetica.h"
 	"oclConfig.h"
+	"utilitarios.h"
 
 1508812255 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.c
 	<stdio.h>
@@ -187,24 +196,42 @@
 	<float.h>
 	"arvore.h"
 
-1495686784 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+1509479105 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<float.h>
 	"pilha.h"
 	"utilitarios.h"
 	"bitwise.h"
 
-1474405533 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+1509478858 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+	<stdio.h>
+	<stdlib.h>
 	"constantes.h"
 
-1495719915 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1512528023 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
-1495631514 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+1509510291 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
-	"bitwise.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
+	"constantes.h"
+	"bitwise.h"
 
-1477665916 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
+1509252024 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
+	<stdio.h>
+	<stdlib.h>
 
 1481643085 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
 	<stdio.h>
@@ -217,7 +244,9 @@
 	<stdlib.h>
 	"genetica.h"
 
-1495630488 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+1509461784 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+	<stdio.h>
+	<stdlib.h>
 	"arvore.h"
 
 1494509308 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.c
@@ -229,20 +258,14 @@
 	"utilitarios.h"
 	"constantes.h"
 
-1495734127 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
-	<CL/cl.hpp>
-	<iostream>
-	<sstream>
-	<fstream>
-	<vector>
-	<utility>
-	<cstdlib>
-	<iomanip>
-	<sys/time.h>
-	<stdlib.h>
-	<stdio.h>
-	"genetica.h"
+1512528023 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<omp.h>
+	<iostream>
+	<string>
+	<iomanip>
+	"genetica.h"
+	"oclConfig.h"
+	"utilitarios.h"
 
 1478019164 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.hpp
 	<malloc.h>
@@ -417,73 +440,75 @@
 	<OpenCL/cl_gl.h>
 	<CL/cl_gl.h>
 
-1504192060 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+1509461787 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+	"arvore.h"
+
+1509479105 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	<float.h>
-	"arvore.h"
-
-1501971427 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.h
 	"pilha.h"
 	"utilitarios.h"
 	"bitwise.h"
 
-1474409133 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+1509478858 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+	<stdio.h>
+	<stdlib.h>
 	"constantes.h"
 
-1507748049 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1509508262 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
-1504193326 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+1509510291 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
 	"constantes.h"
 	"bitwise.h"
 
-1499842931 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
-
-1499842931 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
+1509252024 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
 	<stdio.h>
 	<stdlib.h>
+
+1509252023 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
 	"bitwise.h"
 	"constantes.h"
 
-1507748215 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.c
-	<stdio.h>
-	<stdlib.h>
+1509461783 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.c
 	"genetica.h"
 
-1507748203 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
-	"arvore.h"
-
-1499839031 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.c
+1509461784 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.h
 	<stdio.h>
 	<stdlib.h>
+	"arvore.h"
+
+1509461781 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.c
 	"pilha.h"
 
-1504193331 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
+1508820576 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
 	"utilitarios.h"
 	"constantes.h"
 
-1507745490 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
-	<CL/cl.hpp>
+1509551855 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<omp.h>
 	<iostream>
-	<sstream>
-	<fstream>
-	<vector>
+	<string>
 	<iomanip>
-	<sys/time.h>
-	<stdlib.h>
-	<stdio.h>
-	<limits>
-	<chrono>
-	<climits>
 	"genetica.h"
+	"oclConfig.h"
+	"utilitarios.h"
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.hpp
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.hpp
 	<malloc.h>
 	<CL/cl_d3d10.h>
 	<CL/cl_dx9_media_sharing.h>
@@ -501,16 +526,16 @@
 	<alloca.h>
 	<cstring>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_d3d10.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_d3d10.h
 	<d3d10.h>
 	<CL/cl.h>
 	<CL/cl_platform.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.h
 	<OpenCL/cl_platform.h>
 	<CL/cl_platform.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_platform.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_platform.h
 	<AvailabilityMacros.h>
 	<stdint.h>
 	<stddef.h>
@@ -523,12 +548,12 @@
 	<intrin.h>
 	<immintrin.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_dx9_media_sharing.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_dx9_media_sharing.h
 	<CL/cl.h>
 	<CL/cl_platform.h>
 	<d3d9.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_ext.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_ext.h
 	<OpenCL/cl.h>
 	<AvailabilityMacros.h>
 	<CL/cl.h>
@@ -537,7 +562,7 @@
 	<wtypes.h>
 	<d3d9types.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\opencl.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\opencl.h
 	<OpenCL/cl.h>
 	<OpenCL/cl_gl.h>
 	<OpenCL/cl_gl_ext.h>
@@ -547,23 +572,325 @@
 	<CL/cl_gl_ext.h>
 	<CL/cl_ext.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl.h
 	<OpenCL/cl.h>
 	<CL/cl.h>
 
-1478019164 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl_ext.h
+1478022764 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl_ext.h
 	<OpenCL/cl_gl.h>
 	<CL/cl_gl.h>
 
-1508816976 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+1509475258 c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
 	<CL/cl.hpp>
 	<iostream>
 	<string>
-	<sstream>
-	<iomanip>
+	<vector>
 	"constantes.h"
 	"utilitarios.h"
 
-1508816976 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+1509475258 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1509478858 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1509478858 c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+	<CL/cl.hpp>
+	<iostream>
+	<string>
+	<vector>
+	"constantes.h"
+	"utilitarios.h"
+
+1509461787 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509252023 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+	"constantes.h"
+
+1509478858 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509461781 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1509510250 source:c:\users\bruno marcos\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
+1512522204 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509248423 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+	"constantes.h"
+
+1509475258 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509458181 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1509506650 source:c:\users\brunom\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
+1512525804 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509252023 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+	"constantes.h"
+
+1509478858 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509478858 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+	<CL/cl.hpp>
+	<iostream>
+	<string>
+	<vector>
+	"constantes.h"
+	"utilitarios.h"
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.hpp
+	<malloc.h>
+	<CL/cl_d3d10.h>
+	<CL/cl_dx9_media_sharing.h>
+	<intrin.h>
+	<CL/cl_ext.h>
+	<OpenCL/opencl.h>
+	<CL/opencl.h>
+	<atomic>
+	<utility>
+	<limits>
+	<iterator>
+	<exception>
+	<vector>
+	<string>
+	<alloca.h>
+	<cstring>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_d3d10.h
+	<d3d10.h>
+	<CL/cl.h>
+	<CL/cl_platform.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl.h
+	<OpenCL/cl_platform.h>
+	<CL/cl_platform.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_platform.h
+	<AvailabilityMacros.h>
+	<stdint.h>
+	<stddef.h>
+	<altivec.h>
+	<intrin.h>
+	<xmmintrin.h>
+	<intrin.h>
+	<emmintrin.h>
+	<mmintrin.h>
+	<intrin.h>
+	<immintrin.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_dx9_media_sharing.h
+	<CL/cl.h>
+	<CL/cl_platform.h>
+	<d3d9.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_ext.h
+	<OpenCL/cl.h>
+	<AvailabilityMacros.h>
+	<CL/cl.h>
+	<d3d9.h>
+	<dxvahd.h>
+	<wtypes.h>
+	<d3d9types.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\opencl.h
+	<OpenCL/cl.h>
+	<OpenCL/cl_gl.h>
+	<OpenCL/cl_gl_ext.h>
+	<OpenCL/cl_ext.h>
+	<CL/cl.h>
+	<CL/cl_gl.h>
+	<CL/cl_gl_ext.h>
+	<CL/cl_ext.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl.h
+	<OpenCL/cl.h>
+	<CL/cl.h>
+
+1478022764 c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\include\cl\cl_gl_ext.h
+	<OpenCL/cl_gl.h>
+	<CL/cl_gl.h>
+
+1509478858 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1509461781 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1509510250 source:c:\users\bruno\dropbox\get\git\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
+1515329596 source:c:\users\brunom\desktop\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509475505 c:\users\brunom\desktop\geneticopencl\arvore.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<float.h>
+	"pilha.h"
+	"utilitarios.h"
+	"bitwise.h"
+
+1509475258 c:\users\brunom\desktop\geneticopencl\pilha.h
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+
+1515330094 c:\users\brunom\desktop\geneticopencl\constantes.h
+
+1514328274 c:\users\brunom\desktop\geneticopencl\utilitarios.h
+	"math.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
+	"constantes.h"
+	"bitwise.h"
+
+1509248424 c:\users\brunom\desktop\geneticopencl\bitwise.h
+	<stdio.h>
+	<stdlib.h>
+
+1509248423 source:c:\users\brunom\desktop\geneticopencl\bitwise.cpp
+	"bitwise.h"
+	"constantes.h"
+
+1509458181 source:c:\users\brunom\desktop\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1514601459 source:c:\users\brunom\desktop\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509458184 c:\users\brunom\desktop\geneticopencl\genetica.h
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+
+1513269075 source:c:\users\brunom\desktop\geneticopencl\gptime.cpp
+	"GPTime.h"
+
+1513271092 c:\users\brunom\desktop\geneticopencl\gptime.h
+	<vector>
+	<iostream>
+	<sys/time.h>
+
+1515330070 source:c:\users\brunom\desktop\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1509475258 c:\users\brunom\desktop\geneticopencl\oclconfig.h
+	<CL/cl.hpp>
+	<iostream>
+	<string>
+	<vector>
+	"constantes.h"
+	"utilitarios.h"
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl.hpp
+	<malloc.h>
+	<CL/cl_d3d10.h>
+	<CL/cl_dx9_media_sharing.h>
+	<intrin.h>
+	<CL/cl_ext.h>
+	<OpenCL/opencl.h>
+	<CL/opencl.h>
+	<atomic>
+	<utility>
+	<limits>
+	<iterator>
+	<exception>
+	<vector>
+	<string>
+	<alloca.h>
+	<cstring>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_d3d10.h
+	<d3d10.h>
+	<CL/cl.h>
+	<CL/cl_platform.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl.h
+	<OpenCL/cl_platform.h>
+	<CL/cl_platform.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_platform.h
+	<AvailabilityMacros.h>
+	<stdint.h>
+	<stddef.h>
+	<altivec.h>
+	<intrin.h>
+	<xmmintrin.h>
+	<intrin.h>
+	<emmintrin.h>
+	<mmintrin.h>
+	<intrin.h>
+	<immintrin.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_dx9_media_sharing.h
+	<CL/cl.h>
+	<CL/cl_platform.h>
+	<d3d9.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_ext.h
+	<OpenCL/cl.h>
+	<AvailabilityMacros.h>
+	<CL/cl.h>
+	<d3d9.h>
+	<dxvahd.h>
+	<wtypes.h>
+	<d3d9types.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\opencl.h
+	<OpenCL/cl.h>
+	<OpenCL/cl_gl.h>
+	<OpenCL/cl_gl_ext.h>
+	<OpenCL/cl_ext.h>
+	<CL/cl.h>
+	<CL/cl_gl.h>
+	<CL/cl_gl_ext.h>
+	<CL/cl_ext.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_gl.h
+	<OpenCL/cl.h>
+	<CL/cl.h>
+
+1478019164 c:\users\brunom\desktop\geneticopencl\include\cl\cl_gl_ext.h
+	<OpenCL/cl_gl.h>
+	<CL/cl_gl.h>
+
+1515029555 source:c:\users\brunom\desktop\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
+1515329974 source:c:\users\brunom\desktop\geneticopencl\main.cpp
+	<omp.h>
+	<iostream>
+	<iomanip>
+	"genetica.h"
+	"GPTime.h"
 	"oclConfig.h"
 

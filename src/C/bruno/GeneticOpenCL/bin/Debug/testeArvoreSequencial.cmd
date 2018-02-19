@@ -20,7 +20,7 @@ FOR %%i IN (%popVal%) DO (
 		POPD
 
 		for %%F in ("*.dat") do (
-			SET nomeArquivo=%%~nF_seq_seed_%%j_%parameter%_%%i.txt
+			SET nomeArquivo=%%~nF_seqSeq_seed_%%j_%parameter%_%%i.txt
 			ECHO Extraindo dados para "!nomeArquivo!"
 			ECHO !nomeArquivo!>>resultFiles_%%i.txt
 			GeneticOpenCL.exe %%F>"resultadosIni\!nomeArquivo!"

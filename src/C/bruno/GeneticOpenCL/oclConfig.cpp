@@ -85,7 +85,11 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
     }
     std::cout << std::endl;
 
-    std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    #if AVALGPU
+        std::cout << "Available Devices for Platform " << platforms[2].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    #else
+        std::cout << "Available Devices for Platform " << platforms[1].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    #endif
     for(cl_uint i = 0; i < devices.size(); ++i) {
         std::cout<<"\t[" << i << "]"<<devices[i].getInfo<CL_DEVICE_NAME>() << std::endl;
     }
@@ -107,10 +111,6 @@ void setupOpenCL(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &
         platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     #endif
 
-    if(result != CL_SUCCESS){
-        std::cout << "Erro ao encontrar devices." << std::endl;
-        exit(1);
-    }
 }
 
 void setupOpenCL2(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU){
@@ -124,11 +124,12 @@ void setupOpenCL2(std::vector<cl::Platform> &platforms, std::vector<cl::Device> 
     ///Encontrando os dispositivos disponiveis na plataforma 0
     platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devicesCPU);
     platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devicesGPU);
+
     ///AQUI
-    if(result != CL_SUCCESS){
-        std::cout << "Erro ao encontrar devices." << std::endl;
-        exit(1);
-    }
+//    if(result != CL_SUCCESS){
+//        std::cout << "Erro ao encontrar devices." << std::endl;
+//        exit(1);
+//    }
 
 }
 
@@ -137,10 +138,8 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
     if(deviceType == CL_DEVICE_TYPE_GPU){
         std::cout << "Definindo NDRanges para GPU..." << std::endl;
         if(numPoints < maxLocalSize){
-                //std::cout << "AQUI??????" <<std::endl;
           *localSize = numPoints;
         }else{
-            //std::cout << "AQUI!!!!!!" <<std::endl;
           *localSize = maxLocalSize;
         }
 
@@ -172,8 +171,8 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
 
 std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize, float maxDados, float minDados){
     std::string program_src =
-        "#define TIPO "  + ToString( TIPO ) + "\n"
-        "#define SEED "  + ToString( SEED ) + "\n"
+        "#define TIPO "  + ToString( TIPO ) + "\n" +
+        "#define SEED "  + ToString( SEED ) + "\n" +
         "#define VAR  "  + ToString( VAR ) + "\n" +
         "#define CTE  "  + ToString( CTE ) + "\n" +
         "#define FBIN    "+ ToString( FBIN ) + "\n" +
@@ -207,23 +206,3 @@ std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int loca
         //std::cout <<maxDados<< std::endl;
     return program_src;
 }
-bool IsPowerOf2( int n ){
-   return (n & -n) == n;
-}
-
-unsigned NextPowerOf2( unsigned n ){
-   n--;
-   n |= n >> 1;  // handle  2 bit numbers
-   n |= n >> 2;  // handle  4 bit numbers
-   n |= n >> 4;  // handle  8 bit numbers
-   n |= n >> 8;  // handle 16 bit numbers
-   n |= n >> 16; // handle 32 bit numbers
-   n++;
-
-   return n;
-}
-
-std::string ToString( float t ){
-      std::stringstream ss; ss << std::setprecision(32) << t; return ss.str();
-}
-

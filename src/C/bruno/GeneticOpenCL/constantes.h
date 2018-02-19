@@ -31,7 +31,7 @@
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
-#define NUM_INDIV   1024
+#define NUM_INDIV   (1024)
 #endif // NUM_INDIV
 
 #ifndef PROB_CROSS
@@ -39,7 +39,7 @@
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
-#define PROB_MUT    0.1
+#define PROB_MUT    0.3
 #endif // PROB_MUT
 
 #define NUM_TORNEIO     3

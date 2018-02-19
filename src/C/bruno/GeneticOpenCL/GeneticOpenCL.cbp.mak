@@ -40,9 +40,9 @@ OBJDIR_RELEASE = obj\\Release
 DEP_RELEASE = 
 OUT_RELEASE = bin\\Release\\GeneticOpenCL.exe
 
-OBJ_DEBUG = $(OBJDIR_DEBUG)\\arvore.o $(OBJDIR_DEBUG)\\bitwise.o $(OBJDIR_DEBUG)\\genetica.o $(OBJDIR_DEBUG)\\main.o $(OBJDIR_DEBUG)\\pilha.o $(OBJDIR_DEBUG)\\utilitarios.o
+OBJ_DEBUG = $(OBJDIR_DEBUG)\\arvore.o $(OBJDIR_DEBUG)\\bitwise.o $(OBJDIR_DEBUG)\\genetica.o $(OBJDIR_DEBUG)\\main.o $(OBJDIR_DEBUG)\\pilha.o $(OBJDIR_DEBUG)\\utilitarios.o $(OBJDIR_DEBUG)\\GPTime.o $(OBJDIR_DEBUG)\\oclConfig.o
 
-OBJ_RELEASE = $(OBJDIR_RELEASE)\\arvore.o $(OBJDIR_RELEASE)\\bitwise.o $(OBJDIR_RELEASE)\\genetica.o $(OBJDIR_RELEASE)\\main.o $(OBJDIR_RELEASE)\\pilha.o $(OBJDIR_RELEASE)\\utilitarios.o
+OBJ_RELEASE = $(OBJDIR_RELEASE)\\arvore.o $(OBJDIR_RELEASE)\\bitwise.o $(OBJDIR_RELEASE)\\genetica.o $(OBJDIR_RELEASE)\\main.o $(OBJDIR_RELEASE)\\pilha.o $(OBJDIR_RELEASE)\\utilitarios.o $(OBJDIR_RELEASE)\\GPTime.o $(OBJDIR_RELEASE)\\oclConfig.o
 
 all: debug release
 
@@ -59,23 +59,29 @@ debug: before_debug out_debug after_debug
 out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
 	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
 
-$(OBJDIR_DEBUG)\\arvore.o: arvore.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c arvore.c -o $(OBJDIR_DEBUG)\\arvore.o
+$(OBJDIR_DEBUG)\\arvore.o: arvore.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c arvore.cpp -o $(OBJDIR_DEBUG)\\arvore.o
 
-$(OBJDIR_DEBUG)\\bitwise.o: bitwise.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c bitwise.c -o $(OBJDIR_DEBUG)\\bitwise.o
+$(OBJDIR_DEBUG)\\bitwise.o: bitwise.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c bitwise.cpp -o $(OBJDIR_DEBUG)\\bitwise.o
 
-$(OBJDIR_DEBUG)\\genetica.o: genetica.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c genetica.c -o $(OBJDIR_DEBUG)\\genetica.o
+$(OBJDIR_DEBUG)\\genetica.o: genetica.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c genetica.cpp -o $(OBJDIR_DEBUG)\\genetica.o
+
+$(OBJDIR_DEBUG)\\GPTime.o: GPTime.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c GPTime.cpp -o $(OBJDIR_DEBUG)\\GPTime.o
 
 $(OBJDIR_DEBUG)\\main.o: main.cpp
 	$(CXX) $(CFLAGS_DEBUG) $(INC_DEBUG) -c main.cpp -o $(OBJDIR_DEBUG)\\main.o
 
-$(OBJDIR_DEBUG)\\pilha.o: pilha.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c pilha.c -o $(OBJDIR_DEBUG)\\pilha.o
+$(OBJDIR_DEBUG)\\pilha.o: pilha.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c pilha.cpp -o $(OBJDIR_DEBUG)\\pilha.o
 
-$(OBJDIR_DEBUG)\\utilitarios.o: utilitarios.c
-	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c utilitarios.c -o $(OBJDIR_DEBUG)\\utilitarios.o
+$(OBJDIR_DEBUG)\\utilitarios.o: utilitarios.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c utilitarios.cpp -o $(OBJDIR_DEBUG)\\utilitarios.o
+
+$(OBJDIR_DEBUG)\\oclConfig.o: oclConfig.cpp
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c oclConfig.cpp -o $(OBJDIR_DEBUG)\\oclConfig.o
 
 clean_debug: 
 	cmd /c del /f $(OBJ_DEBUG) $(OUT_DEBUG)
@@ -93,23 +99,29 @@ release: before_release out_release after_release
 out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
 	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
 
-$(OBJDIR_RELEASE)\\arvore.o: arvore.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c arvore.c -o $(OBJDIR_RELEASE)\\arvore.o
+$(OBJDIR_RELEASE)\\arvore.o: arvore.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c arvore.cpp -o $(OBJDIR_RELEASE)\\arvore.o
 
-$(OBJDIR_RELEASE)\\bitwise.o: bitwise.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c bitwise.c -o $(OBJDIR_RELEASE)\\bitwise.o
+$(OBJDIR_RELEASE)\\bitwise.o: bitwise.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c bitwise.cpp -o $(OBJDIR_RELEASE)\\bitwise.o
 
-$(OBJDIR_RELEASE)\\genetica.o: genetica.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c genetica.c -o $(OBJDIR_RELEASE)\\genetica.o
+$(OBJDIR_RELEASE)\\genetica.o: genetica.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c genetica.cpp -o $(OBJDIR_RELEASE)\\genetica.o
+
+$(OBJDIR_RELEASE)\\GPTime.o: GPTime.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c GPTime.cpp -o $(OBJDIR_RELEASE)\\GPTime.o
 
 $(OBJDIR_RELEASE)\\main.o: main.cpp
 	$(CXX) $(CFLAGS_RELEASE) $(INC_RELEASE) -c main.cpp -o $(OBJDIR_RELEASE)\\main.o
 
-$(OBJDIR_RELEASE)\\pilha.o: pilha.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c pilha.c -o $(OBJDIR_RELEASE)\\pilha.o
+$(OBJDIR_RELEASE)\\pilha.o: pilha.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c pilha.cpp -o $(OBJDIR_RELEASE)\\pilha.o
 
-$(OBJDIR_RELEASE)\\utilitarios.o: utilitarios.c
-	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c utilitarios.c -o $(OBJDIR_RELEASE)\\utilitarios.o
+$(OBJDIR_RELEASE)\\utilitarios.o: utilitarios.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c utilitarios.cpp -o $(OBJDIR_RELEASE)\\utilitarios.o
+
+$(OBJDIR_RELEASE)\\oclConfig.o: oclConfig.cpp
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c oclConfig.cpp -o $(OBJDIR_RELEASE)\\oclConfig.o
 
 clean_release: 
 	cmd /c del /f $(OBJ_RELEASE) $(OUT_RELEASE)

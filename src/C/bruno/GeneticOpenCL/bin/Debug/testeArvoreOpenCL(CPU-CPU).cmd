@@ -23,7 +23,7 @@ FOR %%i IN (%popVal%) DO (
 			SET nomeArquivo=%%~nF_cpuCpu_seed_%%j_%parameter%_%%i.txt
 			ECHO Extraindo dados para "!nomeArquivo!"
 			ECHO !nomeArquivo!>>resultFiles_%%i.txt
-			GeneticOpenCL.exe %%F>"resultadosIni\cpucpu\!nomeArquivo!"
+			GeneticOpenCL.exe %%F>"resultadosIni\!nomeArquivo!"
 		)
 	)
 )
