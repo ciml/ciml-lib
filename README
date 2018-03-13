@@ -17,9 +17,11 @@ Library Contents
 ------------------------------------------------------------------------
 - cgp_circuits (Matlab and C/C++)
 - clonalg_gpu (C++)
+- deleqc (C)
 - eg_gpu (C++)
 - eg_initialization (C++) 
 - ggp (C++)
+- ggp_bio-networks (C++)
 - ggp_coevolution (C++)
 - ggp_mo (C++)
 - gp_innovization (C)
