@@ -20,6 +20,7 @@ Library Contents
 - deleqc (C)
 - eg_gpu (C++)
 - eg_initialization (C++) 
+- es_constrained (C, Python)
 - ggp (C++)
 - ggp_bio-networks (C++)
 - ggp_coevolution (C++)
