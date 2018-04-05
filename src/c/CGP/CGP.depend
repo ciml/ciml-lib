@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1506262613 source:/home/lucasmuller/Área de Trabalho/Code/CGP/main.c
+	<math.h>
+	<string.h>
+	<time.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1512580456 source:/home/lucasmuller/Área de Trabalho/IC/CGP/main.c
+	<math.h>
+	<string.h>
+	<time.h>
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1513198108 source:/home/lucasmuller/Documentos/IC/CGP/main.c
+	<math.h>
+	<string.h>
+	<time.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
