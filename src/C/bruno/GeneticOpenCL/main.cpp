@@ -89,7 +89,7 @@ int main(int argc, char** argv){
         std::vector<cl::Platform> platforms;
         std::vector<cl::Device> devices;
 
-        setupOpenCL(platforms,devices);
+        setupOpenCLOnePlatform(platforms,devices);
         printPlatformsDevices(platforms, devices);
 
         ///Estabelecendo o contexto com os devices
@@ -617,7 +617,7 @@ int main(int argc, char** argv){
 
     std::vector<cl::Platform> platforms;
         std::vector<cl::Device> devicesCPU, devicesGPU;
-        setupOpenCL2(platforms,devicesCPU, devicesGPU);
+        setupOpenCLTwoPlatform(platforms,devicesCPU, devicesGPU);
 
         cl::Context contextoCPU(devicesCPU, NULL, NULL, NULL, &result);
         if(result != CL_SUCCESS){

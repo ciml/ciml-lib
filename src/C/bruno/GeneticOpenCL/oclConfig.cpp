@@ -76,8 +76,6 @@ const char *getErrorString(cl_int error) {
     }
 }
 
-
-
 void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::Device> devices){
     std::cout << "Available Platforms: \n";
     for(cl_uint i = 0; i < platforms.size(); ++i) {
@@ -96,7 +94,7 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
     std::cout << std::endl;
 }
 
-void setupOpenCL(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devices){
+void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devices){
     ///Encontrando as plataformas disponiveis
     int result = cl::Platform::get(&platforms);
     if(result != CL_SUCCESS){
@@ -113,7 +111,7 @@ void setupOpenCL(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &
 
 }
 
-void setupOpenCL2(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU){
+void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU){
     ///Encontrando as plataformas disponiveis
     int result = cl::Platform::get(&platforms);
     if(result != CL_SUCCESS){

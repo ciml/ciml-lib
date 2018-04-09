@@ -24,14 +24,13 @@
 
 #define LOG10   18
 
-///MUDEI AQUI
 
-#define MAX_NOS     1024
-#define MAX_DEPTH   9
+#define MAX_NOS     128
+#define MAX_DEPTH   3
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
-#define NUM_INDIV   (1024)
+#define NUM_INDIV   (128)
 #endif // NUM_INDIV
 
 #ifndef PROB_CROSS

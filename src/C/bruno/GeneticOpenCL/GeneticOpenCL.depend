@@ -894,3 +894,89 @@
 	"GPTime.h"
 	"oclConfig.h"
 
+1515326654 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509471905 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<float.h>
+	"pilha.h"
+	"utilitarios.h"
+	"bitwise.h"
+
+1509471658 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+
+1522538512 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+
+1514324674 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+	"math.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
+	"constantes.h"
+	"bitwise.h"
+
+1509244824 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
+	<stdio.h>
+	<stdlib.h>
+
+1509244823 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+	"constantes.h"
+
+1514597859 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509454584 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+
+1513265475 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\gptime.cpp
+	"GPTime.h"
+
+1513267492 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\gptime.h
+	<vector>
+	<iostream>
+	<sys/time.h>
+
+1515455454 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+	<omp.h>
+	<iostream>
+	<iomanip>
+	"genetica.h"
+	"GPTime.h"
+	"oclConfig.h"
+
+1509471658 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+	<CL/cl.hpp>
+	<iostream>
+	<string>
+	<vector>
+	"constantes.h"
+	"utilitarios.h"
+
+1515326470 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1509454581 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1515025955 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
