@@ -768,7 +768,7 @@ __kernel void evolucaoSequencial(__global Arvore* popA,
         }
 
         if(mut <= PROB_MUT){
-            mutacao(&popF[j+1], conjuntoOpTerm,  &seed);
+            mutacao(&popF[j+1], conjuntoOpTerm, &seed);
             mutacao(&popF[j], conjuntoOpTerm, &seed);
         }
         seeds[id] = seed;

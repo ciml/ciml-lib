@@ -76,7 +76,12 @@
     #define DIF_CONTEXT 0
 #endif // DIF_CONTEXT
 
+#define OCL_TIME 1
 
+#define EVOLOCL_SEQ 0
+#define AVALOCL_SEQ 0
 
+#define PROFILING_TIME 1
+#define PROFILING_POP 1
 
 #endif // CONSTANTES_H_INCLUDED
