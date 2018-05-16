@@ -1,5 +1,4 @@
 #include "bitwise.h"
-#include "constantes.h"
 
 //typedef union {
 //    float f;

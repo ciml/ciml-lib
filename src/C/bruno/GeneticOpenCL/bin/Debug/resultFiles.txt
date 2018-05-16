@@ -1,1 +1,1 @@
-resultFiles_512.txt
+resultFiles_1024.txt

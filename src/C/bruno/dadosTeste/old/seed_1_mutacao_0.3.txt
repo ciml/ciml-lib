@@ -1,7 +1,0 @@
-Lendo Dados Arquivo...
-
-N = 6750208
-
-
-M = -5
-

@@ -1,8 +1,7 @@
 #ifndef BITWISE_H_INCLUDED
 #define BITWISE_H_INCLUDED
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "constantes.h"
 
 unsigned int floatToInt(float floatVal);
 float intToFloat(unsigned int intVal);

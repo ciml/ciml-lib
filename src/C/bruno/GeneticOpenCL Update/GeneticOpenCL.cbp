@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="GeneticOpenCL" />
+		<Option pch_mode="2" />
+		<Option compiler="opencl" />
+		<MakeCommands>
+			<Build command="" />
+			<CompileFile command="" />
+			<Clean command="" />
+			<DistClean command="" />
+			<AskRebuildNeeded command="" />
+			<SilentBuild command=" &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="opencl" />
+				<Option parameters="dados/dadosSenCos1000.txt" />
+				<Compiler>
+					<Add option="-Wmissing-prototypes" />
+					<Add option="-Wmissing-declarations" />
+					<Add directory="include" />
+				</Compiler>
+				<MakeCommands>
+					<Build command="" />
+					<CompileFile command="" />
+					<Clean command="" />
+					<DistClean command="" />
+					<AskRebuildNeeded command="" />
+					<SilentBuild command=" &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/GeneticOpenCL" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="opencl" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add directory="x86" />
+		</Linker>
+		<Unit filename="GPTime.cpp" />
+		<Unit filename="GPTime.h" />
+		<Unit filename="arvore.cpp" />
+		<Unit filename="arvore.h" />
+		<Unit filename="bitwise.cpp" />
+		<Unit filename="bitwise.h" />
+		<Unit filename="constantes.h" />
+		<Unit filename="genetica.cpp" />
+		<Unit filename="genetica.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="oclConfig.cpp" />
+		<Unit filename="oclConfig.h" />
+		<Unit filename="pilha.cpp" />
+		<Unit filename="pilha.h" />
+		<Unit filename="utilitarios.cpp" />
+		<Unit filename="utilitarios.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

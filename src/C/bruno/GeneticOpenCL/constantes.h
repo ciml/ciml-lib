@@ -26,7 +26,7 @@
 
 
 #define MAX_NOS     128
-#define MAX_DEPTH   3
+#define MAX_DEPTH   5
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
@@ -45,7 +45,7 @@
 
 #define ELITISMO        0.05//0.002
 
-#define NUM_GERACOES    50
+#define NUM_GERACOES    50 //nao necessriamente usado
 
 #define CARGA 200000
 
@@ -57,11 +57,11 @@
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 0
+    #define EVOLOCL 1
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 0
+    #define AVALOCL 1
 #endif // AVALOCL
 
 #ifndef EVOLOMP
@@ -76,11 +76,16 @@
     #define DIF_CONTEXT 0
 #endif // DIF_CONTEXT
 
-#define OCL_TIME 1
 
+#ifndef EVOLOCL_SEQ
 #define EVOLOCL_SEQ 0
-#define AVALOCL_SEQ 0
+#endif // EVOLOCL_SEQ
 
+#ifndef AVALOCL_SEQ
+#define AVALOCL_SEQ 0
+#endif // AVALOCL_SEQ
+
+#define OCL_TIME 1
 #define PROFILING_TIME 1
 #define PROFILING_POP 1
 

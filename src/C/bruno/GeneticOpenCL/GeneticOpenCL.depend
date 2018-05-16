@@ -894,7 +894,7 @@
 	"GPTime.h"
 	"oclConfig.h"
 
-1515326654 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+1525666522 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
 	"arvore.h"
 
 1509471905 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.h
@@ -906,14 +906,12 @@
 	"utilitarios.h"
 	"bitwise.h"
 
-1509471658 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.h
-	<stdio.h>
-	<stdlib.h>
+1525660945 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.h
 	"constantes.h"
 
-1523823447 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1525747308 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
-1514324674 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+1525666380 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
 	<stdio.h>
 	<stdlib.h>
@@ -930,15 +928,13 @@
 	"constantes.h"
 	"bitwise.h"
 
-1509244824 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
-	<stdio.h>
-	<stdlib.h>
-
-1509244823 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
-	"bitwise.h"
+1525666390 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
 	"constantes.h"
 
-1514597859 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+1525666517 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+
+1525666407 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
 	"genetica.h"
 
 1509454584 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.h
@@ -954,7 +950,7 @@
 	<iostream>
 	<sys/time.h>
 
-1523823326 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+1525747210 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\main.cpp
 	<omp.h>
 	<iostream>
 	<iomanip>
@@ -962,7 +958,7 @@
 	"GPTime.h"
 	"oclConfig.h"
 
-1523819221 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+1525666788 c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
 	<CL/cl.hpp>
 	<iostream>
 	<string>
@@ -970,13 +966,103 @@
 	"constantes.h"
 	"utilitarios.h"
 
-1523823324 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+1525666768 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
 	"oclConfig.h"
 
-1509454581 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+1525666427 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
 	"pilha.h"
 
-1515025955 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+1525666635 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
+	"utilitarios.h"
+	"constantes.h"
+
+1525660943 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\pilha.c
+	"pilha.h"
+
+1525659992 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\arvore.c
+	"arvore.h"
+
+1525661006 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\bitwise.c
+	"bitwise.h"
+
+1525659980 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\genetica.c
+	"genetica.h"
+
+1525660493 source:c:\users\brunom\desktop\projeto get\ciml-lib\src\c\bruno\geneticopencl\utilitarios.c
+	"utilitarios.h"
+	"constantes.h"
+
+1525666522 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\arvore.cpp
+	"arvore.h"
+
+1509475505 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\arvore.h
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<float.h>
+	"pilha.h"
+	"utilitarios.h"
+	"bitwise.h"
+
+1525660945 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\pilha.h
+	"constantes.h"
+
+1525747308 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+
+1525666380 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
+	"math.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<iostream>
+	<string>
+	<iomanip>
+	<vector>
+	<limits>
+	<climits>
+	<sys/time.h>
+	<sstream>
+	<fstream>
+	"constantes.h"
+	"bitwise.h"
+
+1525666390 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\bitwise.h
+	"constantes.h"
+
+1525666517 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\bitwise.cpp
+	"bitwise.h"
+
+1525666407 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\genetica.cpp
+	"genetica.h"
+
+1509458184 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\genetica.h
+	<stdio.h>
+	<stdlib.h>
+	"arvore.h"
+
+1513265475 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\gptime.cpp
+	"GPTime.h"
+
+1513267492 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\gptime.h
+	<vector>
+	<iostream>
+	<sys/time.h>
+
+1525666768 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\oclconfig.cpp
+	"oclConfig.h"
+
+1525666788 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\oclconfig.h
+	<CL/cl.hpp>
+	<iostream>
+	<string>
+	<vector>
+	"constantes.h"
+	"utilitarios.h"
+
+1525666427 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\pilha.cpp
+	"pilha.h"
+
+1525666635 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
 	"utilitarios.h"
 	"constantes.h"
 

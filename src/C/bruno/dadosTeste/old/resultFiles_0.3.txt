@@ -1,5 +1,0 @@
-cl_seed_1_mutacao_0.3.txt
-cl_seed_2_mutacao_0.3.txt
-cl_seed_3_mutacao_0.3.txt
-cl_seed_4_mutacao_0.3.txt
-cl_seed_5_mutacao_0.3.txt

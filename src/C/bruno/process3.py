@@ -6,7 +6,7 @@ import pdb
 
 
 root = sys.argv[1]
-roots = {root+'\\1', root+'\\2', root+'\\3', root+'\\4', root+'\\5'}
+roots = {root+'/cpuCpu', root+'/cpuGpu', root+'/GpuGpu', root+'/seqSeq'}
 #tableTrain = [[]]
 #tableTest = [[]]
 #tableValidation = [[]]
@@ -42,7 +42,7 @@ for rootdir in sorted(roots):
 				lines = f.readlines()
 
 			k = (len(lines))
-			for i in range(0, k-1):
+			for i in range(0, k):
 				fitnesses = lines[i].split(' ')
 				f1 = float(fitnesses[0])
 				f2 = float(fitnesses[1])
@@ -130,6 +130,11 @@ for line in tableResult:
 	for column in line:
 		print("{0:.5f}".format(float(column)), end=' & ')
 	print('\\', end='\n')
+
+
+
+
+
 
 #for line in modelsTrain:
 #	for column in line:

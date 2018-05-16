@@ -1,4 +1,0 @@
-seed_1_mutacao_0.4.txt
-seed_2_mutacao_0.4.txt
-seed_3_mutacao_0.4.txt
-seed_4_mutacao_0.4.txt

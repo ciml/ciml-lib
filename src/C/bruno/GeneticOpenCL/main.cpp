@@ -81,7 +81,7 @@ int main(int argc, char** argv){
 
 
     #if AVALOCL || EVOLOCL
-        
+
         cl_ulong inicio, fim;
 
         ///Evento para controlar tempo gasto
@@ -136,7 +136,7 @@ int main(int argc, char** argv){
         std::cout << "Global Size = " <<globalSize << std::endl << "Local size = " << localSize << std::endl << std::endl;
 
         ///Leitura do arquivo com o programa em C++
-        std::ifstream sourceFileName("kernelAvalia.cl");
+        std::ifstream sourceFileName("kernel.cl");
         std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
         std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, (int)localSize, maxDados, minDados) + sourceFile;
         //std::cout << program_src << std::endl;
@@ -171,6 +171,7 @@ int main(int argc, char** argv){
             cl::Kernel krnlEvolucao(programa, "evolucaoSequencial");
         #endif // EVOLOCL
 
+            //cl::Kernel krnlReplace(programa, "replacePopulation");
 
         #if TESTA_INDIV
         {
@@ -253,6 +254,7 @@ int main(int argc, char** argv){
 
             ///se est� em um s� dispositivo nao precisa disso
             cmdQueueEvol->enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            //nao preciso dessa copia se estou evoluindo dado que faremos a reposicao de populacoes no opencl
             //popAtual = (Arvore*) cmdQueueEvol->enqueueMapBuffer(bufferPopA, CL_FALSE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
             #if TWODEVICES || !AVALOCL
             cmdQueueEvol->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
@@ -361,13 +363,13 @@ int main(int argc, char** argv){
             #endif
 
             cmdQueueAval->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
-        
+
             cmdQueueAval->finish();
 
         #else // AVALOCL
-        
+
             avaliaIndividuos(popFutura, dadosTreinamento, M, N);
-   
+
         #endif // AVALOCL
 
         timeManager.getEndTime(Avaliacao_T);
@@ -407,16 +409,26 @@ int main(int argc, char** argv){
 
     std::cout << "T_Evol time = " << timeManager.getTotalTime(Evolucao_T) << std::endl;
     std::cout << "T_Aval time = " << timeManager.getTotalTime(Avaliacao_T) << std::endl;
-    std::cout << "T_Iter time = " << timeManager.getTotalTime(Iteracao_T) << std::endl << std::endl;
-
+    std::cout << "T_Iter time = " << timeManager.getTotalTime(Iteracao_T) << std::endl;
+    std::cout << "Total time  = " << timeManager.getElapsedTime(Total_T) << std::endl;
+    std::cout << std::endl;
     #if OCL_TIME
     std::cout << "T_EOcl time = " << tempoTotalEvolucaoOCL << std::endl;
     std::cout << "T_AOcl time = " << tempoTotalAvaliacaoOCL << std::endl << std::endl;
+    std::cout << "T_TOcl time = " << tempoTotalEvolucaoOCL+tempoTotalAvaliacaoOCL << std::endl;
     #endif
 
-    std::cout << "Total time  = " << timeManager.getElapsedTime(Total_T) << std::endl;
-
     std::cout << "FIM" << std::endl;
+    std::cout << timeManager.getTotalTime(Evolucao_T) << " ";
+    std::cout << timeManager.getTotalTime(Avaliacao_T) << " ";
+    std::cout << timeManager.getTotalTime(Iteracao_T) << " ";
+    std::cout << timeManager.getElapsedTime(Total_T) << std::endl;
+    #if OCL_TIME
+    std::cout << "OCLFlag" << std::endl;
+    std::cout << tempoTotalEvolucaoOCL << " ";
+    std::cout << tempoTotalAvaliacaoOCL << " ";
+    std::cout << tempoTotalEvolucaoOCL+tempoTotalAvaliacaoOCL << std::endl;
+    #endif
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
     //std::cout << tempoEvolucao << " " << tempoTotalAvaliacao << " " << tempoTotal << std::endl;
@@ -429,7 +441,7 @@ int main(int argc, char** argv){
 #else
 int main(int argc, char** argv){
 
-    
+
     std::cout << std::setprecision(32) << std::fixed;
 
     float maxDados, minDados;
@@ -540,7 +552,7 @@ int main(int argc, char** argv){
 
             cl::Buffer bufferOpTerm(contextoCPU, CL_MEM_READ_ONLY, (NUM_OPBIN+NUM_OPUN+NUM_CTES+N-1)*sizeof(int));
             cl::Buffer bufferSeeds(contextoCPU, CL_MEM_READ_WRITE, NUM_INDIV*MAX_NOS*sizeof(int));
-        #endif 
+        #endif
 
         cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV*MAX_NOS*sizeof(int), seeds);
         cmdQueueAval->enqueueWriteBuffer(dados, CL_FALSE, 0, M*N * sizeof(float), dadosTranspostos);
@@ -559,11 +571,11 @@ int main(int argc, char** argv){
 
         size_t maxLocalSize = cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
         setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_TYPE>());
-        
+
         std::cout << "Global Size = " << globalSize << std::endl << "Local size = " << localSize << std::endl << std::endl;
 
         ///Leitura do arquivo com o programa em C++
-        std::ifstream sourceFileName("kernelAvalia.cl");
+        std::ifstream sourceFileName("kernel.cl");
         std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
         std::string program_src = setProgramSource(NUM_OPBIN, NUM_OPUN, M, N, localSize, maxDados, minDados) + sourceFile;
         //std::cout << program_src << std::endl;
@@ -723,16 +735,27 @@ int main(int argc, char** argv){
 
     std::cout << "T_Evol time = " << timeManager.getTotalTime(Evolucao_T) << std::endl;
     std::cout << "T_Aval time = " << timeManager.getTotalTime(Avaliacao_T) << std::endl;
-    std::cout << "T_Iter time = " << timeManager.getTotalTime(Iteracao_T) << std::endl << std::endl;
-
+    std::cout << "T_Iter time = " << timeManager.getTotalTime(Iteracao_T) << std::endl;
+    std::cout << "Total time  = " << timeManager.getElapsedTime(Total_T) << std::endl;
+    std::cout << std::endl;
     #if OCL_TIME
     std::cout << "T_EOcl time = " << tempoTotalEvolucaoOCL << std::endl;
-    std::cout << "T_AOcl time = " << tempoTotalAvaliacaoOCL << std::endl;
+    std::cout << "T_AOcl time = " << tempoTotalAvaliacaoOCL << std::endl << std::endl;
+    std::cout << "T_TOcl time = " << tempoTotalEvolucaoOCL+tempoTotalAvaliacaoOCL << std::endl;
     #endif
 
-    std::cout << "Total time  = " << timeManager.getElapsedTime(Total_T) << std::endl;
-
     std::cout << "FIM" << std::endl;
+    std::cout << timeManager.getTotalTime(Evolucao_T) << " ";
+    std::cout << timeManager.getTotalTime(Avaliacao_T) << " ";
+    std::cout << timeManager.getTotalTime(Iteracao_T) << " ";
+    std::cout << timeManager.getElapsedTime(Total_T) << std::endl;
+    #if OCL_TIME
+    std::cout << "OCLFlag" << std::endl;
+    std::cout << tempoTotalEvolucaoOCL << " ";
+    std::cout << tempoTotalAvaliacaoOCL << " ";
+    std::cout << tempoTotalEvolucaoOCL+tempoTotalAvaliacaoOCL << std::endl;
+    #endif
+
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
     //std::cout << tempoEvolucao << " " << tempoTotalAvaliacao << " " << tempoTotal << std::endl;
