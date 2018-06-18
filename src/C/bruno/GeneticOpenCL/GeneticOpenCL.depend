@@ -1007,7 +1007,7 @@
 1525660945 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\pilha.h
 	"constantes.h"
 
-1525747308 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\constantes.h
+1526447433 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\constantes.h
 
 1525666380 c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\utilitarios.h
 	"math.h"
@@ -1065,4 +1065,12 @@
 1525666635 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\utilitarios.cpp
 	"utilitarios.h"
 	"constantes.h"
+
+1526186027 source:c:\users\brunom\desktop\github\ciml-lib\src\c\bruno\geneticopencl\main.cpp
+	<omp.h>
+	<iostream>
+	<iomanip>
+	"genetica.h"
+	"GPTime.h"
+	"oclConfig.h"
 

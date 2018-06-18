@@ -57,15 +57,15 @@
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 1
+    #define EVOLOCL 0
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 1
+    #define AVALOCL 0
 #endif // AVALOCL
 
 #ifndef EVOLOMP
-    #define EVOLOMP 0
+    #define EVOLOMP 1
 #endif // EVOLOMP
 
 #ifndef AVALGPU

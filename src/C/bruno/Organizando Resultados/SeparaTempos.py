@@ -41,10 +41,10 @@ for rootdir in sorted(roots):
             #print(next)
             next = f.readline()
             times = next.split(' ')
-            newfileTimes.write(times[0] + ' ' + times[1] + ' ' + times[3])
+            newfileTimes.write(times[0] + ' ' + times[1] + ' ' + times[2])
             evol = float(times[0])
             aval = float(times[1])
-            total = float(times[3])
+            total = float(times[2])
             while "MELHOR:" not in next: #next.strip() != "FIM":
                 next = f.readline()
             newfileModel.write(next)
