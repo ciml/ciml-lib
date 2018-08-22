@@ -124,7 +124,7 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
         std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_NAME>() << std::endl;
         //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
         //std::cout <<"Max Compute  units: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
-        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;    
+        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
     }
     std::cout << std::endl;
 
@@ -156,7 +156,7 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
         #endif
 
     #endif
-        
+
     std::cout << std::endl;
 }
 
@@ -186,7 +186,7 @@ void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl
         std::cout <<"[" << i << "]"<< devicesCPU[i].getInfo<CL_DEVICE_NAME>() << std::endl;
         //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
         //std::cout <<"Max Compute  units: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
-        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;    
+        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
     }
     std::cout << std::endl;
     std::cout << "Available Devices for Platform " << platforms[2].getInfo<CL_PLATFORM_NAME>()<< ":\n";
@@ -204,7 +204,7 @@ void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl
         std::cout << "Evolucao  GPU: " << devicesGPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
         std::cout << "Avaliacao CPU: " << devicesCPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
     #endif
-        
+
     std::cout << std::endl;
 }
 
@@ -310,7 +310,7 @@ void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue
 
 }
 
-void setupCmdQueuesTwoPlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties, 
+void setupCmdQueuesTwoPlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties,
                                 std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU, cl::Context &contextoCPU, cl::Context &contextoGPU){
     int result = 0;
     #if AVALGPU
@@ -328,4 +328,3 @@ void setupCmdQueuesTwoPlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue
     }
 
 }
-

@@ -47,7 +47,7 @@
 
 #define NUM_GERACOES    50 //nao necessriamente usado
 
-#define CARGA 200000
+#define CARGA 20000
 
 #define MAX_TEXT_LINE_LENGTH 100000
 
@@ -57,7 +57,7 @@
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 0
+    #define EVOLOCL 1
 #endif // EVOLOCL
 
 #ifndef AVALOCL
@@ -65,7 +65,7 @@
 #endif // AVALOCL
 
 #ifndef EVOLOMP
-    #define EVOLOMP 1
+    #define EVOLOMP 0
 #endif // EVOLOMP
 
 #ifndef AVALGPU

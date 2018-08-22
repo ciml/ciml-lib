@@ -22,8 +22,6 @@
 				<Option compiler="opencl" />
 				<Option parameters="dados/dadosSenCos1000.txt" />
 				<Compiler>
-					<Add option="-Wmissing-prototypes" />
-					<Add option="-Wmissing-declarations" />
 					<Add directory="include" />
 				</Compiler>
 				<MakeCommands>
@@ -50,10 +48,11 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wmissing-declarations" />
 			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add directory="x86" />
+			<Add directory="lib/x86" />
 		</Linker>
 		<Unit filename="GPTime.cpp" />
 		<Unit filename="GPTime.h" />
