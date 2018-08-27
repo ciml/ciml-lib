@@ -76,6 +76,45 @@ const char *getErrorString(cl_int error) {
     }
 }
 
+std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize, float maxDados, float minDados){
+    std::string program_src =
+        "#define TIPO "  + ToString( TIPO ) + "\n" +
+        "#define SEED "  + ToString( SEED ) + "\n" +
+        "#define VAR  "  + ToString( VAR ) + "\n" +
+        "#define CTE  "  + ToString( CTE ) + "\n" +
+        "#define FBIN    "+ ToString( FBIN ) + "\n" +
+        "#define FUN     "+ ToString( FUN ) + "\n" +
+        "#define PLUS    "+ ToString( PLUS ) + "\n" +
+        "#define MIN     "+ ToString( MIN ) + "\n" +
+        "#define MULT    "+ ToString( MULT ) + "\n" +
+        "#define DIV     "+ ToString( DIV ) + "\n" +
+        "#define SIN     "+ ToString( SIN ) + "\n" +
+        "#define COS     "+ ToString( COS ) + "\n" +
+        "#define SQR     "+ ToString( SQR ) + "\n" +
+        "#define EXP     "+ ToString( EXP ) + "\n" +
+        "#define LOG10   "+ ToString( LOG10 ) + "\n" +
+        "#define NUM_OPBIN   "+ ToString( NUM_OPBIN ) + "\n" +
+        "#define NUM_OPUN   "+ ToString( NUM_OPUN ) + "\n" +
+        "#define M   "+ ToString( M ) + "\n" +
+        "#define N   "+ ToString( N ) + "\n" +
+        "#define maxDados    "+ ToString( maxDados ) + "\n" +
+        "#define minDados    "+ ToString( minDados) + "\n" +
+        "#define MAX_NOS     "+ ToString( MAX_NOS ) + "\n" +
+        "#define MAX_DEPTH   "+ ToString( MAX_DEPTH ) + "\n" +
+        "#define MAX_FILHOS  "+ ToString( MAX_FILHOS ) + "\n" +
+        "#define NUM_INDIV   "+ ToString( NUM_INDIV ) + "\n" +
+        "#define PROB_CROSS  "+ ToString( PROB_CROSS ) + "\n" +
+        "#define PROB_MUT    "+ ToString( PROB_MUT ) + "\n" +
+        "#define NUM_TORNEIO     "+ ToString( NUM_TORNEIO ) + "\n" +
+        "#define ELITISMO        "+ ToString( ELITISMO ) + "\n" +
+        "#define NUM_GERACOES    "+ ToString( NUM_GERACOES) + "\n" +
+        "#define LOCAL_SIZE " + ToString( localSize ) + "\n";
+        //std::cout <<ToString( maxDados ) << std::endl;
+        //std::cout <<maxDados<< std::endl;
+    return program_src;
+}
+
+
 void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::Device> devices){
     std::cout << "Available Platforms: \n";
     for(cl_uint i = 0; i < platforms.size(); ++i) {
@@ -93,7 +132,95 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
     }
     std::cout << std::endl;
 }
+#if AMD
+void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devices){
+    ///Encontrando as plataformas disponiveis
+    int result = cl::Platform::get(&platforms);
+    if(result != CL_SUCCESS){
+        std::cout << "Erro ao encontrar plataformas." << std::endl;
+        exit(1);
+    }
+    platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
 
+    std::cout << "Available Platforms: \n";
+    for(cl_uint i = 0; i < platforms.size(); ++i) {
+        std::cout <<"\t[" << i << "]"<<platforms[i].getInfo<CL_PLATFORM_NAME>() << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+
+    for(cl_uint i = 0; i < devices.size(); ++i) {
+        std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_NAME>() << std::endl;
+        //std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_TYPE>() << std::endl;
+        //std::cout << CL_DEVICE_TYPE_CPU << " " << CL_DEVICE_TYPE_GPU << " " << CL_DEVICE_TYPE_ACCELERATOR << std::endl;
+        //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
+        //std::cout <<"Max Compute  units: "<<devices[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
+        //std::cout <<"Max WorkGroup size: "<<devices[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+    std::cout << "Metodo de execucao: " << std::endl;
+
+    #if TWODEVICES
+        #if AVALGPU
+            std::cout << "Evolucao  CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Avaliacao GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #else
+            std::cout << "Evolucao  GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Avaliacao CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #endif
+    #else
+        #if EVOLOCL && AVALOCL && AVALGPU
+            std::cout << "Evolucao/Avaliacao  GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #elif EVOLOCL && AVALOCL && !AVALGPU
+            std::cout << "Evolucao/Avaliacao  CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #elif !EVOLOCL && AVALOCL && AVALGPU
+            std::cout << "Evolucao  Sequencial" << std::endl;
+            std::cout << "Avaliacao GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #elif !EVOLOCL && AVALOCL && !AVALGPU
+            std::cout << "Evolucao  Sequencial" << std::endl;
+            std::cout << "Avaliacao CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+        #elif EVOLOCL && !AVALOCL
+            std::cout << "Evolucao  CPU:" << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Avaliacao Sequencial" <<std::endl;
+        #endif
+
+    #endif
+
+    std::cout << std::endl;
+}
+
+void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties, std::vector<cl::Device> &devices, cl::Context &contexto){
+    int result = 0;
+    ///4 op��es: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
+    ///NUMDEVICES;FIRST
+    #if TWODEVICES
+            #if AVALGPU
+                cmdQueueEvol = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU */, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+            #else
+                cmdQueueEvol = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+            #endif // AVALGPU
+        #else
+            #if AVALGPU
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU */, commandQueueProperties, &result);
+            #else
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+            #endif // AVALGPU
+            cmdQueueEvol = cmdQueueAval;
+        #endif // TWODEVICES
+
+
+        if(result != CL_SUCCESS){
+            std::cout << "Erro ao criar a Command Queue" << std::endl;
+            exit(1);
+        }
+
+}
+#else
 void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devices){
     ///Encontrando as plataformas disponiveis
     int result = cl::Platform::get(&platforms);
@@ -104,7 +231,7 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
 
     ///Encontrando os dispositivos disponiveis na plataforma.
     #if AVALGPU
-        platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+        platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     #else
         platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     #endif
@@ -116,12 +243,14 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
     std::cout << std::endl;
 
     #if AVALGPU
-    std::cout << "Available Devices for Platform " << platforms[2].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
     #else
     std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
     #endif
     for(cl_uint i = 0; i < devices.size(); ++i) {
         std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_NAME>() << std::endl;
+        //std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_TYPE>() << std::endl;
+        //std::cout << CL_DEVICE_TYPE_CPU << " " << CL_DEVICE_TYPE_GPU << " " << CL_DEVICE_TYPE_ACCELERATOR << std::endl;
         //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
         //std::cout <<"Max Compute  units: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
         //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
@@ -133,11 +262,11 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
 
     #if TWODEVICES
         #if AVALGPU
-            std::cout << "Evolucao  CPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
-            std::cout << "Avaliacao GPU: " << devices[1].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Evolucao  CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Avaliacao GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
         #else
-            std::cout << "Evolucao  GPU: " << devices[1].getInfo<CL_DEVICE_NAME>() << std::endl;
-            std::cout << "Avaliacao CPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Evolucao  GPU: " << devices[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+            std::cout << "Avaliacao CPU: " << devices[2].getInfo<CL_DEVICE_NAME>() << std::endl;
         #endif
     #else
         #if EVOLOCL && AVALOCL && AVALGPU
@@ -159,6 +288,36 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
 
     std::cout << std::endl;
 }
+
+void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties, std::vector<cl::Device> &devices, cl::Context &contexto){
+    int result = 0;
+    ///4 op��es: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
+    ///NUMDEVICES;FIRST
+    #if TWODEVICES
+            #if AVALGPU
+                cmdQueueEvol = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU */, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+            #else
+                cmdQueueEvol = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+            #endif // AVALGPU
+        #else
+            #if AVALGPU
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU */, commandQueueProperties, &result);
+            #else
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+            #endif // AVALGPU
+            cmdQueueEvol = cmdQueueAval;
+        #endif // TWODEVICES
+
+
+        if(result != CL_SUCCESS){
+            std::cout << "Erro ao criar a Command Queue" << std::endl;
+            exit(1);
+        }
+
+}
+#endif
 
 void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl::Device> &devicesCPU, std::vector<cl::Device> &devicesGPU){
     std::cout << "Preparando para execucao em duas plataformas..." << std::endl;
@@ -241,73 +400,6 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
                     + ToString( NextPowerOf2(*localSize) );
 
     std::cout << "...fim." << std::endl;
-}
-
-std::string setProgramSource(int NUM_OPBIN, int NUM_OPUN, int M, int N, int localSize, float maxDados, float minDados){
-    std::string program_src =
-        "#define TIPO "  + ToString( TIPO ) + "\n" +
-        "#define SEED "  + ToString( SEED ) + "\n" +
-        "#define VAR  "  + ToString( VAR ) + "\n" +
-        "#define CTE  "  + ToString( CTE ) + "\n" +
-        "#define FBIN    "+ ToString( FBIN ) + "\n" +
-        "#define FUN     "+ ToString( FUN ) + "\n" +
-        "#define PLUS    "+ ToString( PLUS ) + "\n" +
-        "#define MIN     "+ ToString( MIN ) + "\n" +
-        "#define MULT    "+ ToString( MULT ) + "\n" +
-        "#define DIV     "+ ToString( DIV ) + "\n" +
-        "#define SIN     "+ ToString( SIN ) + "\n" +
-        "#define COS     "+ ToString( COS ) + "\n" +
-        "#define SQR     "+ ToString( SQR ) + "\n" +
-        "#define EXP     "+ ToString( EXP ) + "\n" +
-        "#define LOG10   "+ ToString( LOG10 ) + "\n" +
-        "#define NUM_OPBIN   "+ ToString( NUM_OPBIN ) + "\n" +
-        "#define NUM_OPUN   "+ ToString( NUM_OPUN ) + "\n" +
-        "#define M   "+ ToString( M ) + "\n" +
-        "#define N   "+ ToString( N ) + "\n" +
-        "#define maxDados    "+ ToString( maxDados ) + "\n" +
-        "#define minDados    "+ ToString( minDados) + "\n" +
-        "#define MAX_NOS     "+ ToString( MAX_NOS ) + "\n" +
-        "#define MAX_DEPTH   "+ ToString( MAX_DEPTH ) + "\n" +
-        "#define MAX_FILHOS  "+ ToString( MAX_FILHOS ) + "\n" +
-        "#define NUM_INDIV   "+ ToString( NUM_INDIV ) + "\n" +
-        "#define PROB_CROSS  "+ ToString( PROB_CROSS ) + "\n" +
-        "#define PROB_MUT    "+ ToString( PROB_MUT ) + "\n" +
-        "#define NUM_TORNEIO     "+ ToString( NUM_TORNEIO ) + "\n" +
-        "#define ELITISMO        "+ ToString( ELITISMO ) + "\n" +
-        "#define NUM_GERACOES    "+ ToString( NUM_GERACOES) + "\n" +
-        "#define LOCAL_SIZE " + ToString( localSize ) + "\n";
-        //std::cout <<ToString( maxDados ) << std::endl;
-        //std::cout <<maxDados<< std::endl;
-    return program_src;
-}
-
-void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties, std::vector<cl::Device> &devices, cl::Context &contexto){
-    int result = 0;
-    ///4 op��es: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
-    ///NUMDEVICES;FIRST
-    #if TWODEVICES
-            #if AVALGPU
-                cmdQueueEvol = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR CPU */, commandQueueProperties, &result);
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR GPU*/, commandQueueProperties, &result);
-            #else
-                cmdQueueEvol = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR GPU*/, commandQueueProperties, &result);
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
-            #endif // AVALGPU
-        #else
-            #if AVALGPU
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU */, commandQueueProperties, &result);
-            #else
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
-            #endif // AVALGPU
-            cmdQueueEvol = cmdQueueAval;
-        #endif // TWODEVICES
-
-
-        if(result != CL_SUCCESS){
-            std::cout << "Erro ao criar a Command Queue" << std::endl;
-            exit(1);
-        }
-
 }
 
 void setupCmdQueuesTwoPlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties,

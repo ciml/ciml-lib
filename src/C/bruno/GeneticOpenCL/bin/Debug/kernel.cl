@@ -2,6 +2,8 @@
 #include "utils.cl"
 #include "avalia.cl"
 
+__kernel geradorArvore
+
 int calculaTamanhoSubArvore(__global Arvore* arv, int indice){
     int soma = arv->numeroFilhos[indice];
     int tam = 1;

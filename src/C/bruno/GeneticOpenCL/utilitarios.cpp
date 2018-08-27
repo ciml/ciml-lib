@@ -99,10 +99,7 @@ float infSqrt(float num){
     }
 }
 
-void fatal(char *msg) {
-    printf("%s\n", msg);
-    exit (1);
-}
+
 
 void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
     printf("/*-----------------------------------------------------------------\n");

@@ -11,12 +11,12 @@ AR = ar.exe
 LD = g++.exe
 WINDRES = windres.exe
 
-INC = -IC:\\Users\\BrunoM\\Dropbox\\GET\\GIT\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\include
+INC = -IC:\\Users\\bruno\\Desktop\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\include
 CFLAGS = -DNUM_INDIV="$(NUM_INDIV)" -DSEED="$(SEED)" -DTWODEVICES="$(TWODEVICES)" -DEVOLOCL="$(EVOLOCL)" -DAVALOCL="$(AVALOCL)" -DEVOLOMP="$(EVOLOMP)" -DAVALGPU="$(AVALGPU)" -DDIF_CONTEXT="$(DIF_CONTEXT)" -fexceptions -std=c++11 -fopenmp -Wall
 RESINC = 
-LIBDIR = -LC:\\Users\\BrunoM\\Dropbox\\GET\\GIT\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\x86
+LIBDIR = -LC:\\Users\\bruno\\Desktop\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL\\x86
 LIB = 
-LDFLAGS = -lOpenCL -lgomp -pthread
+LDFLAGS = -lOpenCL -lgomp 
 
 INC_DEBUG = $(INC)
 CFLAGS_DEBUG = $(CFLAGS)

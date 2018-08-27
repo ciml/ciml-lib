@@ -16,12 +16,6 @@
 #if !DIF_CONTEXT
 int main(int argc, char** argv){
 
-    std::cout << std::setprecision(32) << std::fixed;
-
-    float maxDados, minDados;
-    minDados = std::numeric_limits<float>::max();
-    maxDados = (-1) * minDados;
-
     GPTime timeManager(4);
     timeManager.getStartTime(Total_T);
 
@@ -33,6 +27,12 @@ int main(int argc, char** argv){
     double tempoTotalEvolucaoOCL = 0;
     double tempoTotalEvolucao = 0;
 
+    std::cout << std::setprecision(32) << std::fixed;
+
+    float maxDados, minDados;
+    minDados = std::numeric_limits<float>::max();
+    maxDados = (-1) * minDados;
+
     int iteracoes = 0;
 
     Arvore* popAtual;
@@ -42,14 +42,12 @@ int main(int argc, char** argv){
     popFutura = new Arvore[NUM_INDIV];
 
     int* seeds;
-    int* seeds2;
     seeds = new int [NUM_INDIV * MAX_NOS];
 
     ///variaveis lidas de arquivo
     int M, N;
     char** LABELS;
     int* conjuntoOpTerm;
-    int* conjuntoOpTerm2;
     float* ctes; //TODO:ainda nao le constantes...
     int NUM_OPBIN, NUM_OPUN, NUM_CTES;
 
@@ -59,7 +57,7 @@ int main(int argc, char** argv){
     atribuiSemente(SEED);
 
     ///transposicao de dados
-    float* dadosTranspostos;
+    float* dadosTranspostos; //
     dadosTranspostos = new float [M * N];
 
     unsigned int pos = 0;
@@ -110,11 +108,11 @@ int main(int argc, char** argv){
 
         setupCmdQueuesOnePlatform(cmdQueueAval, cmdQueueEvol, commandQueueProperties, devices, contexto);
 
-        cl::Buffer bufferPopA(contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
-        cl::Buffer bufferPopF(contexto, CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
+        cl::Buffer bufferPopA  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
+        cl::Buffer bufferPopF  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
         cl::Buffer bufferOpTerm(contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int));
-        cl::Buffer bufferSeeds(contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * MAX_NOS * sizeof(int));
-        cl::Buffer dados(contexto, CL_MEM_READ_ONLY, M * N * sizeof(float));
+        cl::Buffer bufferSeeds (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * MAX_NOS * sizeof(int));
+        cl::Buffer dados       (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, M * N * sizeof(float));
 
         cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV * MAX_NOS * sizeof(int), seeds);
         cmdQueueAval->enqueueWriteBuffer(dados, CL_TRUE, 0, M * N * sizeof(float), dadosTranspostos);
@@ -146,6 +144,7 @@ int main(int argc, char** argv){
         cl::Program programa(contexto, source);
 
         //compileFlags+=" -cl-opt-disable";
+        compileFlags+=" -I C:\\Users\\bruno\\Desktop\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL";
         //std::cout << "Compile Flags = " << compileFlags << std::endl;
         try {
             programa.build(devices, compileFlags.c_str());
@@ -468,14 +467,12 @@ int main(int argc, char** argv){
     popFutura = new Arvore[NUM_INDIV];
 
     int* seeds;
-    int* seeds2;
     seeds = new int [NUM_INDIV * MAX_NOS];
 
     ///variaveis lidas de arquivo
     int M, N;
     char** LABELS;
     int* conjuntoOpTerm;
-    int* conjuntoOpTerm2;
     float* ctes; //TODO:ainda nao le constantes...
     int NUM_OPBIN, NUM_OPUN, NUM_CTES;
 

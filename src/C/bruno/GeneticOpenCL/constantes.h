@@ -53,7 +53,7 @@
 
 
 #ifndef TWODEVICES
-    #define TWODEVICES 0
+    #define TWODEVICES 1
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
@@ -61,7 +61,7 @@
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 0
+    #define AVALOCL 1
 #endif // AVALOCL
 
 #ifndef EVOLOMP
@@ -69,7 +69,7 @@
 #endif // EVOLOMP
 
 #ifndef AVALGPU
-    #define AVALGPU 0
+    #define AVALGPU 1
 #endif // AVALGPU
 
 #ifndef DIF_CONTEXT
@@ -83,6 +83,10 @@
 
 #ifndef AVALOCL_SEQ
 #define AVALOCL_SEQ 0
+#endif // AVALOCL_SEQ
+
+#ifndef AMD
+#define AMD 1
 #endif // AVALOCL_SEQ
 
 #define OCL_TIME 1

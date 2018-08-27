@@ -172,35 +172,6 @@ void imprimeMelhor(Arvore pop[], char** LABELS){
     //return pop[indiceMelhor];
 }
 
-void selection(Arvore pop[], int k){
-    int inicio = 0, fim = NUM_INDIV-1;
-
-    while(inicio < fim){
-        int r = inicio, w = fim;
-        float meio = pop[(r+w)/2].aptidao;
-
-        while(r < w){
-            if(pop[r].aptidao <= meio){
-                Arvore tmp = pop[w];
-                pop[w] = pop[r];
-                pop[r] = tmp;
-                w--;
-            } else {
-                r++;
-            }
-        }
-            if(pop[r].aptidao < meio)
-                r--;
-
-            if(k<=r){
-                fim = r;
-            }else{
-                inicio = r+1;
-            }
-    }
-    return;
-}
-
 void ordenaElite(Arvore pop[], int k){
     Arvore aux;
     int i, j;
@@ -234,14 +205,6 @@ int selecionaElite(Arvore popAtual[], Arvore popFutura[]){
 }
 
 
-float fabs2(float val1, float val2){
-    if(val1-val2 < 0){
-        return (-1* (val1-val2));
-    } else {
-        return (val1-val2);
-    }
-}
-
 int torneio(Arvore pop[], int* seed){
     int indiceMelhor = rand2(seed) % NUM_INDIV;
     int indice;
@@ -249,8 +212,6 @@ int torneio(Arvore pop[], int* seed){
     for(i = 0; i < NUM_TORNEIO-1; i++){
         indice = rand2(seed)%NUM_INDIV;
         if(pop[indice].aptidao < pop[indiceMelhor].aptidao){
-        //if(fabs2(pop[indice].aptidao, pop[indiceMelhor].aptidao) < 0.0000001){
-            //printf("entrouTorneio %d\n", indiceMelhor);
             indiceMelhor = indice;
         }
     }

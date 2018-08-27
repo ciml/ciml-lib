@@ -1,1 +1,1 @@
-f1-4096_seqSeq_seed_9_popVal_512.txt
+f1-4096_cpuCpu_seed_9_popVal_512.txt
