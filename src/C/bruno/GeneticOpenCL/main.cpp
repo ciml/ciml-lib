@@ -1,7 +1,4 @@
-#define __CL_ENABLE_EXCEPTIONS
-
 #include <omp.h>        //OpenMP
-
 #include <iostream>
 #include <iomanip>
 
@@ -9,6 +6,7 @@
 
 #include "GPTime.h"
 
+#include "OCLHelper.h"
 #include "oclConfig.h"  //Outras configura��es e bibliotecas
 
 #define TESTA_INDIV 0
@@ -21,11 +19,9 @@ int main(int argc, char** argv){
 
     double tempoAvaliacaoOCL = 0;
     double tempoTotalAvaliacaoOCL = 0;
-    double tempoTotalAvaliacao = 0;
 
     double tempoEvolucaoOCL = 0;
     double tempoTotalEvolucaoOCL = 0;
-    double tempoTotalEvolucao = 0;
 
     std::cout << std::setprecision(32) << std::fixed;
 
@@ -62,6 +58,7 @@ int main(int argc, char** argv){
 
     unsigned int pos = 0;
     std::cout << "Transpondo dados..." << std::endl;
+    //transposição necessária para otimizar a execução no opencl com acessos sequenciais à memória
     for(int j = 0; j < N; ++j ){
         for(int i = 0; i < M; ++i ){
             dadosTranspostos[pos++] = dadosTreinamento[i][j];
@@ -79,22 +76,20 @@ int main(int argc, char** argv){
 
 
     #if AVALOCL || EVOLOCL
-
         cl_ulong inicio, fim;
-
         ///Evento para controlar tempo gasto
         cl::Event e_tempo;
 
         cl_int result; //Variavel para verificar erros
         ///TODO: Colocar conferencias de erros pelo c�digo
-        std::vector<cl::Platform> platforms;
-        std::vector<cl::Device> devices;
+        std::vector<cl::Platform> platforms; /// ok
+        std::vector<cl::Device> devices; /// ok
 
-        setupOpenCLOnePlatform(platforms, devices);
-        //printPlatformsDevices(platforms, devices);
+        setupOpenCLOnePlatform(platforms, devices); /// ok
+        printPlatformsDevices(platforms, devices); /// ok
 
         ///Estabelecendo o contexto com os devices
-        cl::Context contexto(devices, NULL, NULL, NULL, &result);
+        cl::Context contexto(devices, nullptr, nullptr, nullptr, &result); /// ok
         if(result != CL_SUCCESS){
             std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
             exit(1);
@@ -103,10 +98,10 @@ int main(int argc, char** argv){
         ///Criando a fila de comando
         cl_command_queue_properties commandQueueProperties = CL_QUEUE_PROFILING_ENABLE;
 
-        cl::CommandQueue* cmdQueueEvol;
-        cl::CommandQueue* cmdQueueAval;
+        cl::CommandQueue* cmdQueueEvol; /// ok
+        cl::CommandQueue* cmdQueueAval; /// ok
 
-        setupCmdQueuesOnePlatform(cmdQueueAval, cmdQueueEvol, commandQueueProperties, devices, contexto);
+        setupCmdQueuesOnePlatform(cmdQueueAval, cmdQueueEvol, commandQueueProperties, devices, contexto); /// ok
 
         cl::Buffer bufferPopA  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
         cl::Buffer bufferPopF  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
@@ -121,18 +116,19 @@ int main(int argc, char** argv){
         cmdQueueAval->finish();
         cmdQueueEvol->finish();
 
-        size_t globalSize;
-        size_t localSize;
+        size_t globalSize; /// ok
+        size_t localSize; /// ok
         size_t numPoints;
-        std::string compileFlags;
+        std::string compileFlags; /// ok
 
-        numPoints = (size_t)M;
+    numPoints = (size_t)M;
 
-        size_t maxLocalSize = cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>();
-        setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_TYPE>());
+        size_t maxLocalSize = cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>(); /// ok
+        setNDRanges(&globalSize, &localSize, &compileFlags, maxLocalSize, numPoints, cmdQueueAval->getInfo<CL_QUEUE_DEVICE>().getInfo<CL_DEVICE_TYPE>()); /// ok
 
         std::cout << "Global Size = " <<globalSize << std::endl << "Local size = " << localSize << std::endl << std::endl;
 
+    /// ok
         ///Leitura do arquivo com o programa em C++
         std::ifstream sourceFileName("kernel.cl");
         std::string sourceFile(std::istreambuf_iterator<char>(sourceFileName),(std::istreambuf_iterator<char>()));
@@ -144,7 +140,7 @@ int main(int argc, char** argv){
         cl::Program programa(contexto, source);
 
         //compileFlags+=" -cl-opt-disable";
-        compileFlags+=" -I C:\\Users\\bruno\\Desktop\\ciml-lib\\src\\C\\bruno\\GeneticOpenCL";
+        compileFlags+= R"( -I C:\Users\bruno\Desktop\ciml-lib\src\C\bruno\GeneticOpenCL)";
         //std::cout << "Compile Flags = " << compileFlags << std::endl;
         try {
             programa.build(devices, compileFlags.c_str());
@@ -171,6 +167,14 @@ int main(int argc, char** argv){
         #endif // EVOLOCL
 
             //cl::Kernel krnlReplace(programa, "replacePopulation");
+/// ok
+
+        OCLHelper teste;
+        teste.printPlatformsDevices();
+        teste.setupContexts();
+        teste.setupCommandQueues(commandQueueProperties);
+        teste.setWorkSizesAval(numPoints);
+        teste.setupProgramSource("kernel.cl", NUM_OPBIN, NUM_OPUN, M, N, maxDados, minDados);
 
         #if TESTA_INDIV
         {
@@ -233,9 +237,9 @@ int main(int argc, char** argv){
 
             try {
                 #if EVOLOCL_SEQ
-                result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange(1), cl::NDRange(1),NULL, &e_tempo);
+                result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange(1), cl::NDRange(1), NULL, &e_tempo);
                 #else
-                result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((NUM_INDIV-novosIndividuos)/2), cl::NDRange(1),NULL, &e_tempo);
+                result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((NUM_INDIV-novosIndividuos)/2), cl::NDRange(1), NULL, &e_tempo);
                 #endif
             } catch(cl::Error& e){
                 std::cerr << getErrorString(e.err()) << std::endl;
@@ -430,7 +434,6 @@ int main(int argc, char** argv){
     #endif
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
-    //std::cout << tempoEvolucao << " " << tempoTotalAvaliacao << " " << tempoTotal << std::endl;
 
     delete [] popAtual;
     delete [] popFutura;
@@ -452,11 +455,9 @@ int main(int argc, char** argv){
 
     double tempoAvaliacaoOCL = 0;
     double tempoTotalAvaliacaoOCL = 0;
-    double tempoTotalAvaliacao = 0;
 
     double tempoEvolucaoOCL = 0;
     double tempoTotalEvolucaoOCL = 0;
-    double tempoTotalEvolucao = 0;
 
     int iteracoes = 0;
 
@@ -755,7 +756,6 @@ int main(int argc, char** argv){
 
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
-    //std::cout << tempoEvolucao << " " << tempoTotalAvaliacao << " " << tempoTotal << std::endl;
 
     delete [] popAtual;
     delete [] popFutura;

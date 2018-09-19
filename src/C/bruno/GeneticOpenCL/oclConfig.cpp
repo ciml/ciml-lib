@@ -231,7 +231,7 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
 
     ///Encontrando os dispositivos disponiveis na plataforma.
     #if AVALGPU
-        platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
+        platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     #else
         platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devices);
     #endif
@@ -291,8 +291,7 @@ void setupOpenCLOnePlatform(std::vector<cl::Platform> &platforms, std::vector<cl
 
 void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue* &cmdQueueEvol, cl_command_queue_properties commandQueueProperties, std::vector<cl::Device> &devices, cl::Context &contexto){
     int result = 0;
-    ///4 op��es: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
-    ///NUMDEVICES;FIRST
+    ///4 options: GPU-GPU, GPU-CPU, CPU-CPU, CPU-GPU
     #if TWODEVICES
             #if AVALGPU
                 cmdQueueEvol = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU */, commandQueueProperties, &result);
@@ -305,7 +304,7 @@ void setupCmdQueuesOnePlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue
             #if AVALGPU
                 cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR GPU */, commandQueueProperties, &result);
             #else
-                cmdQueueAval = new cl::CommandQueue(contexto, devices[2] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+                cmdQueueAval = new cl::CommandQueue(contexto, devices[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
             #endif // AVALGPU
             cmdQueueEvol = cmdQueueAval;
         #endif // TWODEVICES

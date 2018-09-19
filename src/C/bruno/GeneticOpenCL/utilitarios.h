@@ -1,12 +1,11 @@
 #ifndef UTILITARIOS_H_INCLUDED
 #define UTILITARIOS_H_INCLUDED
 
-#include "math.h"
-
 //c headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "math.h"
 
 //cpp headers
 #include <iostream>

@@ -53,7 +53,7 @@
 
 
 #ifndef TWODEVICES
-    #define TWODEVICES 1
+    #define TWODEVICES 0
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
@@ -61,7 +61,7 @@
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 1
+    #define AVALOCL 0
 #endif // AVALOCL
 
 #ifndef EVOLOMP
@@ -86,7 +86,7 @@
 #endif // AVALOCL_SEQ
 
 #ifndef AMD
-#define AMD 1
+#define AMD 0
 #endif // AVALOCL_SEQ
 
 #define OCL_TIME 1

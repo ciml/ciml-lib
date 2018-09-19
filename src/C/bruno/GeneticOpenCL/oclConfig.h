@@ -2,9 +2,13 @@
 #define OCLCONFIG_H_INCLUDED
 
 #define CL_TARGET_OPENCL_VERSION 120
+
+#define __CL_ENABLE_EXCEPTIONS
+
 #include <CL/cl.hpp>
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <vector>
 
