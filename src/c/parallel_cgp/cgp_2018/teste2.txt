@@ -1,0 +1,431 @@
+64 12 6 6
+0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 1 0 0 0 0 0 0 
+0 0 0 0 1 0 0 0 0 0 0 0 
+0 0 0 0 1 1 0 0 0 0 0 0 
+0 0 0 1 0 0 0 0 0 0 0 0 
+0 0 0 1 0 1 0 0 0 0 0 0 
+0 0 0 1 1 0 0 0 0 0 0 0 
+0 0 0 1 1 1 0 0 0 0 0 0 
+0 0 1 0 0 0 0 0 0 0 0 0 
+0 0 1 0 0 1 0 0 0 0 0 1 
+0 0 1 0 1 0 0 0 0 0 1 0 
+0 0 1 0 1 1 0 0 0 0 1 1 
+0 0 1 1 0 0 0 0 0 1 0 0 
+0 0 1 1 0 1 0 0 0 1 0 1 
+0 0 1 1 1 0 0 0 0 1 1 0 
+0 0 1 1 1 1 0 0 0 1 1 1 
+0 1 0 0 0 0 0 0 0 0 0 0 
+0 1 0 0 0 1 0 0 0 0 1 0 
+0 1 0 0 1 0 0 0 0 1 0 0 
+0 1 0 0 1 1 0 0 0 1 1 0 
+0 1 0 1 0 0 0 0 1 0 0 0 
+0 1 0 1 0 1 0 0 1 0 1 0 
+0 1 0 1 1 0 0 0 1 1 0 0 
+0 1 0 1 1 1 0 0 1 1 1 0 
+0 1 1 0 0 0 0 0 0 0 0 0 
+0 1 1 0 0 1 0 0 0 0 1 1 
+0 1 1 0 1 0 0 0 0 1 1 0 
+0 1 1 0 1 1 0 0 1 0 0 1 
+0 1 1 1 0 0 0 0 1 1 0 0 
+0 1 1 1 0 1 0 0 1 1 1 1 
+0 1 1 1 1 0 0 1 0 0 1 0 
+0 1 1 1 1 1 0 1 0 1 0 1 
+1 0 0 0 0 0 0 0 0 0 0 0 
+1 0 0 0 0 1 0 0 0 1 0 0 
+1 0 0 0 1 0 0 0 1 0 0 0 
+1 0 0 0 1 1 0 0 1 1 0 0 
+1 0 0 1 0 0 0 1 0 0 0 0 
+1 0 0 1 0 1 0 1 0 1 0 0 
+1 0 0 1 1 0 0 1 1 0 0 0 
+1 0 0 1 1 1 0 1 1 1 0 0 
+1 0 1 0 0 0 0 0 0 0 0 0 
+1 0 1 0 0 1 0 0 0 1 0 1 
+1 0 1 0 1 0 0 0 1 0 1 0 
+1 0 1 0 1 1 0 0 1 1 1 1 
+1 0 1 1 0 0 0 1 0 1 0 0 
+1 0 1 1 0 1 0 1 1 0 0 1 
+1 0 1 1 1 0 0 1 1 1 1 0 
+1 0 1 1 1 1 1 0 0 0 1 1 
+1 1 0 0 0 0 0 0 0 0 0 0 
+1 1 0 0 0 1 0 0 0 1 1 0 
+1 1 0 0 1 0 0 0 1 1 0 0 
+1 1 0 0 1 1 0 1 0 0 1 0 
+1 1 0 1 0 0 0 1 1 0 0 0 
+1 1 0 1 0 1 0 1 1 1 1 0 
+1 1 0 1 1 0 1 0 0 1 0 0 
+1 1 0 1 1 1 1 0 1 0 1 0 
+1 1 1 0 0 0 0 0 0 0 0 0 
+1 1 1 0 0 1 0 0 0 1 1 1 
+1 1 1 0 1 0 0 0 1 1 1 0 
+1 1 1 0 1 1 0 1 0 1 0 1 
+1 1 1 1 0 0 0 1 1 1 0 0 
+1 1 1 1 0 1 1 0 0 0 1 1 
+1 1 1 1 1 0 1 0 1 0 1 0 
+1 1 1 1 1 1 1 1 0 0 0 1 
+93	8	102	29	68	59	
+Individuo de maior pontuacao:0 PONTUACAO:361 PONTUACAO DESEJADA:384 GERACAO:50000
+Individuo de maior pontuacao:0 PONTUACAO:367 PONTUACAO DESEJADA:384 GERACAO:100000
+Individuo de maior pontuacao:0 PONTUACAO:369 PONTUACAO DESEJADA:384 GERACAO:150000
+Individuo de maior pontuacao:0 PONTUACAO:370 PONTUACAO DESEJADA:384 GERACAO:200000
+Individuo de maior pontuacao:4 PONTUACAO:371 PONTUACAO DESEJADA:384 GERACAO:250000
+Individuo de maior pontuacao:0 PONTUACAO:373 PONTUACAO DESEJADA:384 GERACAO:300000
+Individuo de maior pontuacao:0 PONTUACAO:373 PONTUACAO DESEJADA:384 GERACAO:350000
+Individuo de maior pontuacao:0 PONTUACAO:373 PONTUACAO DESEJADA:384 GERACAO:400000
+Individuo de maior pontuacao:0 PONTUACAO:373 PONTUACAO DESEJADA:384 GERACAO:450000
+Individuo de maior pontuacao:0 PONTUACAO:374 PONTUACAO DESEJADA:384 GERACAO:500000
+Individuo de maior pontuacao:0 PONTUACAO:374 PONTUACAO DESEJADA:384 GERACAO:550000
+Individuo de maior pontuacao:0 PONTUACAO:374 PONTUACAO DESEJADA:384 GERACAO:600000
+Individuo de maior pontuacao:0 PONTUACAO:374 PONTUACAO DESEJADA:384 GERACAO:650000
+Individuo de maior pontuacao:0 PONTUACAO:376 PONTUACAO DESEJADA:384 GERACAO:700000
+Individuo de maior pontuacao:0 PONTUACAO:376 PONTUACAO DESEJADA:384 GERACAO:750000
+Individuo de maior pontuacao:0 PONTUACAO:376 PONTUACAO DESEJADA:384 GERACAO:800000
+Individuo de maior pontuacao:0 PONTUACAO:376 PONTUACAO DESEJADA:384 GERACAO:850000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:900000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:950000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1000000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1050000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1100000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1150000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1200000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1250000
+Individuo de maior pontuacao:0 PONTUACAO:377 PONTUACAO DESEJADA:384 GERACAO:1300000
+Individuo de maior pontuacao:0 PONTUACAO:378 PONTUACAO DESEJADA:384 GERACAO:1350000
+Individuo de maior pontuacao:0 PONTUACAO:378 PONTUACAO DESEJADA:384 GERACAO:1400000
+Individuo de maior pontuacao:0 PONTUACAO:379 PONTUACAO DESEJADA:384 GERACAO:1450000
+Individuo de maior pontuacao:0 PONTUACAO:380 PONTUACAO DESEJADA:384 GERACAO:1500000
+Individuo de maior pontuacao:0 PONTUACAO:380 PONTUACAO DESEJADA:384 GERACAO:1550000
+Individuo de maior pontuacao:0 PONTUACAO:380 PONTUACAO DESEJADA:384 GERACAO:1600000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1650000
+Individuo de maior pontuacao:1 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1700000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1750000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1800000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1850000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1900000
+Individuo de maior pontuacao:0 PONTUACAO:381 PONTUACAO DESEJADA:384 GERACAO:1950000
+Individuo de maior pontuacao:0 PONTUACAO:382 PONTUACAO DESEJADA:384 GERACAO:2000000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2050000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2100000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2150000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2200000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2250000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2300000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2350000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2400000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2450000
+Individuo de maior pontuacao:0 PONTUACAO:383 PONTUACAO DESEJADA:384 GERACAO:2500000
+pontuacao final: 384 
+ACHOU!!!  INDIVIDUO 2
+PONTUAÇÃO: 384
+Número do gene: 6.
+Lig 1: 5 	 Lig2: 1 	 Porta: 2 
+
+Número do gene: 7.
+Lig 1: 1 	 Lig2: 4 	 Porta: 2 
+
+Número do gene: 8.
+Lig 1: 7 	 Lig2: 0 	 Porta: 3 
+
+Número do gene: 9.
+Lig 1: 0 	 Lig2: 5 	 Porta: 0 
+
+Número do gene: 10.
+Lig 1: 8 	 Lig2: 7 	 Porta: 3 
+
+Número do gene: 11.
+Lig 1: 2 	 Lig2: 0 	 Porta: 4 
+
+Número do gene: 12.
+Lig 1: 10 	 Lig2: 9 	 Porta: 4 
+
+Número do gene: 13.
+Lig 1: 10 	 Lig2: 3 	 Porta: 0 
+
+Número do gene: 14.
+Lig 1: 5 	 Lig2: 2 	 Porta: 0 
+
+Número do gene: 15.
+Lig 1: 10 	 Lig2: 3 	 Porta: 1 
+
+Número do gene: 16.
+Lig 1: 9 	 Lig2: 14 	 Porta: 2 
+
+Número do gene: 17.
+Lig 1: 9 	 Lig2: 15 	 Porta: 1 
+
+Número do gene: 18.
+Lig 1: 16 	 Lig2: 16 	 Porta: 2 
+
+Número do gene: 19.
+Lig 1: 4 	 Lig2: 2 	 Porta: 2 
+
+Número do gene: 20.
+Lig 1: 15 	 Lig2: 11 	 Porta: 2 
+
+Número do gene: 21.
+Lig 1: 18 	 Lig2: 3 	 Porta: 0 
+
+Número do gene: 22.
+Lig 1: 16 	 Lig2: 15 	 Porta: 0 
+
+Número do gene: 23.
+Lig 1: 2 	 Lig2: 18 	 Porta: 1 
+
+Número do gene: 24.
+Lig 1: 14 	 Lig2: 18 	 Porta: 3 
+
+Número do gene: 25.
+Lig 1: 21 	 Lig2: 13 	 Porta: 4 
+
+Número do gene: 26.
+Lig 1: 17 	 Lig2: 3 	 Porta: 0 
+
+Número do gene: 27.
+Lig 1: 23 	 Lig2: 3 	 Porta: 2 
+
+Número do gene: 28.
+Lig 1: 16 	 Lig2: 27 	 Porta: 2 
+
+Número do gene: 29.
+Lig 1: 12 	 Lig2: 2 	 Porta: 1 
+
+Número do gene: 30.
+Lig 1: 18 	 Lig2: 21 	 Porta: 4 
+
+Número do gene: 31.
+Lig 1: 21 	 Lig2: 25 	 Porta: 1 
+
+Número do gene: 32.
+Lig 1: 13 	 Lig2: 12 	 Porta: 4 
+
+Número do gene: 33.
+Lig 1: 13 	 Lig2: 23 	 Porta: 3 
+
+Número do gene: 34.
+Lig 1: 2 	 Lig2: 0 	 Porta: 1 
+
+Número do gene: 35.
+Lig 1: 8 	 Lig2: 24 	 Porta: 2 
+
+Número do gene: 36.
+Lig 1: 15 	 Lig2: 26 	 Porta: 2 
+
+Número do gene: 37.
+Lig 1: 5 	 Lig2: 20 	 Porta: 3 
+
+Número do gene: 38.
+Lig 1: 10 	 Lig2: 12 	 Porta: 2 
+
+Número do gene: 39.
+Lig 1: 19 	 Lig2: 6 	 Porta: 4 
+
+Número do gene: 40.
+Lig 1: 0 	 Lig2: 0 	 Porta: 2 
+
+Número do gene: 41.
+Lig 1: 6 	 Lig2: 36 	 Porta: 2 
+
+Número do gene: 42.
+Lig 1: 20 	 Lig2: 15 	 Porta: 3 
+
+Número do gene: 43.
+Lig 1: 31 	 Lig2: 15 	 Porta: 3 
+
+Número do gene: 44.
+Lig 1: 25 	 Lig2: 39 	 Porta: 0 
+
+Número do gene: 45.
+Lig 1: 17 	 Lig2: 25 	 Porta: 3 
+
+Número do gene: 46.
+Lig 1: 44 	 Lig2: 43 	 Porta: 4 
+
+Número do gene: 47.
+Lig 1: 36 	 Lig2: 7 	 Porta: 0 
+
+Número do gene: 48.
+Lig 1: 30 	 Lig2: 29 	 Porta: 3 
+
+Número do gene: 49.
+Lig 1: 8 	 Lig2: 0 	 Porta: 3 
+
+Número do gene: 50.
+Lig 1: 31 	 Lig2: 11 	 Porta: 2 
+
+Número do gene: 51.
+Lig 1: 48 	 Lig2: 43 	 Porta: 1 
+
+Número do gene: 52.
+Lig 1: 7 	 Lig2: 43 	 Porta: 3 
+
+Número do gene: 53.
+Lig 1: 34 	 Lig2: 5 	 Porta: 0 
+
+Número do gene: 54.
+Lig 1: 48 	 Lig2: 45 	 Porta: 3 
+
+Número do gene: 55.
+Lig 1: 35 	 Lig2: 50 	 Porta: 2 
+
+Número do gene: 56.
+Lig 1: 11 	 Lig2: 20 	 Porta: 0 
+
+Número do gene: 57.
+Lig 1: 39 	 Lig2: 52 	 Porta: 1 
+
+Número do gene: 58.
+Lig 1: 31 	 Lig2: 28 	 Porta: 4 
+
+Número do gene: 59.
+Lig 1: 1 	 Lig2: 19 	 Porta: 2 
+
+Número do gene: 60.
+Lig 1: 35 	 Lig2: 43 	 Porta: 4 
+
+Número do gene: 61.
+Lig 1: 22 	 Lig2: 59 	 Porta: 4 
+
+Número do gene: 62.
+Lig 1: 43 	 Lig2: 50 	 Porta: 4 
+
+Número do gene: 63.
+Lig 1: 22 	 Lig2: 20 	 Porta: 3 
+
+Número do gene: 64.
+Lig 1: 62 	 Lig2: 31 	 Porta: 2 
+
+Número do gene: 65.
+Lig 1: 64 	 Lig2: 54 	 Porta: 4 
+
+Número do gene: 66.
+Lig 1: 0 	 Lig2: 27 	 Porta: 0 
+
+Número do gene: 67.
+Lig 1: 38 	 Lig2: 52 	 Porta: 0 
+
+Número do gene: 68.
+Lig 1: 34 	 Lig2: 38 	 Porta: 2 
+
+Número do gene: 69.
+Lig 1: 64 	 Lig2: 43 	 Porta: 3 
+
+Número do gene: 70.
+Lig 1: 45 	 Lig2: 34 	 Porta: 3 
+
+Número do gene: 71.
+Lig 1: 0 	 Lig2: 4 	 Porta: 2 
+
+Número do gene: 72.
+Lig 1: 58 	 Lig2: 69 	 Porta: 2 
+
+Número do gene: 73.
+Lig 1: 40 	 Lig2: 55 	 Porta: 2 
+
+Número do gene: 74.
+Lig 1: 41 	 Lig2: 32 	 Porta: 0 
+
+Número do gene: 75.
+Lig 1: 25 	 Lig2: 66 	 Porta: 1 
+
+Número do gene: 76.
+Lig 1: 49 	 Lig2: 54 	 Porta: 0 
+
+Número do gene: 77.
+Lig 1: 32 	 Lig2: 75 	 Porta: 4 
+
+Número do gene: 78.
+Lig 1: 59 	 Lig2: 50 	 Porta: 0 
+
+Número do gene: 79.
+Lig 1: 66 	 Lig2: 54 	 Porta: 4 
+
+Número do gene: 80.
+Lig 1: 65 	 Lig2: 62 	 Porta: 3 
+
+Número do gene: 81.
+Lig 1: 48 	 Lig2: 74 	 Porta: 0 
+
+Número do gene: 82.
+Lig 1: 1 	 Lig2: 32 	 Porta: 1 
+
+Número do gene: 83.
+Lig 1: 49 	 Lig2: 46 	 Porta: 1 
+
+Número do gene: 84.
+Lig 1: 65 	 Lig2: 72 	 Porta: 0 
+
+Número do gene: 85.
+Lig 1: 61 	 Lig2: 81 	 Porta: 4 
+
+Número do gene: 86.
+Lig 1: 67 	 Lig2: 55 	 Porta: 0 
+
+Número do gene: 87.
+Lig 1: 83 	 Lig2: 68 	 Porta: 3 
+
+Número do gene: 88.
+Lig 1: 64 	 Lig2: 60 	 Porta: 2 
+
+Número do gene: 89.
+Lig 1: 56 	 Lig2: 64 	 Porta: 3 
+
+Número do gene: 90.
+Lig 1: 41 	 Lig2: 85 	 Porta: 2 
+
+Número do gene: 91.
+Lig 1: 42 	 Lig2: 75 	 Porta: 2 
+
+Número do gene: 92.
+Lig 1: 64 	 Lig2: 50 	 Porta: 2 
+
+Número do gene: 93.
+Lig 1: 79 	 Lig2: 43 	 Porta: 4 
+
+Número do gene: 94.
+Lig 1: 80 	 Lig2: 81 	 Porta: 4 
+
+Número do gene: 95.
+Lig 1: 62 	 Lig2: 54 	 Porta: 3 
+
+Número do gene: 96.
+Lig 1: 53 	 Lig2: 88 	 Porta: 0 
+
+Número do gene: 97.
+Lig 1: 81 	 Lig2: 54 	 Porta: 0 
+
+Número do gene: 98.
+Lig 1: 71 	 Lig2: 90 	 Porta: 4 
+
+Número do gene: 99.
+Lig 1: 92 	 Lig2: 57 	 Porta: 0 
+
+Número do gene: 100.
+Lig 1: 59 	 Lig2: 60 	 Porta: 4 
+
+Número do gene: 101.
+Lig 1: 57 	 Lig2: 100 	 Porta: 2 
+
+Número do gene: 102.
+Lig 1: 63 	 Lig2: 59 	 Porta: 1 
+
+Número do gene: 103.
+Lig 1: 84 	 Lig2: 73 	 Porta: 4 
+
+Número do gene: 104.
+Lig 1: 0 	 Lig2: 68 	 Porta: 4 
+
+Número do gene: 105.
+Lig 1: 70 	 Lig2: 60 	 Porta: 2 
+
+Saida: 99
+Numero de portas ativas: 283
+Saida: 87
+Numero de portas ativas: 133
+Saida: 98
+Numero de portas ativas: 173
+Saida: 103
+Numero de portas ativas: 633
+Saida: 39
+Numero de portas ativas: 7
+Saida: 14
+Numero de portas ativas: 3

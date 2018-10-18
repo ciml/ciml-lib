@@ -1,0 +1,23 @@
+TESTE PARALELO GPU
+Pontuacao Final: 384 Numero de geracoes: 3719358 Semente: 1 real 75m3,522s user	54m48,081s sys 20m16,203s
+Pontuacao Final: 384 Numero de geracoes: 375967	Semente: 2 real	8m1,201s user 5m49,147s sys	2m11,861s
+Pontuacao Final: 384 Numero de geracoes: 1618620 Semente: 3 real 27m1,233s user	19m27,275s sys 7m33,870s
+Pontuacao Final: 384 Numero de geracoes: 1153035 Semente: 4 real 26m45,143s user 18m20,814s sys	8m24,166s
+Pontuacao Final: 384 Numero de geracoes: 3092784 Semente: 5 real 70m52,966s user 49m55,808s sys	20m55,741s
+Pontuacao Final: 384 Numero de geracoes: 932052	Semente: 6 real	19m28,465s user	13m44,491s sys 5m43,886s
+Pontuacao Final: 384 Numero de geracoes: 1476593 Semente: 7 real 30m41,447s user 22m20,181s sys	8m21,633s
+Pontuacao Final: 384 Numero de geracoes: 1982802 Semente: 8 real 39m25,049s user 29m19,988s sys 10m4,885s
+Pontuacao Final: 384 Numero de geracoes: 819635	Semente: 9 real	17m9,628s user 12m52,774s sys 4m17,078s
+Pontuacao Final: 384 Numero de geracoes: 2523360 Semente: 10 real 68m43,783s user 47m22,933s sys 21m21,276s
+
+TESTES SEQUENCIAL
+Pontuacao Final: 384 Numero de geracoes: 3719358 Semente: 1 real 22m49,727s user 22m49,703s sys 0m0,000s
+Pontuacao Final: 384 Numero de geracoes: 375967	Semente: 2 real	2m10,789s user 2m10,620s sys 0m0,116s
+Pontuacao Final: 384 Numero de geracoes: 1618620 Semente: 3 real 8m16,905s user	8m16,887s sys 0m0,008s
+Pontuacao Final: 384 Numero de geracoes: 1153035 Semente: 4 real 8m57,478s user 8m57,457s sys 0m0,004s
+Pontuacao Final: 384 Numero de geracoes: 3092784 Semente: 5 real 16m43,747s user 16m43,511s sys 0m0,108s
+Pontuacao Final: 384 Numero de geracoes: 932052	Semente: 6 real	5m33,194s user 5m33,019s sys 0m0,064s
+Pontuacao Final: 384 Numero de geracoes: 1476593 Semente: 7 real 12m35,824s user 12m35,447s sys	0m0,108s
+Pontuacao Final: 384 Numero de geracoes: 1982802 Semente: 8 real 14m23,686s user 14m4,542s sys 0m17,966s
+Pontuacao Final: 384 Numero de geracoes: 819635	Semente: 9 real	6m7,145s user 6m6,606s sys 0m0,384s
+Pontuacao Final: 384 Numero de geracoes: 2523360 Semente: 10 real 26m41,329s user 26m37,286s sys 0m1,352s

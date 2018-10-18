@@ -1,0 +1,124 @@
+void avaliacaoGPU(Gene populacao[], int tabelaVerdade[], Infos infos,
+	int saidas[], int pontos_final[], cl_uint numKernels)
+{
+	/*Itens used in OpenCL*/
+	cl_device_id device;
+	cl_context context;
+	cl_program program;
+	cl_command_queue cmq;
+	cl_kernel kernels[numKernels];
+	cl_int err;
+
+	/*Datas*/
+	char kernel_names[numKernels][20] = {"avaliacaoGPU"};
+	int pontos[(NPOPULACAO - 1) * infos.numeroDeLinhasDaTabela];
+	cl_uint tamPopulacao = NPOPULACAO * NLIN * NCOL;
+	cl_uint tamTabela = infos.numeroDeLinhasDaTabela * infos.numeroDeColunasDaTabela;
+	cl_uint tamSaidas = NPOPULACAO * infos.numeroDeSaidas;
+	cl_uint tamPontos = infos.numeroDeLinhasDaTabela * (NPOPULACAO - 1);
+	size_t globalSize = (NPOPULACAO - 1) * infos.numeroDeLinhasDaTabela;
+	size_t localSize = infos.numeroDeLinhasDaTabela;
+
+	/*Create buffers to populacao, tabelaVerdade, saidas, pontos*/
+	cl_mem buffer_populacao;
+	cl_mem buffer_tabela;
+	cl_mem buffer_saidas;
+	cl_mem buffer_pontos;
+	cl_mem buffer_infos;
+
+	/*Create device*/
+	device = criaDevice();
+
+	/*Create context*/
+	context = clCreateContext(NULL, 1, &device, NULL, NULL, &err);
+	if(err < 0)
+	{
+		perror("Nao foi possivel criar context!");
+		exit(1);
+	}
+
+	/*Create and build program*/
+	program = montaProgram(context, device, FILENAME);
+	
+	/*Create commandQueue*/
+	cmq = clCreateCommandQueueWithProperties(context, device, 0, &err);
+	if(err < 0)
+	{
+		perror("Nao foi possivel criar commandQueue!");
+		exit(1);
+	}
+
+	/*Create buffers*/
+	buffer_populacao = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(Gene) * tamPopulacao, populacao, &err);
+	buffer_tabela = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(int) * tamTabela, tabelaVerdade, &err);
+	buffer_saidas = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(int) * tamSaidas, saidas, &err);
+	buffer_pontos = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+		sizeof(int) * tamPontos, pontos, &err);
+	buffer_infos = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(int) * 7, &infos, &err);
+
+	/*Create Kernels*/
+	for(int i = 0; i < numKernels; i++)
+	{
+		kernels[i] = clCreateKernel(program, kernel_names[i], &err);
+		if(err < 0) 
+		{
+         perror("Nao foi possivel criar um kernel!");
+         exit(1);
+      	}
+	}
+
+	/* Setting arguments*/
+	err = clSetKernelArg(kernels[0], 0, sizeof(cl_mem), &buffer_populacao);
+	err |= clSetKernelArg(kernels[0], 1, sizeof(cl_mem), &buffer_tabela);
+	err |= clSetKernelArg(kernels[0], 2, sizeof(cl_mem), &buffer_saidas);
+	err |= clSetKernelArg(kernels[0], 3, sizeof(cl_mem), &buffer_pontos);
+	err |= clSetKernelArg(kernels[0], 4, sizeof(cl_mem), &buffer_infos);
+	if(err < 0)
+	{
+		printf("%d\n", err);
+		perror("Nao foi possivel setar os argumentos!");
+		exit(1);
+	}
+
+	/*Enqueue Kernel*/
+	err = clEnqueueNDRangeKernel(cmq, kernels[0], 1, NULL, &globalSize,
+		&localSize, 0, NULL, NULL);
+	if(err < 0)
+	{
+		printf("%d\n", err);
+		perror("Nao foi possivel empilhar o kernel!");
+		exit(1);
+	}
+
+	err = clEnqueueReadBuffer(cmq, buffer_pontos, CL_TRUE, 0, sizeof(int) * tamPontos,
+		pontos, 0, NULL, NULL);
+	if(err < 0)
+	{
+		perror("Nao foi possivel ler do buffer!");
+		exit(1);
+	}
+
+	for(int i = 0; i < 3; i++)
+	{
+		pontos_final[i] = 0;
+		for(int j = 0; j < infos.numeroDeLinhasDaTabela; j++)
+		{
+			pontos_final[i] += pontos[i * infos.numeroDeLinhasDaTabela + j];
+		}
+	}
+
+	clReleaseDevice(device);
+	clReleaseProgram(program);
+	clReleaseContext(context);
+	clReleaseMemObject(buffer_pontos);
+	clReleaseMemObject(buffer_populacao);
+	clReleaseMemObject(buffer_saidas);
+	clReleaseMemObject(buffer_tabela);
+	clReleaseMemObject(buffer_infos);
+	clReleaseCommandQueue(cmq);
+	clReleaseKernel(kernels[0]);
+}

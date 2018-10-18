@@ -1,0 +1,79 @@
+MUDANCA VETOR DE SAIDAS
+Pontuacao Final: 64	Tempo gasto: 0.453165	Numero de geracoes: 3706	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 0.268230	Numero de geracoes: 1863	Semente: 2
+Pontuacao Final: 64	Tempo gasto: 1.291782	Numero de geracoes: 10177	Semente: 3
+Pontuacao Final: 64	Tempo gasto: 1.437501	Numero de geracoes: 10071	Semente: 4
+Pontuacao Final: 64	Tempo gasto: 0.409056	Numero de geracoes: 3117	Semente: 5
+Pontuacao Final: 64	Tempo gasto: 1.354273	Numero de geracoes: 10245	Semente: 6
+Pontuacao Final: 64	Tempo gasto: 0.164732	Numero de geracoes: 1460	Semente: 7
+Pontuacao Final: 64	Tempo gasto: 0.393956	Numero de geracoes: 2838	Semente: 8
+Pontuacao Final: 64	Tempo gasto: 0.400459	Numero de geracoes: 1563	Semente: 9
+Pontuacao Final: 64	Tempo gasto: 0.142472	Numero de geracoes: 999	    Semente: 10
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+MUDANCA INFORMACOES DA TABELA VERDADE
+Pontuacao Final: 64	Tempo gasto: 0.643263	Numero de geracoes: 3706	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 0.183285	Numero de geracoes: 1863	Semente: 2
+Pontuacao Final: 64	Tempo gasto: 1.245728	Numero de geracoes: 10177	Semente: 3
+Pontuacao Final: 64	Tempo gasto: 1.397288	Numero de geracoes: 10071	Semente: 4
+Pontuacao Final: 64	Tempo gasto: 0.537832	Numero de geracoes: 3117	Semente: 5
+Pontuacao Final: 64	Tempo gasto: 1.299239	Numero de geracoes: 10245	Semente: 6
+Pontuacao Final: 64	Tempo gasto: 0.151565	Numero de geracoes: 1460	Semente: 7
+Pontuacao Final: 64	Tempo gasto: 0.485266	Numero de geracoes: 2838	Semente: 8
+Pontuacao Final: 64	Tempo gasto: 0.347589	Numero de geracoes: 1563	Semente: 9
+Pontuacao Final: 64	Tempo gasto: 1.151122	Numero de geracoes: 999	    Semente: 10
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+APOS MUDAR PARA NAO AVALIAR O PAI
+Pontuacao Final: 64	Tempo gasto: 0.962855	Numero de geracoes: 15168	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 0.303861	Numero de geracoes: 2641	Semente: 2
+Pontuacao Final: 64	Tempo gasto: 0.083184	Numero de geracoes: 892	    Semente: 3
+Pontuacao Final: 64	Tempo gasto: 0.543237	Numero de geracoes: 5993	Semente: 4
+Pontuacao Final: 64	Tempo gasto: 0.623477	Numero de geracoes: 5150	Semente: 5
+Pontuacao Final: 64	Tempo gasto: 0.355767	Numero de geracoes: 4013	Semente: 6
+Pontuacao Final: 64	Tempo gasto: 0.187764	Numero de geracoes: 3402	Semente: 7
+Pontuacao Final: 64	Tempo gasto: 0.574773	Numero de geracoes: 6413	Semente: 8
+Pontuacao Final: 64	Tempo gasto: 0.494280	Numero de geracoes: 6340	Semente: 9
+Pontuacao Final: 64	Tempo gasto: 0.775479	Numero de geracoes: 4653	Semente: 10
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+RESULTADO ANTES DA IMPLEMENTAÇÃO DA REDUÇÃO
+Pontuacao Final: 64	Tempo gasto: 9.046774	Numero de geracoes: 15168	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 2.827360	Numero de geracoes: 2641	Semente: 2
+Pontuacao Final: 64	Tempo gasto: 0.920994	Numero de geracoes: 892	    Semente: 3
+Pontuacao Final: 64	Tempo gasto: 5.220430	Numero de geracoes: 5993	Semente: 4
+Pontuacao Final: 64	Tempo gasto: 10.760716	Numero de geracoes: 5150	Semente: 5
+Pontuacao Final: 64	Tempo gasto: 3.321393	Numero de geracoes: 4013	Semente: 6
+Pontuacao Final: 64	Tempo gasto: 4.727023	Numero de geracoes: 3402	Semente: 7
+Pontuacao Final: 64	Tempo gasto: 5.631586	Numero de geracoes: 6413	Semente: 8
+Pontuacao Final: 64	Tempo gasto: 4.813448	Numero de geracoes: 6340	Semente: 9
+Pontuacao Final: 64	Tempo gasto: 7.513921	Numero de geracoes: 4653	Semente: 10
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+
+Pontuacao Final: 384	Tempo gasto: 1053.911384	Numero de geracoes: 1102922	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 9.047832	Numero de geracoes: 15168	Semente: 1
+Pontuacao Final: 384	Tempo gasto: 1155.815599	Numero de geracoes: 1102922	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 10.636561	Numero de geracoes: 15168	Semente: 1
+Pontuacao Final: 64	Tempo gasto: 10.871673	Numero de geracoes: 15168	Semente: 1
+
+
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+ANTES DA REDUCAO
+Pontuacao Final: 384	Tempo gasto: 6021.700083	Numero de geracoes: 1102922	Semente: 1 
+real	39m38,196s user	95m19,842s sys	5m1,942s CPU
+
+Pontuacao Final: 384	Tempo gasto: 1314.415862	Numero de geracoes: 1102922	Semente: 1
+real	22m1,696s user	15m27,789s sys	6m26,642s GPU
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+DEPOIS DA REDUCAO
+Pontuacao Final: 384	Tempo gasto: 1546.601742	Numero de geracoes: 1102922	Semente: 1
+real	25m51,480s user	18m11,025s sys	7m35,589s
+
+
+
+
+/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/
+Pontuacao Final: 384	Tempo gasto: 4504.267736	Numero de geracoes: 3719358	Semente: 1
+real	75m3,522s
+user	54m48,081s
+sys	20m16,203s
+
