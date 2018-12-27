@@ -15,6 +15,7 @@ by content
 
 Library Contents
 ------------------------------------------------------------------------
+- bi-level_bus_routing (C/C++)
 - cgp_circuits (Matlab and C/C++)
 - clonalg_gpu (C++)
 - deleqc (C)
