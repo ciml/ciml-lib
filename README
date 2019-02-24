@@ -15,18 +15,18 @@ by content
 
 Library Contents
 ------------------------------------------------------------------------
-- bi-level_bus_routing (C/C++)
-- cgp_circuits (Matlab and C/C++)
-- clonalg_gpu (C++)
-- deleqc (C)
-- eg_gpu (C++)
-- eg_initialization (C++) 
-- es_constrained (C, Python)
-- ggp (C++)
-- ggp_bio-networks (C++)
-- ggp_coevolution (C++)
-- ggp_mo (C++)
-- gp_innovization (C)
+- bi-level_bus_routing (C/C++): Marcus Vinícius
+- cgp_circuits (Matlab, Python, and C/C++): José Eduardo and Lucas
+- clonalg_gpu (C++): Igor
+- deleqc (C): Heder
+- eg_gpu (C++): Igor
+- eg_initialization (C++): Igor
+- es_constrained (C, Python): Pedro
+- ggp (C++): João, Felipe, and Flávio
+- ggp_bio-networks (C++): João, Felipe, and Flávio
+- ggp_coevolution (C++): João
+- ggp_mo (C++): João
+- gp_innovization (C): Igor
 - gp_ocl_apu (C)
-- gp_hyper-heuristic (C)
-- aos_scheduling (C)
+- gp_hyper-heuristic (C): Guilherme
+- aos_scheduling (C): Guilherme
