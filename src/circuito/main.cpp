@@ -11,7 +11,7 @@ using namespace std;
 
 void leTxt(int *nEntradas, int *nSaidas, int *nLinhasTabela)
 {
-    ifstream read("tabela6x.txt");
+    ifstream read("tabela6+.txt");
     int aux;
 
     read>>aux;
@@ -48,9 +48,6 @@ vector< vector<bool> > criaTabela(int nEntradas, int nSaidas, int nLinhasTabela,
            cout << tabela[i][j] << ((j == nSaidas-1) ? "\n" : " ");
         }
     }
-
-    cout << "-------------------\nEnter pra continuar" << endl;
-    cin.ignore();
 
     return tabela;
 }
@@ -138,11 +135,40 @@ int novoValor(int pos, int nLinhas, int nColunas, int lb, int nEntradas)
     else return ((pos+1)%3 == 0 ? rand()%4+1 : levelBackFunc((pos/(nLinhas*nColunas))+1, nLinhas, lb, nEntradas));
 }
 
-bool geneAtivo(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int pos)
+void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nSaidas, int saida)
 {
-    vector<bool> in(nLinhas*nColunas, 0);
-    int auxTotal = (nLinhas*nColunas*3) + nSaidas;
+    if(vec[pos-2] >= nSaidas)
+    {
+        (*in)[saida][pos-2] = 1;
+        int auxEsq = vec[pos-2] - nSaidas;
+        cout << "esq: " << auxEsq << endl;
+        busca(in, auxEsq, vec, nSaidas, saida);
+    }
+    if(vec[pos-1] >= nSaidas)
+    {
+        (*in)[saida][pos-1] = 1;
+        int auxDir = vec[pos-1] - nSaidas;
+        cout << "dir: " << auxDir << endl;
+        busca(in, auxDir, vec, nSaidas, saida);
+    }
+}
 
+vector< vector<bool> > geneAtivo(vector<int> vec, int nLinhas, int nColunas, int nSaidas, int pos)
+{
+    int saida = (nLinhas*nColunas*3) - pos;
+    vector< vector<bool> > in(nLinhas*nColunas, vector<bool>(nSaidas, 0));
+    for(int i = 0; i < nSaidas; i++)
+    {
+        int aux = vec[i];
+        if(aux >= nSaidas)
+        {
+            aux -= nSaidas;
+            in[saida][aux] = 1;
+            cout << aux << endl;
+            busca((&in), aux, vec, nSaidas, saida);
+        }
+    }
+    return in;
 }
 
 vector<int> funcAlteracao(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, bool imprime)
@@ -284,6 +310,17 @@ void funcV5(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
 //}
 //
 
+void teste(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela)
+{
+    vector<int> vec = funcVetorAleatorio(nEntradas, nLinhas, nColunas, nSaidas, lb);
+    for(int i = 0; i < vec.capacity(); i++)
+        cout << vec[i] << ((i+1)%3 == 0 ? ((i <= (nLinhas*nColunas*3)) ? " | " : " ") : " ") << ((i == (nLinhas*nColunas*3)+nSaidas-1) ? "\n" : "");
+    vector< vector<bool> > teste = geneAtivo(vec, nLinhas, nColunas, nSaidas, nLinhas+(nLinhas*nColunas*3));
+    for(int i = 0; i < nSaidas; i++)
+        for(int j = 0; j < teste.capacity(); j++)
+            cout << teste[i][j] << (j == teste.capacity()-1 ? "\n" : " ");
+}
+
 int main()
 {
     int seed, nLinhas, nColunas, levelback, nEntradas, nSaidas, nLinhasTabela;
@@ -298,9 +335,13 @@ int main()
     cin >> levelback;
 
     leTxt(&nEntradas, &nSaidas, &nLinhasTabela);
+    cout << "-------------------\nEnter pra continuar" << endl;
+    cin.ignore();
 
     srand(seed);
-    funcV5(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, false);
+    //funcV5(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, true);
+
+    teste(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela);
+
     return 0;
 }
-
