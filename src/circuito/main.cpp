@@ -135,39 +135,42 @@ int novoValor(int pos, int nLinhas, int nColunas, int lb, int nEntradas)
     else return ((pos+1)%3 == 0 ? rand()%4+1 : levelBackFunc((pos/(nLinhas*nColunas))+1, nLinhas, lb, nEntradas));
 }
 
-void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nSaidas, int saida)
+void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nEntradas, int saida)
 {
-    if(vec[pos-2] >= nSaidas)
+    if((vec[pos-2] >= nEntradas) && ((*in)[saida][vec[pos-2]] != 1))
     {
-        (*in)[saida][pos-2] = 1;
-        int auxEsq = vec[pos-2] - nSaidas;
-        cout << "esq: " << auxEsq << endl;
-        busca(in, auxEsq, vec, nSaidas, saida);
+        int auxEsq = vec[pos-2] - nEntradas;
+        (*in)[saida][auxEsq] = 1;
+        busca(in, auxEsq, vec, nEntradas, saida);
     }
-    if(vec[pos-1] >= nSaidas)
+
+    if((vec[pos-1] >= nEntradas) && ((*in)[saida][vec[pos-1]] != 1))
     {
-        (*in)[saida][pos-1] = 1;
-        int auxDir = vec[pos-1] - nSaidas;
-        cout << "dir: " << auxDir << endl;
-        busca(in, auxDir, vec, nSaidas, saida);
+        int auxDir = vec[pos-1] - nEntradas;
+        (*in)[saida][auxDir] = 1;
+        busca(in, auxDir, vec, nEntradas, saida);
     }
 }
 
-vector< vector<bool> > geneAtivo(vector<int> vec, int nLinhas, int nColunas, int nSaidas, int pos)
+vector< vector<bool> > geneAtivo(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int pos)
 {
-    int saida = (nLinhas*nColunas*3) - pos;
-    vector< vector<bool> > in(nLinhas*nColunas, vector<bool>(nSaidas, 0));
+    int contTotal = vec.capacity();
+    vector< vector<bool> > in(nLinhas*nColunas, vector<bool>(nSaidas, 1));
     for(int i = 0; i < nSaidas; i++)
+        for(int j = 0; j < nLinhas*nColunas; j++)
+            in[i][j] = 0;
+
+    for(int i = contTotal-nSaidas, saida = 0; i < contTotal; i++, saida++)
     {
         int aux = vec[i];
-        if(aux >= nSaidas)
+        if((aux >= nEntradas))
         {
-            aux -= nSaidas;
+            aux -= nEntradas;
             in[saida][aux] = 1;
-            cout << aux << endl;
-            busca((&in), aux, vec, nSaidas, saida);
+            busca((&in), aux, vec, nEntradas, saida);
         }
     }
+    
     return in;
 }
 
@@ -315,6 +318,7 @@ void teste(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nL
     vector<int> vec = funcVetorAleatorio(nEntradas, nLinhas, nColunas, nSaidas, lb);
     for(int i = 0; i < vec.capacity(); i++)
         cout << vec[i] << ((i+1)%3 == 0 ? ((i <= (nLinhas*nColunas*3)) ? " | " : " ") : " ") << ((i == (nLinhas*nColunas*3)+nSaidas-1) ? "\n" : "");
+    
     vector< vector<bool> > teste = geneAtivo(vec, nLinhas, nColunas, nSaidas, nLinhas+(nLinhas*nColunas*3));
     for(int i = 0; i < nSaidas; i++)
         for(int j = 0; j < teste.capacity(); j++)
