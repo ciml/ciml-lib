@@ -137,18 +137,26 @@ int novoValor(int pos, int nLinhas, int nColunas, int lb, int nEntradas)
 
 void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nEntradas, int saida)
 {
-    if((vec[pos-2] >= nEntradas) && ((*in)[saida][vec[pos-2]] != 1))
+    if(pos >= nEntradas)
     {
-        int auxEsq = vec[pos-2] - nEntradas;
-        (*in)[saida][auxEsq] = 1;
-        busca(in, auxEsq, vec, nEntradas, saida);
-    }
+        int aux = (pos-nEntradas)*3 + 2;
+//        cout << "busca pos: " << pos << endl;
+//        cout << "vec: " << vec[aux-2] << " " << vec[aux-1] << " " << vec[aux] << endl; //printando errado dando certo?
 
-    if((vec[pos-1] >= nEntradas) && ((*in)[saida][vec[pos-1]] != 1))
-    {
-        int auxDir = vec[pos-1] - nEntradas;
-        (*in)[saida][auxDir] = 1;
-        busca(in, auxDir, vec, nEntradas, saida);
+        if(vec[aux-2] >= nEntradas)
+        {
+            int auxEsq = vec[aux-2] - nEntradas;
+            (*in)[saida][auxEsq] = true;
+            auxEsq = (auxEsq*3) + 2;
+            busca(in, auxEsq, vec, nEntradas, saida);
+        }
+        if(vec[aux-1] >= nEntradas)
+        {
+            int auxDir = vec[aux-1] - nEntradas;
+            (*in)[saida][auxDir] = true;
+            auxDir = (auxDir*3) + 2;
+            busca(in, auxDir, vec, nEntradas, saida);
+        }
     }
 }
 
@@ -158,19 +166,31 @@ vector< vector<bool> > geneAtivo(vector<int> vec, int nEntradas, int nLinhas, in
     vector< vector<bool> > in(nLinhas*nColunas, vector<bool>(nSaidas, 1));
     for(int i = 0; i < nSaidas; i++)
         for(int j = 0; j < nLinhas*nColunas; j++)
-            in[i][j] = 0;
+            in[i][j] = false;
 
     for(int i = contTotal-nSaidas, saida = 0; i < contTotal; i++, saida++)
     {
         int aux = vec[i];
-        if((aux >= nEntradas))
+//        cout << "geneAtivo aux: " << aux << endl;
+        bool rep = false;
+        if(aux >= nEntradas)
         {
-            aux -= nEntradas;
-            in[saida][aux] = 1;
-            busca((&in), aux, vec, nEntradas, saida);
+            if(saida > 0)
+                for(int j = 0; j < saida; j++)
+                    if(vec[contTotal-nSaidas+j] == aux)
+                    {
+                        for(int k = 0; k < nLinhas*nColunas; k++)
+                            in[saida][k] = in[j][k];
+                        rep = true;
+                        break;
+                    }
+            if(!rep)
+            {
+                in[saida][aux-nEntradas] = true;
+                busca((&in), aux, vec, nEntradas, saida);
+            }
         }
     }
-    
     return in;
 }
 
