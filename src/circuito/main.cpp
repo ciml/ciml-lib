@@ -74,9 +74,9 @@ void funcIn(vector< vector<bool> > *in, vector<int> vec, int nEntradas, int nLin
         {
             int aux1 = vec[j-2], aux2 = vec[j-1];
 
-            if(vec[j] == 1) (*in)[i][aux] = ((*in)[i][aux1] == 1 && (*in)[i][aux2] == 1); //AND
-            else if(vec[j] == 2) (*in)[i][aux] = ((*in)[i][aux1] == 1 || (*in)[i][aux2] == 1); //OR
-            else if(vec[j] == 3) (*in)[i][aux] = ((*in)[i][aux1] != 1); //NOT
+            if(vec[j] == 1) (*in)[i][aux] = ((*in)[i][aux1] && (*in)[i][aux2]); //AND
+            else if(vec[j] == 2) (*in)[i][aux] = ((*in)[i][aux1] || (*in)[i][aux2]); //OR
+            else if(vec[j] == 3) (*in)[i][aux] = !((*in)[i][aux1]); //NOT
             else (*in)[i][aux] = ((*in)[i][aux1] != (*in)[i][aux2]); //XOR
             aux++;
         }
@@ -112,6 +112,7 @@ vector<int> funcVetorAleatorio(int nEntradas, int nLinhas, int nColunas, int nSa
 {
     vector<int> vec((nLinhas*nColunas*3)+nSaidas);
     int col = 1, cont = (nLinhas*nColunas*3);
+
     for(int i = 2; i < cont; i += 3)
     {
         vec[i] = rand()%4+1;
@@ -160,18 +161,17 @@ void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nEntradas, 
     }
 }
 
-vector< vector<bool> > geneAtivo(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int pos)
+vector< vector<bool> > subgrafos(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int pos)
 {
     int contTotal = vec.capacity();
     vector< vector<bool> > in(nLinhas*nColunas, vector<bool>(nSaidas, 1));
-    for(int i = 0; i < nSaidas; i++)
-        for(int j = 0; j < nLinhas*nColunas; j++)
+    for(int i = 0; i < in[0].size(); i++)
+        for(int j = 0; j < in.size(); j++)
             in[i][j] = false;
 
     for(int i = contTotal-nSaidas, saida = 0; i < contTotal; i++, saida++)
     {
         int aux = vec[i];
-//        cout << "geneAtivo aux: " << aux << endl;
         bool rep = false;
         if(aux >= nEntradas)
         {
@@ -194,16 +194,19 @@ vector< vector<bool> > geneAtivo(vector<int> vec, int nEntradas, int nLinhas, in
     return in;
 }
 
+bool geneAtivo(vector< vector<bool> > subgrafo, int val)
+{
+
+    return false;
+}
+
 vector<int> funcAlteracao(vector<int> vec, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, bool imprime)
 {
     int cont = (nLinhas*nColunas*3) + nSaidas;
 
     int novoIndice = rand()%(cont);
-//    if(novoIndice >= (cont-nSaidas))
-//        if(AM)
-//            if(!geneAtivo(vec, novoIndice))
-//                while(!geneAtivo(vec, novoIndice))
-//                    novoIndice = rand()%(cont);
+//    if(novoIndice < (cont-nSaidas))
+//        if()
 
     int aux = novoValor(novoIndice, nLinhas, nColunas, lb, nEntradas);
 
@@ -216,8 +219,8 @@ vector<int> funcAlteracao(vector<int> vec, int nEntradas, int nLinhas, int nColu
     {
         cout << "Valor do indice " << novoIndice+1 << " alterado para " << vec[novoIndice] << endl;
         cout << "Vetor alterado: ";
-        for(int i = 0 ; i < cont; i++)
-            cout << vec[i] << ((i+1)%3 == 0 ? ((i <= cont-nSaidas) ? " | " : " ") : " ") << ((i == cont-1) ? "\n\n" : "");
+        for(int i = 0 ; i < vec.size(); i++)
+            cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "\n\n" : "");
     }
 
     return vec;
@@ -237,8 +240,8 @@ void funcV5(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
         if(imprime)
         {
             cout << "Novo vetor: ";
-            for(int i = 0 ; i < cont+nSaidas; i++)
-                cout << vec[i] << ((i+1)%3 == 0 ? ((i <= cont) ? " | " : " ") : " ") << ((i == cont+nSaidas-1) ? "   <-------\n\n" : "");
+            for(int i = 0 ; i < vec.size(); i++)
+                cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "   <-------\n\n" : "");
         }
         for(int i = 0; i < rep; i++)
         {
@@ -271,79 +274,113 @@ void funcV5(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
         if(auxAcerto >= nLinhasTabela*nSaidas) break;
     }
     cout << "-------------------" << endl;
-    for(int i = 0; i < cont+nSaidas; i++)
-        cout << vec[i] << ((i+1)%3 == 0 ? ((i <= cont) ? " | " : " ") : " ") << ((i == cont+nSaidas-1) ? "\n" : "");
+    for(int i = 0; i < vec.size(); i++)
+        cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "\n" : "");
     cout << "-------------------\nEnter pra continuar" << endl;
     cin.ignore();
 }
 
-////pra usar na V6
-//vector<int> funcOut(vector< vector<int> > in, vector< vector<int> > tabela, vector<int> vec, int rep, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela, bool imprime)
-//{
-//    int auxAcerto = 0;
-//    vector<int> vec2 = vec, vecAux = vec;
-//
-//    for(int i = 0; i < rep; i++)
-//    {
-//        int acertos = 0;
-//        vec2 = funcAlteracao(vec, nEntradas, nLinhas, nColunas, nSaidas, lb, imprime);
-//        funcIn(&in, vec2, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela, imprime);
-//
-//        for(int j = 0; j < nLinhasTabela; j++)
-//            for(int k = 0; k < nSaidas; k++)
-//            {
-//                int auxInd = nEntradas + (nLinhas*nColunas) + k;
-//                if(in[j][auxInd] == tabela[j][k])
-//                    acertos++;
-//            }
-//        if(acertos >= auxAcerto)
-//        {
-//            vecAux = vec2;
-//            auxAcerto = acertos;
-//        }
-//        cout << acertos << "/" << nLinhasTabela*nSaidas << ((imprime) ? "\n-------------\n\n\n" : "\n");
-//    }
-//    cout << endl;
-//    return vecAux;
-//}
-//
-//void funcBetaV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela, int rep, bool imprime)
-//{
-//    int cont = (nLinhas*nColunas*3), n = nEntradas + (nLinhas*nColunas) + nSaidas;
-//    vector< vector<bool> > in(nLinhasTabela, vector<bool>(n, 1));
-//    vector< vector<bool> > tabela = criaTabela(nEntradas, nSaidas, nLinhasTabela, &in);
-//    vector<int> vec = funcVetorAleatorio(nEntradas, nLinhas, nColunas, nSaidas, lb);
-//    vector<int> vec2 = vec;
-//
-//    for(int auxRep = 1; auxRep <= 100000; auxRep++)
-//    {
-//        if(imprime)
-//        {
-//            cout << "Novo vetor: ";
-//            for(int i = 0 ; i < cont+nSaidas; i++)
-//                cout << vec2[i] << ((i+1)%3 == 0 ? ((i <= cont) ? " | " : " ") : " ") << ((i == cont+nSaidas-1) ? "   <-------\n\n" : "");
-//        }
-//        vec2 = funcOut(in, tabela, vec2, rep, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela, imprime);
-//    }
-//    cout << "-------------------" << endl;
-//    for(int i = 0; i < cont+nSaidas; i++)
-//        cout << vec2[i] << ((i+1)%3 == 0 ? ((i <= cont) ? " | " : " ") : " ") << ((i == cont+nSaidas-1) ? "\n" : "");
-//    cout << "-------------------\nEnter pra continuar" << endl;
-//    cin.ignore();
-//}
-//
-
 void teste(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela)
 {
     vector<int> vec = funcVetorAleatorio(nEntradas, nLinhas, nColunas, nSaidas, lb);
-    for(int i = 0; i < vec.capacity(); i++)
-        cout << vec[i] << ((i+1)%3 == 0 ? ((i <= (nLinhas*nColunas*3)) ? " | " : " ") : " ") << ((i == (nLinhas*nColunas*3)+nSaidas-1) ? "\n" : "");
-    
-    vector< vector<bool> > teste = geneAtivo(vec, nLinhas, nColunas, nSaidas, nLinhas+(nLinhas*nColunas*3));
-    for(int i = 0; i < nSaidas; i++)
-        for(int j = 0; j < teste.capacity(); j++)
-            cout << teste[i][j] << (j == teste.capacity()-1 ? "\n" : " ");
+    for(int i = 0; i < vec.size(); i++)
+        cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "\n" : "");
+
+    vector< vector<bool> > teste = subgrafos(vec, nEntradas, nLinhas, nColunas, nSaidas, nLinhas+(nLinhas*nColunas*3));
+    for(int i = 0; i < teste[0].size(); i++)
+        for(int j = 0; j < teste.size(); j++)
+            cout << teste[i][j] << (j == teste.size()-1 ? "\n" : " ");
 }
+
+//ignorar essa funcao por enquanto
+//void funcPMX(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela, int rep, bool imprime)
+//{
+//    int auxAcerto1 = 0, auxAcerto2 = 0, cont = (nLinhas*nColunas*3), n = nEntradas + (nLinhas*nColunas) + nSaidas;
+//    vector< vector<int> > in(nLinhasTabela, vector<int>(n, 1));
+//    vector< vector<int> > tabela = criaTabela(nEntradas, nSaidas, nLinhasTabela, &in);
+//    vector<int> vec = funcVetorAleatorio(nEntradas, nLinhas, nColunas, nSaidas, lb);
+//    vector<int> pai1 = vec, pai2 = vec, vecAux1 = vec, vecAux2 = vec, vecFilho = vec;
+//
+//    for(int auxRep = 1; auxRep <= 1000000; auxRep++)
+//    {
+//        for(int z = 0; z < 2; z++)
+//        {
+//            //pai1
+//            vec = vecAux1;
+//            for(int i = 0; i < rep; i++)
+//            {
+//                int acertos = 0;
+//
+//                pai1 = funcAlteracao(vec, nEntradas, nLinhas, nColunas, nSaidas, lb, imprime);
+//                for(int j = 0; j < nLinhasTabela; j++)
+//                {
+//                    funcIn(&in, pai1, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela, imprime);
+//                    for(int k = 0; k < nSaidas; k++)
+//                    {
+//                        int auxInd = nEntradas + (nLinhas*nColunas) + k;
+//                        if(in[j][auxInd] == tabela[j][k])
+//                            acertos++;
+//                    }
+//                }
+//                cout << acertos << "/" << nLinhasTabela*nSaidas << endl;
+//                if(acertos >= auxAcerto1)
+//                {
+//                    vecAux1 = pai1;
+//                    auxAcerto1 = acertos;
+//                    //cin.ignore();
+//                }
+//            }
+//
+//            //pai2
+//            vec = vecAux2;
+//            for(int i = 0; i < rep; i++)
+//            {
+//                int acertos = 0;
+//
+//                pai2 = funcAlteracao(vec, nEntradas, nLinhas, nColunas, nSaidas, lb, imprime);
+//                for(int j = 0; j < nLinhasTabela; j++)
+//                {
+//                    funcIn(&in, pai2, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela, imprime);
+//                    for(int k = 0; k < nSaidas; k++)
+//                    {
+//                        int auxInd = nEntradas + (nLinhas*nColunas) + k;
+//                        if(in[j][auxInd] == tabela[j][k])
+//                            acertos++;
+//                    }
+//                }
+//                cout << acertos << "/" << nLinhasTabela*nSaidas << endl;
+//                if(acertos >= auxAcerto2)
+//                {
+//                    vecAux2 = pai2;
+//                    auxAcerto2 = acertos;
+//                    //cin.ignore();
+//                }
+//            }
+//        }
+//
+//        vector<int> filho1 = pai2, filho2 = pai1;
+//        int limA, limB;
+//
+//        //filho1
+//        limA = rand()%(cont);
+//        limB = rand()%(cont+nSaidas);
+//        if(limA >= limB)
+//            while(limB <= limA)
+//                limB = rand()%(cont+nSaidas);
+//        for(int i = limA; i < limB+1; i++)
+//            filho1[i] = pai1[i];
+//        //filho2
+//        limA = rand()%(cont);
+//        limB = rand()%(cont+nSaidas);
+//        if(limA >= limB)
+//            while(limB <= limA)
+//                limB = rand()%(cont+nSaidas);
+//        for(int i = limA; i < limB+1; i++)
+//            filho2[i] = pai2[i];
+//
+//        cout << auxRep << "\n\n";
+//    }
+//}
 
 int main()
 {
@@ -363,7 +400,7 @@ int main()
     cin.ignore();
 
     srand(seed);
-    //funcV5(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, true);
+//    funcV5(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, false);
 
     teste(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela);
 
