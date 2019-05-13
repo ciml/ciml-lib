@@ -141,8 +141,8 @@ void busca(vector< vector<bool> > *in, int pos, vector<int> vec, int nEntradas, 
     if(pos >= nEntradas)
     {
         int aux = (pos-nEntradas)*3 + 2;
-        cout << "busca pos: " << pos << endl;
-        cout << "vec: " << vec[aux-2] << " " << vec[aux-1] << " " << vec[aux] << endl;
+//        cout << "busca pos: " << pos << endl;
+//        cout << "vec: " << vec[aux-2] << " " << vec[aux-1] << " " << vec[aux] << endl;
 
         if(vec[aux-2] >= nEntradas)
         {
@@ -191,13 +191,12 @@ vector< vector<bool> > subgrafos(vector<int> vec, int nEntradas, int nLinhas, in
     return in;
 }
 
-bool geneAtivo(vector< vector<bool> > subgrafo, int nLinhas, int nColunas, int val)
+bool geneAtivo(vector< vector<bool> > subgrafo, int nLinhas, int nColunas, int nSaidas, int val)
 {
     if(val >= nLinhas*nColunas) return true;
 
-    for(int i = 0; i < subgrafo[0].size(); i++)
-        for(int j = 0; j < subgrafo.size(); j++)
-            if(subgrafo[i][j]) return true;
+    for(int i = 0; i < nSaidas; i++)
+        if(subgrafo[i][val]) return true;
     return false;
 }
 
@@ -206,8 +205,8 @@ vector<int> funcAlteracao(vector<int> vec, vector< vector<bool> > subgrafos, int
     int cont = vec.size();
 
     int novoIndice = rand()%(cont);
-    if(!geneAtivo(subgrafos, nLinhas, nColunas, (int)novoIndice/3))
-        while(!geneAtivo(subgrafos, nLinhas, nColunas, (int)novoIndice/3))
+    if(!geneAtivo(subgrafos, nLinhas, nColunas, nSaidas, (int)novoIndice/3))
+        while(!geneAtivo(subgrafos, nLinhas, nColunas, nSaidas, (int)novoIndice/3))
             novoIndice = rand()%(cont);
 
     int aux = novoValor(novoIndice, nLinhas, nColunas, lb, nEntradas);
@@ -215,7 +214,7 @@ vector<int> funcAlteracao(vector<int> vec, vector< vector<bool> > subgrafos, int
     if(vec[novoIndice] == aux)
         while(vec[novoIndice] == aux)
             aux = novoValor(novoIndice, nLinhas, nColunas, lb, nEntradas);
-    else vec[novoIndice] = aux;
+    vec[novoIndice] = aux;
 
     if(imprime)
     {
@@ -241,6 +240,11 @@ void funcV5(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
     {
         vec = vecAux;
         subgrafo = subgrafos(vec, nEntradas, nLinhas, nColunas, nSaidas);
+
+        for(int i = 0; i < subgrafo[0].size(); i++)
+            for(int j = 0; j < subgrafo.size(); j++)
+                cout << subgrafo[i][j] << (j == subgrafo.size()-1 ? "\n" : " ");
+
         if(imprime)
         {
             cout << "Novo vetor: ";
@@ -265,7 +269,7 @@ void funcV5(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
             cout << acertos << "/" << nLinhasTabela*nSaidas;
             if(acertos >= auxAcerto)
             {
-                cout << "    -------maior---------";
+                cout << "    -------maior ou igual---------";
                 vecAux = vec2;
                 auxAcerto = acertos;
                 //cin.ignore();
