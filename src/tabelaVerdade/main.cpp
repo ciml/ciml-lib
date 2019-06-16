@@ -17,14 +17,6 @@ vector<bool> dec2bin(int num, int aux)
     return bin;
 }
 
-int bin2dec(vector<bool> bin)
-{
-    int dec = 0;
-    for(int i = bin.size()-1; i >= 0; i--)
-        dec += pow(2, bin[i]);
-    return dec;
-}
-
 int computaSaida(vector<bool> entrada, char c)
 {
     int numA = 0, numB = 0;
@@ -44,13 +36,14 @@ vector<bool> vecSaida(vector<bool> entrada, int nEntradas, char c, int numBits)
 
 void criarTabelaVerdade(int nEntradas, char tipoSaida)
 {
-    ofstream outfile("../circuito/tabela6+.txt"); //pasta do projeto principal
+    ofstream outfile("../circuito/teste.txt"); //pasta do projeto principal
 
     int nLinhasTabela = pow(2, nEntradas);
     vector<bool> auxSaida(6, 0), entrada, saida;
     for(int i = 6-nEntradas; i < 6; i++)
         auxSaida[i] = 1;
-    int nSaidas = computaSaida(auxSaida, tipoSaida), maxSaida = (int)log2(nSaidas)+1;
+    int nSaidas = computaSaida(auxSaida, tipoSaida), maxSaida = ((nSaidas > 0) ? (int)log2(nSaidas)+1 : 1);
+
 
     cout << "Linhas tabela | Saidas" << endl;
     cout << nLinhasTabela << "                    " << maxSaida << endl;
