@@ -11,7 +11,7 @@ using namespace std;
 
 void leTxt(int *nEntradas, int *nSaidas, int *nLinhasTabela)
 {
-    ifstream read("tabela4+.txt");
+    ifstream read("tabela3+.txt");
     int aux;
 
     read>>aux;
@@ -26,7 +26,7 @@ void leTxt(int *nEntradas, int *nSaidas, int *nLinhasTabela)
 
 vector< vector<bool> > criaTabela(int nEntradas, int nSaidas, int nLinhasTabela, vector< vector<bool> > *entrada)
 {
-    ifstream read("tabela4+.txt");
+    ifstream read("tabela3+.txt");
     vector< vector<bool> > tabela(nLinhasTabela, vector<bool>(nSaidas, 0));
 
     int aux;
@@ -156,9 +156,6 @@ bool geneAtivo(vector< vector<int> > mapa, int val)
 
 vector<int> funcAlteracao(vector<int> vec, vector< vector<int> > *mapa, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, bool imprime = false)
 {
-//    int cont = vec.size() - nSaidas;
-//    int cont = vec.size();
-
     bool flag = false;
     while(!flag)
     {
@@ -204,6 +201,8 @@ vector<int> funcNosAtivos(vector<int> vec, vector< vector<int> > *mapa, vector< 
     vector<int> vec2 = vec;
     vector< vector<int> > mapaAux = *mapa;
 
+    int auxCont = 0;
+
     while(!flag)
     {
         vec2 = vec;
@@ -232,7 +231,14 @@ vector<int> funcNosAtivos(vector<int> vec, vector< vector<int> > *mapa, vector< 
                 }
             }
         }
+
+        auxCont++;
+        if(!(auxCont%500000))
+            cout << auxCont/500000 << endl;
     }
+
+    if(flag)
+        cout << flag << endl;
 
     (*mapa)[0] = vector<int>((*mapa)[0].size(), 0);
     for(int i = 0; i < nSaidas; i++)
@@ -309,9 +315,10 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
         if(auxAcerto >= nLinhasTabela*nSaidas)
         {
             auxAcerto = auxRep;
+            cout << auxRep << endl << endl;
             cont = 0;
 
-            cout << endl << "Vetor encontrado:" << endl;
+            cout << "Vetor encontrado:" << endl;
             for(int i = 0; i < vec.size(); i++)
                 cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "\n" : "");
             cout << endl << "Nós ativos: " << nosAtivos(mapa) << endl;
@@ -322,6 +329,8 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
             break;
         }
     }
+
+    cout << endl;
 
     for(int auxRep = 1; auxRep = 2500000; auxRep++)
     {
