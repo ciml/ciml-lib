@@ -1,0 +1,14 @@
+Circuit Name,Circuit Function,Number Inputs,Number Outputs,Approx. Gates
+dc1,Misc.,4,7,39
+dc2,Misc.,8,7,75
+alu4,ALU,14,8,1063
+z4ml,Arithmetic,7,4,48
+cm85a,Misc.,11,3,69
+C17,Logic,5,2,6
+sao2,Misc.,10,4,88
+cu,Misc.,14,11,40
+apla,Misc.,10,12,80
+inc,Misc.,7,9,93
+f51m,Arithmetic,8,8,43
+somador6x6,Arithmetic,12,12,229
+multiplicador4x4,Arithmetic,8,8,154
