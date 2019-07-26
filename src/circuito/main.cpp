@@ -1,11 +1,12 @@
-#include <iostream>
-#include <stdlib.h>
-#include <time.h>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-#include <fstream>
-#include <math.h>
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+#include<vector>
+#include<algorithm>
+#include<cmath>
+#include<fstream>
+#include<math.h>
+#include<numeric>
 
 using namespace std;
 
@@ -186,81 +187,20 @@ vector<int> funcAlteracao(vector<int> vec, vector< vector<int> > *mapa, int nEnt
 
 int nosAtivos(vector< vector<int> > mapa)
 {
-    int soma = 0;
-    for(int i = 0; i < mapa[0].size(); i++)
-        soma += mapa[0][i];
-    return soma;
-}
-
-vector<int> funcNosAtivos(vector<int> vec, vector< vector<int> > *mapa, vector< vector<bool> > tabela, int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela)
-{
-    int n = nEntradas + (nLinhas*nColunas) + nSaidas;
-    bool flag = false;
-
-    vector< vector<bool> > in(nLinhasTabela, vector<bool>(n, 0));
-    vector<int> vec2 = vec;
-    vector< vector<int> > mapaAux = *mapa;
-
-    int auxCont = 0;
-
-    while(!flag)
-    {
-        vec2 = vec;
-        *mapa = mapaAux;
-
-        int novoIndice = rand()%(vec.size()); //muta só se for ativo
-        while(!geneAtivo(*mapa, (int)(novoIndice/3)))
-            novoIndice = rand()%(vec.size());
-
-        int aux = novoValor(novoIndice, nLinhas, nColunas, lb, nEntradas);
-        while(vec[novoIndice] == aux)
-            aux = novoValor(novoIndice, nLinhas, nColunas, lb, nEntradas);
-
-        vec[novoIndice] = aux;
-        flag = true;
-        for(int i = 0; i < nLinhasTabela; i++)
-        {
-            funcIn(&in, vec2, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela, false);
-            for(int j = 0; j < nSaidas; j++)
-            {
-                int auxIn = nEntradas + (nLinhas*nColunas) + j;
-                if(in[i][auxIn] != tabela[i][j])
-                {
-                    flag = false;
-                    break;
-                }
-            }
-        }
-
-        auxCont++;
-        if(!(auxCont%500000))
-            cout << auxCont/500000 << endl;
-    }
-
-    if(flag)
-        cout << flag << endl;
-
-    (*mapa)[0] = vector<int>((*mapa)[0].size(), 0);
-    for(int i = 0; i < nSaidas; i++)
-    {
-        int j = ((*mapa)[0].size()*3) + i;
-        if(vec[j] >= nEntradas)
-            mapear(mapa, (vec[j]-nEntradas), nEntradas);
-    }
-
-    return vec2;
+    return accumulate(mapa[0].begin(), mapa[0].end(), 0);
 }
 
 void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela, int rep, bool imprime = false)
 {
     int auxAcerto = 0, n = nEntradas + (nLinhas*nColunas) + nSaidas, cont = 0;
+    bool maximo = false;
     vector< vector<bool> > in(nLinhasTabela, vector<bool>(n, 0));
     vector< vector<bool> > tabela = criaTabela(nEntradas, nSaidas, nLinhasTabela, &in);
 
     vector< vector<int> > mapa(3, vector<int>(nLinhas*nColunas, 0)), mapa2 = mapa, mapaAux = mapa;
     vector<int> vec = funcVetorAleatorio(&mapa, nEntradas, nLinhas, nColunas, nSaidas, lb), vec2 = vec, vecAux = vec;
 
-    for(int auxRep = 1; auxRep <= 2500000; auxRep++)
+    for(int auxRep = 1; auxRep <= 5000000; auxRep++)
     {
 //        if(imprime)
 //        {
@@ -285,23 +225,41 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
                         acertos++;
                 }
             }
+
             if(acertos >= auxAcerto)
             {
-//                cont++;
-//                if(acertos > auxAcerto)
-//                {
-//                    cout << cont << ": i = " << auxRep << " -> " << acertos << "/" << nLinhasTabela*nSaidas << endl;
-//                    cont = 0;
-//                }
-                auxAcerto = acertos;
-                vecAux = vec2;
-                mapaAux = mapa2;
-            }
-//            cout << (imprime ? "\n-------------\n\n\n" : "\n");
-        }
+                if(acertos == auxAcerto)
+                {
+                    mapa2[0] = vector<int>(mapa2[0].size(), 0);
+                    for(int j = 0; j < nSaidas; j++)
+                    {
+                        int k = (mapa2[0].size()*3) + j;
+                        if(vec2[j] >= nEntradas)
+                            mapear(&mapa2, vec2[k]-nEntradas, nEntradas);
+                    }
+                    if(nosAtivos(mapa2) <= nosAtivos(mapa))
+                    {
+                        auxAcerto = acertos;
+                        vecAux = vec2;
+                        mapaAux = mapa2;
+                    }
+                }
+                else
+                {
+                    auxAcerto = acertos;
+                    vecAux = vec2;
+                    mapaAux = mapa2;
+                }
 
-        if(!(auxRep%100000))
-            cout << "--checkpoint: i = " << auxRep << "--" << endl;
+                if(!maximo && (auxAcerto == nLinhasTabela*nSaidas))
+                {
+                    cout << "Maximo (" << auxAcerto << "/" << nLinhasTabela*nSaidas << ") atingido ";
+                    cout << "em " << auxRep << " iteracoes!\nDiminuindo numero de nos ativos agora!" << endl << endl;
+                    maximo = true;
+                    auxRep = 1;
+                }
+            }
+        }
 
         vec = vecAux;
         mapa = mapaAux;
@@ -312,60 +270,15 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
             if(vec[j] >= nEntradas)
                 mapear(&mapa, vec[j]-nEntradas, nEntradas);
         }
-        if(auxAcerto >= nLinhasTabela*nSaidas)
-        {
-            auxAcerto = auxRep;
-            cout << auxRep << endl << endl;
-            cont = 0;
-
-            cout << "Vetor encontrado:" << endl;
-            for(int i = 0; i < vec.size(); i++)
-                cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "\n" : "");
-            cout << endl << "Nós ativos: " << nosAtivos(mapa) << endl;
-            for(int i = 0; i < mapa.size(); i++)
-                for(int j = 0; j < mapa[0].size(); j++)
-                    cout << mapa[i][j] << (j == mapa[0].size()-1 ? "\n" : "");
-
-            break;
-        }
-    }
-
-    cout << endl;
-
-    for(int auxRep = 1; auxRep = 2500000; auxRep++)
-    {
-        int auxNosAtivos = mapa[0].size();
-        vec = vecAux;
-        mapa = mapaAux;
-
-        vec2 = funcNosAtivos(vec, &mapa, tabela, nEntradas, nLinhas, nColunas, nSaidas, lb, nLinhasTabela);
-
-        if(nosAtivos(mapa) <= auxNosAtivos)
-        {
-            cont++;
-            if(nosAtivos(mapa) < auxNosAtivos)
-            {
-                cout << cont << ": i = " << auxRep << " -> " << nosAtivos(mapa) << " nós ativos" << endl;
-                cont = 0;
-            }
-            vecAux = vec2;
-            mapaAux = mapa;
-            auxNosAtivos = nosAtivos(mapa);
-        }
 
         if(!(auxRep%100000))
-            cout << "--checkpoint: i = " << auxRep << " -- " << nosAtivos(mapaAux) << endl;
-
-        if(auxNosAtivos <= abs(nEntradas-nSaidas))
         {
-            cout << endl << "Vetor encontrado:" << endl;
-            for(int i = 0; i < vecAux.size(); i++)
-                cout << vecAux[i] << ((i+1)%3 == 0 ? ((i <= vecAux.size()-nSaidas) ? " | " : " ") : " ") << ((i == vecAux.size()-1) ? "\n" : "");
-            cout << endl << "Nós ativos: " << nosAtivos(mapa) << endl;
-            for(int i = 0; i < mapaAux.size(); i++)
-                for(int j = 0; j < mapaAux[0].size(); j++)
-                    cout << mapaAux[i][j] << (j == mapaAux[0].size()-1 ? "\n" : "");
-
+            cout << "--checkpoint: i = " << auxRep << "--\n--";
+            cout << nosAtivos(mapa) << " nos ativos--" << endl << endl;
+        }
+        if(nosAtivos(mapa) == 0)
+        {
+            cout << "0 nos ativos\nEncerrando funcao!" << endl;
             break;
         }
     }
