@@ -7,62 +7,57 @@
 
 using namespace std;
 
-vector<bool> dec2bin(int num, int aux)
+vector<bool> dec2bin(int num, int tam)
 {
-    vector<bool> bin(6, 0);
-    for(int i = 0; i < aux; i++, num /= 2)
+    vector<bool> bin(tam, 0);
+    for(int i = 0; i < tam; i++, num /= 2)
         if(num > 0)
             bin[i] = num%2;
     reverse(bin.begin(), bin.end());
     return bin;
 }
 
-int computaSaida(vector<bool> entrada, char c)
+int computaSaida(vector<bool> entrada, int nEntradas, char c)
 {
-    int numA = 0, numB = 0;
-    for(int i = 0; i < 3; i++)
+    int numA = 0, numB = 0, aux = nEntradas/2;
+    for(int i = 0; i < aux; i++)
     {
-        numA += entrada[i]*pow(2, 2-i);
-        numB += entrada[i+3]*pow(2, 2-i);
+        numA += entrada[i]*pow(2, (aux-1)-i);
+        numB += entrada[i+aux]*pow(2, (aux-1)-i);
     }
     return ((c == '+') ? (numA+numB) : (numA*numB));
 }
 
-vector<bool> vecSaida(vector<bool> entrada, int nEntradas, char c, int numBits)
+vector<bool> vecSaida(vector<bool> entrada, int nEntradas, int nSaidas, char c)
 {
-    int saida = computaSaida(entrada, c);
-    return dec2bin(saida, numBits);
+    int saida = computaSaida(entrada, nEntradas, c);
+    return dec2bin(saida, nSaidas);
 }
 
-void criarTabelaVerdade(int nEntradas, char tipoSaida)
+void tabelaVerdade(int nEntradas, char tipoSaida)
 {
-    ofstream outfile("../circuito/teste.txt"); //pasta do projeto principal
+    ofstream outfile("../circuito/teste.txt");
 
-    int nLinhasTabela = pow(2, nEntradas);
-    vector<bool> auxSaida(6, 0), entrada, saida;
-    for(int i = 6-nEntradas; i < 6; i++)
-        auxSaida[i] = 1;
-    int nSaidas = computaSaida(auxSaida, tipoSaida), maxSaida = ((nSaidas > 0) ? (int)log2(nSaidas)+1 : 1);
-
+    int nLinhasTabela = pow(2, nEntradas), nSaidas = computaSaida(vector<bool>(nEntradas, 1), nEntradas, tipoSaida);
+    nSaidas = (int)log2(nSaidas)+1;
 
     cout << "Linhas tabela | Saidas" << endl;
-    cout << nLinhasTabela << "                    " << maxSaida << endl;
-    outfile << nLinhasTabela << " " << maxSaida << endl;
+    cout << nLinhasTabela << "                    " << nSaidas << endl;
+    outfile << nLinhasTabela << " " << nSaidas << endl;
 
     for(int i = 0; i < nLinhasTabela; i++)
     {
-        entrada = dec2bin(i, nEntradas);
-        saida = vecSaida(entrada, nEntradas, tipoSaida, nSaidas);
-
-        for(int j = 6-nEntradas; j < 6; j++)
+        vector<bool> entrada = dec2bin(i, nEntradas);
+        vector<bool> saida = vecSaida(entrada, nEntradas, nSaidas, tipoSaida);
+        for(int j = 0; j < entrada.size(); j++)
         {
-            cout << entrada[j] << ((j == 5) ? " " : "");
+            cout << entrada[j] << ((j == entrada.size()-1) ? " " : "");
             outfile << entrada[j] << " ";
         }
-        for(int j = 6-maxSaida; j < 6; j++)
+        for(int j = 0; j < saida.size(); j++)
         {
             cout << saida[j];
-            outfile << saida[j] << (j == 5 ? "" : " ");
+            outfile << saida[j] << (j == saida.size()-1 ? "" : " ");
         }
         cout << ((i == nLinhasTabela-1) ? "" : "\n");
         outfile << ((i == nLinhasTabela-1) ? "" : "\n");
@@ -77,10 +72,15 @@ int main()
 
     cout << "Numero de entradas:" << endl;
     cin >> nEntradas;
+    if((nEntradas%2) != 0)
+    {
+        cout << "ERRO" << endl;
+        return -1;
+    }
     cout << "Tipo de saida (+ ou x):" << endl;
     cin >> tipoSaida;
 
-    criarTabelaVerdade(nEntradas, tipoSaida);
+    tabelaVerdade(nEntradas, tipoSaida);
 
     return 0;
 }
