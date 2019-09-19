@@ -211,14 +211,15 @@ vector< vector<int> > funcNosAtivos(vector< vector<bool> > in, vector< vector<in
 
 void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int nLinhasTabela, int rep, int seed, bool imprime = false)
 {
-    int auxAcerto = 0, n = nEntradas+(nLinhas*nColunas)+nSaidas;
+    int auxAcerto = 0, auxRazao = 1, n = nEntradas+(nLinhas*nColunas)+nSaidas, filhos = rep;
     bool maximo = false;
     vector< vector<bool> > in(nLinhasTabela, vector<bool>(n, 0)), tabela = criaTabela(nEntradas, nSaidas, nLinhasTabela, &in);
     vector< vector<int> > mapa(3, vector<int>(nLinhas*nColunas, 0)), mapa2 = mapa, mapaAux = mapa;
     vector<int> vec = funcVetorAleatorio(&mapa, nEntradas, nLinhas, nColunas, nSaidas, lb), vec2 = vec, vecAux = vec;
 
-    for(int auxRep = 1; (auxRep <= 5000000) && !(maximo); auxRep++)
+    for(int auxRep = 1; (auxRep <= 10000000) && !(maximo); auxRep++)
     {
+        bool novoFilho = false;
         vec = vecAux;
         mapa = mapear(mapaAux, vec, nEntradas, nSaidas);
 //        if(imprime)
@@ -228,7 +229,14 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
 //                cout << vec[i] << ((i+1)%3 == 0 ? ((i <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((i == vec.size()-1) ? "   <-------\n\n" : "");
 //        }
 
-        for(int i = 0, acertos = 0; i < rep; i++, acertos = 0)
+        if(auxRazao/auxRep <= 0.05) filhos = rep + 2;
+        else if(auxRazao/auxRep >= 0.95)
+        {
+            filhos = rep;
+            auxRazao = auxRep*0.95;
+        }
+
+        for(int i = 0, acertos = 0; i < filhos; i++, acertos = 0)
         {
             vec2 = funcAlteracao(vec, &mapa2, nEntradas, nLinhas, nColunas, nSaidas, lb, imprime);
             for(int j = 0; j < nLinhasTabela; j++)
@@ -239,6 +247,11 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
 
             if(acertos >= auxAcerto)
             {
+                if(!novoFilho)
+                {
+                    novoFilho = true;
+                    auxRazao++;
+                }
                 if(acertos == auxAcerto)
                 {
                     mapa2 = mapear(mapa2, vec, nEntradas, nSaidas);
@@ -260,8 +273,11 @@ void funcV6(int nEntradas, int nLinhas, int nColunas, int nSaidas, int lb, int n
                 }
             }
         }
+
         if(!(auxRep%100000))
             cout << "--checkpoint: i = " << auxRep << "--" << endl;
+
+        if(maximo) auxRep *= 2;
     }
 
     vec = vecAux;
