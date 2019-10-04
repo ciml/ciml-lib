@@ -36,6 +36,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
 
     clone_parent(population);
     fprintf(out_file, "--------------------------\n");
+    fflush(out_file);
     while (1)
     {
         if(mutation == 1)
@@ -51,11 +52,13 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         if (population[0].score == 0)
         {
             fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fflush(out_file);
             break;
         }
         if (generation % 50000 == 0)
         {
             fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fflush(out_file);
         }
         if(bdd_getnodenum() >= (int) (0.95 * bdd_getallocnum()))
         {
@@ -64,6 +67,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         if(generation == maxgen)
         {
             fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fflush(out_file);
             return 0;
         }
 
@@ -71,6 +75,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         generation++;
     }
     fprintf(out_file, "--------------------------\n");
+    fflush(out_file);
     print_post_optimization_data(&population[0], table->num_inputs);
 
     maxgen = maxgen - generation;
@@ -82,6 +87,7 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
 {
 
     fprintf(out_file,"--------------------------\n");
+    fflush(out_file);
 
     int best_individual = 0;
     long int generation = 0;
@@ -99,9 +105,10 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
         best_individual = find_optimized_individual(population);
         set_parent(population, best_individual);
 
-        if (generation % 50000 == 0)
+        if (generation % 1000 == 0)
         {
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
+            fflush(out_file);
         }
         if (bdd_getnodenum() >= (int)(0.95 * bdd_getallocnum()))
         {
@@ -110,17 +117,20 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
         if (generation == maxgen)
         {
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
+            fflush(out_file);
             break;
         }
         if(generation == mediangen)
         {
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
+            fflush(out_file);
             print_post_optimization_data(&population[0], table->num_inputs);
         }
         clone_parent(population);
         generation++;
     }
     fprintf(out_file,"--------------------------\n");
+    fflush(out_file);
     print_post_optimization_data(&population[0], table->num_inputs);
 }
 
@@ -159,7 +169,7 @@ int main(int argc, char const *argv[])
         fprintf(out_file, "Mutation value isnt valid!\n");
         exit(1);
     }
-
+    fflush(out_file);
     bdd_init(100000000, 100000);
 
     Individual *population = (Individual *)malloc(sizeof(Individual) * NPOP);
@@ -202,6 +212,7 @@ int main(int argc, char const *argv[])
     bdd_done();
     end = clock();
     fprintf(out_file, "TOTAL TIME: %f seconds\n", (end - begin) / (double)CLOCKS_PER_SEC);
+    fflush(out_file);
 
     free(population);
     free(table);
