@@ -1,0 +1,28 @@
+Number inputs between [1, 15] and Balancing between[0.5, 0.75] and Simplification between[0, 0.01378676470588235]
+Circuit Name  Number Inputs  Number Outputs  Circuit Balancing  Circuit Simplification Circuit Function
+       alu4        14               8            0.564819              0.000819                  ALU   
+      cm85a        11               3            0.734375              0.001654                Misc.   
+       f51m         8               8            0.500000              0.003510           Arithmetic   
+ somador6x6        12              12            0.708984              0.000896           Arithmetic   
+
+
+Number inputs between [1, 15] and Balancing between[0.5, 0.75] and Simplification between[0.01378676470588235, 1]
+   Circuit Name    Number Inputs  Number Outputs  Circuit Balancing  Circuit Simplification Circuit Function
+              dc1        4               7            0.598214              0.129139                Misc.   
+             z4ml        7               4            0.500000              0.018293           Arithmetic   
+ multiplicador4x4        8               8            0.668945              0.019959           Arithmetic   
+
+
+Number inputs between [1, 15] and Balancing between[0.750000001, 1.0] and Simplification between[0, 0.01378676470588235]
+Circuit Name  Number Inputs  Number Outputs  Circuit Balancing  Circuit Simplification Circuit Function
+     dc2            8               7            0.753348              0.013787              Misc.     
+    sao2           10               4            0.817627              0.007496              Misc.     
+      cu           14              11            0.924361              0.000074              Misc.     
+
+
+Number inputs between [1, 15] and Balancing between[0.750000001, 1.0] and Simplification between[0.01378676470588235, 1]
+Circuit Name  Number Inputs  Number Outputs  Circuit Balancing  Circuit Simplification Circuit Function
+     dc2            8               7            0.753348              0.013787              Misc.     
+     C17            5               2            0.937500              0.300000              Logic     
+    apla           10              12            0.987223              0.029283              Misc.     
+     inc            7               9            0.756076              0.030990              Misc.   

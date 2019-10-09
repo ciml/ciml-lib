@@ -1,0 +1,330 @@
+SAM:3+GAM:1
+.p 1024
+.i 10
+.o 12
+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*i8
+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*i8
+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*~i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*~i7*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*~i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*~i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*~i7*~i9
+~i0*~i1*~i2*i3*~i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*~i7*i9
+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*i8*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*~i7*i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*i8*~i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*~i8*i9
+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*i8*i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*i8*i9
+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*i8*i9
+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*~i7*~i8+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*i8+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*i8
+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*i8+~i0*~i1*i2*~i3*~i4*~i5*~i6*i8
+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*~i7*i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i8*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*~i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*i9
+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*i8*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*i8*~i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*i3*~i4*~i5*~i6*~i7*~i8+~i0*~i1*i2*~i3*~i4*~i5*~i6*~i7*i9+i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*~i9+~i0*~i1*i2*~i3*~i4*~i5*~i6*~i7*~i9
+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*~i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*~i7*~i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*~i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*~i8*i9+~i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*i9+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*~i7*i8+~i0*~i1*~i2*~i3*i4*~i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*i5*~i6*i7*i8+~i0*~i1*~i2*~i3*~i4*~i5*i6*i7*i8
+--------------------------
+SAT COUNT: 5629 INDIVIDUO: 4 GERACAO: 0
+SAT COUNT: 157 INDIVIDUO: 3 GERACAO: 25000
+SAT COUNT: 157 INDIVIDUO: 3 GERACAO: 50000
+SAT COUNT: 157 INDIVIDUO: 4 GERACAO: 75000
+SAT COUNT: 121 INDIVIDUO: 4 GERACAO: 100000
+SAT COUNT: 80 INDIVIDUO: 2 GERACAO: 125000
+SAT COUNT: 57 INDIVIDUO: 4 GERACAO: 150000
+SAT COUNT: 45 INDIVIDUO: 2 GERACAO: 175000
+SAT COUNT: 28 INDIVIDUO: 0 GERACAO: 200000
+SAT COUNT: 26 INDIVIDUO: 0 GERACAO: 225000
+SAT COUNT: 25 INDIVIDUO: 3 GERACAO: 250000
+SAT COUNT: 25 INDIVIDUO: 3 GERACAO: 275000
+SAT COUNT: 21 INDIVIDUO: 0 GERACAO: 300000
+SAT COUNT: 16 INDIVIDUO: 4 GERACAO: 325000
+SAT COUNT: 16 INDIVIDUO: 1 GERACAO: 350000
+SAT COUNT: 12 INDIVIDUO: 3 GERACAO: 375000
+SAT COUNT: 12 INDIVIDUO: 3 GERACAO: 400000
+SAT COUNT: 11 INDIVIDUO: 2 GERACAO: 425000
+SAT COUNT: 9 INDIVIDUO: 4 GERACAO: 450000
+SAT COUNT: 9 INDIVIDUO: 0 GERACAO: 475000
+SAT COUNT: 9 INDIVIDUO: 0 GERACAO: 500000
+SAT COUNT: 6 INDIVIDUO: 4 GERACAO: 525000
+SAT COUNT: 2 INDIVIDUO: 2 GERACAO: 550000
+SAT COUNT: 0 INDIVIDUO: 1 GERACAO: 555896
+--------------------------
+Circuit max depth: 25
+AND: 41
+OR: 41
+NOT: 33
+NAND: 32
+NOR: 46
+XOR: 33
+XNOR: 33
+TOTAL GATES: 259
+((NOT ((((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))) AND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))) XNOR ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))) XNOR ((((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4) OR ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) XOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))))) NOR ((NOT (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))))) XOR (((NOT i8) NOR (i1 NAND (((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))))) XNOR (((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))) XNOR ((NOT i7) XOR (((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) OR (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NOR (NOT (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))))))
+
+((NOT ((NOT ((((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))) AND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))) XNOR ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))) XNOR ((((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4) OR ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) XOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))))) OR (((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))) XNOR ((NOT i7) XOR (((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) OR (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NOR (NOT (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))))) AND ((((((((i6 XNOR i3) NOR i3) OR (NOT i8)) XNOR (NOT ((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) AND (((i1 OR ((i0 NOR i2) XNOR ((i6 XNOR i3) NOR i3))) XNOR ((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6))) NOR (((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))) AND ((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))))) NAND (((((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))) OR (((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND (i7 OR (i6 XNOR i3)))) AND ((i1 OR i4) NAND ((((i1 OR i4) OR i5) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) XOR i2)))))
+
+((((i8 AND ((NOT i1) NOR (((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))))) NOR (NOT ((((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))) AND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))) XNOR ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))) XNOR ((((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4) OR ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) XOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4))))))) XOR ((((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) XNOR (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))) AND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) NOR (((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))))) NOR (((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5)) OR ((i1 OR i4) OR i5)) XOR ((i9 XOR ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))) AND ((NOT i7) OR (((i6 XNOR i3) NOR i3) OR (NOT i8))))))
+
+((((((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND (i7 OR (i6 XNOR i3))) NAND (NOT i1)) XOR (NOT (((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND i5))) NOR (((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))) OR ((i9 XOR ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))) AND ((NOT i7) OR (((i6 XNOR i3) NOR i3) OR (NOT i8))))))
+
+((((NOT (((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6)) OR (NOT (i5 XOR (i7 OR i3))))) XOR ((i4 NOR (NOT i8)) XOR (i7 XNOR (i7 NOR i8)))) XNOR ((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) OR (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NOR (NOT (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) NOR (((((((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) XNOR (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))) AND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) NAND (NOT ((i6 XNOR i3) NOR i3))) NOR ((i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))) XOR ((i3 NOR i4) NOR (i5 NOR i3)))) XOR (NOT (((((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))) NAND ((NOT (((i1 OR i4) OR i5) AND i7)) AND (i5 XOR (i7 OR i3)))) NOR ((((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND i3) NAND (i4 AND ((i6 XNOR i3) NOR i3)))) NOR ((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))))))))) OR (((((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))) AND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))) XNOR ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))) XNOR ((((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4) OR ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) XOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4))))) AND ((((i3 OR (NOT i8)) XNOR ((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))) OR (((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))) XOR (((NOT i8) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))) AND (NOT (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))))) OR (((i1 OR i4) OR i5) OR (NOT i7))))))
+
+((((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) AND (((i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))) OR ((((i6 XNOR i3) NOR i3) AND (i7 OR (i6 XNOR i3))) AND (((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)) NOR i1)))) AND (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NAND (i9 NOR (i1 XNOR (i6 AND (i0 NOR i2)))))) AND (((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) XNOR ((NOT i7) OR (((i6 XNOR i3) NOR i3) OR (NOT i8)))) XNOR ((i5 XOR ((i3 NOR i4) XNOR i1)) OR (i6 XNOR i3))) XOR (((((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))) NOR (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NOR (NOT (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))))) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4))))
+
+((((NOT ((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))))))) AND ((NOT (NOT (((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))))) NOR i0)) XOR (((((((i6 XNOR i3) NOR i3) OR (NOT i8)) XNOR (NOT ((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) AND (((i1 OR ((i0 NOR i2) XNOR ((i6 XNOR i3) NOR i3))) XNOR ((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6))) NOR (((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))) AND ((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))))) NOR ((i9 XOR ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))) OR (((((NOT i1) NOR (((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3)))) XOR ((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))) AND (i3 OR (NOT i8))) NAND ((NOT (((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6)) OR (NOT (i5 XOR (i7 OR i3))))) XOR ((i4 NOR (NOT i8)) XOR (i7 XNOR (i7 NOR i8)))))))
+
+(((((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)) NOR (((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5)))))) XOR (((i1 OR ((i0 NOR i2) XNOR ((i6 XNOR i3) NOR i3))) XNOR ((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6))) NOR (((((i1 OR i4) OR i5) OR (NOT i7)) XNOR (NOT ((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)))) XNOR (i3 OR (NOT i8))))) NOR (((NOT ((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3))))))) AND ((NOT (NOT (((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))))) NOR i0)) XOR (((((((i6 XNOR i3) NOR i3) OR (NOT i8)) XNOR (NOT ((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) AND (((i1 OR ((i0 NOR i2) XNOR ((i6 XNOR i3) NOR i3))) XNOR ((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6))) NOR (((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))) AND ((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))))))
+
+(((((((i4 NOR (NOT i8)) XOR (i7 XNOR (i7 NOR i8))) OR ((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) NOR (NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))))) XNOR ((NOT ((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9))) AND (i0 XOR i2))) NAND ((((i7 XNOR i7) NAND (NOT ((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) NOR ((i8 AND (i0 XOR i2)) XNOR ((i1 OR i4) NAND ((((i1 OR i4) OR i5) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) XOR i2)))) NOR (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))))) XOR ((NOT (((((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))) NAND ((NOT (((i1 OR i4) OR i5) AND i7)) AND (i5 XOR (i7 OR i3)))) NOR ((((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND i3) NAND (i4 AND ((i6 XNOR i3) NOR i3)))) NOR ((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))))) NOR (NOT ((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))))))) NOR ((((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) XOR (((((i4 NOR (NOT i8)) XOR (i7 XNOR (i7 NOR i8))) OR ((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) NOR (NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))))) NAND (NOT ((i6 XNOR i3) NOR i3))) XNOR (NOT ((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9))))) AND ((((i6 XNOR i3) OR (i5 XOR (i7 OR i3))) XNOR ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))) AND (((((NOT (((i1 OR i4) OR i5) AND i7)) AND (i5 XOR (i7 OR i3))) AND (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) NOR (i3 NOR ((i3 NOR i4) XNOR i1)))) XOR ((NOT ((NOT (NOT i8)) XOR (((i1 OR i4) OR i5) OR (NOT i7)))) OR (NOT i8))) XOR ((i5 AND ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))) AND (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8)))))))))
+
+((NOT ((((((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))) OR (((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND (i7 OR (i6 XNOR i3)))) AND ((i1 OR i4) NAND ((((i1 OR i4) OR i5) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) XOR i2))) XNOR (((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) XNOR (i1 NAND (((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))))) NAND (((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) XOR (NOT (i5 XOR (i7 OR i3))))))) XOR ((i4 AND (NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))))) OR (((NOT ((NOT (NOT i8)) XOR (((i1 OR i4) OR i5) OR (NOT i7)))) NAND (((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3)))) NAND (NOT ((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))))))))) AND (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) XNOR (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))) AND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))))
+
+(((NOT ((((((i6 XNOR i3) NOR i3) OR (NOT i8)) XNOR (NOT ((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))))) AND (((i1 OR ((i0 NOR i2) XNOR ((i6 XNOR i3) NOR i3))) XNOR ((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6))) NOR (((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3))) NOR ((NOT ((((i6 XNOR i3) NOR i3) AND (i7 OR (i6 XNOR i3))) AND (((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)) NOR i1))) XNOR ((((NOT (((i5 XOR (i7 OR i3)) OR ((i6 NOR i7) OR i6)) OR (NOT (i5 XOR (i7 OR i3))))) XOR ((i4 NOR (NOT i8)) XOR (i7 XNOR (i7 NOR i8)))) XNOR ((NOT ((NOT (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) OR (i9 NAND ((i7 OR (i6 XNOR i3)) AND (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) OR (((i5 NOR i3) XNOR (i5 XOR (i7 OR i3))) NOR (NOT (i9 AND ((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1))))))))) NAND (NOT (((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND (i7 OR (i6 XNOR i3)))))))) AND (((((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND ((i6 XNOR i3) OR (i5 XOR (i7 OR i3)))) NAND ((NOT (((i1 OR i4) OR i5) AND i7)) AND (i5 XOR (i7 OR i3)))) NOR ((((i7 OR i3) OR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND i3) NAND (i4 AND ((i6 XNOR i3) NOR i3)))) NOR ((((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3)) NOR ((i6 AND (i0 NOR i2)) XOR ((i0 XOR i2) NAND (((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) NAND ((i1 OR i4) OR i5))))) NOR (((((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2))) NAND ((NOT ((i6 XNOR i3) NOR i3)) XOR (NOT i3))) NOR (((i1 OR i4) NOR ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) NAND ((NOT (NOT i8)) NAND ((((i1 OR i4) OR i5) OR (NOT i7)) OR (i7 OR i3)))))))) AND ((i4 AND (NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))))) NAND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))))
+
+((((((NOT i7) NOR (NOT i1)) OR ((i6 NOR i7) OR i6)) AND ((NOT i7) NOR (NOT i1))) AND (((((i6 NOR i7) OR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9)) XOR (i7 OR (i6 XNOR i3))) XOR (i7 OR i3)) AND ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) OR i9) OR ((NOT i3) AND ((i1 OR i4) OR i5))) NOR (((NOT i8) AND ((i6 XNOR i3) AND (i5 XOR ((i3 NOR i4) XNOR i1)))) AND ((i3 NOR ((i3 NOR i4) XNOR i1)) XNOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))) OR ((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5))))) XNOR ((((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3))) OR (NOT ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) NAND (i7 XNOR (i7 NOR i8))))) XNOR ((((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4) OR ((((NOT i1) NAND (((i1 XNOR (i6 AND (i0 NOR i2))) NOR ((i1 OR i4) OR i5)) XNOR (((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)))) OR i3) XOR (((((i6 XNOR i3) NOR i3) XOR ((i3 OR (NOT i8)) XNOR ((i6 AND (i0 NOR i2)) NOR ((NOT ((((i5 XOR ((i3 NOR i4) XNOR i1)) AND (NOT ((i6 XNOR i3) NOR i3))) NAND (i0 NOR i2)) OR ((i3 NOR i4) NOR (i5 NOR i3)))) XNOR ((i6 XNOR i3) OR (i5 XOR (i7 OR i3))))))) OR (i7 NOR i8)) OR i4)))))
+
+--------------------------
+NUM GATES: 259 INDIVIDUO: 0 GERACAO: 0
+NUM GATES: 156 INDIVIDUO: 0 GERACAO: 25000
+NUM GATES: 139 INDIVIDUO: 3 GERACAO: 50000
+NUM GATES: 127 INDIVIDUO: 2 GERACAO: 75000
+NUM GATES: 121 INDIVIDUO: 0 GERACAO: 100000
+NUM GATES: 120 INDIVIDUO: 0 GERACAO: 125000
+NUM GATES: 118 INDIVIDUO: 0 GERACAO: 150000
+NUM GATES: 115 INDIVIDUO: 0 GERACAO: 175000
+NUM GATES: 114 INDIVIDUO: 0 GERACAO: 200000
+NUM GATES: 114 INDIVIDUO: 4 GERACAO: 225000
+NUM GATES: 114 INDIVIDUO: 2 GERACAO: 250000
+NUM GATES: 112 INDIVIDUO: 0 GERACAO: 275000
+NUM GATES: 112 INDIVIDUO: 2 GERACAO: 300000
+NUM GATES: 111 INDIVIDUO: 0 GERACAO: 325000
+NUM GATES: 110 INDIVIDUO: 0 GERACAO: 350000
+NUM GATES: 109 INDIVIDUO: 0 GERACAO: 375000
+NUM GATES: 109 INDIVIDUO: 0 GERACAO: 400000
+NUM GATES: 108 INDIVIDUO: 2 GERACAO: 425000
+NUM GATES: 106 INDIVIDUO: 3 GERACAO: 450000
+NUM GATES: 105 INDIVIDUO: 0 GERACAO: 475000
+NUM GATES: 105 INDIVIDUO: 0 GERACAO: 500000
+NUM GATES: 105 INDIVIDUO: 0 GERACAO: 525000
+NUM GATES: 105 INDIVIDUO: 0 GERACAO: 550000
+NUM GATES: 105 INDIVIDUO: 4 GERACAO: 575000
+NUM GATES: 104 INDIVIDUO: 4 GERACAO: 600000
+NUM GATES: 103 INDIVIDUO: 0 GERACAO: 625000
+NUM GATES: 103 INDIVIDUO: 0 GERACAO: 650000
+NUM GATES: 103 INDIVIDUO: 0 GERACAO: 675000
+NUM GATES: 103 INDIVIDUO: 0 GERACAO: 700000
+NUM GATES: 103 INDIVIDUO: 0 GERACAO: 725000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 750000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 775000
+NUM GATES: 102 INDIVIDUO: 4 GERACAO: 800000
+NUM GATES: 102 INDIVIDUO: 2 GERACAO: 825000
+NUM GATES: 102 INDIVIDUO: 2 GERACAO: 850000
+NUM GATES: 102 INDIVIDUO: 1 GERACAO: 875000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 900000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 925000
+NUM GATES: 102 INDIVIDUO: 2 GERACAO: 950000
+NUM GATES: 102 INDIVIDUO: 3 GERACAO: 975000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 1000000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 1025000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 1050000
+NUM GATES: 102 INDIVIDUO: 2 GERACAO: 1075000
+NUM GATES: 102 INDIVIDUO: 3 GERACAO: 1100000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 1125000
+NUM GATES: 102 INDIVIDUO: 0 GERACAO: 1150000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1175000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1200000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1225000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1250000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1275000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1300000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1325000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1350000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1375000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1400000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1425000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1450000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1475000
+NUM GATES: 101 INDIVIDUO: 3 GERACAO: 1500000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1525000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1550000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1575000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1600000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1625000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1650000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1675000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1700000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1725000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1750000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1775000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1800000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1825000
+NUM GATES: 101 INDIVIDUO: 4 GERACAO: 1850000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1875000
+NUM GATES: 101 INDIVIDUO: 4 GERACAO: 1900000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1925000
+NUM GATES: 101 INDIVIDUO: 2 GERACAO: 1950000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 1975000
+NUM GATES: 101 INDIVIDUO: 4 GERACAO: 2000000
+NUM GATES: 101 INDIVIDUO: 3 GERACAO: 2025000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 2050000
+NUM GATES: 101 INDIVIDUO: 0 GERACAO: 2075000
+NUM GATES: 100 INDIVIDUO: 2 GERACAO: 2100000
+NUM GATES: 100 INDIVIDUO: 0 GERACAO: 2125000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2150000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2175000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2200000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2225000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2250000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2275000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2300000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2325000
+NUM GATES: 99 INDIVIDUO: 4 GERACAO: 2350000
+NUM GATES: 99 INDIVIDUO: 4 GERACAO: 2375000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2400000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2425000
+NUM GATES: 99 INDIVIDUO: 0 GERACAO: 2450000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2475000
+NUM GATES: 98 INDIVIDUO: 1 GERACAO: 2500000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2525000
+NUM GATES: 98 INDIVIDUO: 2 GERACAO: 2550000
+NUM GATES: 98 INDIVIDUO: 1 GERACAO: 2575000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2600000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2625000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2650000
+NUM GATES: 98 INDIVIDUO: 4 GERACAO: 2675000
+NUM GATES: 98 INDIVIDUO: 4 GERACAO: 2700000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2725000
+NUM GATES: 98 INDIVIDUO: 2 GERACAO: 2750000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2775000
+NUM GATES: 98 INDIVIDUO: 0 GERACAO: 2800000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 2825000
+NUM GATES: 97 INDIVIDUO: 3 GERACAO: 2850000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 2875000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 2900000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 2925000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 2950000
+NUM GATES: 97 INDIVIDUO: 4 GERACAO: 2975000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3000000
+NUM GATES: 97 INDIVIDUO: 4 GERACAO: 3025000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3050000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3075000
+NUM GATES: 97 INDIVIDUO: 3 GERACAO: 3100000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3125000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3150000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3175000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3200000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3225000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3250000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3275000
+NUM GATES: 97 INDIVIDUO: 1 GERACAO: 3300000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 3325000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3350000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3375000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3400000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 3425000
+NUM GATES: 97 INDIVIDUO: 0 GERACAO: 3450000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 3475000
+NUM GATES: 97 INDIVIDUO: 2 GERACAO: 3500000
+NUM GATES: 97 INDIVIDUO: 3 GERACAO: 3525000
+NUM GATES: 96 INDIVIDUO: 0 GERACAO: 3550000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3575000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3600000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3625000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3650000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3675000
+NUM GATES: 95 INDIVIDUO: 4 GERACAO: 3700000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3725000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3750000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3775000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3800000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3825000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3850000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3875000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3900000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3925000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3950000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 3975000
+NUM GATES: 95 INDIVIDUO: 2 GERACAO: 4000000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4025000
+NUM GATES: 95 INDIVIDUO: 4 GERACAO: 4050000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4075000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4100000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4125000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4150000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4175000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4200000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4225000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4250000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4275000
+NUM GATES: 95 INDIVIDUO: 1 GERACAO: 4300000
+NUM GATES: 95 INDIVIDUO: 1 GERACAO: 4325000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4350000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4375000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4400000
+NUM GATES: 95 INDIVIDUO: 4 GERACAO: 4425000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4450000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4475000
+NUM GATES: 95 INDIVIDUO: 4 GERACAO: 4500000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4525000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4550000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4575000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4600000
+NUM GATES: 95 INDIVIDUO: 1 GERACAO: 4625000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4650000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4675000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4700000
+NUM GATES: 95 INDIVIDUO: 1 GERACAO: 4725000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4750000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4775000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4800000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4825000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4850000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4875000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 4900000
+NUM GATES: 95 INDIVIDUO: 2 GERACAO: 4925000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 4950000
+NUM GATES: 95 INDIVIDUO: 2 GERACAO: 4975000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5000000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5025000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5050000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5075000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5100000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5125000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5150000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5175000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5200000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5225000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5250000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5275000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 5300000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5325000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 5350000
+NUM GATES: 95 INDIVIDUO: 2 GERACAO: 5375000
+NUM GATES: 95 INDIVIDUO: 0 GERACAO: 5400000
+NUM GATES: 95 INDIVIDUO: 4 GERACAO: 5425000
+NUM GATES: 95 INDIVIDUO: 3 GERACAO: 5444104
+--------------------------
+Circuit max depth: 15
+AND: 10
+OR: 12
+NOT: 8
+NAND: 11
+NOR: 22
+XOR: 19
+XNOR: 13
+TOTAL GATES: 95
+((((((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4))) NOR ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6))))) NOR (((((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7) XOR (i9 XOR (i8 NAND i9))) XOR ((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) NOR (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))
+
+((NOT (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))))) AND (((((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4))) NOR ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6))))) NOR (((((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7) XOR (i9 XOR (i8 NAND i9))) XOR ((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))
+
+((((((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))) XOR ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) OR (NOT (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))) NOR (NOT ((i8 AND i7) NOR i9)))
+
+(((((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))) XOR ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) NOR (((((i5 XOR i7) NOR (NOT (i3 NOR i6))) NOR (i8 NAND i9)) OR (((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9)) XNOR i9))
+
+(((i8 AND i7) XNOR ((((i5 XOR i7) NOR (NOT (i3 NOR i6))) NOR (i8 NAND i9)) OR (((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9))) NOR (((((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))) XOR ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) OR (NOT (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))))
+
+((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) AND (((i5 XOR i7) NOR (NOT (i3 NOR i6))) NOR (i8 NAND i9)))
+
+((NOT ((((i8 XNOR i0) NAND (i1 OR i4)) AND (((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6)) NAND ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6)))))) XNOR ((((((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7) XOR i6) XOR i1) XOR (i4 XOR (((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NOR ((i9 OR i3) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))))))) NOR ((((((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))) XOR ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) OR (NOT (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))) XOR (NOT ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))))))
+
+((((((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))) XOR ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))) OR (NOT ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7)))) NOR ((((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6)) NAND ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6)))))) AND (i8 XNOR i0)) XOR (((i8 XNOR i0) NAND (i1 OR i4)) XOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4))))))
+
+((((((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6)) NAND (NOT ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7)))) XOR (NOT ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))))) NOR (NOT (((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6)) NAND ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6)))))) NOR ((NOT (i3 NOR i6)) OR (i5 AND i4)))))
+
+((NOT ((((i8 XNOR i0) NAND (i1 OR i4)) AND (((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6)) NAND ((((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9) XOR ((i5 XOR i7) NOR (NOT (i3 NOR i6)))))) XNOR ((((((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) NOR i7) XOR i6) XOR i1) XOR (i4 XOR (((i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NOR ((i9 OR i3) XNOR ((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))))))))) AND (NOT ((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6)))))
+
+((((i8 AND i7) XNOR ((((i5 XOR i7) NOR (NOT (i3 NOR i6))) NOR (i8 NAND i9)) OR (((i5 XOR i7) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) AND i9))) XOR i7) AND (NOT ((((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1)))) NOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) OR ((NOT (i3 NOR i6)) OR (i5 AND i4)))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))
+
+(NOT (((((i5 XOR i7) OR ((((i0 NOR i3) XNOR i2) OR (i8 XNOR i0)) XNOR (((i1 NAND i8) XOR ((i0 NOR i3) XNOR i2)) NOR i6))) XOR (i0 NOR i3)) NAND ((i8 XNOR i0) NAND (i1 OR i4))) NAND (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) XNOR (((((NOT (i3 NOR i6)) OR (i5 AND i4)) NAND ((i1 OR i4) OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))) NAND (((i0 NOR i2) NAND (i5 XOR ((i3 XNOR i4) XNOR i1))) XNOR ((i0 NOR i2) AND i6))) NOR (i8 OR (i3 XOR (i5 XOR ((i3 XNOR i4) XNOR i1))))))))
+
+TOTAL TIME: 8359.370000 seconds
