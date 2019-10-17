@@ -4,6 +4,7 @@ RM = rm ./bin/*
 
 main:
 	${CC} ${CFLAGS} -o ./bin/cgp main.c -lbdd
-
+msam:
+	${CC} ${CFLAGS} -DMSAM -o ./bin/cgp main.c -lbdd
 clean:
 	${RM}

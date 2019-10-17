@@ -91,6 +91,7 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
 
     int best_individual = 0;
     long int generation = 0;
+    clock_t start = clock();
     while (1)
     {
         if (mutation == 1)
@@ -107,30 +108,33 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
 
         if (generation % 1000 == 0)
         {
-            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
+            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             fflush(out_file);
         }
         if (bdd_getnodenum() >= (int)(0.95 * bdd_getallocnum()))
         {
             bdd_gbc();
         }
+        if((clock() - start) / (double)CLOCKS_PER_SEC >= 3600.0)
+        {
+            print_post_optimization_data(&population[0], table->num_inputs);
+            start = clock();
+        }
         if (generation == maxgen)
         {
-            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
+            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             fflush(out_file);
             break;
         }
         if(generation == mediangen)
         {
-            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUO: %d GERACAO: %ld\n", population[0].num_transistors, best_individual, generation);
-            fflush(out_file);
+            fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             print_post_optimization_data(&population[0], table->num_inputs);
         }
         clone_parent(population);
         generation++;
     }
     fprintf(out_file,"--------------------------\n");
-    fflush(out_file);
     print_post_optimization_data(&population[0], table->num_inputs);
 }
 

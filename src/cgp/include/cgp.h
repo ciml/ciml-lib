@@ -26,7 +26,7 @@
 
 #define NROW 1
 #define NPOP 5
-#define NMUTATIONS 0.05
+#define MUTATIONRATE 0.05
 #define NGATES 7
 
 extern char *strtok_r(char *, const char *, char **);
@@ -271,7 +271,7 @@ void mutate_output(Individual *individual, int gene_pos, int num_inputs_table);
 void mutate_individual(Individual *individual, int *gates, int num_inputs_table, int sorted_gene);
 
 /**
-* @brief Function who apply point mutation in the individual - the number of mutations is defined in NMUTATIONS
+* @brief Function who apply point mutation in the individual - the number of mutations is defined in MUTATIONRATE
 * @param individual - the individual struct
 * @param gates - the array containing the gates codes that will be used
 * @param num_inputs_table - the number of inputs in truth table
@@ -646,7 +646,6 @@ void get_gate_string(int gate, char *temp)
         break;
     default:
         fprintf(out_file, "Gate number not possible!\n");
-        fflush(out_file);
         exit(1);
         break;
     }
@@ -740,7 +739,6 @@ void table_constructor(Table *table, const char *filename)
             
             if(fgets(buffer, 100000, file)){};
             fprintf(out_file,"%s", buffer);
-            fflush(out_file);
             if(strstr(buffer, ".p") != 0)
             {
                 sscanf(buffer, ".p %d\n", &table->num_rows);
@@ -774,10 +772,10 @@ void table_constructor(Table *table, const char *filename)
         {
             buffer[strlen(buffer) - 1] = '\0'; 
             fprintf(out_file, "%s\n", buffer);
-            fflush(out_file);
             table->outputs_bdd[i] = analyze_sum(buffer, table);
         }
     }
+    fflush(out_file);
     //exit(1);
     /*
     for (int i = 0; i < table->num_outputs; i++)
@@ -797,7 +795,6 @@ void set_genes_not_used(Individual *individual, int num_gates, int num_inputs_ta
     if(genes_not_used < 0)
     {
         fprintf(out_file, "Number of columns is lower than needed!\n");
-        fflush(out_file);
         exit(1);
     }
     int counter = 0;
@@ -856,7 +853,6 @@ int get_next_free_position(Individual *individual, int num_inputs_table)
     }
 
     fprintf(out_file, "Couldn't find any free space on genotype!\n");
-    fflush(out_file);
     exit(1);
 
     return 0;
@@ -1044,7 +1040,6 @@ void sow_population(Individual *individual, Table *table, const char *filename, 
             else
             {
                 fprintf(out_file, "Couldn't read expression!\n");
-                fflush(out_file);
                 exit(1);
             }
             
@@ -1088,7 +1083,6 @@ int get_gene_row(int pos, int num_inputs_table)
     if (pos < num_inputs_table)
     {
         fprintf(out_file, "Couldn't get gene row!\n");
-        fflush(out_file);
         exit(1);
     }
     return (pos - num_inputs_table) % (NROW);
@@ -1099,7 +1093,6 @@ int get_gene_col(int pos, int num_inputs_table)
     if (pos < num_inputs_table)
     {
         fprintf(out_file, "Couldn't get gene col!\n");
-        fflush(out_file);
         exit(1);
     }
     return (pos - num_inputs_table) / (NROW);
@@ -1118,7 +1111,6 @@ void print_gene(Gene *gene, int num_gene)
     char temp[6];
     get_gate_string(gene->gate, temp);
     fprintf(out_file, "Gene number: %d\t%d %s %d ACTIVE:%d\n", num_gene, gene->input[0], temp, gene->input[1], gene->active);
-    fflush(out_file);
 }
 
 void individual_constructor(Individual *individual, int num_outputs_table)
@@ -1142,24 +1134,18 @@ void individual_constructor(Individual *individual, int num_outputs_table)
 void print_individual(Individual *individual, int num_inputs_table)
 {
     fprintf(out_file, "INDIVIDUAL OUTPUTS: ");
-    fflush(out_file);
     for (int i = 0; i < individual->output_size; i++)
     {
         fprintf(out_file, "%d ", individual->output[i]);
-        fflush(out_file);
     }
     fprintf(out_file, "\n");
-    fflush(out_file);
 
     fprintf(out_file, "SCORE PER OUTPUT: ");
-    fflush(out_file);
     for (int i = 0; i < individual->output_size; i++)
     {
         fprintf(out_file, "%ld ", individual->score_per_output[i]);
-        fflush(out_file);
     }
     fprintf(out_file, "\n");
-    fflush(out_file);
 
     for (int row = 0; row < NROW; row++)
     {
@@ -1169,6 +1155,7 @@ void print_individual(Individual *individual, int num_inputs_table)
             print_gene(&individual->genotype[temp], temp + num_inputs_table);
         }
     }
+    fflush(out_file);
 }
 
 void aleatorizaLBMenorColuna(Individual *individual, int row, int col, int num_input, int num_inputs_table)
@@ -1274,7 +1261,7 @@ void mutate_individual(Individual *individual, int *gates, int num_inputs_table,
 
 void point_mutation(Individual *individual, int *gates, int num_inputs_table)
 {
-    for (int i = 0; i < (int)(NMUTATIONS*NROW*NCOL); i++)
+    for (int i = 0; i < (int)(MUTATIONRATE*NROW*NCOL); i++)
     {
         int temp = randomize(num_inputs_table, num_inputs_table + individual->genotype_size + individual->output_size);
         mutate_individual(individual, gates, num_inputs_table, temp);
@@ -1315,7 +1302,6 @@ int validate_worst(Individual *individual, int worst)
     }
 
     fprintf(out_file, "Erro validating worst subgraph!\n");
-    fflush(out_file);
     exit(1);
 
     return 0;
@@ -1337,6 +1323,7 @@ int find_worst_subgraph(Individual *individual)
 
 void sam(Individual *individual, int *gates, int num_inputs_table)
 {
+    int count = 0;
     while (1)
     {
         int temp = randomize(num_inputs_table, num_inputs_table + individual->genotype_size + individual->output_size);
@@ -1349,8 +1336,25 @@ void sam(Individual *individual, int *gates, int num_inputs_table)
             mutate_individual(individual, gates, num_inputs_table, temp);
             break;
         }
-
+        #ifdef MSAM
+            if(count > (int)(MUTATIONRATE*NROW*NCOL))
+            {
+                fprintf(out_file, "Entrou no MSAM com contador: %d\n", count);
+                int sort = randomize(0, NROW*NCOL);
+                for(int i = sort; i < NROW*NCOL; i++)
+                {
+                    if(individual->genotype[i].active == 1)
+                    {
+                        mutate_gene(individual, gates, i, num_inputs_table);
+                    }
+                }
+                sort = randomize(0, individual->output_size);
+                mutate_output(individual, sort, num_inputs_table);
+                break;
+            }
+        #endif
         mutate_individual(individual, gates, num_inputs_table, temp);
+        count++;
     }
 }
 
@@ -1435,7 +1439,6 @@ int validate_best_individual(Individual *population, int best, int output)
     }
 
     fprintf(out_file, "Error validating best individual!\n");
-    fflush(out_file);
     exit(1);
 
     return 0;
@@ -1490,7 +1493,6 @@ int validate_best_one(int *temp, int best)
     }
 
     fprintf(out_file, "Error validating best one!\n");
-    fflush(out_file);
     exit(1);
 
     return 0;
@@ -1568,7 +1570,6 @@ void print_boolean_expression_for_each_output(Individual *individual, int output
     if (output < num_inputs_table)
     {
         fprintf(out_file, "i%d", output);
-        fflush(out_file);
     }
     else
     {
@@ -1584,7 +1585,6 @@ void print_boolean_expression_for_each_output(Individual *individual, int output
             fprintf(out_file, "%s ", temp);
             print_boolean_expression_for_each_output(individual, individual->genotype[pos].input[0], num_inputs_table);
             fprintf(out_file, ")");
-            fflush(out_file);
         }
         else
         {
@@ -1593,7 +1593,6 @@ void print_boolean_expression_for_each_output(Individual *individual, int output
             fprintf(out_file, " %s ", temp);
             print_boolean_expression_for_each_output(individual, individual->genotype[pos].input[1], num_inputs_table);
             fprintf(out_file, ")");
-            fflush(out_file);
         }
     }
 }
@@ -1604,7 +1603,6 @@ void print_boolean_expression(Individual *individual, int num_inputs_table)
     {
         print_boolean_expression_for_each_output(individual, individual->output[i], num_inputs_table);
         fprintf(out_file, "\n\n");
-        fflush(out_file);
     }
 }
 
@@ -1643,7 +1641,6 @@ void print_max_depth(Individual *individual, int num_inputs_table)
         }
     }
     fprintf(out_file, "Circuit max depth: %d\n", max_depth);
-    fflush(out_file);
 }
 
 int get_num_transistors(int gate)
@@ -1673,7 +1670,6 @@ int get_num_transistors(int gate)
         break;
     default:
         fprintf(out_file, "Gate code unknow!\n");
-        fflush(out_file);
         exit(1);
         break;
     }
@@ -1711,11 +1707,9 @@ void print_num_gates(Individual *individual)
     {
         get_gate_string(i + 1, temp);
         fprintf(out_file, "%s: %d\n", temp, gates_count[i]);
-        fflush(out_file);
         total += gates_count[i];
     }
     fprintf(out_file, "TOTAL GATES: %d\n", total);
-    fflush(out_file);
 }
 
 void print_post_optimization_data(Individual *individual, int num_inputs_table)
@@ -1726,8 +1720,8 @@ void print_post_optimization_data(Individual *individual, int num_inputs_table)
     print_max_depth(individual, num_inputs_table);
     print_num_gates(individual);
     fprintf(out_file, "Num transistors: %d\n", individual->num_transistors);
-    fflush(out_file);
     print_boolean_expression(individual, num_inputs_table);
+    fflush(out_file);
 }
 
 void copy_individual_data(Individual *dest, Individual *src)
@@ -1773,7 +1767,6 @@ bdd get_bdd_output(bdd input0, int gate, bdd input1)
         break;
     default:
         fprintf(out_file, "Gate code unknow!\n");
-        fflush(out_file);
         exit(1);
         break;
     }
@@ -2050,6 +2043,6 @@ void print_population(Individual *population, int num_inputs_table)
     {
         print_individual(&population[i], num_inputs_table);
         fprintf(out_file, "\n\n");
-        fflush(out_file);
     }
+    fflush(out_file);
 }
