@@ -1,1 +1,21 @@
-Source-code.
+Readme
+---------------------------------------------------------------------
+This branch contains a Cartesian Genetic Programming (CGP) implementation to design Combinational Logic Circuits (CLC's). This source code was used at the submitted article named "A Benchmark Suite for Designing Combinational Logic Circuits via Metaheuristics", and made available in order to increase the reproducibility.
+
+Structure of files
+---------------------------------------------------------------------
+- bin: This folder contains the binary file compiled from the source code and use to run the program.
+
+- include: This folder contains the "cgp.h" file wich implements the implements the Cartesian Genetic Programming representation used to solve the problems from the proposed benchmark.
+
+- tables: This folder contains all the problems used at the benchmark. Those files are structured as following:
+  .p represents the number of lines into the problem's truth table.
+  .i represents the number of inputs from the problem.
+  .o represents the number of outputs from the problem.
+  After those basic informations about the problem and its truth table, we'ill find at each line the boolean expression for each output. The boolean expressions presented at the files were obtained from the LGSynth'91 benchmarks, available at: https://ddd.fit.cvut.cz/prj/Benchmarks/.
+  Its important to notice that each file describes the problem, that we're optimizing, and therefore used as an input to the source code.
+
+- results: This folder contains all the results obtained from the two set of experiments proposed on the paper, with 25 indepent runs for each problem with each of the CGP variants proposed. The results from the 1st experiment set are present at the folder named 1st-experiment-set separated in two folders, each one from an mutation used. The results from the 2nd experiment set are present as the first one, but in the folder named 2nd-experiment-set.
+
+Cartesian Genetic Programming
+---------------------------------------------------------------------
