@@ -218,7 +218,7 @@ void print_individual(Individual *individual, int num_inputs_table);
 * @param num_inputs_table - the number of inputs in truth table
 * @return none
 */
-void aleatorizaLBMenorColuna(Individual *individual, int row, int col, int num_input, int num_inputs_table);
+void randomize_inputs_low_lb(Individual *individual, int row, int col, int num_input, int num_inputs_table);
 
 /**
 * @brief Function that randomizes gene inputs
@@ -229,7 +229,7 @@ void aleatorizaLBMenorColuna(Individual *individual, int row, int col, int num_i
 * @param num_inputs_table - the number of inputs in truth table
 * @return none
 */
-void aleatorizaLigantes(Individual *individual, int row, int col, int num_input, int num_inputs_table);
+void randomize_inputs(Individual *individual, int row, int col, int num_input, int num_inputs_table);
 
 /**
 * @brief Function that randomly initializes the individual
@@ -722,7 +722,8 @@ bdd analyze_sum(const char *str, Table *table)
 
 void table_constructor(Table *table, const char *filename)
 {
-    strncpy(table->circuit_name, filename, 100);
+    size_t fname_size = sizeof(filename);
+    strncpy(table->circuit_name, filename, fname_size);
 
     FILE *file = fopen(filename, "r");
     char buffer[100000];
@@ -1158,7 +1159,7 @@ void print_individual(Individual *individual, int num_inputs_table)
     fflush(out_file);
 }
 
-void aleatorizaLBMenorColuna(Individual *individual, int row, int col, int num_input, int num_inputs_table)
+void randomize_inputs_low_lb(Individual *individual, int row, int col, int num_input, int num_inputs_table)
 {
     int temp = randomize(0, num_inputs_table + LB * NROW);
     int pos = get_gene_position(row, col);
@@ -1175,7 +1176,7 @@ void aleatorizaLBMenorColuna(Individual *individual, int row, int col, int num_i
     }
 }
 
-void aleatorizaLigantes(Individual *individual, int row, int col, int num_input, int num_inputs_table)
+void randomize_inputs(Individual *individual, int row, int col, int num_input, int num_inputs_table)
 {
     int pos = 0;
     pos = get_gene_position(row, col);
@@ -1190,7 +1191,7 @@ void aleatorizaLigantes(Individual *individual, int row, int col, int num_input,
     }
     else if (LB < col) ///aleatoriza coluna até o levels-back
     {
-        aleatorizaLBMenorColuna(individual, row, col, num_input, num_inputs_table);
+        randomize_inputs_low_lb(individual, row, col, num_input, num_inputs_table);
     }
 }
 
@@ -1205,8 +1206,8 @@ void initialize_individual(Individual *individual, int *gates, int num_inputs_ta
     {
         for (int col = 0; col < NCOL; col++)
         {
-            aleatorizaLigantes(individual, row, col, 0, num_inputs_table);
-            aleatorizaLigantes(individual, row, col, 1, num_inputs_table);
+            randomize_inputs(individual, row, col, 0, num_inputs_table);
+            randomize_inputs(individual, row, col, 1, num_inputs_table);
             temp = randomize(0, NGATES);
             pos = get_gene_position(row, col);
             individual->genotype[pos].gate = gates[temp];
@@ -1229,7 +1230,7 @@ void mutate_gene(Individual *individual, int *gates, int gene_pos, int num_input
     int col = get_gene_col(gene_pos, num_inputs_table);
     if (temp == 0 || temp == 1)
     {
-        aleatorizaLigantes(individual, row, col, temp, num_inputs_table);
+        randomize_inputs(individual, row, col, temp, num_inputs_table);
     }
     else
     {

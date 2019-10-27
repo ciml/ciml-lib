@@ -51,13 +51,13 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
 
         if (population[0].score == 0)
         {
-            fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fprintf(out_file, "SAT COUNT: %ld INDIVIDUAL: %d GENERATION: %ld\n", population[0].score, best_individual, generation);
             fflush(out_file);
             break;
         }
         if (generation % 50000 == 0)
         {
-            fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fprintf(out_file, "SAT COUNT: %ld INDIVIDUAL: %d GENERATION: %ld\n", population[0].score, best_individual, generation);
             fflush(out_file);
         }
         if(bdd_getnodenum() >= (int) (0.95 * bdd_getallocnum()))
@@ -66,7 +66,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         }
         if(generation == maxgen)
         {
-            fprintf(out_file, "SAT COUNT: %ld INDIVIDUO: %d GERACAO: %ld\n", population[0].score, best_individual, generation);
+            fprintf(out_file, "SAT COUNT: %ld INDIVIDUAL: %d GENERATION: %ld\n", population[0].score, best_individual, generation);
             fflush(out_file);
             return 0;
         }
