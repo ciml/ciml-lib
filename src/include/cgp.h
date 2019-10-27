@@ -3,19 +3,23 @@
  *
  * @brief Cartesian Genetic Programming Algorithm
  *
- * @details This file implements the Cartesian Genetic Programming Algorithm based in many papers.
- * CGP-BDD -> DOI: 10.1109/ICES.2014.7008732
- * X-CGP SAM+GAM -> DOI: 10.1109/BRACIS.2018.00033
+ * @details This file implements the Cartesian Genetic Programming Algorithm based in 
+ * those materials listed below.
+ *  -Cartesian Genetic Programming - ISBN-10: 3642269982 ISBN-13: 978-3642269981
+ *  -How to evolve complex circuits from scratch - DOI: 10.1109/ICES.2014.7008732
+ *  -CGP with Guided and Single Active Mutations for Designing CLCs - DOI: 
  * 
- * @author Lucas Augusto Müller de Souza (lucas.mullers@gmail.com)
+ * @author Lucas Augusto Müller de Souza (lucasmuller@ice.ufjf.br)
+ * Computational Engineering student at Universidade Federal de Juiz de Fora
  *
- * @date february 20, 2019
  *
  * @copyright Distributed under the Mozilla Public License 2.0 ( https://opensource.org/licenses/MPL-2.0 )
  *
+ * @code available at https://github.com/ciml/ciml-lib/tree/applied-soft-computing-2019
  * @see https://github.com/lucasmullers/
  *
  * Created on: january 15, 2019
+ * Updated on: october 27, 2019
  */
 
 #include <stdio.h>
@@ -130,20 +134,78 @@ bdd analyze_sum(const char *str, Table *table);
 */
 void table_constructor(Table* table, const char* filename);
 
+/**
+* @brief Randomize genes that couldn't be used when sowing the individual with a factible solution, 
+* this process grant that 33,3% of genotype is randomly selected to be inactive in the 
+* initial invidual.   
+* @param individual - the individual struct
+* @param num_gates - the number of gates used in the evolutionary process
+* @param num_inputs_table - number of inputs in truth table
+* @return none
+*/
 void set_genes_not_used(Individual *individual, int num_gates, int num_inputs_table);
 
+/**
+* @brief Set the initial nodes of genotype as the inputs complemented.   
+* @param individual - the individual struct
+* @param num_inputs_table - number of inputs in truth table
+* @return none
+*/
 void set_nots_on_individual(Individual *individual, int num_inputs_table);
 
+/**
+* @brief Parse the string and get the number of inputs and if its complemented.  
+* @param str - the string being parsed
+* @param num_inputs_table - number of inputs in truth table
+* @return the number of the input on string
+*/
 int get_input_position(const char *str, int num_inputs_table);
 
+/**
+* @brief Traverse the genotype searching the first inactive node available.  
+* @param individual - the individual struct
+* @param num_inputs_table - number of inputs in truth table
+* @return the position into the genotype of the first inactive node foundS
+*/
 int get_next_free_position(Individual *individual, int num_inputs_table);
 
+/**
+* @brief Sow the initial invidual based on the string that contains only AND operations.  
+* @param individual - the individual struct
+* @param str - the string with part of the circuits expression
+* @param num_inputs_table - number of inputs in truth table
+* @return the position into the genotype that the last AND gate is set.
+*/
 int parse_expression_only_ands(Individual *individual, const char *str, int num_inputs_table);
 
+/**
+* @brief Sow the initial invidual based on the string that contains only OR operations.  
+* @param individual - the individual struct
+* @param str - the string with part of the circuits expression
+* @param num_inputs_table - number of inputs in truth table
+* @return the position into the genotype that the last OR gate is set.
+*/
 int parse_expression_only_ors(Individual *individual, const char *str, int num_inputs_table);
 
+/**
+* @brief Sow the initial invidual based on the string that contains AND & OR operations.  
+* @param individual - the individual struct
+* @param str - the string with part of the circuits expression
+* @param num_inputs_table - number of inputs in truth table
+* @return the position into the genotype that the last AND/OR gate is set.
+*/
 int parse_expression_ands_ors(Individual *individual, const char *str, int num_inputs_table);
 
+/**
+* @brief Sow the initial invidual with a factible solution 
+* based on the string that contains the circuits boolean expression. 
+* @param individual - the individual struct
+* @param table - the table struct that will store the circuit 
+* boolean expression for each output
+* @param filename - the name of the input file
+* @param num_gates - the number of gates used in the evolutionary process
+* @return the position into the genotype that the last AND/OR gate is set.
+*/
 void sow_population(Individual *individual, Table *table, const char *filename, int num_gates);
 
 /**
@@ -308,7 +370,7 @@ int find_worst_subgraph(Individual *individual);
 void sam(Individual *individual, int *gates, int num_inputs_table);
 
 /**
-* @brief Function to apply ????? Active Mutation at the individual
+* @brief Function to apply Guided Active Mutation at the individual
 * @param individual - the individual struct
 * @param gates - the array containing the gates codes that will be used
 * @param worst_subgraph - the output with the worst subgraph
@@ -343,7 +405,7 @@ void clear_individiual_active_genes(Individual *individual);
 
 /**
 * @brief Function to check if there is more than one individual with same output score - if there is, 
-*   it randomly choose between them
+* it randomly choose between them
 * @param population - the individual struct with all individuals
 * @param best - the best individual
 * @param output - the individual's output being checked

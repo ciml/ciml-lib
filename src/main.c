@@ -1,18 +1,25 @@
 /**
- * @file main.c
+ * @file cgp.h
  *
- * @brief Execute CGP
+ * @brief Cartesian Genetic Programming Algorithm
  *
- * @details This file executes evolutionary process over many different CGP's.
+ * @details This file implements the Cartesian Genetic Programming Algorithm based in 
+ * those materials listed below.
+ *  -Cartesian Genetic Programming - ISBN-10: 3642269982 ISBN-13: 978-3642269981
+ *  -How to evolve complex circuits from scratch - DOI: 10.1109/ICES.2014.7008732
+ *  -CGP with Guided and Single Active Mutations for Designing CLCs - DOI: 
+ * 
+ * @author Lucas Augusto Müller de Souza (lucasmuller@ice.ufjf.br)
+ * Computational Engineering student at Universidade Federal de Juiz de Fora
  *
- *
- * @date february 20, 2019
  *
  * @copyright Distributed under the Mozilla Public License 2.0 ( https://opensource.org/licenses/MPL-2.0 )
  *
- * @see https://github.com/ciml/
+ * @code available at https://github.com/ciml/ciml-lib/tree/applied-soft-computing-2019
+ * @see https://github.com/lucasmullers/
  *
  * Created on: january 15, 2019
+ * Updated on: october 27, 2019
  */
 
 
@@ -24,6 +31,15 @@ long int maxgen;
 long int mediangen;
 int mutation;
 
+/**
+* @brief Function that implements the cartesian genetic programming evolutionary process to
+* evolve CLCs. The process start with a random population and ends with the first factible
+* circuit found.
+* @param population - the population struct that will be used into the evolution
+* @param table - the table struct that stores the circuits information
+* @param gates - the logical gates used into the evolution
+* @return 1 if a factible ciruit is found and 0 otherwise
+*/
 int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
 {
     long int generation = 0;
@@ -83,6 +99,15 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
     return 1;
 }
 
+/**
+* @brief Function that implements the cartesian genetic programming evolutionary process to
+* optimize CLCs. The process start with a factible population and ends with best factible
+* circuit found (the best individual is choosed with respect to the lower number of transistors).
+* @param population - the population struct that will be used into the evolution
+* @param table - the table struct that stores the circuits information
+* @param gates - the logical gates used into the evolution
+* @return none
+*/
 void optimize_circuit(Individual *population, Table *table, int *gates)
 {
 
