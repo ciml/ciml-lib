@@ -1,37 +1,98 @@
 Readme
 ----------------------------------------------------------------------------------------
 	This branch contains a Cartesian Genetic Programming (CGP) implementation to design 
-Combinational Logic Circuits (CLC's). This source code was used at the submitted article 
-named "A Benchmark Suite for Designing Combinational Logic Circuits via Metaheuristics", 
-and made available in order to increase the reproducibility.
+  Combinational Logic Circuits (CLC's). This source code was used at the submitted 
+  paper named "A Benchmark Suite for Designing Combinational Logic Circuits via 
+  Metaheuristics", and made available in order to increase the reproducibility.
 
 Structure of files
 ----------------------------------------------------------------------------------------
-- bin: This folder contains the binary file compiled from the source code and use to run
- the program.
+  - bin: This folder contains the binary file compiled from the source code and use to 
+    run the program.
 
-- include: This folder contains the "cgp.h" file wich implements the implements the 
-Cartesian Genetic Programming representation used to solve the problems from the 
-proposed benchmark.
+  - include: This folder contains the "cgp.h" file wich implements the 
+    Cartesian Genetic Programming representation used to solve the problems from the 
+    proposed benchmark.
 
-- tables: This folder contains all the problems used at the benchmark. 
-Those files are structured as following:
-  .p represents the number of lines into the problem's truth table.
-  .i represents the number of inputs from the problem.
-  .o represents the number of outputs from the problem.
-  After those basic informations about the problem and its truth table, we'ill find at 
-  each line the boolean expression for each output. The boolean expressions presented
-  at the files were obtained from the LGSynth'91 benchmarks, 
-  available at: https://ddd.fit.cvut.cz/prj/Benchmarks/.
-  Its important to notice that each file describes the problem, that we're optimizing, 
-  and therefore used as an input to the source code.
+  - tables: This folder contains all the problems used at the benchmark. 
+    Those files are structured as following:
+      1) .p represents the number of lines into the problem's truth table.
+      2) .i represents the number of inputs from the problem.
+      3) .o represents the number of outputs from the problem.
+      4) After those basic informations about the problem and its truth table, we'ill find at 
+      each line the boolean expression for each output. The boolean expressions presented
+      at the files were obtained from the LGSynth'91 benchmarks, 
+      available at: https://ddd.fit.cvut.cz/prj/Benchmarks/.
+    Its important to notice that each file describes the problem that we're optimizing, 
+    and therefore used as an input to the source code.
 
-- results: This folder contains all the results obtained from the two set of experiments 
-proposed on the paper, with 25 indepent runs for each problem with each of the CGP 
-variants proposed. The results from the 1st experiment set are present at the folder 
-named 1st-experiment-set separated in two folders, each one from an mutation used. 
-The results from the 2nd experiment set are present as the first one, but in the 
-folder named 2nd-experiment-set.
+  - results: This folder contains all the results obtained from the two set of experiments 
+  proposed on the paper, with indepent runs for each problem and each of the CGP 
+  variants proposed. The results from the 1st experiment set are present at the folder 
+  named 1st-experiment-set separated in two folders, each one from an mutation used. 
+  The results from the 2nd experiment set are present as the first one, but in the 
+  folder named 2nd-experiment-set.
+    Each file on results folder are structured as follows:
+      1) The mutation algorithm used (SAM, SAM+GAM or PM).
+      2) .p represents the number of lines into the problem's truth table.
+      3) .i represents the number of inputs from the problem.
+      4) .o represents the number of outputs from the problem.
+      5) After those basic informations about the problem and its truth table, we'ill find at 
+        each line the boolean expression for each output.
+      6) After the first set of hiphens we have informations about the process of findig a 
+        feasible circuit. SAT COUNT = 0 means that we've found the first feasible circuit.
+      7) If a feasible circuit is found we print the number of gates (for each gate 
+        and total), the total number of transistors and the circuit for each output.
+      8) After those informations we start the minimization of the transistors numbers.
+      9) When the maximun number of generations is reached we print the final circuit,
+      informations (those informations are the same of the first feasible solution).
+      10) As last information we have the time (in seconds) spent to run the program.
 
-Cartesian Genetic Programming
+Cartesian Genetic Programming (CGP)
 ----------------------------------------------------------------------------------------
+  CGP is an method developed by Miller et al. in 1997 [1]. Its capable of enconding 
+  different types of programs due to the two-dimensional grid of nodes representeds by 
+  directed acyclic graphs (DAGs). 
+  The most common application is to optimize Combinational Logic Circuits (CLCs).
+
+  CGP is an evolutionary algorithm that uses (mu+lambda)-ES, with mu=1 and lambda=4 
+  (tipycally), and point mutation with 5% rate of mutation as standard. Here we implent 
+  more features in order to improve the computational cost of optimizing circuits. 
+  We implemented 2 more kinds of mutations named as SAM and GAM, as well SAMGAM that 
+  is a combination of this 2 mutations. SAMGAM reduce the number of evaluations needed 
+  to find a feasible solution, as show in [2]. Besids that we adopt the Binary Decision 
+  Diagram (BDD) to evaluate individiuals fitness, due to  the speedup reported in [3].
+
+  There are two implemented options to optimize circuits:
+    1- Start CGP's population randomly, evolve until a feasible solution and then
+    minimize the number of transistors needed in the circuit.
+    2- Start CGP's population with a factible solution and minimize the number of
+    transistors needed in the circuit.
+  Into the proposed paper we use both options in order that the benchmark users
+  can compare any of this options to their algorithm, depending if they start with
+  a factible solution or not.
+
+How to run the program
+----------------------------------------------------------------------------------------
+  To run the program we need to send some informations through terminal. There will be
+  different informations depending if the initital population is randomly seeded or not.
+  We'ill start with random population. The informations should obey the order that they
+  are presented bellow.
+  Random population:
+  1) tables              - the circuit being optimized.
+  2) seed                - the seed used in the execution. 
+  3) ncol                - the number of columns of the genotype.
+  4) maxgen              - the maximun number of generations to optimize the circuit.
+  5) mutation            - the mutation algorithm being used.
+  6) file (optional)     - the file path to store the program results.
+
+  Population sow with factible solution:
+  1) tables              - the circuit being optimized.
+  2) seed                - the seed used in the execution. 
+  3) ncol                - the number of columns of the genotype.
+  4) maxgen              - the maximun number of generations to optimize the circuit.
+  5) mutation            - the mutation algorithm being used.
+  6) ngates              - the number of gates needed in the initital circuit (i.e.
+  the number of OR & AND gates plus the number of inputs from the circuit).
+  7) mediangen           - the number of generation to print the circuit informations
+  8) file (optional)     - the file path to store the program results.
