@@ -96,3 +96,17 @@ How to run the program
   the number of OR & AND gates plus the number of inputs from the circuit).
   7) mediangen           - the number of generation to print the circuit informations
   8) file (optional)     - the file path to store the program results.
+
+  Knowing the order of the arguments needed, an what they mean, now we'ill the options
+  available to each argument.
+  -tables: All tables available in tables folder.
+  -seed: Any intenger greater than 0.
+  -ncol: Any intenger greater than 0.
+  -maxgen: Any intenger greater than 0.
+  -mutation: It can assume 3 discrete values, each onde for an mutation algorithm 
+  (1 to SAM, 2 to SAM+GAM and 3 to PM).
+  -ngates: Any intenger number grater than the number of AND gates plus OR gates plus
+  number of inputs from the circuit.
+  -mediangen: Any positive intenger.
+  
+  
