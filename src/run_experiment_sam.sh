@@ -11,7 +11,6 @@ ncols=(7763 20769 7151 8135)
 ngates=(5175 13846 4767 5423)
 mediangen=(10200000 18400000 6400000 10200000)
 
-#for nos problemas
 for i in `seq 0 3`;
 do
     #echo "Solving problem:${problema[i]} with SAM - seed:${1}"
