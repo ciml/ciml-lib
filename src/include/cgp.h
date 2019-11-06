@@ -1783,7 +1783,7 @@ void print_post_optimization_data(Individual *individual, int num_inputs_table)
     print_max_depth(individual, num_inputs_table);
     print_num_gates(individual);
     fprintf(out_file, "Num transistors: %d\n", individual->num_transistors);
-    print_boolean_expression(individual, num_inputs_table);
+    //print_boolean_expression(individual, num_inputs_table);
     fflush(out_file);
 }
 

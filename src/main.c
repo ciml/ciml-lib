@@ -76,7 +76,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
             fprintf(out_file, "SAT COUNT: %ld INDIVIDUAL: %d GENERATION: %ld\n", population[0].score, best_individual, generation);
             fflush(out_file);
         }
-        if(bdd_getnodenum() >= (int) (0.95 * bdd_getallocnum()))
+        if(bdd_getnodenum() >= (int) (0.75 * bdd_getallocnum()))
         {
             bdd_gbc();
         }
@@ -136,7 +136,7 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             fflush(out_file);
         }
-        if (bdd_getnodenum() >= (int)(0.95 * bdd_getallocnum()))
+        if (bdd_getnodenum() >= (int)(0.75 * bdd_getallocnum()))
         {
             bdd_gbc();
         }
@@ -199,7 +199,7 @@ int main(int argc, char const *argv[])
         exit(1);
     }
     fflush(out_file);
-    bdd_init(100000000, 100000);
+    bdd_init(10000000, 100000);
 
     Individual *population = (Individual *)malloc(sizeof(Individual) * NPOP);
     int gates[NGATES] = {1, 2, 3, 4, 5, 6, 7};
