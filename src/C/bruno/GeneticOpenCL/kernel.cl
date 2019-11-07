@@ -317,6 +317,13 @@ __kernel void  replacePopulation(__global Arvore* popA, __global Arvore* popF){
     popA[get_global_id(0)] = popF[get_global_id(0)];
 }
 
+__kernel void testRandomGenerator(__global int* seeds){
+    int group_id = get_group_id(0);
+    int seed = seeds[group_id];
+    //printf("%d - %d\n", group_id, seeds[group_id]);
+    seeds[group_id] = rand2(&seed);
+    //printf("%d - %d\n", group_id, seeds[group_id]);
+}
 
 //TESTE inicial comparando openMP e openCL
 /*

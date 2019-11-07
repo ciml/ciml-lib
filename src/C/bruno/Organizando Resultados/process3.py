@@ -1,3 +1,5 @@
+# reads the data, calculate and print the min-average-median-mean-max in LaTeX table format.
+
 from __future__ import print_function
 import os
 import sys
@@ -27,10 +29,11 @@ for rootdir in sorted(roots):
 
 	minEvol = float("inf")
 	idEvol = ''
-	minTotal = float("inf")
-	idTotal = ''
 	minAval = float("inf")
 	idAval = ''
+	minTotal = float("inf")
+	idTotal = ''
+
 
 	#pdb.set_trace()
 	for subdir, dirs, files in sorted(os.walk(rootdir)):
@@ -102,9 +105,9 @@ for rootdir in sorted(roots):
 
 	tableResult.append([])
 
-	tableResult[j].append(min(evol))
-	tableResult[j].append(min(aval))
-	tableResult[j].append(min(total))
+	#tableResult[j].append(min(evol))
+	#tableResult[j].append(min(aval))
+	#tableResult[j].append(min(total))
 
 	tableResult[j].append(median(evol))
 	tableResult[j].append(median(aval))
@@ -118,27 +121,27 @@ for rootdir in sorted(roots):
 	tableResult[j].append(std(aval))
 	tableResult[j].append(std(total))
 
-	tableResult[j].append(max(evol))
-	tableResult[j].append(max(aval))
-	tableResult[j].append(max(total))
+	#tableResult[j].append(max(evol))
+	#tableResult[j].append(max(aval))
+	#tableResult[j].append(max(total))
 
 	j = j + 1
 #print("min & median & mean & std & max ", end='\\\ \n')
 
 print("\\begin{table}[]")
 print("\\caption{" + root.split('\\')[-1]+"}")
-print("\\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}")
+print("\\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}")#c|c|c|c|c|c|}")
 print("\\hline")
 print("\\multicolumn{1}{|c}{} & ")
-print("\\multicolumn{3}{|c}{Min} & ")
+#print("\\multicolumn{3}{|c}{Min} & ")
 print("\\multicolumn{3}{|c}{Median} & ")
 print("\\multicolumn{3}{|c}{Mean} & ")
 print("\\multicolumn{3}{|c}{Std} & ")
-print("\\multicolumn{3}{|c|}{Max} \\\\ ")
+#print("\\multicolumn{3}{|c|}{Max} \\\\ ")
 
 print("\\hline")
 
-print("& Evol & Aval & Total & Evol & Aval & Total & Evol & Aval & Total & Evol & Aval & Total & Evol & Aval & Total ", end='\\\ \n')
+print("& Evol & Aval & Total & Evol & Aval & Total & Evol & Aval & Total ", end='\\\ \n')# & Evol & Aval & Total & Evol & Aval & Total ", end='\\\ \n')
 print("\\hline")
 x = 0
 for line in tableResult:

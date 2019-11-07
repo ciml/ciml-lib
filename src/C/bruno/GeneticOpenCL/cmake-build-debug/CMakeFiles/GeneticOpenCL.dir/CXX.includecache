@@ -7,16 +7,22 @@
 #IncludeRegexTransform: 
 
 ../include/CL/cl.h
-OpenCL/cl_version.h
--
 OpenCL/cl_platform.h
--
-CL/cl_version.h
 -
 CL/cl_platform.h
 -
 
-../include/CL/cl.hpp
+../include/CL/cl2.hpp
+CL/cl2.hpp
+-
+iostream
+-
+vector
+-
+memory
+-
+algorithm
+-
 malloc.h
 -
 CL/cl_d3d10.h
@@ -31,13 +37,17 @@ OpenCL/opencl.h
 -
 CL/opencl.h
 -
-atomic
--
 utility
 -
 limits
 -
 iterator
+-
+mutex
+-
+cstring
+-
+functional
 -
 exception
 -
@@ -45,9 +55,9 @@ vector
 -
 string
 -
-alloca.h
+memory
 -
-cstring
+array
 -
 
 ../include/CL/cl_d3d10.h
@@ -73,6 +83,14 @@ AvailabilityMacros.h
 -
 CL/cl.h
 -
+d3d9.h
+-
+dxvahd.h
+-
+wtypes.h
+-
+d3d9types.h
+-
 
 ../include/CL/cl_gl.h
 OpenCL/cl.h
@@ -87,11 +105,7 @@ CL/cl_gl.h
 -
 
 ../include/CL/cl_platform.h
-OpenCL/cl_version.h
--
 AvailabilityMacros.h
--
-CL/cl_version.h
 -
 stdint.h
 -
@@ -114,8 +128,6 @@ intrin.h
 immintrin.h
 -
 
-../include/CL/cl_version.h
-
 ../include/CL/opencl.h
 OpenCL/cl.h
 -
@@ -134,7 +146,7 @@ CL/cl_gl_ext.h
 CL/cl_ext.h
 -
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/GPTime.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/GPTime.h
 vector
 -
 iostream
@@ -142,117 +154,83 @@ iostream
 sys/time.h
 -
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/OCLHelper.cpp
-OCLHelper.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/OCLHelper.h
-
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/OCLHelper.h
-CL/cl.hpp
--
-utilitarios.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
-
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.cpp
 arvore.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
-stdio.h
--
-stdlib.h
--
-math.h
--
-float.h
--
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
 pilha.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
 utilitarios.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 bitwise.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.cpp
 bitwise.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 constantes.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.cpp
 genetica.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
-stdio.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
+cstdio
 -
-stdlib.h
+cstdlib
 -
 arvore.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/main.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/main.cpp
 omp.h
 -
-iostream
--
-iomanip
--
 genetica.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
 GPTime.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/GPTime.h
-OCLHelper.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/OCLHelper.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/GPTime.h
 oclConfig.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.cpp
 oclConfig.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
-CL/cl.hpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
+CL/cl2.hpp
 -
-iostream
--
-iomanip
--
-string
--
-vector
--
-constantes.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 utilitarios.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.cpp
 pilha.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
 constantes.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.cpp
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.cpp
 utilitarios.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
-constantes.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
-stdio.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
+cstdio
 -
-stdlib.h
+cstdlib
 -
-string.h
+cstring
 -
-math.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/math.h
+cmath
+-
+cfloat
+-
 iostream
 -
 string
@@ -265,14 +243,12 @@ limits
 -
 climits
 -
-sys/time.h
+ctime
 -
 sstream
 -
 fstream
 -
-constantes.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 bitwise.h
-C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 

@@ -2,10 +2,12 @@
 #define UTILITARIOS_H_INCLUDED
 
 //c headers
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "math.h"
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cfloat>
+
 
 //cpp headers
 #include <iostream>
@@ -14,11 +16,11 @@
 #include <vector>
 #include <limits>
 #include <climits>
-#include <sys/time.h>
+#include <ctime>
 #include <sstream>
 #include <fstream>
 
-#include "constantes.h"
+
 #include "bitwise.h"
 
 

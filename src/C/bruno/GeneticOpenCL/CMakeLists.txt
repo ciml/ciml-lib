@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.12)
 project(GeneticOpenCL)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(.)
 include_directories(include)
-link_directories(lib/x86)
+link_directories(lib/x64)
+
+
 
 add_executable(GeneticOpenCL
         arvore.cpp arvore.h
@@ -16,7 +18,6 @@ add_executable(GeneticOpenCL
         oclConfig.cpp oclConfig.h
         pilha.cpp pilha.h
         utilitarios.cpp utilitarios.h
-        OCLHelper.cpp OCLHelper.h
         main.cpp)
 
 target_link_libraries(GeneticOpenCL OpenCL)

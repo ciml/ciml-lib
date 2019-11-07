@@ -1,10 +1,19 @@
 #include "arvore.h"
 
-///Não está sendo utilizado no programa principal
+/**
+ * Initialize every NODE with a FLAG = 0
+ * @param arv pointer to TREE instance
+ */
 void inicializaArvore(Arvore* arv){
     arv->numNos = 0;
 }
 
+/**
+ * Calculate the SIZE of a SUBTREE starting at a given index
+ * @param arv arv pointer to a TREE instance
+ * @param indice starting index
+ * @return the SUBTREE SIZE
+ */
 int calculaTamanhoSubArvore(Arvore* arv, int indice){
     int soma = arv->numeroFilhos[indice];
     int tam = 1;
@@ -17,6 +26,19 @@ int calculaTamanhoSubArvore(Arvore* arv, int indice){
     return tam;
 }
 
+/**
+ * TREE generator. Works by randomly selecting an operation or terminal NODE from the viable choices until the tree
+ * is complete or the maximum size is achieved.
+ * @param arv pointer to a tree instance
+ * @param maxTam maximum number of nodes
+ * @param conjuntoOpTerm array with the possible nodes
+ * @param NUM_OPBIN number of binary operations
+ * @param NUM_OPUN number of unary operations
+ * @param N number of variables
+ * @param seed random generator seed
+ * @param maxDados maximum possible value for constants
+ * @param minDados minimum possible value for constants
+ */
 void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
                     float maxDados, float minDados){
     Pilha pilha;
@@ -78,12 +100,24 @@ void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, 
     }
 }
 
-
+/**
+ * FULL TREE generator. Works by randomly selecting an operation or terminal NODE from the viable choices until the tree
+ * is complete or the maximum size is achieved.
+ * @param arv pointer to a tree instance
+ * @param maxTam maximum number of nodes
+ * @param conjuntoOpTerm array with the possible nodes
+ * @param NUM_OPBIN number of binary operations
+ * @param NUM_OPUN number of unary operations
+ * @param N number of variables
+ * @param seed random generator seed
+ * @param maxDados maximum possible value for constants
+ * @param minDados minimum possible value for constants
+ */
 void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
                float maxDados, float minDados){
 
-    //conferir de alguma forma que cabe uma árvore cheia no vetor (no caso confere para uma arvore binaria)
-    //nao funciona no caso se sortear '1' filho várias vezes, pois acaba cabendo uma arvore mais profunda e ainda 'cheia'
+    //conferir de alguma forma que cabe uma arvore cheia no vetor (no caso confere para uma arvore binaria)
+    //nao funciona no caso se sortear '1' filho varias vezes, pois acaba cabendo uma arvore mais profunda e ainda 'cheia'
     //if(pow(2, maxDepth+1)-1 > MAX_NOS)
     //printf("Espaco insuficiente para arvore cheia nesta profundidade.");
     //return;
@@ -260,7 +294,7 @@ void imprimeArvorePos(Arvore* arv, char** LABELS){
     }
 }
 
-void shift(Arvore* arv, int tam, int indice){//indice a partir de onde começa o shift, tam = tamanho do shift
+void shift(Arvore* arv, int tam, int indice){//indice a partir de onde comeï¿½a o shift, tam = tamanho do shift
     int i;
     if(tam > 0){
         for(i = arv->numNos-1; i >= indice; i--){
@@ -288,7 +322,7 @@ void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, i
         //tamanho disponivel+tamanho da subarvore sorteada
     int espacoLivre = MAX_NOS-(arvore->numNos)+tamanhoSub;
 
-    //cria uma nova arvore aleatoria de até o tamanho maximo calculado
+    //cria uma nova arvore aleatoria de atï¿½ o tamanho maximo calculado
     //TODO: criar uma nova arvore ou nao?
     Arvore novaArvore;
     //inicializaArvore(&novaArvore);
@@ -301,7 +335,7 @@ void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, i
     int tamShift = novaArvore.numNos - tamanhoSub;
     shift(arvore, tamShift, indiceSub+tamanhoSub);
 
-    //troca a informação
+    //troca a informaï¿½ï¿½o
     for(i = 0; i < novaArvore.numNos; i++){
         arvore->numeroFilhos[i+indiceSub] = novaArvore.numeroFilhos[i];
         arvore->informacao[i+indiceSub] = novaArvore.informacao[i];
@@ -475,7 +509,7 @@ float executa(Arvore* arv, float dados[], int N){
     }
 
     float erro = desempilhaF(&pilhaEx)- dados[N-1];
-    erro = ( isinf( erro ) || isnan( erro ) ) ? /*FLT_MAX*/ INFINITY : erro;
+    erro = ( std::isinf( erro ) ||  std::isnan( erro ) ) ? /*FLT_MAX*/ INFINITY : erro;
     return erro*erro;//pow(erro, 2);
 }
 

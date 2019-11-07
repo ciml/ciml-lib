@@ -1,4 +1,4 @@
-C:\Users\BrunoM\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\182.4129.51\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\BrunoM\Desktop\GitHub\ciml-lib\src\C\bruno\GeneticOpenCL
+C:\Users\bruno\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\192.7142.39\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\bruno\Documents\GitHub\ciml-lib\src\C\bruno\GeneticOpenCL
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/BrunoM/Desktop/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/cmake-build-debug
+-- Build files have been written to: C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/cmake-build-debug

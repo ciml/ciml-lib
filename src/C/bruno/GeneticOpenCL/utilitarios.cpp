@@ -1,5 +1,4 @@
 #include "utilitarios.h"
-#include "constantes.h"
 
 int rand2(int *seed){
     int s  = *seed;
@@ -99,8 +98,6 @@ float infSqrt(float num){
     }
 }
 
-
-
 void imprimeParametros(int M, int N, int NUM_CTES, int NUM_OPBIN, int NUM_OPUN){
     printf("/*-----------------------------------------------------------------\n");
     printf("* NUMERO INDIVIDUOS: %d \t CROSS-OVER: %.2f\n", NUM_INDIV, PROB_CROSS);
@@ -165,6 +162,12 @@ float** readTrainingData(int *M, int *N, int *NUM_CTES, int *NUM_OPBIN, int *NUM
         for(j = 0; j < (*N); j++){
             arq >> dadosTreinamento[i][j];
 
+        }
+        if(dadosTreinamento[i][j-1] > (*maxDados)){
+            (*maxDados) = dadosTreinamento[i][j-1];
+        }
+        if (dadosTreinamento[i][j-1] < (*minDados)){
+            (*minDados) = dadosTreinamento[i][j-1];
         }
     }
 
@@ -242,7 +245,6 @@ unsigned NextPowerOf2( unsigned n ){
 std::string ToString( float t ){
       std::stringstream ss; ss << std::setprecision(32) << t; return ss.str();
 }
-
 
 float mysqr(float f){
     f *= f;

@@ -7,16 +7,17 @@
 #include <CL/cl.hpp>
 
 #include "utilitarios.h"
+#include "arvore.h"
 
 enum platformsIndex
 {
-    CPUPlatformIndex = 0,
-    GPUPlatformIndex = 2
+    CPUPlatformIndex = 1,
+    GPUPlatformIndex = 0
 };
 
 enum devicesIndex
 {
-    CPUDeviceIndex = 0,
+    CPUDeviceIndex = 1,
     GPUDeviceIndex = 0
 };
 
@@ -52,6 +53,12 @@ public:
     std::string compileFlags;
     std::string program_src;
 
+    cl::Buffer bufferPopA;
+    cl::Buffer bufferPopF;
+    cl::Buffer bufferOpTerm;
+    cl::Buffer bufferSeeds;
+    cl::Buffer data;
+
     void printPlatformsDevices();
 
 
@@ -59,6 +66,7 @@ public:
     void setupCommandQueues(cl_command_queue_properties commandQueueProperties);
     void setupProgramSource(std::string filename, int NUM_OPBIN, int NUM_OPUN, int M, int N, float maxDados, float minDados);
     void setWorkSizesAval(size_t numPoints);
+    void allocateBuffers(int NUM_OPBIN, int NUM_OPUN, int NUM_CTES, int M, int N);
 
 };
 

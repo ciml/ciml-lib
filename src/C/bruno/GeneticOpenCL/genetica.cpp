@@ -19,8 +19,6 @@ void inicializaCheia(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int 
         }
         prof++;
     }
-
-
 }
 
 void inicializaAleatorio(Arvore pop[], int num, int indice, int* conjuntoOpTerm,int NUM_OPBIN, int NUM_OPUN, int N, int* seed,
@@ -37,10 +35,10 @@ void inicializaPopulacao(Arvore pop[], int* conjuntoOpTerm, int NUM_OPBIN, int N
     inicializaCheia(pop, NUM_INDIV, NUM_INDIV/2, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, seed, maxDados, minDados);
 //    int i;
 //    for(i = 0; i < NUM_INDIV/2; i++){
-//        geradorArvore(&pop[i], MAX_NOS); //sortear a quantidade de nós em determinado intervalo
+//        geradorArvore(&pop[i], MAX_NOS); //sortear a quantidade de nï¿½s em determinado intervalo
 //    }
 //    for( ; i<NUM_INDIV; i++){
-//        criaCheia(&pop[i], MAX_DEPTH); // sortear a profundidade máxima em determinado intervalo
+//        criaCheia(&pop[i], MAX_DEPTH); // sortear a profundidade mï¿½xima em determinado intervalo
 //    }
 }
 
@@ -60,8 +58,6 @@ void avaliaIndividuos(Arvore pop[], float** dados, int M, int N){
         pop[i].aptidao = erro; // + 2 * pop[i].numNos;
         erro = 0;
     }
-
-return;
 
 //    int k, l;
 //
@@ -192,7 +188,7 @@ void ordenaElite(Arvore pop[], int k){
 
 int selecionaElite(Arvore popAtual[], Arvore popFutura[]){
     int i;
-    int cont = (int)(ELITISMO*NUM_INDIV);
+    int cont = (int)NUM_ELITE;//(ELITISMO*NUM_INDIV);
 
     if(cont%2 != 0)
         cont++;

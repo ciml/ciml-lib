@@ -1,19 +1,20 @@
 #ifndef OCLCONFIG_H_INCLUDED
 #define OCLCONFIG_H_INCLUDED
 
-#define CL_TARGET_OPENCL_VERSION 120
+#define CL_HPP_TARGET_OPENCL_VERSION 200
+#define CL_HPP_MINIMUM_OPENCL_VERSION 120
 
-#define __CL_ENABLE_EXCEPTIONS
+#define CL_HPP_ENABLE_EXCEPTIONS
 
-#include <CL/cl.hpp>
+#include <CL/cl2.hpp>
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <vector>
-
-#include "constantes.h"
 #include "utilitarios.h"
+
+#define GPU_PLATFORM 0
+#define CPU_PLATFORM 1
+
+#define GPU_DEVICE 0
+#define CPU_DEVICE 1
 
 const char *getErrorString(cl_int error);
 void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::Device> devices);

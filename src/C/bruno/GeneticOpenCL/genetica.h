@@ -1,8 +1,8 @@
 #ifndef GENETICA_H_INCLUDED
 #define GENETICA_H_INCLUDED
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 #include "arvore.h"
 

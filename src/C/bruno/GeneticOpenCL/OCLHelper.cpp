@@ -73,14 +73,15 @@ void OCLHelper::setupContexts()
     }
 }
 
-void OCLHelper::setupCommandQueues(cl_command_queue_properties commandQueueProperties) {
+void OCLHelper::setupCommandQueues(cl_command_queue_properties commandQueueProperties)
+{
     #if TWODEVICES
         #if AVALGPU
-            cmdQueueEvol = new cl::CommandQueue(contexts[CPUPlatformIndex], devices[CPUPlatformIndex][CPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR CPU */
-            cmdQueueAval = new cl::CommandQueue(contexts[GPUPlatformIndex], devices[GPUPlatformIndex][GPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR GPU*/
+            cmdQueueEvol = cl::CommandQueue(contexts[CPUPlatformIndex], devices[CPUPlatformIndex][CPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR CPU */
+            cmdQueueAval = cl::CommandQueue(contexts[GPUPlatformIndex], devices[GPUPlatformIndex][GPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR GPU*/
         #else
-            cmdQueueEvol = new cl::CommandQueue(contexts[GPUPlatformIndex], devices[GPUPlatformIndex][GPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR GPU*/
-            cmdQueueAval = new cl::CommandQueue(contexts[CPUPlatformIndex], devices[CPUPlatformIndex][CPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR CPU*/
+            cmdQueueEvol = cl::CommandQueue(contexts[GPUPlatformIndex], devices[GPUPlatformIndex][GPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR GPU*/
+            cmdQueueAval = cl::CommandQueue(contexts[CPUPlatformIndex], devices[CPUPlatformIndex][CPUDeviceIndex], commandQueueProperties, &error); /** SELECIONAR CPU*/
         #endif // AVALGPU
     #else
         #if AVALGPU
@@ -130,7 +131,6 @@ void OCLHelper::setupProgramSource(std::string filename, int NUM_OPBIN, int NUM_
     #endif
 }
 
-
 void OCLHelper::setWorkSizesAval(size_t numPoints)
 {
 #if TWODEVICES
@@ -164,7 +164,7 @@ void OCLHelper::setWorkSizesAval(size_t numPoints)
 
         ///FOR CPU
     } else if (deviceType == CL_DEVICE_TYPE_CPU){
-        std::cout << "Definindo NDRanges para avaliacao em CPU..." << std::endl;
+        std::cout << "Definindo NDRanges para avaliacao em CPU...";
         localSizeAval = 1;//m_num_points;
         globalSizeAval = NUM_INDIV;
     }
@@ -289,3 +289,13 @@ const char* OCLHelper::getErrorString(cl_int error)
         default: return "Unknown OpenCL error";
     }
 }
+
+void OCLHelper::allocateBuffers(int NUM_OPBIN, int NUM_OPUN, int NUM_CTES, int M, int N)
+{
+    bufferPopA   = cl::Buffer(contexts[activeContext], CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
+    bufferPopF   = cl::Buffer(contexts[activeContext], CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
+    bufferOpTerm = cl::Buffer(contexts[activeContext], CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int));
+    bufferSeeds  = cl::Buffer(contexts[activeContext], CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * MAX_NOS * sizeof(int));
+    data         = cl::Buffer(contexts[activeContext], CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, M * N * sizeof(float));
+}
+
