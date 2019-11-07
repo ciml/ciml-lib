@@ -121,7 +121,7 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
     }
     std::cout << std::endl;
 
-#if AVALGPU
+#if AVALGPU && !TWODEVICES
     std::cout << "Available Devices for Platform " << platforms[GPU_PLATFORM].getInfo<CL_PLATFORM_NAME>()<< ":\n";
 #else
     std::cout << "Available Devices for Platform " << platforms[CPU_PLATFORM].getInfo<CL_PLATFORM_NAME>()<< ":\n";
@@ -132,13 +132,12 @@ void printPlatformsDevices(std::vector<cl::Platform> platforms, std::vector<cl::
         std::cout << "\tOpenCL: " << devices[i].getInfo<CL_DEVICE_OPENCL_C_VERSION>() << std::endl;
         std::cout << "\tMax Comp Un: " << devices[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl;
         std::cout << "\tMax WrkGr Sz: " << devices[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl;
+        std::cout << "\tFp config: " << devices[i].getInfo<CL_DEVICE_SINGLE_FP_CONFIG>() << std::endl;
 
 
         //std::cout <<"[" << i << "]"<< devices[i].getInfo<CL_DEVICE_TYPE>() << std::endl;
         //std::cout << CL_DEVICE_TYPE_CPU << " " << CL_DEVICE_TYPE_GPU << " " << CL_DEVICE_TYPE_ACCELERATOR << std::endl;
         //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
-        //std::cout <<"Max Compute  units: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
-        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
     }
     std::cout << std::endl;
     std::cout << "Metodo de execucao: " << std::endl;
@@ -315,8 +314,8 @@ void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl
     }
 
     ///Encontrando os dispositivos disponiveis nas plataformas
-    platforms[0].getDevices(CL_DEVICE_TYPE_ALL, &devicesCPU);
-    platforms[2].getDevices(CL_DEVICE_TYPE_ALL, &devicesGPU);
+    platforms[CPU_PLATFORM].getDevices(CL_DEVICE_TYPE_ALL, &devicesCPU);
+    platforms[GPU_PLATFORM].getDevices(CL_DEVICE_TYPE_ALL, &devicesGPU);
 
     std::cout << "Available Platforms: \n";
     for(cl_uint i = 0; i < platforms.size(); ++i) {
@@ -325,28 +324,31 @@ void setupOpenCLTwoPlatform(std::vector<cl::Platform> &platforms, std::vector<cl
     std::cout << std::endl;
 
 
-    std::cout << "Available Devices for Platform " << platforms[0].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    std::cout << "Available Devices for Platform " << platforms[CPU_PLATFORM].getInfo<CL_PLATFORM_NAME>()<< ":\n";
     for(cl_uint i = 0; i < devicesCPU.size(); ++i) {
         std::cout <<"[" << i << "]"<< devicesCPU[i].getInfo<CL_DEVICE_NAME>() << std::endl;
-        //std::cout <<"Device version:     "<<devicesCPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
-        //std::cout <<"Max Compute  units: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
-        //std::cout <<"Max WorkGroup size: "<<devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl << std::endl;
+        std::cout << "\tType:   " << devicesCPU[i].getInfo<CL_DEVICE_TYPE>() << std::endl;
+        std::cout << "\tOpenCL: " << devicesCPU[i].getInfo<CL_DEVICE_OPENCL_C_VERSION>() << std::endl;
+        std::cout << "\tMax Comp Un: " << devicesCPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl;
+        std::cout << "\tMax WrkGr Sz: " << devicesCPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl;
     }
     std::cout << std::endl;
-    std::cout << "Available Devices for Platform " << platforms[2].getInfo<CL_PLATFORM_NAME>()<< ":\n";
+    std::cout << "Available Devices for Platform " << platforms[GPU_PLATFORM].getInfo<CL_PLATFORM_NAME>()<< ":\n";
     for(cl_uint i = 0; i < devicesGPU.size(); ++i) {
         std::cout <<"[" << i << "]"<< devicesGPU[i].getInfo<CL_DEVICE_NAME>() << std::endl;
-        //std::cout <<"Device version:    "<<devicesGPU[i].getInfo<CL_DEVICE_VERSION>() << std::endl;
-        //std::cout <<"Max Compute units: "<<devicesGPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl << std::endl;
+        std::cout << "\tType:   " << devicesGPU[i].getInfo<CL_DEVICE_TYPE>() << std::endl;
+        std::cout << "\tOpenCL: " << devicesGPU[i].getInfo<CL_DEVICE_OPENCL_C_VERSION>() << std::endl;
+        std::cout << "\tMax Comp Un: " << devicesGPU[i].getInfo<CL_DEVICE_MAX_COMPUTE_UNITS>() << std::endl;
+        std::cout << "\tMax WrkGr Sz: " << devicesGPU[i].getInfo<CL_DEVICE_MAX_WORK_GROUP_SIZE>() << std::endl;
     }
     std::cout << std::endl;
     std::cout << "Metodo de execucao: " << std::endl;
     #if AVALGPU
-        std::cout << "Evolucao  CPU: " << devicesCPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
-        std::cout << "Avaliacao GPU: " << devicesGPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+        std::cout << "Evolucao  CPU: " << devicesCPU[CPU_DEVICE].getInfo<CL_DEVICE_NAME>() << std::endl;
+        std::cout << "Avaliacao GPU: " << devicesGPU[GPU_DEVICE].getInfo<CL_DEVICE_NAME>() << std::endl;
     #else
-        std::cout << "Evolucao  GPU: " << devicesGPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
-        std::cout << "Avaliacao CPU: " << devicesCPU[0].getInfo<CL_DEVICE_NAME>() << std::endl;
+        std::cout << "Evolucao  GPU: " << devicesGPU[GPU_DEVICE].getInfo<CL_DEVICE_NAME>() << std::endl;
+        std::cout << "Avaliacao CPU: " << devicesCPU[CPU_DEVICE].getInfo<CL_DEVICE_NAME>() << std::endl;
     #endif
 
     std::cout << std::endl;
@@ -392,11 +394,11 @@ void setupCmdQueuesTwoPlatform(cl::CommandQueue* &cmdQueueAval, cl::CommandQueue
                                 {
     int result = 0;
     #if AVALGPU
-        cmdQueueEvol = new cl::CommandQueue(contextoCPU, devicesCPU[0] /** SELECIONAR CPU */, commandQueueProperties, &result);
-        cmdQueueAval = new cl::CommandQueue(contextoGPU, devicesGPU[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+        cmdQueueEvol = new cl::CommandQueue(contextoCPU, devicesCPU[CPU_DEVICE] /** SELECIONAR CPU */, commandQueueProperties, &result);
+        cmdQueueAval = new cl::CommandQueue(contextoGPU, devicesGPU[GPU_DEVICE] /** SELECIONAR GPU*/, commandQueueProperties, &result);
     #else
-        cmdQueueEvol = new cl::CommandQueue(contextoGPU, devicesGPU[0] /** SELECIONAR GPU*/, commandQueueProperties, &result);
-        cmdQueueAval = new cl::CommandQueue(contextoCPU, devicesCPU[0] /** SELECIONAR CPU*/, commandQueueProperties, &result);
+        cmdQueueEvol = new cl::CommandQueue(contextoGPU, devicesGPU[GPU_DEVICE] /** SELECIONAR GPU*/, commandQueueProperties, &result);
+        cmdQueueAval = new cl::CommandQueue(contextoCPU, devicesCPU[CPU_DEVICE] /** SELECIONAR CPU*/, commandQueueProperties, &result);
     #endif // AVALGPU
 
 

@@ -25,12 +25,12 @@
 #define LOG10   18
 
 
-#define MAX_NOS     512
-#define MAX_DEPTH   7
+#define MAX_NOS     128
+#define MAX_DEPTH   5
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
-#define NUM_INDIV   (1024)
+#define NUM_INDIV   (128)
 #endif // NUM_INDIV
 
 #ifndef PROB_CROSS
@@ -49,17 +49,17 @@
 
 #define NUM_GERACOES    50 //nao necessriamente usado
 
-#define CARGA 200000
+#define CARGA 20000
 
 #define MAX_TEXT_LINE_LENGTH 100000
 
 
 #ifndef TWODEVICES
-    #define TWODEVICES 1
+    #define TWODEVICES 0
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 1
+    #define EVOLOCL 0
 #endif // EVOLOCL
 
 #ifndef AVALOCL
@@ -71,7 +71,7 @@
 #endif // EVOLOMP
 
 #ifndef AVALGPU
-    #define AVALGPU 1
+    #define AVALGPU 0
 #endif // AVALGPU
 
 #ifndef DIF_CONTEXT
@@ -91,7 +91,7 @@
 #define AMD 0
 #endif // AVALOCL_SEQ
 
-#define OCL_TIME 0
+#define OCL_TIME 1
 #define PROFILING_TIME 1
 #define PROFILING_POP 1
 

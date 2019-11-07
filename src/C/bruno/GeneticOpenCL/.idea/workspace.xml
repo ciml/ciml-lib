@@ -12,105 +12,586 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1571f3ef-696f-4b98-a451-64d7c2aae2cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/dadosTreinamento.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/dadosTreinamento.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/resultFiles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/resultFiles_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/resultFiles_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/resultFiles_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_10_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_10_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_10_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_11_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_11_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_11_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_1_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_1_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_1_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_2_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_2_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_2_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_3_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_3_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_3_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_4_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_4_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_4_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_5_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_5_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_5_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_6_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_6_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_6_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_7_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_7_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_7_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_8_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_8_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_8_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_9_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_9_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/14-02-2017/seed_9_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/comentarios" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/prob.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/probMut0_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/probMut0_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/probMut0_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/resultFiles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed10_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed10_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed11_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed11_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed1_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed1_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed1_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed2_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed2_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed2_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed3_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed3_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed3_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed4_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed4_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed4_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed5_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed5_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed5_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed6_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed6_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed6_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed7_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed7_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed7_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed8_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed8_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed8_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed9_mutacao0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed9_mutacao0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old/seed9_mutacao0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/resultFiles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/resultFiles_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/resultFiles_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/resultFiles_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_10_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_10_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_10_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_11_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_11_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_11_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_1_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_1_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_1_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_2_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_2_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_2_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_3_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_3_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_3_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_4_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_4_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_4_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_5_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_5_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_5_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_6_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_6_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_6_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_7_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_7_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_7_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_8_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_8_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_8_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_9_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_9_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/seed_9_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old2/teste.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/resultFiles.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/resultFiles_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/resultFiles_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/resultFiles_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_10_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_10_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_10_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_11_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_11_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_11_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_1_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_1_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_1_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_2_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_2_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_2_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_3_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_3_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_3_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_4_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_4_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_4_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_5_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_5_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_5_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_6_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_6_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_6_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_7_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_7_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_7_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_8_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_8_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_8_mutacao_0.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_9_mutacao_0.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_9_mutacao_0.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArvoreLinear (Vetor, associa numero de filhos)/bin/Debug/old3/seed_9_mutacao_0.5.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeneticOpenCL.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeneticOpenCL.cscope_file_list" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeneticOpenCL.depend" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeneticOpenCL.layout" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OCLHelper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OCLHelper.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OCLHelper.h" beforeDir="false" afterPath="$PROJECT_DIR$/OCLHelper.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arvore.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arvore.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/arvore.h" beforeDir="false" afterPath="$PROJECT_DIR$/arvore.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbp2make.cfg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbp2make.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f1/f1-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f10/f10-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f11/f11-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f2/f2-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f5/f5-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f6/f6-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f7/f7-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/f9/f9-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f1-exp65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f10-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f11-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f2-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f5-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f6-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f7-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/dados/todos/f9-65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/GPTime.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/GPTime.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/OCLHelper.cpp.obj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/arvore.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/arvore.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/bitwise.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/bitwise.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/genetica.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/genetica.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/includes_CXX.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/includes_CXX.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/linklibs.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/linklibs.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/main.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects1.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/oclConfig.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/oclConfig.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/pilha.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/pilha.cpp.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/progress.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/utilitarios.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/utilitarios.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/GeneticOpenCL.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GeneticOpenCL.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constantes.h" beforeDir="false" afterPath="$PROJECT_DIR$/constantes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genetica.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/genetica.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/genetica.h" beforeDir="false" afterPath="$PROJECT_DIR$/genetica.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_d3d11.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_d3d11.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_dx9_media_sharing.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_dx9_media_sharing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_dx9_media_sharing_intel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_egl.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_egl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_ext.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_ext.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_ext_intel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_ext_intel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_gl.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_gl.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_platform.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl_platform.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_va_api_media_sharing_intel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/CL/cl_version.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernel.cl" beforeDir="false" afterPath="$PROJECT_DIR$/kernel.cl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernelAvaliaCPU.cl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kernelGen.cl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/android32/libOpenCL.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/android64/libOpenCL.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/x64/OpenCL.lib" beforeDir="false" afterPath="$PROJECT_DIR$/lib/x64/OpenCL.lib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/CL/cl2-2.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/CL/cl2.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/include/CL/cl2.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/GPTime.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/arvore.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/bitwise.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/genetica.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/oclConfig.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/pilha.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/utilitarios.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/bitwise.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/main.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Release/oclConfig.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obsolete_methods.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/oclConfig.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/oclConfig.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oclConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/oclConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teste.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilitarios.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/utilitarios.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilitarios.h" beforeDir="false" afterPath="$PROJECT_DIR$/utilitarios.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/maketables.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Organizando Resultados/maketables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/process3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Organizando Resultados/process3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f1-exp256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f1-exp256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f1-exp256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f1-exp256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f1-exp256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f10-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f10-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f10-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f10-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f10-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f11-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f11-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f11-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f11-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f11-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f2-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f2-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f2-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f2-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f2-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f5-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f5-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f5-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f5-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f5-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f6-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f6-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f6-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f6-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f6-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f7-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f7-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f7-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f7-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f7-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f9-256_cpuCpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f9-256_cpuCpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f9-256_cpuCpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f9-256_cpuCpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpucpu/f9-256_cpuCpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f1-exp256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f1-exp256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f1-exp256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f1-exp256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f1-exp256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f10-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f10-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f10-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f10-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f10-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f11-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f11-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f11-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f11-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f11-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f2-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f2-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f2-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f2-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f2-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f5-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f5-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f5-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f5-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f5-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f6-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f6-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f6-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f6-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f6-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f7-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f7-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f7-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f7-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f7-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f9-256_cpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f9-256_cpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f9-256_cpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f9-256_cpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/cpugpu/f9-256_cpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f1-exp256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f1-exp256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f1-exp256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f1-exp256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f1-exp256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f10-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f10-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f10-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f10-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f10-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f11-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f11-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f11-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f11-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f11-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f2-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f2-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f2-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f2-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f2-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f5-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f5-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f5-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f5-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f5-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f6-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f6-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f6-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f6-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f6-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f7-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f7-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f7-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f7-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f7-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f9-256_gpuGpu_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f9-256_gpuGpu_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f9-256_gpuGpu_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f9-256_gpuGpu_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/gpugpu/f9-256_gpuGpu_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f1-exp256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f1-exp256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f1-exp256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f1-exp256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f1-exp256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f10-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f10-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f10-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f10-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f10-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f11-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f11-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f11-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f11-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f11-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f2-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f2-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f2-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f2-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f2-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f5-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f5-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f5-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f5-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f5-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f6-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f6-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f6-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f6-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f6-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f7-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f7-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f7-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f7-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f7-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f9-256_seqSeq_seed_10_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f9-256_seqSeq_seed_11_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f9-256_seqSeq_seed_12_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f9-256_seqSeq_seed_13_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/Resultados/seq/f9-256_seqSeq_seed_9_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f1-4096/cpuCpu/models_f1-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f1-4096/cpuGpu/models_f1-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f1-4096/gpuGpu/models_f1-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f1-4096/seqSeq/models_f1-4096_seqSeq_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f1-4096/seqSeq/models_f1-4096_seqSeq_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f10-4096/cpuCpu/models_f10-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f10-4096/cpuGpu/models_f10-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f10-4096/gpuGpu/models_f10-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f11-4096/cpuCpu/models_f11-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f11-4096/cpuGpu/models_f11-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f11-4096/gpuGpu/models_f11-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f2-4096/cpuCpu/models_f2-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f2-4096/cpuGpu/models_f2-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f2-4096/gpuGpu/models_f2-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f5-4096/cpuCpu/models_f5-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f5-4096/cpuGpu/models_f5-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f5-4096/gpuGpu/models_f5-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f6-4096/cpuCpu/models_f6-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f6-4096/cpuGpu/models_f6-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f6-4096/gpuGpu/models_f6-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f7-4096/cpuCpu/models_f7-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f7-4096/cpuGpu/models_f7-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f7-4096/gpuGpu/models_f7-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f9-4096/cpuCpu/models_f9-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f9-4096/cpuGpu/models_f9-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsModel/f9-4096/gpuGpu/models_f9-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f1-4096/cpuCpu/times_f1-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f1-4096/cpuGpu/times_f1-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f1-4096/gpuGpu/times_f1-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f1-4096/seqSeq/times_f1-4096_seqSeq_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f1-4096/seqSeq/times_f1-4096_seqSeq_popVal_512.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f10-4096/cpuCpu/times_f10-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f10-4096/cpuGpu/times_f10-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f10-4096/gpuGpu/times_f10-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f11-4096/cpuCpu/times_f11-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f11-4096/cpuGpu/times_f11-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f11-4096/gpuGpu/times_f11-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f2-4096/cpuCpu/times_f2-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f2-4096/cpuGpu/times_f2-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f2-4096/gpuGpu/times_f2-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f5-4096/cpuCpu/times_f5-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f5-4096/cpuGpu/times_f5-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f5-4096/gpuGpu/times_f5-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f6-4096/cpuCpu/times_f6-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f6-4096/cpuGpu/times_f6-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f6-4096/gpuGpu/times_f6-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f7-4096/cpuCpu/times_f7-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f7-4096/cpuGpu/times_f7-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f7-4096/gpuGpu/times_f7-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f9-4096/cpuCpu/times_f9-4096_cpuCpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f9-4096/cpuGpu/times_f9-4096_cpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/ResultsTime/f9-4096/gpuGpu/times_f9-4096_gpuGpu_popVal_1024.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/SeparaTempos.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/maketables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/process3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/processModel.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/processTime.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/runAll.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/tabelas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Organizando Resultados/teste.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f1/f1exp65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f1010000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f10100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f101024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f101296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f1016384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f10256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f104096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f10/f1065536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f1110000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f11100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f111024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f111296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f1116384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f11256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f114096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f11/f1165536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f210000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f2100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f21024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f21296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f216384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f2256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f24096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f2/f265536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos10000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos1024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos1296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos16384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f5/6sinCos65536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f610000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f6100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f61024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f61296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f616384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f6256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f64096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f6/f665536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f710000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f7100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f71024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f71296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f716384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f7256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f74096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f7/f765536.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f910000.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f9100489.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f91024.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f91296.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f916384.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f9256.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f94096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../dados/f9/f965536.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../gera.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../geraf2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../makedata.py" beforeDir="false" />
@@ -219,6 +700,8 @@
       <workItem from="1573013092846" duration="1179000" />
       <workItem from="1573015354875" duration="10159000" />
       <workItem from="1573063458909" duration="7266000" />
+      <workItem from="1573097392769" duration="8431000" />
+      <workItem from="1573147143395" duration="5502000" />
     </task>
     <servers />
   </component>
@@ -245,18 +728,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>413</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/oclConfig.cpp</url>
-          <line>277</line>
-          <option name="timeStamp" value="23" />
+          <line>78</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>111</line>
-          <option name="timeStamp" value="24" />
+          <line>317</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

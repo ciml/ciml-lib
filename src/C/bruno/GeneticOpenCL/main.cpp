@@ -167,7 +167,7 @@ int main(int argc, char** argv){
         seeds[i] = rand();
     }
 
-    ///checkRandomGenerator(seeds, CPU_PLATFORM, CPU_DEVICE);
+    //checkRandomGenerator(seeds, GPU_PLATFORM, GPU_DEVICE);
 
     imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
@@ -239,7 +239,7 @@ int main(int argc, char** argv){
         //cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
         cl::Program programa(contexto, program_src);
 
-        //compileFlags+=" -cl-opt-disable";
+        compileFlags+=" -cl-opt-disable";
         compileFlags+= R"( -I C:\Users\bruno\Desktop\ciml-lib\src\C\bruno\GeneticOpenCL)";
         //std::cout << "Compile Flags = " << compileFlags << std::endl;
         try {
@@ -313,7 +313,7 @@ int main(int argc, char** argv){
 
     #endif // AVALOCL
 
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         //imprimePopulacao(popAtual, LABELS);
@@ -543,14 +543,6 @@ int main(int argc, char** argv){
 
 #else
 int main(int argc, char** argv){
-
-
-    std::cout << std::setprecision(32) << std::fixed;
-
-    float maxDados, minDados;
-    minDados = std::numeric_limits<float>::max();
-    maxDados = (-1) * minDados;
-
     GPTime timeManager(4);
     timeManager.getStartTime(Total_T);
 
@@ -559,6 +551,12 @@ int main(int argc, char** argv){
 
     double tempoEvolucaoOCL = 0;
     double tempoTotalEvolucaoOCL = 0;
+
+    std::cout << std::setprecision(32) << std::fixed;
+
+    float maxDados, minDados;
+    minDados = std::numeric_limits<float>::max();
+    maxDados = (-1) * minDados;
 
     int iteracoes = 0;
 
@@ -575,7 +573,7 @@ int main(int argc, char** argv){
     int M, N;
     char** LABELS;
     int* conjuntoOpTerm;
-    float* ctes; //TODO:ainda nao le constantes...
+    float* ctes; //TODO: ler constantes
     int NUM_OPBIN, NUM_OPUN, NUM_CTES;
 
     ///leituras de dados
@@ -587,6 +585,7 @@ int main(int argc, char** argv){
     float* dadosTranspostos;
     dadosTranspostos = new float [M * N];
 
+    //transposição necessária para otimizar a execução no opencl com acessos sequenciais à memória
     unsigned int pos = 0;
     std::cout << "Transpondo dados..." << std::endl;
     for(int j = 0; j < N; ++j ){
@@ -595,19 +594,20 @@ int main(int argc, char** argv){
         }
     }
 
-    ///vetor de seeds a ser utilizado no c�digo paralelo
+    ///vetor de seeds a ser utilizado no codigo paralelo
     for(int i = 0; i < NUM_INDIV*MAX_NOS; i++){
         seeds[i] = rand();
     }
 
+    ///checkRandomGenerator(seeds, CPU_PLATFORM, CPU_DEVICE);
+
     imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
     inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
-    avaliaIndividuos(popAtual, /*dadosTranspostos */dadosTreinamento, M, N);
+    avaliaIndividuos(popAtual, /*dadosTranspostos*/dadosTreinamento, M, N);
 
         cl_ulong inicio, fim;
         ///Evento para controlar tempo gasto
         cl::Event e_tempo;
-
 
         cl_int result; //Variavel para verificar erros
         ///TODO: Colocar conferencias de erros pelo c�digo
@@ -616,15 +616,15 @@ int main(int argc, char** argv){
         std::vector<cl::Device> devicesCPU, devicesGPU;
         setupOpenCLTwoPlatform(platforms,devicesCPU, devicesGPU);
 
-        cl::Context contextoCPU(devicesCPU, NULL, NULL, NULL, &result);
+        cl::Context contextoCPU(devicesCPU, nullptr, nullptr, nullptr, &result);
         if(result != CL_SUCCESS){
-            std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
+            std::cout << "Erro ao criar um contexto OpenCL CPU" << std::endl;
             exit(1);
         }
 
-        cl::Context contextoGPU(devicesGPU, NULL, NULL, NULL, &result);
+        cl::Context contextoGPU(devicesGPU, nullptr, nullptr, nullptr, &result);
         if(result != CL_SUCCESS){
-            std::cout << "Erro ao criar um contexto OpenCL" << std::endl;
+            std::cout << "Erro ao criar um contexto OpenCL GPU" << std::endl;
             exit(1);
         }
 
@@ -680,11 +680,12 @@ int main(int argc, char** argv){
         //std::cout << program_src << std::endl;
 
         ///Criar programa por Source
-        cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
-        cl::Program programaCPU(contextoCPU, source);
-        cl::Program programaGPU(contextoGPU, source);
+        //cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
+        cl::Program programaCPU(contextoCPU, program_src);
+        cl::Program programaGPU(contextoGPU, program_src);
 
         //compileFlags+=" -cl-opt-disable";
+        compileFlags+= R"( -I C:\Users\bruno\Desktop\ciml-lib\src\C\bruno\GeneticOpenCL)";
         //std::cout << "Compile Flags = " << compileFlags << std::endl;
         try {
             programaCPU.build(devicesCPU, compileFlags.c_str());
@@ -713,7 +714,7 @@ int main(int argc, char** argv){
             cl::Kernel krnlEvolucao(programaGPU, "evolucao");
         #endif // AVALGPU
 
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
