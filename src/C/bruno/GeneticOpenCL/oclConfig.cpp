@@ -370,7 +370,7 @@ void setNDRanges(size_t* globalSize, size_t* localSize, std::string* compileFlag
         if( MAX_NOS > (*localSize) ) //MaximumTreeSize() > m_local_size )
             (*compileFlags) += " -D PROGRAM_TREE_DOES_NOT_FIT_IN_LOCAL_SIZE";
 
-        if( IsPowerOf2( *localSize ) )
+        if( !IsPowerOf2( *localSize ) )
             (*compileFlags) += " -D LOCAL_SIZE_IS_NOT_POWER_OF_2";
 
         if( numPoints % (*localSize) != 0 )

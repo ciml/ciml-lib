@@ -127,6 +127,11 @@ float** readTrainingData(int *M, int *N, int *NUM_CTES, int *NUM_OPBIN, int *NUM
     arq >> (*N);
     arq >> (readLabel);
 
+    //dadosTreinamento = (float**)_aligned_malloc((*M)* sizeof(float*), 4096);
+    //for(k = 0; k < (*M); k++){
+    //    (dadosTreinamento)[k] = (float*)_aligned_malloc((*N)*sizeof(float), 4096);
+    //}
+
     dadosTreinamento = new float* [(*M)];
     for(i = 0; i < (*M); i++){
         dadosTreinamento[i] = new float [(*N)];
@@ -176,6 +181,8 @@ float** readTrainingData(int *M, int *N, int *NUM_CTES, int *NUM_OPBIN, int *NUM
     if(readOps){
         arq >> (*NUM_OPBIN);
         arq >> (*NUM_OPUN);
+
+        //*conjuntoOpTerm = (int*)_aligned_malloc(((*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-1) * sizeof(int), 4096);
 
         (*conjuntoOpTerm) = new int [(*NUM_OPBIN)+(*NUM_OPUN)+(1)+(*N)-(1)];
 

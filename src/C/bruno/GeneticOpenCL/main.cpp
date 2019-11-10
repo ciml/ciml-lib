@@ -128,12 +128,6 @@ int main(int argc, char** argv){
 
     int iteracoes = 0;
 
-    Arvore* popAtual;
-    popAtual = new Arvore[NUM_INDIV];
-
-    Arvore* popFutura;
-    popFutura = new Arvore[NUM_INDIV];
-
     int* seeds;
     seeds = new int [NUM_INDIV * MAX_NOS];
 
@@ -152,6 +146,7 @@ int main(int argc, char** argv){
     ///transposicao de dados
     float* dadosTranspostos;
     dadosTranspostos = new float [M * N];
+    //dadosTranspostos = (float*)_aligned_malloc(M * N * sizeof(float), 4096);
 
     //transposição necessária para otimizar a execução no opencl com acessos sequenciais à memória
     unsigned int pos = 0;
@@ -168,12 +163,18 @@ int main(int argc, char** argv){
     }
 
     //checkRandomGenerator(seeds, GPU_PLATFORM, GPU_DEVICE);
-
     imprimeParametros(M, N, NUM_CTES, NUM_OPBIN, NUM_OPUN);
-    inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
-    avaliaIndividuos(popAtual, /*dadosTranspostos*/dadosTreinamento, M, N);
 
+    #if !(AVALOCL || EVOLOCL)
+        Arvore* popAtual;
+        popAtual = new Arvore[NUM_INDIV];
 
+        Arvore* popFutura;
+        popFutura = new Arvore[NUM_INDIV];
+
+        inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
+        avaliaIndividuos(popAtual, /*dadosTranspostos*/dadosTreinamento, M, N);
+    #endif
 
     #if AVALOCL || EVOLOCL
         cl_ulong inicio, fim;
@@ -205,16 +206,15 @@ int main(int argc, char** argv){
 
         cl::Buffer bufferPopA  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
         cl::Buffer bufferPopF  (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * sizeof(Arvore));
-        cl::Buffer bufferOpTerm(contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int));
         cl::Buffer bufferSeeds (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_WRITE, NUM_INDIV * MAX_NOS * sizeof(int));
+        cl::Buffer bufferOpTerm(contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int));
         cl::Buffer dados       (contexto, CL_MEM_ALLOC_HOST_PTR | CL_MEM_READ_ONLY, M * N * sizeof(float));
 
-        cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV * MAX_NOS * sizeof(int), seeds);
-        cmdQueueAval->enqueueWriteBuffer(dados, CL_TRUE, 0, M * N * sizeof(float), dadosTranspostos);
-        cmdQueueEvol->enqueueWriteBuffer(bufferOpTerm, CL_FALSE, 0, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int), conjuntoOpTerm);
+        Arvore* popAtual;
+        popAtual = (Arvore * ) cmdQueueEvol->enqueueMapBuffer(bufferPopA, CL_TRUE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
 
-        cmdQueueAval->finish();
-        cmdQueueEvol->finish();
+        Arvore* popFutura;
+        popFutura = (Arvore * ) cmdQueueEvol->enqueueMapBuffer(bufferPopF, CL_TRUE, CL_MAP_READ | CL_MAP_WRITE, 0, NUM_INDIV * sizeof(Arvore));
 
         size_t globalSize; /// ok
         size_t localSize; /// ok
@@ -239,7 +239,7 @@ int main(int argc, char** argv){
         //cl::Program::Sources source(1, std::make_pair(program_src.c_str(), program_src.length()+1));
         cl::Program programa(contexto, program_src);
 
-        compileFlags+=" -cl-opt-disable";
+        //compileFlags+=" -cl-opt-disable";
         compileFlags+= R"( -I C:\Users\bruno\Desktop\ciml-lib\src\C\bruno\GeneticOpenCL)";
         //std::cout << "Compile Flags = " << compileFlags << std::endl;
         try {
@@ -268,15 +268,7 @@ int main(int argc, char** argv){
 
             //cl::Kernel krnlReplace(programa, "replacePopulation");
 /// ok
-/*
-        OCLHelper teste;
-        teste.printPlatformsDevices();
-        teste.setupContexts();
-        teste.setupCommandQueues(commandQueueProperties);
-        teste.setWorkSizesAval(numPoints);
-        teste.setupProgramSource("kernel.cl", NUM_OPBIN, NUM_OPUN, M, N, maxDados, minDados);
-        teste.allocateBuffers(NUM_OPBIN, NUM_OPUN, NUM_CTES, M, N);
-*/
+
         #if TESTA_INDIV
         {
             Arvore arv;
@@ -311,22 +303,39 @@ int main(int argc, char** argv){
         }
         #endif // TESTA_INDIV
 
-    #endif // AVALOCL
+        inicializaPopulacao(popAtual, conjuntoOpTerm, NUM_OPBIN, NUM_OPUN, N, &seeds[0], maxDados, minDados);
+        avaliaIndividuos(popAtual, /*dadosTranspostos*/dadosTreinamento, M, N);
+
+        cmdQueueEvol->enqueueWriteBuffer(bufferSeeds, CL_FALSE, 0, NUM_INDIV * MAX_NOS * sizeof(int), seeds);
+        cmdQueueAval->enqueueWriteBuffer(dados, CL_TRUE, 0, M * N * sizeof(float), dadosTranspostos);
+        cmdQueueEvol->enqueueWriteBuffer(bufferOpTerm, CL_FALSE, 0, (NUM_OPBIN + NUM_OPUN + NUM_CTES + N - 1) * sizeof(int), conjuntoOpTerm);
+
+        cmdQueueAval->finish();
+        cmdQueueEvol->finish();
+
+    #endif // AVALOCL | EVOLOCL
+
+    /*
+     * Para utilizar Map/Unmap devidamente, tenho que alocar as árvores após criar seus buffers. Por isso, tenho que separar esta alocação para quando uso o opencl e quando não uso
+     */
 
     //imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
-        //imprimePopulacao(popAtual, LABELS);
+        imprimePopulacao(popAtual, LABELS);
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
 
         timeManager.getStartTime(Iteracao_T);
-
-        timeManager.getStartTime(Evolucao_T);
         int novosIndividuos = selecionaElite(popAtual, popFutura);
 
+        timeManager.getStartTime(Evolucao_T);
+
         #if EVOLOCL
-            cmdQueueEvol->enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
-            cmdQueueEvol->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            //cmdQueueEvol->enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            //cmdQueueEvol->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            cmdQueueEvol->enqueueUnmapMemObject(bufferPopA, popAtual);
+            cmdQueueEvol->enqueueUnmapMemObject(bufferPopF, popFutura);
+
             cmdQueueEvol->finish();
 
             ///Dispondo argumentos para o kernel + executar
@@ -357,11 +366,15 @@ int main(int argc, char** argv){
             #endif
 
             ///se esta em um so dispositivo nao precisa disso
-            cmdQueueEvol->enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            //cmdQueueEvol->enqueueReadBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
+            popAtual =  (Arvore * ) cmdQueueEvol->enqueueMapBuffer(bufferPopA, CL_TRUE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
+
             //nao preciso dessa copia se estou evoluindo dado que faremos a reposicao de populacoes no opencl
             //popAtual = (Arvore*) cmdQueueEvol->enqueueMapBuffer(bufferPopA, CL_FALSE, CL_MAP_READ, 0, NUM_INDIV * sizeof(Arvore));
             #if TWODEVICES || !AVALOCL
-            cmdQueueEvol->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            //cmdQueueEvol->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            popFutura = (Arvore * ) cmdQueueEvol->enqueueMapBuffer(bufferPopF, CL_TRUE, CL_MAP_READ | CL_MAP_WRITE, 0, NUM_INDIV * sizeof(Arvore));
+
             #endif // TWODEVICES
             cmdQueueEvol->finish();
 
@@ -434,7 +447,8 @@ int main(int argc, char** argv){
         timeManager.getStartTime(Avaliacao_T);
         #if AVALOCL
             #if TWODEVICES || !EVOLOCL
-                cmdQueueAval->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+                //cmdQueueAval->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+                cmdQueueAval->enqueueUnmapMemObject(bufferPopF, popFutura);
             #endif // TWODEVICES
             ///Dispondo argumentos para o kernel + executar
             krnlAvalia.setArg(0, bufferPopF);
@@ -466,7 +480,8 @@ int main(int argc, char** argv){
             tempoTotalAvaliacaoOCL += tempoAvaliacaoOCL;
             #endif
 
-            cmdQueueAval->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            //cmdQueueAval->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
+            popFutura = (Arvore * ) cmdQueueAval->enqueueMapBuffer(bufferPopF, CL_TRUE, CL_MAP_READ | CL_MAP_WRITE, 0, NUM_INDIV * sizeof(Arvore));
 
             cmdQueueAval->finish();
 
@@ -506,7 +521,7 @@ int main(int argc, char** argv){
     timeManager.getEndTime(Total_T);
 
     std::cout << "\n\nPOPULACAO FINAL" << std::endl;
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
     std::cout << "\n*";
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
@@ -720,10 +735,10 @@ int main(int argc, char** argv){
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
 
         timeManager.getStartTime(Iteracao_T);
-        timeManager.getStartTime(Evolucao_T);
+
 
         int novosIndividuos = selecionaElite(popAtual, popFutura);
-
+        timeManager.getStartTime(Evolucao_T);
         cmdQueueEvol->enqueueWriteBuffer(bufferPopA, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popAtual);
         cmdQueueEvol->enqueueWriteBuffer(bufferPopFCPU, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
         cmdQueueEvol->finish();

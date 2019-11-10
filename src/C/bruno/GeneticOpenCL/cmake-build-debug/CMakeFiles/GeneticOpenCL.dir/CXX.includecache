@@ -154,6 +154,10 @@ iostream
 sys/time.h
 -
 
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.cpp
+arvore.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
+
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/arvore.h
 pilha.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
@@ -162,11 +166,19 @@ C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 bitwise.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.cpp
+bitwise.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
+
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/bitwise.h
 constantes.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
 
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.cpp
+genetica.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
 
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/genetica.h
 cstdio
@@ -186,15 +198,27 @@ C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/GPTime.h
 oclConfig.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
 
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.cpp
+oclConfig.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
+
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/oclConfig.h
 CL/cl2.hpp
 -
 utilitarios.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.cpp
+pilha.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
+
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/pilha.h
 constantes.h
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/constantes.h
+
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.cpp
+utilitarios.h
+C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 
 C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/utilitarios.h
 cstdio

@@ -4,7 +4,7 @@
 #define TIPO    4
 
 #ifndef SEED
-#define SEED    25
+#define SEED    10
 #endif // SEED
 
 #define VAR     4
@@ -25,31 +25,31 @@
 #define LOG10   18
 
 
-#define MAX_NOS     128
-#define MAX_DEPTH   5
+#define MAX_NOS     50
+#define MAX_DEPTH   4
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
-#define NUM_INDIV   (128)
+#define NUM_INDIV   (30)
 #endif // NUM_INDIV
 
 #ifndef PROB_CROSS
-#define PROB_CROSS  0.6
+#define PROB_CROSS  0.8
 #endif // PROB_CROSS
 
 #ifndef PROB_MUT
 #define PROB_MUT    0.3
 #endif // PROB_MUT
 
-#define NUM_TORNEIO     3
+#define NUM_TORNEIO     6
 
-#define ELITISMO        0.05
+#define ELITISMO        0.005
 
 #define NUM_ELITE (ELITISMO*NUM_INDIV)
 
 #define NUM_GERACOES    50 //nao necessriamente usado
 
-#define CARGA 20000
+#define CARGA 2000
 
 #define MAX_TEXT_LINE_LENGTH 100000
 
