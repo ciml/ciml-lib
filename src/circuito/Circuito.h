@@ -16,21 +16,21 @@ class Circuito
         Circuito(int nLinhas, int nColunas, int levelsBack, int filhos); //lê o .txt e cria a tabela
         virtual ~Circuito(){ };
 
-        bool geneAtivo(int val);
+        bool geneAtivo(vector< vector <int> > mapa, int val);
 
         int calcAcertos(int row);
         int levelBackFunc(int col);
+        int funcNosAtivos(vector< vector<int> > mapa);
         int nosAtivos(vector< vector<int> > mapa);
         int novoValor(int pos);
 
         vector<int> funcAlteracao(vector<int> vec, vector< vector<int> > mapa);
-        vector<int> funcVetorAleatorio();
-        void funcIn();
-        int funcNosAtivos(vector< vector<int> > mapa);
-        void mapear(vector<int> vec, vector< vector<int> > mapa);
+        vector<int> funcVetorAleatorio(vector< vector <int> > mapa);
 
-        void auxMapear(int pos);
+        void auxMapear(vector< vector <int> > mapa, int pos);
+        void funcIn(vector<int> vec);
         void funcV7();
+        void mapear(vector<int> vec, vector< vector<int> > mapa);
 
     private:
         int nEntradas;
@@ -43,8 +43,6 @@ class Circuito
 
         vector< vector<bool> > Entrada;
         vector< vector<bool> > Tabela;
-        vector< vector<int> > Mapa;
-        vector<int> Vec;
 
     protected:
 

@@ -323,7 +323,8 @@ void teste()
     cin >> nColunas;
     cout << "Levelback: ";
     cin >> lb;
-
+    if(lb <= 0)
+        lb = nLinhas*nColunas;
 
     srand(seed);
     Circuito circuito(nLinhas, nColunas, lb, 4);
@@ -362,12 +363,24 @@ void teste()
 
 int main()
 {
-
-    //leTxt(&nEntradas, &nSaidas, &nLinhasTabela);
-
-
-
-    //funcV6(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, seed);
+int seed, nLinhas, nColunas, levelback, nEntradas, nSaidas, nLinhasTabela;
+//
+//    cout << "Seed: ";
+//    cin >> seed;
+//    cout << "Linhas: ";
+//    cin >> nLinhas;
+//    cout << "Colunas: ";
+//    cin >> nColunas;
+//    cout << "Levelback: ";
+//    cin >> levelback;
+//    if(levelback <= 0)
+//        levelback = nLinhas*nColunas;
+//
+//    leTxt(&nEntradas, &nSaidas, &nLinhasTabela);
+//
+//    srand(seed);
+//
+//    funcV6(nEntradas, nLinhas, nColunas, nSaidas, levelback, nLinhasTabela, 4, seed);
     teste();
 
     cout << "-------------------\nEnter pra continuar" << endl;

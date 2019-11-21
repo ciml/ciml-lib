@@ -64,23 +64,23 @@ int Circuito::levelBackFunc(int col)
     return num;
 }
 
-void Circuito::funcIn()
+void Circuito::funcIn(vector<int> vec)
 {
     int aux = nEntradas, cont = nLinhas*nColunas*3, contIn = nEntradas+(nLinhas*nColunas)+nSaidas;
     for(int i = 0; i < nLinhasTabela; i++, aux = nEntradas)
         for(int j = 2; j < cont; j += 3, aux++)
         {
-            int aux1 = Vec[j-2], aux2 = Vec[j-1];
+            int aux1 = vec[j-2], aux2 = vec[j-1];
 
-            if(Vec[j] == 1) Entrada[i][aux] = (Entrada[i][aux1] && Entrada[i][aux2]); //AND
-            else if(Vec[j] == 2) Entrada[i][aux] = (Entrada[i][aux1] || Entrada[i][aux2]); //OR
-            else if(Vec[j] == 3) Entrada[i][aux] = !(Entrada[i][aux1]); //NOT
+            if(vec[j] == 1) Entrada[i][aux] = (Entrada[i][aux1] && Entrada[i][aux2]); //AND
+            else if(vec[j] == 2) Entrada[i][aux] = (Entrada[i][aux1] || Entrada[i][aux2]); //OR
+            else if(vec[j] == 3) Entrada[i][aux] = !(Entrada[i][aux1]); //NOT
             else Entrada[i][aux] = (Entrada[i][aux1] != Entrada[i][aux2]); //XOR
         }
     for(int i = 0; i < nLinhasTabela; i++)
         for(int j = nEntradas+(nLinhas*nColunas), auxTotal = cont; j < contIn; j++, auxTotal++)
         {
-            int aux2 = Vec[auxTotal];
+            int aux2 = vec[auxTotal];
             Entrada[i][j] = Entrada[i][aux2];
         }
 }
@@ -93,13 +93,13 @@ int Circuito::calcAcertos(int row)
     return acertos;
 }
 
-void Circuito::auxMapear(int pos)
+void Circuito::auxMapear(vector< vector <int> > mapa, int pos)
 {
-    if(!Mapa[0][pos])
+    if(!mapa[0][pos])
     {
-        Mapa[0][pos] = true;
-        if(Mapa[1][pos] >= nEntradas) auxMapear(Mapa[1][pos]-nEntradas);
-        if(Mapa[2][pos] >= nEntradas) auxMapear(Mapa[2][pos]-nEntradas);
+        mapa[0][pos] = true;
+        if(mapa[1][pos] >= nEntradas) auxMapear(mapa, mapa[1][pos]-nEntradas);
+        if(mapa[2][pos] >= nEntradas) auxMapear(mapa, mapa[2][pos]-nEntradas);
     }
 }
 
@@ -107,13 +107,13 @@ void Circuito::mapear(vector<int> vec, vector< vector<int> > mapa)
 {
     mapa[0] = vector<int>(mapa[0].size(), 0);
     for(int i = 0, j = (mapa[0].size()*3); i < nSaidas; i++, j++)
-        if(Vec[j] >= nEntradas)
-            auxMapear(vec[j]-nEntradas);
+        if(vec[j] >= nEntradas)
+            auxMapear(mapa, vec[j]-nEntradas);
 }
 
-vector<int> Circuito::funcVetorAleatorio()
+vector<int> Circuito::funcVetorAleatorio(vector< vector <int> > mapa)
 {
-    vector<int> vec((nLinhas*nColunas*3)+nSaidas, 0);
+    vector<int> vec((nLinhas*nColunas*3)+nSaidas, -1);
     int col = 1, cont = nLinhas*nColunas*3;
 
     for(int i = 2, j = 0; i < cont; i += 3, j++)
@@ -122,8 +122,8 @@ vector<int> Circuito::funcVetorAleatorio()
         vec[i-2] = levelBackFunc(col);
         vec[i-1] = levelBackFunc(col);
 
-        Mapa[1][j] = vec[i-2];
-        Mapa[2][j] = vec[i-1];
+        mapa[1][j] = vec[i-2];
+        mapa[2][j] = vec[i-1];
 
         col += (i%nLinhas != 0);
     }
@@ -140,9 +140,9 @@ int Circuito::novoValor(int pos)
     else return (!((pos+1)%3) ? (rand()%4+1) : levelBackFunc(((int)(pos/(nLinhas*nColunas))+1)));
 }
 
-bool Circuito::geneAtivo(int val)
+bool Circuito::geneAtivo(vector< vector <int> > mapa, int val)
 {
-    return ((unsigned(val) >= Mapa[0].size()) ? true : Mapa[0][val]);
+    return ((unsigned(val) >= mapa[0].size()) ? true : mapa[0][val]);
 }
 
 vector<int> Circuito::funcAlteracao(vector<int> vec, vector< vector<int> > mapa)
@@ -152,7 +152,7 @@ vector<int> Circuito::funcAlteracao(vector<int> vec, vector< vector<int> > mapa)
     while(!flag)
     {
         int novoIndice = rand()%(vec2.size());
-        flag = geneAtivo((int)(novoIndice/3));
+        flag = geneAtivo(mapa, (int)(novoIndice/3));
 
         int aux = novoValor(novoIndice);
         while(vec2[novoIndice] == aux)
@@ -194,19 +194,19 @@ int Circuito::funcNosAtivos(vector< vector<int> > mapa)
 
 void Circuito::funcV7()
 {
-    Mapa = vector< vector<int> >(3, vector<int>(nLinhas*nColunas, 0));
-    Vec = funcVetorAleatorio();
+    vector< vector<int> > mapa(3, vector<int>(nLinhas*nColunas, 0));
+    vector<int> vec = funcVetorAleatorio(mapa);
 
     int auxAcerto = 0, auxRazao = 1;
     bool maximo = false;
 
-    vector< vector<int> > mapa2 = Mapa, mapaAux = Mapa;
-    vector<int> vec2 = Vec, vecAux = Vec;
+    vector< vector<int> > mapa2 = mapa, mapaAux = mapa;
+    vector<int> vec2 = vec, vecAux = vec;
 
     for(int auxRep = 1; auxRep <= 1000000; auxRep++)
     {
         bool novoFilho = false;
-        Vec = vecAux;
+        vec = vecAux;
         mapear(vecAux, mapaAux);
 
 //        if(auxRazao/auxRep >= .95)
@@ -222,10 +222,10 @@ void Circuito::funcV7()
 
         for(int i = 0, acertos = 0; i < nFilhos; i++, acertos = 0)
         {
-            vec2 = funcAlteracao(Vec, mapa2);
+            vec2 = funcAlteracao(vec, mapa2);
             for(int j = 0; j < nLinhasTabela; j++)
             {
-                funcIn();
+                funcIn(vec2);
                 acertos += calcAcertos(j);
             }
 
@@ -265,20 +265,20 @@ void Circuito::funcV7()
         if(maximo) break;
     }
 
-    Vec = vecAux;
-    mapear(vecAux, Mapa);
+    vec = vecAux;
+    mapear(vecAux, mapa);
 
-    for(unsigned int i = 0 ; i < Vec.size(); i++)
-        cout << Vec[i] << (unsigned(i+1)%3 == 0 ? ((unsigned(i) <= Vec.size()-nSaidas) ? " | " : " ") : " ") << ((unsigned(i) == Vec.size()-1) ? "   <-------\n\n" : "");
+    for(unsigned int i = 0 ; i < vec.size(); i++)
+        cout << vec[i] << (unsigned(i+1)%3 == 0 ? ((unsigned(i) <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((unsigned(i) == vec.size()-1) ? "   <-------\n\n" : "");
 
-    cout << nosAtivos(Mapa) << " nos ativos\nDiminuindo nos ativos agora!" << endl << endl;
+    cout << nosAtivos(mapa) << " nos ativos\nDiminuindo nos ativos agora!" << endl << endl;
 
 //    for(int auxRep = 1, cont = 0; auxRep <= 1; auxRep++, cont++)
 //    {
-//        int auxNosAtivos = nosAtivos(Mapa);
+//        int auxNosAtivos = nosAtivos(mapa);
 //        if(auxNosAtivos == 0) break;
-//        Vec = vecAux;
-//        Mapa = mapaAux;
+//        vec = vecAux;
+//        mapa = mapaAux;
 //
 //        vec2 = funcAlteracao();
 //        for(int j = 0; j < nLinhasTabela; j++)
