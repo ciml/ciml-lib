@@ -51,8 +51,8 @@ Circuito::Circuito(int nLinhas, int nColunas, int levelsBack, int filhos)
     this->nLinhas = nLinhas;
     this->nColunas = nColunas;
     this->levelsBack = levelsBack;
-    this->tabela = auxTabela;
-    this->entrada = auxEntrada;
+    this->Tabela = auxTabela;
+    this->Entrada = auxEntrada;
 }
 
 int Circuito::levelBackFunc(int col)
@@ -64,58 +64,56 @@ int Circuito::levelBackFunc(int col)
     return num;
 }
 
-vector< vector<bool> > Circuito::funcIn()
+void Circuito::funcIn()
 {
     int aux = nEntradas, cont = nLinhas*nColunas*3, contIn = nEntradas+(nLinhas*nColunas)+nSaidas;
     for(int i = 0; i < nLinhasTabela; i++, aux = nEntradas)
         for(int j = 2; j < cont; j += 3, aux++)
         {
-            int aux1 = vec[j-2], aux2 = vec[j-1];
+            int aux1 = Vec[j-2], aux2 = Vec[j-1];
 
-            if(vec[j] == 1) entrada[i][aux] = (entrada[i][aux1] && entrada[i][aux2]); //AND
-            else if(vec[j] == 2) entrada[i][aux] = (entrada[i][aux1] || entrada[i][aux2]); //OR
-            else if(vec[j] == 3) entrada[i][aux] = !(entrada[i][aux1]); //NOT
-            else entrada[i][aux] = (entrada[i][aux1] != entrada[i][aux2]); //XOR
+            if(Vec[j] == 1) Entrada[i][aux] = (Entrada[i][aux1] && Entrada[i][aux2]); //AND
+            else if(Vec[j] == 2) Entrada[i][aux] = (Entrada[i][aux1] || Entrada[i][aux2]); //OR
+            else if(Vec[j] == 3) Entrada[i][aux] = !(Entrada[i][aux1]); //NOT
+            else Entrada[i][aux] = (Entrada[i][aux1] != Entrada[i][aux2]); //XOR
         }
     for(int i = 0; i < nLinhasTabela; i++)
         for(int j = nEntradas+(nLinhas*nColunas), auxTotal = cont; j < contIn; j++, auxTotal++)
         {
-            int aux2 = vec[auxTotal];
-            entrada[i][j] = entrada[i][aux2];
+            int aux2 = Vec[auxTotal];
+            Entrada[i][j] = Entrada[i][aux2];
         }
-    return entrada;
 }
 
 int Circuito::calcAcertos(int row)
 {
     int acertos = 0;
     for(int i = 0, auxIn = nEntradas+(nLinhas*nColunas); i < nSaidas; i++, auxIn++)
-        acertos += (entrada[row][auxIn] == tabela[row][i]);
+        acertos += (Entrada[row][auxIn] == Tabela[row][i]);
     return acertos;
 }
 
 void Circuito::auxMapear(int pos)
 {
-    if(!(mapa)[0][pos])
+    if(!Mapa[0][pos])
     {
-        (mapa)[0][pos] = true;
-        if((mapa)[1][pos] >= nEntradas) auxMapear((mapa)[1][pos]-nEntradas);
-        if((mapa)[2][pos] >= nEntradas) auxMapear((mapa)[2][pos]-nEntradas);
+        Mapa[0][pos] = true;
+        if(Mapa[1][pos] >= nEntradas) auxMapear(Mapa[1][pos]-nEntradas);
+        if(Mapa[2][pos] >= nEntradas) auxMapear(Mapa[2][pos]-nEntradas);
     }
 }
 
-vector< vector<int> > Circuito::mapear(vector< vector<int> > mapa)
+void Circuito::mapear(vector<int> vec, vector< vector<int> > mapa)
 {
     mapa[0] = vector<int>(mapa[0].size(), 0);
     for(int i = 0, j = (mapa[0].size()*3); i < nSaidas; i++, j++)
-        if(vec[j] >= nEntradas)
+        if(Vec[j] >= nEntradas)
             auxMapear(vec[j]-nEntradas);
-    return mapa;
 }
 
 vector<int> Circuito::funcVetorAleatorio()
 {
-    vector<int> vec((nLinhas*nColunas*3)+nSaidas);
+    vector<int> vec((nLinhas*nColunas*3)+nSaidas, 0);
     int col = 1, cont = nLinhas*nColunas*3;
 
     for(int i = 2, j = 0; i < cont; i += 3, j++)
@@ -124,9 +122,8 @@ vector<int> Circuito::funcVetorAleatorio()
         vec[i-2] = levelBackFunc(col);
         vec[i-1] = levelBackFunc(col);
 
-        (mapa)[1][j] = vec[i-2];
-        (mapa)[2][j] = vec[i-1];
-
+        Mapa[1][j] = vec[i-2];
+        Mapa[2][j] = vec[i-1];
 
         col += (i%nLinhas != 0);
     }
@@ -145,29 +142,30 @@ int Circuito::novoValor(int pos)
 
 bool Circuito::geneAtivo(int val)
 {
-    return ((unsigned(val) >= mapa[0].size()) ? true : mapa[0][val]);
+    return ((unsigned(val) >= Mapa[0].size()) ? true : Mapa[0][val]);
 }
 
-vector<int> Circuito::funcAlteracao()
+vector<int> Circuito::funcAlteracao(vector<int> vec, vector< vector<int> > mapa)
 {
+    vector<int> vec2 = vec;
     bool flag = false;
     while(!flag)
     {
-        int novoIndice = rand()%(vec.size());
+        int novoIndice = rand()%(vec2.size());
         flag = geneAtivo((int)(novoIndice/3));
 
         int aux = novoValor(novoIndice);
-        while(vec[novoIndice] == aux)
+        while(vec2[novoIndice] == aux)
             aux = novoValor(novoIndice);
 
-        vec[novoIndice] = aux;
-        if((unsigned(novoIndice) < (mapa)[0].size()*3) && ((novoIndice+1)%3))
+        vec2[novoIndice] = aux;
+        if((unsigned(novoIndice) < mapa[0].size()*3) && ((novoIndice+1)%3))
         {
             int auxLinha = (novoIndice+1)%3, auxCol = (novoIndice/3);
-            (mapa)[auxLinha][auxCol] = aux;
+            mapa[auxLinha][auxCol] = aux;
         }
     }
-    return vec;
+    return vec2;
 }
 
 int Circuito::nosAtivos(vector< vector<int> > mapa)
@@ -175,7 +173,7 @@ int Circuito::nosAtivos(vector< vector<int> > mapa)
     return accumulate(mapa[0].begin(), mapa[0].end(), 0);
 }
 
-vector< vector<int> > Circuito::funcNosAtivos()
+int Circuito::funcNosAtivos(vector< vector<int> > mapa)
 {
     bool flag = false;
     for(int i = 0; i < nLinhasTabela; i++)
@@ -183,33 +181,33 @@ vector< vector<int> > Circuito::funcNosAtivos()
         for(int j = 0; j < nSaidas; j++)
         {
             int auxIn = nEntradas+(nLinhas*nColunas)+j;
-            if(entrada[i][auxIn] != tabela[i][j])
+            if(Entrada[i][auxIn] != Tabela[i][j])
             {
                 flag = true;
                 break;
             }
         }
-        if(flag)
-        {
-            mapa[0] = vector<int>(mapa[0].size(), 1);
-            break;
-        }
+        if(flag) return mapa[0].size();
     }
-    return mapa;
+    return nosAtivos(mapa);
 }
 
 void Circuito::funcV7()
 {
+    Mapa = vector< vector<int> >(3, vector<int>(nLinhas*nColunas, 0));
+    Vec = funcVetorAleatorio();
+
     int auxAcerto = 0, auxRazao = 1;
     bool maximo = false;
-    vector< vector<int> > mapa(3, vector<int>(nLinhas*nColunas, 0)), mapa2 = mapa, mapaAux = mapa;
-    vector<int> vec = funcVetorAleatorio(), vec2 = vec, vecAux = vec;
 
-    for(int auxRep = 1; auxRep <= 1; auxRep++)
+    vector< vector<int> > mapa2 = Mapa, mapaAux = Mapa;
+    vector<int> vec2 = Vec, vecAux = Vec;
+
+    for(int auxRep = 1; auxRep <= 1000000; auxRep++)
     {
         bool novoFilho = false;
-        vec = vecAux;
-        mapa = mapear(mapaAux);
+        Vec = vecAux;
+        mapear(vecAux, mapaAux);
 
 //        if(auxRazao/auxRep >= .95)
 //        {
@@ -224,10 +222,10 @@ void Circuito::funcV7()
 
         for(int i = 0, acertos = 0; i < nFilhos; i++, acertos = 0)
         {
-            vec2 = funcAlteracao();
+            vec2 = funcAlteracao(Vec, mapa2);
             for(int j = 0; j < nLinhasTabela; j++)
             {
-                entrada = funcIn();
+                funcIn();
                 acertos += calcAcertos(j);
             }
 
@@ -240,8 +238,8 @@ void Circuito::funcV7()
                 }
                 if(acertos == auxAcerto)
                 {
-                    mapa2 = mapear(mapa2);
-                    mapaAux = mapear(mapaAux);
+                    mapear(vec2, mapa2);
+                    mapear(vecAux, mapaAux);
                 }
                 if((acertos > auxAcerto) || ((acertos == auxAcerto) && (nosAtivos(mapa2) <= nosAtivos(mapaAux))))
                 {
@@ -267,41 +265,40 @@ void Circuito::funcV7()
         if(maximo) break;
     }
 
-    vec = vecAux;
-    mapa = mapear(mapaAux);
+    Vec = vecAux;
+    mapear(vecAux, Mapa);
 
-    for(unsigned int i = 0 ; i < vec.size(); i++)
-        cout << vec[i] << (unsigned(i+1)%3 == 0 ? ((unsigned(i) <= vec.size()-nSaidas) ? " | " : " ") : " ") << ((unsigned(i) == vec.size()-1) ? "   <-------\n\n" : "");
+    for(unsigned int i = 0 ; i < Vec.size(); i++)
+        cout << Vec[i] << (unsigned(i+1)%3 == 0 ? ((unsigned(i) <= Vec.size()-nSaidas) ? " | " : " ") : " ") << ((unsigned(i) == Vec.size()-1) ? "   <-------\n\n" : "");
 
-    cout << nosAtivos(mapa) << " nos ativos\nDiminuindo nos ativos agora!" << endl << endl;
+    cout << nosAtivos(Mapa) << " nos ativos\nDiminuindo nos ativos agora!" << endl << endl;
 
-    for(int auxRep = 1, cont = 0; (auxRep <= 1); auxRep++, cont++)
-    {
-        int auxNosAtivos = nosAtivos(mapa);
-        if(auxNosAtivos == 0) break;
-        vec = vecAux;
-        mapa = mapaAux;
-
-        vec2 = funcAlteracao();
-        for(int j = 0; j < nLinhasTabela; j++)
-            entrada = funcIn();
-
-        for(int i = 0; i < nFilhos; i++)
-        {
-            mapa2 = funcNosAtivos();
-            if(nosAtivos(mapa2) < auxNosAtivos)
-            {
-                cout << cont << ": i = " << auxRep << " -> " << nosAtivos(mapa2) << " nos ativos" << endl;
-                vecAux = vec2;
-                mapaAux = mapa2;
-                auxNosAtivos = nosAtivos(mapa2);
-
-                cont = 0;
-            }
-        }
-
-        if(!(auxRep%100000))
-            cout << "--checkpoint: i = " << auxRep << " -- " << nosAtivos(mapaAux) << "nos ativos" << endl;
-    }
+//    for(int auxRep = 1, cont = 0; auxRep <= 1; auxRep++, cont++)
+//    {
+//        int auxNosAtivos = nosAtivos(Mapa);
+//        if(auxNosAtivos == 0) break;
+//        Vec = vecAux;
+//        Mapa = mapaAux;
+//
+//        vec2 = funcAlteracao();
+//        for(int j = 0; j < nLinhasTabela; j++)
+//            funcIn();
+//
+//        for(int i = 0; i < nFilhos; i++)
+//        {
+//            if(funcNosAtivos(mapa2) < auxNosAtivos)
+//            {
+//                cout << cont << ": i = " << auxRep << " -> " << nosAtivos(mapa2) << " nos ativos" << endl;
+//                vecAux = vec2;
+//                mapaAux = mapa2;
+//                auxNosAtivos = nosAtivos(mapa2);
+//
+//                cont = 0;
+//            }
+//        }
+//
+//        if(!(auxRep%100000))
+//            cout << "--checkpoint: i = " << auxRep << " -- " << nosAtivos(mapaAux) << "nos ativos" << endl;
+//    }
     cout << "Reducao final: " << nosAtivos(mapaAux) << " nos ativos" << endl << endl;
 }

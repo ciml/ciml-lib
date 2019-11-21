@@ -23,11 +23,11 @@ class Circuito
         int nosAtivos(vector< vector<int> > mapa);
         int novoValor(int pos);
 
-        vector<int> funcAlteracao();
+        vector<int> funcAlteracao(vector<int> vec, vector< vector<int> > mapa);
         vector<int> funcVetorAleatorio();
-        vector< vector<bool> > funcIn();
-        vector< vector<int> > funcNosAtivos();
-        vector< vector<int> > mapear(vector< vector<int> > mapa);
+        void funcIn();
+        int funcNosAtivos(vector< vector<int> > mapa);
+        void mapear(vector<int> vec, vector< vector<int> > mapa);
 
         void auxMapear(int pos);
         void funcV7();
@@ -41,10 +41,10 @@ class Circuito
         int levelsBack;
         int nFilhos;
 
-        vector< vector<bool> > entrada;
-        vector< vector<bool> > tabela;
-        vector< vector<int> > mapa;
-        vector<int> vec;
+        vector< vector<bool> > Entrada;
+        vector< vector<bool> > Tabela;
+        vector< vector<int> > Mapa;
+        vector<int> Vec;
 
     protected:
 
