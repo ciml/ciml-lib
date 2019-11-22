@@ -1,0 +1,16 @@
+f1-4096_cpuGpuInt_seed_10_popVal_512.txt
+f10-4096_cpuGpuInt_seed_10_popVal_512.txt
+f11-4096_cpuGpuInt_seed_10_popVal_512.txt
+f1-4096_cpuGpuInt_seed_10_popVal_512.txt
+f10-4096_cpuGpuInt_seed_10_popVal_512.txt
+f11-4096_cpuGpuInt_seed_10_popVal_512.txt
+f2-4096_cpuGpuInt_seed_10_popVal_512.txt
+f5-4096_cpuGpuInt_seed_10_popVal_512.txt
+f6-4096_cpuGpuInt_seed_10_popVal_512.txt
+f7-4096_cpuGpuInt_seed_10_popVal_512.txt
+f9-4096_cpuGpuInt_seed_10_popVal_512.txt
+f1-4096_cpuGpuInt_seed_11_popVal_512.txt
+f10-4096_cpuGpuInt_seed_11_popVal_512.txt
+f11-4096_cpuGpuInt_seed_11_popVal_512.txt
+f2-4096_cpuGpuInt_seed_11_popVal_512.txt
+f5-4096_cpuGpuInt_seed_11_popVal_512.txt

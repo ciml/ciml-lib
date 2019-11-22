@@ -1,9 +1,6 @@
 #include <omp.h>        //OpenMP
 #include "genetica.h"
-
 #include "GPTime.h"
-
-//#include "OCLHelper.h"
 #include "oclConfig.h"  //outras configuracoes e bibliotecas
 
 bool compareSeeds(int* ocl_seeds, int* seq_seeds){
@@ -109,6 +106,8 @@ void checkRandomGenerator(int* seeds, int platform, int device){
 
 //TODO: conferir questão de multiplas definições com o Opencl 2
 #if !DIF_CONTEXT
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "hicpp-signed-bitwise"
 int main(int argc, char** argv){
 
     GPTime timeManager(4);
@@ -319,10 +318,10 @@ int main(int argc, char** argv){
      * Para utilizar Map/Unmap devidamente, tenho que alocar as árvores após criar seus buffers. Por isso, tenho que separar esta alocação para quando uso o opencl e quando não uso
      */
 
-    //imprimePopulacao(popAtual, LABELS);
+    imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
-        imprimePopulacao(popAtual, LABELS);
+        //imprimePopulacao(popAtual, LABELS);
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
 
         timeManager.getStartTime(Iteracao_T);
@@ -351,12 +350,13 @@ int main(int argc, char** argv){
                 #else
                 result = cmdQueueEvol->enqueueNDRangeKernel(krnlEvolucao, cl::NullRange, cl::NDRange((size_t)(NUM_INDIV-novosIndividuos)/2), cl::NDRange(1), nullptr, &e_tempo);
                 #endif
+                cmdQueueEvol->finish();
             } catch(cl::Error& e){
                 std::cerr << getErrorString(e.err()) << std::endl;
                 exit(1);
             }
 
-            cmdQueueEvol->finish();
+
 
             #if OCL_TIME
             e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
@@ -448,8 +448,16 @@ int main(int argc, char** argv){
         #if AVALOCL
             #if TWODEVICES || !EVOLOCL
                 //cmdQueueAval->enqueueWriteBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
-                cmdQueueAval->enqueueUnmapMemObject(bufferPopF, popFutura);
+                cmdQueueAval->enqueueUnmapMemObject(bufferPopF, popFutura, nullptr, &e_tempo);
+                cmdQueueAval->finish();
             #endif // TWODEVICES
+
+#if OCL_TIME
+        e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
+        e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
+        tempoAvaliacaoOCL = (fim-inicio)/1.0E9;
+        tempoTotalAvaliacaoOCL += tempoAvaliacaoOCL;
+#endif
             ///Dispondo argumentos para o kernel + executar
             krnlAvalia.setArg(0, bufferPopF);
             krnlAvalia.setArg(1, dados);
@@ -473,12 +481,7 @@ int main(int argc, char** argv){
                 exit(1);
             }
 
-            #if OCL_TIME
-            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_START, &inicio);
-            e_tempo.getProfilingInfo(CL_PROFILING_COMMAND_END, &fim);
-            tempoAvaliacaoOCL = (fim-inicio)/1.0E9;
-            tempoTotalAvaliacaoOCL += tempoAvaliacaoOCL;
-            #endif
+
 
             //cmdQueueAval->enqueueReadBuffer(bufferPopF, CL_TRUE, 0, NUM_INDIV * sizeof(Arvore), popFutura);
             popFutura = (Arvore * ) cmdQueueAval->enqueueMapBuffer(bufferPopF, CL_TRUE, CL_MAP_READ | CL_MAP_WRITE, 0, NUM_INDIV * sizeof(Arvore));
@@ -521,7 +524,7 @@ int main(int argc, char** argv){
     timeManager.getEndTime(Total_T);
 
     std::cout << "\n\nPOPULACAO FINAL" << std::endl;
-    //imprimePopulacao(popAtual, LABELS);
+    imprimePopulacao(popAtual, LABELS);
     std::cout << "\n*";
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
@@ -555,6 +558,7 @@ int main(int argc, char** argv){
     delete [] popFutura;
     return 0;
 }
+#pragma clang diagnostic pop
 
 #else
 int main(int argc, char** argv){
@@ -843,7 +847,7 @@ int main(int argc, char** argv){
     timeManager.getEndTime(Total_T);
 
     std::cout << "\n\nPOPULACAO FINAL" << std::endl;
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
     std::cout << "\n*";
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;

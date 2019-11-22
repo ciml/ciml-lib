@@ -296,7 +296,7 @@ __kernel void evolucaoSequencial(__global Arvore* popA,
         popF[j] = popA[indice1];
         popF[j+1] = popA[indice2];
 
-        ///testar imprimir o que está retornando na parte randomica
+
         float cross = randomProb(&seed);
         float mut = randomProb(&seed);
 

@@ -24,6 +24,14 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DNUM_INDIV=512"/>
+					<Add option="-DSEED=11"/>
+					<Add option="-DTWODEVICES=1"/>
+					<Add option="-DEVOLOCL=1"/>
+					<Add option="-DAVALOCL=1"/>
+					<Add option="-DEVOLOMP=0"/>
+					<Add option="-DAVALGPU=1"/>
+					<Add option="-DDIF_CONTEXT=0"/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/."/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/include"/>
 					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
@@ -47,6 +55,14 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DNUM_INDIV=512"/>
+					<Add option="-DSEED=11"/>
+					<Add option="-DTWODEVICES=1"/>
+					<Add option="-DEVOLOCL=1"/>
+					<Add option="-DAVALOCL=1"/>
+					<Add option="-DEVOLOMP=0"/>
+					<Add option="-DAVALGPU=1"/>
+					<Add option="-DDIF_CONTEXT=0"/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/."/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/include"/>
 					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>

@@ -19,16 +19,16 @@ void inicializaArvore(Arvore* arv);
 
 int calculaTamanhoSubArvore(Arvore* arv, int indice);
 
-void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);///preenche uma �rvore com um numero m�ximo de n�s 'maxTam'
+void geradorArvore(Arvore* arv, int maxTam, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);///preenche uma �rvore com um numero maximo de nos 'maxTam'
 void criaCheia(Arvore* arv, int maxDepth, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados);///dada uma profundidade maxima, preenche a arvore ate essa profundidade
 
-void imprimeArvoreNivel(Arvore* arv);///Metodo para imprimir a �rvore na estrutura de n�veis
-void imprimeArvorePre(Arvore* arv, char** LABELS);///Imprime a �rvore em pr� ordem no modelo: 1filho= (1(0)), 2 filhos=(2(0)(0))
-void imprimeArvorePos(Arvore* arv,char** LABELS);///Imprime a �rvore em p�s ordem no modelo: 1filho= ((0)1), 2 filhos=((0)(0)2)
+void imprimeArvoreNivel(Arvore* arv);///Metodo para imprimir a arvore na estrutura de niveis
+void imprimeArvorePre(Arvore* arv, char** LABELS);///Imprime a arvore em pre ordem no modelo: 1filho= (1(0)), 2 filhos=(2(0)(0))
+void imprimeArvorePos(Arvore* arv,char** LABELS);///Imprime a arvore em pos ordem no modelo: 1filho= ((0)1), 2 filhos=((0)(0)2)
 
 void shift(Arvore* arv, int tam, int indice); ///Desloca os elementos da �rvore a partir de um 'indice' em determinado tamanho
-void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados); ///Sorteia uma sub-arvore aleat�ria e troca por outra
-void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed, int id); ///Troca informa��es entre duas arvores
+void mutacao(Arvore* arvore, int* conjuntoOpTerm, int NUM_OPBIN, int NUM_OPUN, int N, int* seed, float maxDados, float minDados); ///Sorteia uma sub-arvore aleatoria e troca por outra
+void crossOver(Arvore* arvore1, Arvore* arvore2, int* seed, int id); ///Troca informacoes entre duas arvores
 
 //TODO: conferir a melhor forma de fazer
 void trocaSubArv(Arvore* arvMaior,Arvore* arvMenor,int ind1,int ind2,int tamanhoSubMenor, int tamanhoSubMaior);

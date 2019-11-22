@@ -15,6 +15,18 @@ set(CMAKE_DEPENDS_CHECK_CXX
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "AVALGPU=1"
+  "AVALOCL=1"
+  "DIF_CONTEXT=0"
+  "EVOLOCL=1"
+  "EVOLOMP=0"
+  "NUM_INDIV=512"
+  "SEED=11"
+  "TWODEVICES=1"
+  )
+
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../."

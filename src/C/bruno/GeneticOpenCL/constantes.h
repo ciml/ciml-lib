@@ -25,12 +25,12 @@
 #define LOG10   18
 
 
-#define MAX_NOS     50
-#define MAX_DEPTH   4
+#define MAX_NOS     128
+#define MAX_DEPTH   6
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
-#define NUM_INDIV   (30)
+#define NUM_INDIV   (32)
 #endif // NUM_INDIV
 
 #ifndef PROB_CROSS
@@ -43,16 +43,13 @@
 
 #define NUM_TORNEIO     6
 
-#define ELITISMO        0.005
+#define ELITISMO        0.05
 
 #define NUM_ELITE (ELITISMO*NUM_INDIV)
 
 #define NUM_GERACOES    50 //nao necessriamente usado
 
-#define CARGA 2000
-
-#define MAX_TEXT_LINE_LENGTH 100000
-
+#define CARGA 200000
 
 #ifndef TWODEVICES
     #define TWODEVICES 0
@@ -63,7 +60,7 @@
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 1
+    #define AVALOCL 0
 #endif // AVALOCL
 
 #ifndef EVOLOMP
