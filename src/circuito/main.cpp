@@ -363,7 +363,7 @@ void teste()
 
 int main()
 {
-int seed, nLinhas, nColunas, levelback, nEntradas, nSaidas, nLinhasTabela;
+//    int seed, nLinhas, nColunas, levelback, nEntradas, nSaidas, nLinhasTabela;
 //
 //    cout << "Seed: ";
 //    cin >> seed;
