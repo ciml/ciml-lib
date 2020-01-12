@@ -15,7 +15,7 @@
 ########################
 
 //No help, variable specified on the command line.
-AVALGPU:UNINITIALIZED=1
+AVALGPU:UNINITIALIZED=0
 
 //No help, variable specified on the command line.
 AVALOCL:UNINITIALIZED=1
@@ -269,13 +269,13 @@ GeneticOpenCL_BINARY_DIR:STATIC=C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/b
 GeneticOpenCL_SOURCE_DIR:STATIC=C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL
 
 //No help, variable specified on the command line.
-NUM_INDIV:UNINITIALIZED=512
+NUM_INDIV:UNINITIALIZED=1024
 
 //No help, variable specified on the command line.
 SEED:UNINITIALIZED=11
 
 //No help, variable specified on the command line.
-TWODEVICES:UNINITIALIZED=1
+TWODEVICES:UNINITIALIZED=0
 
 
 ########################

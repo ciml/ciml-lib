@@ -25,8 +25,8 @@
 #define LOG10   18
 
 
-#define MAX_NOS     128
-#define MAX_DEPTH   6
+#define MAX_NOS     256
+#define MAX_DEPTH   7
 #define MAX_FILHOS  2
 
 #ifndef NUM_INDIV
@@ -47,7 +47,7 @@
 
 #define NUM_ELITE (ELITISMO*NUM_INDIV)
 
-#define NUM_GERACOES    50 //nao necessriamente usado
+#define NUM_GERACOES    500 //nao necessriamente usado
 
 #define CARGA 200000
 

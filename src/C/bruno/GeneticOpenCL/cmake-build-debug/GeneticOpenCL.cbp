@@ -24,13 +24,13 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DNUM_INDIV=512"/>
+					<Add option="-DNUM_INDIV=1024"/>
 					<Add option="-DSEED=11"/>
-					<Add option="-DTWODEVICES=1"/>
+					<Add option="-DTWODEVICES=0"/>
 					<Add option="-DEVOLOCL=1"/>
 					<Add option="-DAVALOCL=1"/>
 					<Add option="-DEVOLOMP=0"/>
-					<Add option="-DAVALGPU=1"/>
+					<Add option="-DAVALGPU=0"/>
 					<Add option="-DDIF_CONTEXT=0"/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/."/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/include"/>
@@ -55,13 +55,13 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DNUM_INDIV=512"/>
+					<Add option="-DNUM_INDIV=1024"/>
 					<Add option="-DSEED=11"/>
-					<Add option="-DTWODEVICES=1"/>
+					<Add option="-DTWODEVICES=0"/>
 					<Add option="-DEVOLOCL=1"/>
 					<Add option="-DAVALOCL=1"/>
 					<Add option="-DEVOLOMP=0"/>
-					<Add option="-DAVALGPU=1"/>
+					<Add option="-DAVALGPU=0"/>
 					<Add option="-DDIF_CONTEXT=0"/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/."/>
 					<Add directory="C:/Users/bruno/Documents/GitHub/ciml-lib/src/C/bruno/GeneticOpenCL/include"/>
