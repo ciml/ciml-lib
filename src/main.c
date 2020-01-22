@@ -131,7 +131,7 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
         best_individual = find_optimized_individual(population);
         set_parent(population, best_individual);
 
-        if (generation % 1000 == 0)
+        if (generation % 50000 == 0)
         {
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             fflush(out_file);
