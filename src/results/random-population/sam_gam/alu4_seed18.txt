@@ -1,0 +1,240 @@
+SAM+GAM
+.p 16384
+.i 14
+.o 8
+~i0*i1*~i5*i6*i9*~i11+~i0*i1*i5*~i6*i10*~i12+i1*i5*i6*i9*i12+i1*~i5*i6*i9*i11+i1*i5*~i6*i10*i12+i1*~i5*~i6*i10*i11+i1*i5*i6*i9*~i12+i1*~i5*~i6*i10*~i11+i0*i1*i6*i9+i0*i1*~i6*i10+i3*i8*i9+i3*~i8*i10+i2*i7*i9+i2*~i7*i10+i0*i5*i9+i0*~i5*i10
+~i3*i4*i8*i12*~i13+~i3*i4*~i8*i11*~i13+i3*i4*i8*~i9*~i13+i3*i4*~i8*~i10*~i13+i3*i8*i9*i13+~i3*i8*~i12*i13+~i3*~i8*~i11*i13+i3*~i8*i10*i13+i3*~i4*i8*i9+~i3*~i4*i8*~i12+~i3*~i4*~i8*~i11+i3*~i4*~i8*i10
+i0*i2*i6*i7*i9*i12+i2*i5*i6*i7*i9*i12+i1*i2*i5*i7*i9*i12+i2*~i5*~i6*i7*i9*i11+i2*i5*i6*~i7*i10*i12+i0*i2*~i6*~i7*i10*i11+i2*~i5*~i6*~i7*i10*i11+i1*i2*~i5*~i7*i10*i11+i1*i5*i6*i9*i12+i1*~i5*i6*i9*i11+i1*i5*~i6*i10*i12+i1*~i5*~i6*i10*i11+i0*i6*i7*i8*i12+i5*i6*i7*i8*i12+i0*i1*i7*i8*i12+i0*i1*i2*i7*i9+i1*i5*i7*i8*i12+i0*~i6*~i7*~i8*i11+i0*i1*~i7*~i8*i11+i0*i2*i6*i8*i12+~i5*~i6*~i7*~i8*i11+i1*~i5*~i7*~i8*i11+i0*i1*i2*~i7*i10+i2*i5*i6*i8*i12+i0*i1*i2*i8*i12+i1*i2*i5*i8*i12+i0*i3*i6*i7*i12+i0*i2*~i6*~i8*i11+i0*i1*i2*~i8*i11+i3*i5*i6*i7*i12+i0*i1*i3*i7*i12+i2*~i5*~i6*~i8*i11+i1*i2*~i5*~i8*i11+i1*i3*i5*i7*i12+i0*i3*~i6*~i7*i11+i0*i1*i3*~i7*i11+i3*~i5*~i6*~i7*i11+i1*i3*~i5*~i7*i11+i0*i2*i3*i6*i12+i2*i3*i5*i6*i12+i0*i2*i3*~i6*i11+i1*i2*i3*i5*i12+i2*i3*~i5*~i6*i11+i1*i2*i3*~i5*i11+i0*i1*i6*i9+i0*i1*~i6*i10+i0*i1*i2*i3+i0*i5*i9+i0*~i5*i10+i11*i12
+~i0*~i1*~i3*i7*i8*~i9*~i12+~i1*~i2*~i3*i5*i8*~i9*~i12+~i0*~i1*~i3*~i7*~i8*~i10*~i11+~i1*~i2*~i3*~i5*~i8*~i10*~i11+~i0*~i2*~i3*i6*i8*~i9*~i12+~i0*~i2*~i3*~i6*~i8*~i10*~i11+~i1*~i3*i5*i7*i8*~i9*~i12+~i1*~i3*~i5*~i7*~i8*~i10*~i11+~i0*~i3*i6*i7*i8*~i9*~i12+~i2*~i3*i5*i6*i8*~i9*~i12+~i0*~i3*~i6*~i7*~i8*~i10*~i11+~i2*~i3*~i5*~i6*~i8*~i10*~i11+~i3*i5*i6*i7*i8*~i9*~i12+~i3*i5*i6*i7*~i8*~i9*~i11+~i3*~i5*~i6*~i7*i8*~i10*~i12+~i3*~i5*~i6*~i7*~i8*~i10*~i11+~i0*~i1*~i2*i4*i8*~i9+~i0*~i1*~i2*i4*~i8*~i10+~i0*~i1*~i3*i4*i7*~i9+~i0*~i1*~i3*i4*~i7*~i10+~i1*~i2*~i3*i4*i5*~i9+~i1*~i2*~i3*i4*~i5*~i10+~i0*~i1*~i2*~i3*i8*~i12+~i0*~i1*~i2*~i3*~i8*~i11+~i0*~i1*i4*i7*i8*~i9+~i0*~i2*~i3*i4*i6*~i9+~i0*~i2*~i3*i4*~i6*~i10+~i1*~i2*i4*i5*i8*~i9+~i0*~i1*i4*~i7*~i8*~i10+~i1*~i2*i4*~i5*~i8*~i10+~i0*~i2*i4*i6*i8*~i9+~i1*~i3*i4*i5*i7*~i9+~i0*~i2*i4*~i6*~i8*~i10+~i1*~i3*i4*~i5*~i7*~i10+~i1*~i2*i5*i7*~i9*~i12+~i0*~i3*i4*i6*i7*~i9+~i1*i4*i5*i7*i8*~i9+~i2*~i3*i4*i5*i6*~i9+~i1*~i2*~i5*~i7*~i10*~i11+~i0*~i3*i4*~i6*~i7*~i10+~i2*~i3*i4*~i5*~i6*~i10+~i0*~i2*i6*i7*~i9*~i12+~i1*i4*~i5*~i7*~i8*~i10+~i0*i4*i6*i7*i8*~i9+~i0*~i2*~i6*~i7*~i10*~i11+~i2*i4*i5*i6*i8*~i9+~i0*i4*~i6*~i7*~i8*~i10+~i2*i4*~i5*~i6*~i8*~i10+~i3*i4*i5*i6*i7*~i9+~i3*i4*~i5*~i6*~i7*~i10+~i2*i5*i6*i7*~i9*~i12+~i2*i5*i6*~i7*~i9*~i11+i4*i5*i6*i7*i8*~i9+~i2*~i5*~i6*i7*~i10*~i12+~i2*~i5*~i6*~i7*~i10*~i11+i4*~i5*~i6*~i7*~i8*~i10+~i3*i8*~i9*~i10*~i12+~i3*~i8*~i9*~i10*~i11+~i0*~i1*~i2*~i3*i4+~i2*i7*~i9*~i10*~i12+~i2*~i7*~i9*~i10*~i11+~i0*~i1*~i2*i7*~i12+~i1*i5*i6*~i9*~i12+~i0*~i1*~i2*~i7*~i11+~i1*~i5*i6*~i10*~i12+~i1*i5*~i6*~i9*~i11+~i1*~i5*~i6*~i10*~i11+~i0*~i1*i6*~i12+~i0*~i1*~i6*~i11+i4*~i9*~i10+~i0*i5*~i12+~i0*~i5*~i11
+i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*~i10*~i11*i12*~i13+i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*i8*~i9*i11*~i12*~i13+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*i8*~i9*i11*~i12*~i13+~i0*~i1*i2*~i3*~i4*i5*i6*~i7*~i8*~i10*~i11*i12*~i13+~i0*i1*~i2*~i3*~i4*~i5*i6*~i7*i8*~i9*i11*~i12*~i13+~i0*i1*~i2*~i3*~i4*i5*~i6*i7*~i8*~i10*~i11*i12*~i13+i0*~i1*i2*~i3*~i4*i5*~i6*i7*i8*~i9*i11*~i12*~i13+i0*i1*~i2*~i3*~i4*i5*i6*~i7*i8*~i9*i11*~i12*~i13+i0*~i1*i2*~i3*~i4*~i5*i6*~i7*~i8*~i10*~i11*i12*~i13+i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i10*~i11*i12*~i13+~i0*i1*i2*~i3*~i4*~i5*i6*i7*i8*~i9*i11*~i12*~i13+~i0*i1*i2*~i3*~i4*i5*~i6*~i7*~i8*~i10*~i11*i12*~i13+~i0*~i1*~i2*~i3*~i4*i5*i6*i7*~i8*~i11*i12*~i13+~i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*i11*~i12*~i13+i0*~i1*~i2*~i3*i4*~i5*i6*i7*i8*~i10*i12*~i13+~i0*~i1*~i2*i3*i4*i5*i6*i7*~i8*~i10*i12*~i13+i0*~i1*~i2*~i3*i4*i5*~i6*~i7*~i8*~i9*i11*~i13+~i0*~i1*~i2*i3*i4*~i5*~i6*~i7*i8*~i9*i11*~i13+~i0*~i1*i2*~i3*i4*i5*i6*~i7*i8*~i10*i12*~i13+~i0*i1*~i2*~i3*i4*i5*~i6*i7*i8*~i10*i12*~i13+~i0*~i1*i2*~i3*i4*~i5*~i6*i7*~i8*~i9*i11*~i13+~i0*i1*~i2*~i3*i4*~i5*i6*~i7*~i8*~i9*i11*~i13+i0*i1*i2*~i3*~i4*i5*i6*i7*~i9*~i11*~i12*~i13+i0*i1*i2*~i3*~i4*~i5*~i6*~i7*~i10*~i11*~i12*~i13+i0*~i1*i2*~i3*i4*~i5*i6*~i7*i8*~i10*i12*~i13+i0*~i1*i2*~i3*i4*i5*~i6*i7*~i8*~i9*i11*~i13+i0*i1*~i2*~i3*i4*~i5*~i6*i7*i8*~i10*i12*~i13+i0*i1*i2*~i3*~i4*i5*i6*i7*i8*~i9*~i12*~i13+i0*i1*~i2*~i3*i4*i5*i6*~i7*~i8*~i9*i11*~i13+i0*i1*i2*~i3*~i4*~i5*~i6*~i7*~i8*~i10*~i11*~i13+~i0*i1*i2*~i3*i4*~i5*i6*i7*~i8*~i9*i11*~i13+~i0*i1*i2*~i3*i4*i5*~i6*~i7*i8*~i10*i12*~i13+i0*i1*~i3*~i4*~i7*i8*~i9*~i10*i11*~i12*~i13+i0*i1*~i3*~i4*i7*~i8*~i9*~i10*~i11*i12*~i13+i0*i2*~i3*~i4*~i6*i8*~i9*~i10*i11*~i12*~i13+i0*i2*~i3*~i4*i6*~i8*~i9*~i10*~i11*i12*~i13+i1*i2*~i3*~i4*~i5*i8*~i9*~i10*i11*~i12*~i13+i1*i2*~i3*~i4*i5*~i8*~i9*~i10*~i11*i12*~i13+i0*i1*i2*i3*i4*i5*i6*i7*i8*~i9*~i13+i0*i1*i2*i3*i4*~i5*~i6*~i7*~i8*~i10*~i13+i0*i1*i2*~i3*~i4*~i9*~i10*~i11*~i12*~i13+~i3*~i4*i5*i6*i7*~i8*~i9*~i11*i12*~i13+~i3*~i4*~i5*~i6*~i7*i8*~i10*i11*~i12*~i13+~i0*i3*~i5*i6*i7*i8*i9*~i11*i12+~i0*i1*i3*~i5*i7*i8*i9*~i11*i12+~i0*i3*i5*~i6*~i7*~i8*i10*i11*~i12+~i0*i1*i3*i5*~i7*~i8*i10*i11*~i12+~i0*i2*i3*~i5*i6*i8*i9*~i11*i12+~i0*i2*i3*i5*~i6*~i8*i10*i11*~i12+~i0*~i1*i4*~i5*i7*i8*~i9*i11*~i13+~i0*~i1*i4*i5*~i7*~i8*~i10*i12*~i13+~i0*~i2*i4*~i5*i6*i8*~i9*i11*~i13+~i0*~i2*i4*i5*~i6*~i8*~i10*i12*~i13+~i0*~i2*~i5*i6*i7*~i9*i11*~i12*~i13+~i0*i4*~i5*i6*i7*i8*~i9*i11*~i13+~i0*~i2*i5*~i6*~i7*~i10*~i11*i12*~i13+~i0*i4*i5*~i6*~i7*~i8*~i10*i12*~i13+~i0*~i1*i4*i7*i8*~i9*i11*i12*~i13+~i1*~i2*i4*i5*i8*~i9*i11*i12*~i13+~i0*~i1*i4*~i7*~i8*~i10*i11*i12*~i13+~i1*~i2*i4*~i5*~i8*~i10*i11*i12*~i13+~i0*~i2*i4*i6*i8*~i9*i11*i12*~i13+~i1*~i3*i4*i5*i7*~i9*i11*i12*~i13+~i0*~i2*i4*~i6*~i8*~i10*i11*i12*~i13+~i1*~i3*i4*~i5*~i7*~i10*i11*i12*~i13+~i0*~i3*i4*i6*i7*~i9*i11*i12*~i13+~i2*~i3*i4*i5*i6*~i9*i11*i12*~i13+~i0*~i3*i4*~i6*~i7*~i10*i11*i12*~i13+~i2*~i3*i4*~i5*~i6*~i10*i11*i12*~i13+i0*~i4*i5*i6*i7*i8*i9*i12+i0*i1*~i4*i5*i7*i8*i9*i12+i0*~i4*~i5*i6*i7*i8*i10*i12+~i0*~i4*~i5*i6*i7*i8*~i11*i12+i0*~i4*i5*~i6*~i7*~i8*i9*i11+~i0*i1*~i4*~i5*i7*i8*~i11*i12+i0*i2*~i4*i5*i6*i8*i9*i12+~i0*~i4*i5*~i6*~i7*~i8*i11*~i12+~i0*i1*~i4*i5*~i7*~i8*i11*~i12+i0*i1*i2*~i4*i5*i8*i9*i12+i0*~i4*~i5*~i6*~i7*~i8*i10*i11+i0*i1*~i4*~i5*~i7*~i8*i10*i11+i0*i3*~i4*i5*i6*i7*i9*i12+~i0*i2*~i4*~i5*i6*i8*~i11*i12+i0*i1*i3*~i4*i5*i7*i9*i12+~i0*i1*i2*~i4*~i5*i8*~i11*i12+~i0*i2*~i4*i5*~i6*~i8*i11*~i12+~i0*i1*i2*~i4*i5*~i8*i11*~i12+i0*i2*~i4*~i5*~i6*~i8*i10*i11+i0*i1*i2*~i4*~i5*~i8*i10*i11+~i0*i3*~i4*~i5*i6*i7*~i11*i12+~i0*i1*i3*~i4*~i5*i7*~i11*i12+~i0*i3*~i4*i5*~i6*~i7*i11*~i12+~i0*i1*i3*~i4*i5*~i7*i11*~i12+i0*i2*i3*~i4*i5*i6*i9*i12+i0*i3*~i4*~i5*~i6*~i7*i10*i11+i0*i1*i3*~i4*~i5*~i7*i10*i11+~i0*i2*i3*~i4*~i5*i6*~i11*i12+~i0*i2*i3*~i4*i5*~i6*i11*~i12+i0*i2*i3*~i4*~i5*~i6*i10*i11+~i0*i2*~i5*i6*i7*i9*~i11*i12+~i0*~i1*~i2*~i3*i4*i5*i12*~i13+~i0*~i1*~i2*~i3*i4*~i5*i11*~i13+~i0*i2*i5*~i6*~i7*i10*i11*~i12+~i0*i1*i2*i3*~i5*i8*i9*~i11+i3*i5*~i6*~i7*i8*i9*i11*~i12+i3*~i5*i6*i7*~i8*i10*~i11*i12+~i0*i1*i2*i3*i5*~i8*i10*~i12+i0*i3*i5*i6*i7*i8*i9*i12+i0*i1*i3*i5*i7*i8*i9*i12+i0*~i1*~i2*i4*i5*i8*~i9*~i13+i0*~i1*~i2*i4*~i5*~i8*~i10*~i13+i0*i2*i3*i5*i6*i8*i9*i12+i0*i3*~i5*~i6*~i7*~i8*i10*i11+i0*i1*i3*~i5*~i7*~i8*i10*i11+~i0*~i1*~i2*~i5*i7*i11*~i12*~i13+~i0*~i1*~i2*i5*~i7*~i11*i12*~i13+i0*i2*i3*~i5*~i6*~i8*i10*i11+i0*~i1*~i2*i5*i7*~i9*~i12*~i13+i0*~i1*i4*i5*i7*i8*~i9*~i13+i0*~i1*~i2*~i5*~i7*~i10*~i11*~i13+i0*~i2*i5*i6*~i9*~i11*~i12*~i13+i0*~i2*~i5*~i6*~i10*~i11*~i12*~i13+i0*~i1*i4*~i5*~i7*~i8*~i10*~i13+~i3*i4*i5*i6*i7*~i9*i12*~i13+i0*~i2*i4*i5*i6*i8*~i9*~i13+~i3*i4*~i5*~i6*~i7*~i10*i11*~i13+i0*~i2*i4*~i5*~i6*~i8*~i10*~i13+~i2*i5*i6*~i7*~i9*~i11*i12*~i13+i0*~i3*i4*i5*i6*i7*~i9*~i13+~i2*~i5*~i6*i7*~i10*i11*~i12*~i13+i0*~i3*i4*~i5*~i6*~i7*~i10*~i13+i0*~i2*i5*i6*i7*~i9*~i12*~i13+i0*~i2*~i5*~i6*~i7*~i10*~i11*~i13+i4*i5*i6*i7*i8*~i9*i12*~i13+i4*~i5*~i6*~i7*~i8*~i10*i11*~i13+i0*i3*i5*i8*i9*i11*i12+i0*i3*~i5*~i8*i10*i11*i12+i0*i3*i6*i7*i9*i10*i12+i0*i3*~i6*~i7*i9*i10*i11+i0*i2*i5*i7*i9*i11*i12+i0*i1*i2*i3*~i4*i5*i9+~i0*i1*i2*i3*~i4*i5*~i12+i0*i1*i2*i3*~i4*~i5*i10+i0*i2*~i5*~i7*i10*i11*i12+~i0*i1*i2*i3*~i4*~i5*~i11+~i0*i1*i2*~i5*i7*i9*~i11+~i0*i1*i2*i5*~i7*i10*~i12+i2*i5*~i6*i7*i9*i11*~i12+i0*~i2*i7*~i9*~i10*~i12*~i13+i2*~i5*i6*~i7*i10*~i11*i12+i0*~i2*~i7*~i9*~i10*~i11*~i13+i0*i2*i5*i6*i7*i9*i12+i1*i2*i3*i5*i8*i9*~i12+i0*i2*~i5*~i6*~i7*i10*i11+i1*i2*i3*~i5*~i8*i10*~i11+~i0*~i1*~i5*i6*i11*~i12*~i13+i0*i1*i2*i3*i5*i8*i9+~i0*~i1*i5*~i6*~i11*i12*~i13+i0*~i1*i5*i6*~i9*~i12*~i13+i0*~i1*~i5*i6*~i10*~i12*~i13+i0*~i1*i5*~i6*~i9*~i11*~i13+i0*~i1*~i5*~i6*~i10*~i11*~i13+i0*i1*i2*i3*~i5*~i8*i10+i0*~i4*i5*i9*i11*i12+i0*~i4*~i5*i10*i11*i12+i0*i3*i9*i10*i11*i12+i0*i2*i6*i9*i10*i12+i0*i2*~i6*i9*i10*i11+i4*i5*~i9*~i10*i12*~i13+i4*~i5*~i9*~i10*i11*~i13+~i0*i1*~i5*i6*i9*~i11+~i0*i1*i5*~i6*i10*~i12+i1*i2*i5*i7*i9*~i12+i1*i2*~i5*~i7*i10*~i11+i0*i1*i2*i5*i7*i9+i0*i1*i2*~i5*~i7*i10+i0*i4*~i9*~i10*~i13+i0*i1*i5*i6*i9+i0*i1*~i5*~i6*i10+i1*i5*i6*i9*~i12+i1*~i5*~i6*i10*~i11+i0*i5*i9*i13+~i0*i5*~i12*i13+i0*~i5*i10*i13+~i0*~i5*~i11*i13+i0*i1*i9*i10
+~i1*~i3*~i6*i7*i8*~i9*i11*~i12*~i13+~i1*~i3*i6*~i7*~i8*~i10*~i11*i12*~i13+i1*~i2*i3*i4*i6*~i7*i8*i11*~i13+i1*~i2*i3*i4*~i6*i7*~i8*i12*~i13+~i1*i3*~i6*i7*i8*i9*~i11*i12+~i1*i3*i6*~i7*~i8*i10*i11*~i12+~i1*~i2*i4*i6*~i8*~i10*i12*~i13+~i1*~i2*i4*~i6*i8*~i9*i11*~i13+~i1*~i3*i4*i6*~i7*~i10*i12*~i13+~i1*~i3*i4*~i6*i7*~i9*i11*~i13+~i1*~i2*~i3*~i6*i8*i11*~i12*~i13+~i1*~i2*~i3*i6*~i8*~i11*i12*~i13+~i1*i4*~i6*i7*i8*~i9*i11*~i13+~i1*i4*i6*~i7*~i8*~i10*i12*~i13+~i3*i6*i7*~i8*~i9*~i11*i12*~i13+~i3*~i6*~i7*i8*~i10*i11*~i12*~i13+i1*~i2*~i3*i6*i8*~i9*~i12*~i13+i1*~i2*~i3*~i6*~i8*~i10*~i11*~i13+i1*~i3*i6*i7*i8*~i9*~i12*~i13+i1*~i3*i6*i7*~i8*~i9*~i11*~i13+i1*~i3*~i6*~i7*i8*~i10*~i12*~i13+i1*~i3*~i6*~i7*~i8*~i10*~i11*~i13+~i4*i6*~i7*~i8*i9*i11*~i12+~i4*~i6*i7*i8*i10*~i11*i12+~i1*~i4*~i6*i7*i8*~i11*i12+~i1*~i4*i6*~i7*~i8*i11*~i12+i1*~i4*i6*i7*i8*i9*i12+~i1*i2*~i4*i6*~i8*i11*~i12+~i1*i2*~i4*~i6*i8*~i11*i12+~i1*i3*~i4*i6*~i7*i11*~i12+~i1*i3*~i4*~i6*i7*~i11*i12+i1*i2*~i4*i6*i8*i9*i12+i1*~i4*~i6*~i7*~i8*i10*i11+i1*i3*~i4*i6*i7*i9*i12+i1*i2*~i4*~i6*~i8*i10*i11+i1*i3*~i4*~i6*~i7*i10*i11+i3*i6*~i7*i8*i9*i11*~i12+i3*~i6*i7*~i8*i10*~i11*i12+~i1*i2*i3*~i6*i8*i9*~i11+~i1*i2*i3*i6*~i8*i10*~i12+i1*~i3*i8*~i9*~i10*~i12*~i13+i1*~i3*~i8*~i9*~i10*~i11*~i13+i1*i3*i6*i7*i8*i9*i12+~i2*i4*i6*i8*~i9*i12*~i13+~i1*~i2*~i3*i4*i6*i12*~i13+~i2*i4*~i6*~i8*~i10*i11*~i13+~i1*~i2*~i3*i4*~i6*i11*~i13+i1*i3*~i6*~i7*~i8*i10*i11+~i3*i4*i6*i7*~i9*i12*~i13+~i3*i4*~i6*~i7*~i10*i11*~i13+i4*i6*i7*i8*~i9*i12*~i13+i1*~i2*~i3*i4*i6*~i9*~i13+i1*~i2*~i3*i4*~i6*~i10*~i13+i4*~i6*~i7*~i8*~i10*i11*~i13+~i1*~i2*~i6*i7*i11*~i12*~i13+~i1*~i2*i6*~i7*~i11*i12*~i13+i1*~i3*i4*i6*i7*~i9*~i13+i1*~i3*i4*~i6*~i7*~i10*~i13+i1*~i2*i6*i7*~i9*~i12*~i13+i1*~i2*~i6*i7*~i10*~i12*~i13+i1*~i2*i6*~i7*~i9*~i11*~i13+i1*i4*i6*i7*i8*~i9*~i13+i1*~i2*~i6*~i7*~i10*~i11*~i13+i1*i4*~i6*~i7*~i8*~i10*~i13+i1*~i4*i6*i9*i11*i12+i1*~i4*~i6*i10*i11*i12+i1*i3*i7*i9*i10*i12+i1*i3*~i7*i9*i10*i11+~i1*i2*i3*~i4*i6*~i12+~i1*i2*i3*~i4*~i6*~i11+~i1*i2*~i6*i7*i9*~i11+i1*i2*i3*~i4*i6*i9+i4*i6*~i9*~i10*i12*~i13+i4*~i6*~i9*~i10*i11*~i13+~i1*i2*i6*~i7*i10*~i12+i1*i2*i3*~i4*~i6*i10+i2*i3*i6*i8*i9*~i12+i2*i3*~i6*~i8*i10*~i11+i1*i2*i3*i6*i8*i9+i1*i2*i3*~i6*~i8*i10+i2*i6*i7*i9*~i12+i1*i4*~i9*~i10*~i13+i2*~i6*~i7*i10*~i11+i1*i2*i6*i7*i9+i1*i2*~i6*~i7*i10+~i1*i6*~i12*i13+~i1*~i6*~i11*i13+i1*i6*i9*i13+i1*~i6*i10*i13+i1*i2*i9*i10
+~i2*i4*i7*~i8*~i10*i12*~i13+~i2*i4*~i7*i8*~i9*i11*~i13+~i2*~i3*~i7*i8*i11*~i12*~i13+~i2*~i3*i7*~i8*~i11*i12*~i13+i2*~i3*i7*i8*~i9*~i12*~i13+i2*~i3*~i7*i8*~i10*~i12*~i13+i2*~i3*i7*~i8*~i9*~i11*~i13+i2*~i3*~i7*~i8*~i10*~i11*~i13+~i2*~i4*i7*~i8*i11*~i12+~i2*~i4*~i7*i8*~i11*i12+i2*~i4*i7*i8*i9*i12+i2*~i4*i7*~i8*i9*i11+i2*~i4*~i7*i8*i10*i12+i2*~i4*~i7*~i8*i10*i11+~i2*i3*~i7*i8*i9*~i11+~i2*i3*i7*~i8*i10*~i12+i4*i7*i8*~i9*i12*~i13+i4*~i7*~i8*~i10*i11*~i13+~i2*~i3*i4*i7*i12*~i13+~i2*~i3*i4*~i7*i11*~i13+i2*~i3*i4*i7*~i9*~i13+i2*~i3*i4*~i7*~i10*~i13+i2*i3*i4*i7*i8*~i13+i2*i3*i4*~i7*~i8*~i13+~i2*i3*~i4*i7*~i12+~i2*i3*~i4*~i7*~i11+i2*i3*~i4*i7*i9+i3*i7*i8*i9*~i12+i2*i3*~i4*~i7*i10+i3*~i7*~i8*i10*~i11+i2*i4*~i9*~i10*~i13+~i2*i7*~i12*i13+~i2*~i7*~i11*i13+i2*i7*i9*i13+i2*~i7*i10*i13+i2*i3*i9*i10
+i0*~i1*~i2*i3*~i4*~i5*i6*~i7*i8*i9*~i10*~i11*i12*~i13+i0*~i1*~i2*i3*~i4*i5*~i6*i7*~i8*~i9*i10*i11*~i12*~i13+~i0*i1*~i2*i3*~i4*i5*~i6*~i7*i8*i9*~i10*~i11*i12*~i13+~i0*i1*~i2*i3*~i4*~i5*i6*i7*~i8*~i9*i10*i11*~i12*~i13+~i0*~i1*~i2*i3*~i4*i5*i6*~i7*i9*i10*~i11*i12*~i13+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*i9*i10*i11*~i12*~i13+~i0*~i1*~i2*i3*~i4*i5*i6*~i7*i8*i9*~i11*i12*~i13+i0*~i1*i2*i3*~i4*~i5*i7*i8*i9*~i10*~i11*~i12*~i13+~i0*~i1*~i2*i3*~i4*~i5*~i6*i7*~i8*i10*i11*~i12*~i13+i0*i1*~i2*i3*~i4*~i5*~i6*i8*i9*~i10*~i11*~i12*~i13+i0*~i1*i2*i3*~i4*i5*~i7*~i8*~i9*i10*~i11*~i12*~i13+i0*i1*~i2*i3*~i4*i5*i6*~i8*~i9*i10*~i11*~i12*~i13+~i1*i2*i3*~i4*~i5*i6*i7*i8*i9*~i10*i11*~i12*~i13+~i0*~i1*i2*i3*~i4*i5*~i6*i7*i8*i9*~i11*i12*~i13+~i1*i2*i3*~i4*i5*~i6*~i7*~i8*~i9*i10*~i11*i12*~i13+i0*~i1*i2*i3*~i4*~i5*~i6*i7*i8*i9*~i10*~i11*~i13+~i0*~i1*i2*i3*~i4*~i5*i6*~i7*~i8*i10*i11*~i12*~i13+i0*i1*~i2*i3*~i4*~i5*~i6*~i7*i8*i9*~i10*~i11*~i13+i0*~i1*i2*i3*~i4*i5*i6*~i7*~i8*~i9*i10*~i12*~i13+i0*i1*~i2*i3*~i4*i5*i6*i7*~i8*~i9*i10*~i12*~i13+i0*~i1*~i2*~i3*~i4*~i5*i6*i7*~i8*~i10*~i11*i12*~i13+i0*~i1*~i2*~i3*~i4*i5*~i6*~i7*i8*~i9*i11*~i12*~i13+~i0*~i1*i2*~i3*~i4*~i5*~i6*i7*i8*~i9*i11*~i12*~i13+~i0*~i1*i2*~i3*~i4*i5*i6*~i7*~i8*~i10*~i11*i12*~i13+~i0*i1*~i2*~i3*~i4*~i5*i6*~i7*i8*~i9*i11*~i12*~i13+~i0*i1*~i2*~i3*~i4*i5*~i6*i7*~i8*~i10*~i11*i12*~i13+i0*~i1*i2*~i3*~i4*i5*~i6*i7*i8*~i9*i11*~i12*~i13+i0*i1*~i2*~i3*~i4*i5*i6*~i7*i8*~i9*i11*~i12*~i13+i0*~i1*i2*~i3*~i4*~i5*i6*~i7*~i8*~i10*~i11*i12*~i13+i0*i1*~i2*~i3*~i4*~i5*~i6*i7*~i8*~i10*~i11*i12*~i13+~i0*i1*i2*~i3*~i4*~i5*i6*i7*i8*~i9*i11*~i12*~i13+~i0*i1*i2*~i3*~i4*i5*~i6*~i7*~i8*~i10*~i11*i12*~i13+~i0*~i1*i2*i3*~i4*~i5*i6*i9*i10*i11*~i12*~i13+~i0*~i1*i2*i3*~i4*i5*~i6*i9*i10*~i11*i12*~i13+~i2*i3*~i4*~i5*~i6*i7*i8*i9*~i10*i11*~i12*~i13+~i2*i3*~i4*i5*i6*~i7*~i8*~i9*i10*~i11*i12*~i13+i0*~i1*~i2*i3*i4*~i5*i6*i7*~i8*~i10*i12*~i13+i0*~i1*~i2*i3*i4*i5*~i6*~i7*i8*~i9*i11*~i13+~i0*~i1*i2*i3*i4*~i5*~i6*i7*i8*~i9*i11*~i13+~i0*~i1*i2*i3*i4*i5*i6*~i7*~i8*~i10*i12*~i13+~i0*i1*~i2*i3*i4*~i5*i6*~i7*i8*~i9*i11*~i13+~i0*i1*~i2*i3*i4*i5*~i6*i7*~i8*~i10*i12*~i13+i0*~i1*i2*i3*i4*i5*~i6*i7*i8*~i9*i11*~i13+i0*i1*~i2*i3*i4*i5*i6*~i7*i8*~i9*i11*~i13+i0*~i1*i2*i3*i4*~i5*i6*~i7*~i8*~i10*i12*~i13+i0*i1*~i2*i3*i4*~i5*~i6*i7*~i8*~i10*i12*~i13+i0*i1*i2*~i3*i4*i5*i6*i7*~i8*~i9*i11*~i13+i0*i1*i2*~i3*i4*~i5*~i6*~i7*i8*~i10*i12*~i13+~i0*i1*i2*i3*i4*~i5*i6*i7*i8*~i9*i11*~i13+~i0*i1*i2*i3*i4*i5*~i6*~i7*~i8*~i10*i12*~i13+~i0*~i1*~i2*~i3*~i4*i5*i6*i7*~i8*~i11*i12*~i13+~i0*~i1*~i2*~i3*~i4*~i5*~i6*~i7*i8*i11*~i12*~i13+i0*~i1*~i2*~i3*i4*~i5*i6*i7*i8*~i10*i12*~i13+~i0*~i1*~i2*i3*i4*i5*i6*i7*~i8*~i10*i12*~i13+i0*~i1*~i2*~i3*i4*i5*~i6*~i7*~i8*~i9*i11*~i13+~i0*~i1*~i2*i3*i4*~i5*~i6*~i7*i8*~i9*i11*~i13+~i0*~i1*i2*~i3*i4*i5*i6*~i7*i8*~i10*i12*~i13+~i0*i1*~i2*~i3*i4*i5*~i6*i7*i8*~i10*i12*~i13+~i0*~i1*i2*~i3*i4*~i5*~i6*i7*~i8*~i9*i11*~i13+~i0*i1*~i2*~i3*i4*~i5*i6*~i7*~i8*~i9*i11*~i13+i0*i1*i2*~i3*~i4*i5*i6*i7*~i9*~i11*~i12*~i13+i0*i1*i2*~i3*~i4*~i5*~i6*~i7*~i10*~i11*~i12*~i13+i0*~i1*i2*~i3*i4*~i5*i6*~i7*i8*~i10*i12*~i13+i0*~i1*i2*~i3*i4*i5*~i6*i7*~i8*~i9*i11*~i13+i0*i1*~i2*~i3*i4*~i5*~i6*i7*i8*~i10*i12*~i13+i0*i1*i2*~i3*~i4*i5*i6*i7*i8*~i9*~i12*~i13+i0*i1*~i2*~i3*i4*i5*i6*~i7*~i8*~i9*i11*~i13+i0*i1*i2*~i3*~i4*~i5*~i6*~i7*~i8*~i10*~i11*~i13+~i0*i1*i2*~i3*i4*~i5*i6*i7*~i8*~i9*i11*~i13+~i0*i1*i2*~i3*i4*i5*~i6*~i7*i8*~i10*i12*~i13+i0*~i1*~i2*~i3*~i5*i6*i7*i8*i10*~i12*i13+i0*~i1*~i2*~i3*i5*~i6*~i7*~i8*i9*~i11*i13+~i0*~i1*~i2*i3*~i5*~i6*~i7*i8*i9*~i11*i13+~i0*~i1*~i2*i3*i5*i6*i7*~i8*i10*~i12*i13+~i0*~i1*i2*~i3*~i5*~i6*i7*~i8*i9*~i11*i13+~i0*~i1*i2*~i3*i5*i6*~i7*i8*i10*~i12*i13+~i0*i1*~i2*~i3*~i5*i6*~i7*~i8*i9*~i11*i13+~i0*i1*~i2*~i3*i5*~i6*i7*i8*i10*~i12*i13+i0*~i1*~i2*i3*i5*~i6*~i7*i8*i9*~i11*i13+i0*~i1*~i2*i3*~i5*i6*i7*~i8*i10*~i12*i13+i0*~i1*i2*~i3*i5*~i6*i7*~i8*i9*~i11*i13+i0*i1*~i2*~i3*i5*i6*~i7*~i8*i9*~i11*i13+i0*~i1*i2*~i3*~i5*i6*~i7*i8*i10*~i12*i13+~i0*~i1*i2*i3*~i5*~i6*i7*i8*i9*~i11*i13+i0*i1*~i2*~i3*~i5*~i6*i7*i8*i10*~i12*i13+~i0*i1*~i2*i3*~i5*i6*~i7*i8*i9*~i11*i13+~i0*~i1*i2*i3*i5*i6*~i7*~i8*i10*~i12*i13+~i0*i1*~i2*i3*i5*~i6*i7*~i8*i10*~i12*i13+~i0*i1*i2*~i3*~i5*i6*i7*~i8*i9*~i11*i13+~i0*i1*i2*~i3*i5*~i6*~i7*i8*i10*~i12*i13+i0*~i1*i2*i3*i5*~i6*i7*i8*i9*~i11*i13+i0*i1*~i2*i3*i5*i6*~i7*i8*i9*~i11*i13+i0*~i1*i2*i3*~i5*i6*~i7*~i8*i10*~i12*i13+i0*i1*i2*~i3*i5*i6*i7*~i8*i9*~i11*i13+i0*i1*~i2*i3*~i5*~i6*i7*~i8*i10*~i12*i13+~i0*i1*i2*i3*~i5*i6*i7*i8*i9*~i11*i13+i0*i1*i2*~i3*~i5*~i6*~i7*i8*i10*~i12*i13+~i0*i1*i2*i3*i5*~i6*~i7*~i8*i10*~i12*i13+~i0*i1*i2*i3*~i4*~i5*i6*i7*i8*i9*~i11+~i0*i1*i2*i3*~i4*i5*~i6*~i7*~i8*i10*~i12+~i0*~i1*~i2*~i3*i4*i5*i6*i7*i8*i12*~i13+~i0*~i1*~i2*~i3*i4*~i5*~i6*~i7*~i8*i11*~i13+i0*i1*~i3*~i4*~i7*i8*~i9*~i10*i11*~i12*~i13+i0*i1*~i3*~i4*i7*~i8*~i9*~i10*~i11*i12*~i13+i0*i2*~i3*~i4*~i6*i8*~i9*~i10*i11*~i12*~i13+i0*i2*~i3*~i4*i6*~i8*~i9*~i10*~i11*i12*~i13+i1*i2*~i3*~i4*~i5*i8*~i9*~i10*i11*~i12*~i13+i1*i2*~i3*~i4*i5*~i8*~i9*~i10*~i11*i12*~i13+i0*i1*i2*i3*i4*i5*i6*i7*i8*~i9*~i13+i0*i1*i2*i3*i4*~i5*~i6*~i7*~i8*~i10*~i13+~i0*~i1*~i2*~i3*i5*i6*i7*i8*~i12*i13+~i0*~i1*~i2*~i3*~i5*~i6*~i7*~i8*~i11*i13+i0*i1*i2*i3*i5*i6*i7*i8*i9*i13+i0*i1*i2*i3*~i5*~i6*~i7*~i8*i10*i13+i1*i2*i3*~i4*i5*i6*i7*i8*i9*~i12+i0*i1*i2*i3*~i4*i5*i6*i7*i8*i9+i1*i2*i3*~i4*~i5*~i6*~i7*~i8*i10*~i11+i0*i1*i2*i3*~i4*~i5*~i6*~i7*~i8*i10+i0*i1*i2*~i3*~i4*~i9*~i10*~i11*~i12*~i13+~i3*~i4*i5*i6*i7*~i8*~i9*~i11*i12*~i13+~i3*~i4*~i5*~i6*~i7*i8*~i10*i11*~i12*~i13+i0*i1*i4*i7*i8*~i9*~i10*i12*~i13+i0*i1*i4*~i7*~i8*~i9*~i10*i11*~i13+i0*i2*i4*i6*i8*~i9*~i10*i12*~i13+i1*i2*i4*i5*i8*~i9*~i10*i12*~i13+i0*i3*i4*i6*i7*~i9*~i10*i12*~i13+i0*i2*i4*~i6*~i8*~i9*~i10*i11*~i13+i1*i2*i4*~i5*~i8*~i9*~i10*i11*~i13+i1*i3*i4*i5*i7*~i9*~i10*i12*~i13+i0*i3*i4*~i6*~i7*~i9*~i10*i11*~i13+i1*i3*i4*~i5*~i7*~i9*~i10*i11*~i13+i2*i3*i4*i5*i6*~i9*~i10*i12*~i13+i2*i3*i4*~i5*~i6*~i9*~i10*i11*~i13+~i0*~i1*i4*i7*i8*~i9*i11*i12*~i13+~i1*~i2*i4*i5*i8*~i9*i11*i12*~i13+~i0*~i1*i4*~i7*~i8*~i10*i11*i12*~i13+~i1*~i2*i4*~i5*~i8*~i10*i11*i12*~i13+~i0*~i2*i4*i6*i8*~i9*i11*i12*~i13+~i1*~i3*i4*i5*i7*~i9*i11*i12*~i13+~i0*~i2*i4*~i6*~i8*~i10*i11*i12*~i13+~i1*~i3*i4*~i5*~i7*~i10*i11*i12*~i13+~i0*~i3*i4*i6*i7*~i9*i11*i12*~i13+~i2*~i3*i4*i5*i6*~i9*i11*i12*~i13+~i0*~i3*i4*~i6*~i7*~i10*i11*i12*~i13+~i2*~i3*i4*~i5*~i6*~i10*i11*i12*~i13+~i0*~i1*~i2*~i8*i10*~i11*~i12*i13+~i0*~i1*~i3*~i7*i10*~i11*~i12*i13+~i1*~i2*~i3*~i5*i10*~i11*~i12*i13+~i0*~i1*i7*i8*i9*~i11*~i12*i13+~i1*~i2*i5*i8*i9*~i11*~i12*i13+~i0*~i2*~i3*~i6*i10*~i11*~i12*i13+~i0*~i1*~i7*~i8*i10*~i11*~i12*i13+~i0*~i2*i6*i8*i9*~i11*~i12*i13+~i1*~i3*i5*i7*i9*~i11*~i12*i13+~i0*~i2*~i6*~i8*i10*~i11*~i12*i13+~i0*~i3*i6*i7*i9*~i11*~i12*i13+~i2*~i3*i5*i6*i9*~i11*~i12*i13+~i0*~i3*~i6*~i7*i10*~i11*~i12*i13+i0*i1*i7*i8*i9*i10*~i12*i13+~i1*~i5*~i7*~i8*i10*~i11*~i12*i13+i0*i1*~i7*~i8*i9*i10*~i11*i13+i0*i2*i6*i8*i9*i10*~i12*i13+~i2*~i5*~i6*~i8*i10*~i11*~i12*i13+i1*i2*i5*i8*i9*i10*~i12*i13+i0*i3*i6*i7*i9*i10*~i12*i13+i0*i2*~i6*~i8*i9*i10*~i11*i13+i1*i2*~i5*~i8*i9*i10*~i11*i13+i1*i3*i5*i7*i9*i10*~i12*i13+i0*i3*~i6*~i7*i9*i10*~i11*i13+i1*i3*~i5*~i7*i9*i10*~i11*i13+~i3*~i5*~i6*~i7*i10*~i11*~i12*i13+i2*i3*i5*i6*i9*i10*~i12*i13+i2*i3*~i5*~i6*i9*i10*~i11*i13+i1*i2*i3*~i4*i5*i9*i10*~i12+i1*i2*i3*~i4*~i5*i9*i10*~i11+~i0*~i1*~i2*~i3*i4*i11*i12*~i13+i0*i1*i2*i3*i4*~i9*~i10*~i13+i4*i5*i6*i7*i8*~i9*i12*~i13+i4*~i5*~i6*~i7*~i8*~i10*i11*~i13+~i0*~i1*~i2*~i3*~i11*~i12*i13+i5*i6*i7*i8*i9*~i12*i13+i0*i1*i2*i3*i9*i10*i13+~i5*~i6*~i7*~i8*i10*~i11*i13+i0*i1*i2*i3*~i4*i9*i10+i4*~i9*~i10*i11*i12*~i13+i9*i10*~i11*~i12*i13
+--------------------------
+SAT COUNT: 64156 INDIVIDUAL: 3 GENERATION: 0
+SAT COUNT: 20430 INDIVIDUAL: 3 GENERATION: 50000
+SAT COUNT: 15580 INDIVIDUAL: 0 GENERATION: 100000
+SAT COUNT: 13818 INDIVIDUAL: 0 GENERATION: 150000
+SAT COUNT: 12930 INDIVIDUAL: 0 GENERATION: 200000
+SAT COUNT: 12244 INDIVIDUAL: 3 GENERATION: 250000
+SAT COUNT: 11138 INDIVIDUAL: 0 GENERATION: 300000
+SAT COUNT: 10857 INDIVIDUAL: 0 GENERATION: 350000
+SAT COUNT: 10261 INDIVIDUAL: 0 GENERATION: 400000
+SAT COUNT: 9777 INDIVIDUAL: 1 GENERATION: 450000
+SAT COUNT: 9312 INDIVIDUAL: 1 GENERATION: 500000
+SAT COUNT: 9040 INDIVIDUAL: 0 GENERATION: 550000
+SAT COUNT: 8974 INDIVIDUAL: 0 GENERATION: 600000
+SAT COUNT: 8693 INDIVIDUAL: 3 GENERATION: 650000
+SAT COUNT: 8501 INDIVIDUAL: 1 GENERATION: 700000
+SAT COUNT: 8108 INDIVIDUAL: 3 GENERATION: 750000
+SAT COUNT: 7848 INDIVIDUAL: 0 GENERATION: 800000
+SAT COUNT: 7621 INDIVIDUAL: 0 GENERATION: 850000
+SAT COUNT: 7573 INDIVIDUAL: 0 GENERATION: 900000
+SAT COUNT: 7183 INDIVIDUAL: 0 GENERATION: 950000
+SAT COUNT: 6990 INDIVIDUAL: 2 GENERATION: 1000000
+SAT COUNT: 6949 INDIVIDUAL: 0 GENERATION: 1050000
+SAT COUNT: 6915 INDIVIDUAL: 0 GENERATION: 1100000
+SAT COUNT: 6826 INDIVIDUAL: 2 GENERATION: 1150000
+SAT COUNT: 6695 INDIVIDUAL: 0 GENERATION: 1200000
+SAT COUNT: 6644 INDIVIDUAL: 0 GENERATION: 1250000
+SAT COUNT: 6616 INDIVIDUAL: 0 GENERATION: 1300000
+SAT COUNT: 6570 INDIVIDUAL: 0 GENERATION: 1350000
+SAT COUNT: 6440 INDIVIDUAL: 0 GENERATION: 1400000
+SAT COUNT: 5249 INDIVIDUAL: 0 GENERATION: 1450000
+SAT COUNT: 4875 INDIVIDUAL: 0 GENERATION: 1500000
+SAT COUNT: 4723 INDIVIDUAL: 0 GENERATION: 1550000
+SAT COUNT: 4693 INDIVIDUAL: 4 GENERATION: 1600000
+SAT COUNT: 4009 INDIVIDUAL: 0 GENERATION: 1650000
+SAT COUNT: 3684 INDIVIDUAL: 0 GENERATION: 1700000
+SAT COUNT: 3540 INDIVIDUAL: 4 GENERATION: 1750000
+SAT COUNT: 3494 INDIVIDUAL: 0 GENERATION: 1800000
+SAT COUNT: 3184 INDIVIDUAL: 0 GENERATION: 1850000
+SAT COUNT: 3143 INDIVIDUAL: 0 GENERATION: 1900000
+SAT COUNT: 3133 INDIVIDUAL: 2 GENERATION: 1950000
+SAT COUNT: 2845 INDIVIDUAL: 2 GENERATION: 2000000
+SAT COUNT: 2841 INDIVIDUAL: 3 GENERATION: 2050000
+SAT COUNT: 2841 INDIVIDUAL: 0 GENERATION: 2100000
+SAT COUNT: 2841 INDIVIDUAL: 0 GENERATION: 2150000
+SAT COUNT: 2757 INDIVIDUAL: 0 GENERATION: 2200000
+SAT COUNT: 2757 INDIVIDUAL: 1 GENERATION: 2250000
+SAT COUNT: 2606 INDIVIDUAL: 0 GENERATION: 2300000
+SAT COUNT: 2053 INDIVIDUAL: 3 GENERATION: 2350000
+SAT COUNT: 1857 INDIVIDUAL: 0 GENERATION: 2400000
+SAT COUNT: 1661 INDIVIDUAL: 0 GENERATION: 2450000
+SAT COUNT: 1588 INDIVIDUAL: 1 GENERATION: 2500000
+SAT COUNT: 1248 INDIVIDUAL: 4 GENERATION: 2550000
+SAT COUNT: 1234 INDIVIDUAL: 0 GENERATION: 2600000
+SAT COUNT: 1048 INDIVIDUAL: 0 GENERATION: 2650000
+SAT COUNT: 856 INDIVIDUAL: 0 GENERATION: 2700000
+SAT COUNT: 834 INDIVIDUAL: 0 GENERATION: 2750000
+SAT COUNT: 814 INDIVIDUAL: 0 GENERATION: 2800000
+SAT COUNT: 814 INDIVIDUAL: 3 GENERATION: 2850000
+SAT COUNT: 814 INDIVIDUAL: 0 GENERATION: 2900000
+SAT COUNT: 608 INDIVIDUAL: 0 GENERATION: 2950000
+SAT COUNT: 467 INDIVIDUAL: 0 GENERATION: 3000000
+SAT COUNT: 406 INDIVIDUAL: 0 GENERATION: 3050000
+SAT COUNT: 404 INDIVIDUAL: 0 GENERATION: 3100000
+SAT COUNT: 309 INDIVIDUAL: 0 GENERATION: 3150000
+SAT COUNT: 306 INDIVIDUAL: 2 GENERATION: 3200000
+SAT COUNT: 302 INDIVIDUAL: 1 GENERATION: 3250000
+SAT COUNT: 302 INDIVIDUAL: 4 GENERATION: 3300000
+SAT COUNT: 302 INDIVIDUAL: 0 GENERATION: 3350000
+SAT COUNT: 298 INDIVIDUAL: 4 GENERATION: 3400000
+SAT COUNT: 282 INDIVIDUAL: 0 GENERATION: 3450000
+SAT COUNT: 282 INDIVIDUAL: 0 GENERATION: 3500000
+SAT COUNT: 282 INDIVIDUAL: 4 GENERATION: 3550000
+SAT COUNT: 282 INDIVIDUAL: 0 GENERATION: 3600000
+SAT COUNT: 264 INDIVIDUAL: 4 GENERATION: 3650000
+SAT COUNT: 264 INDIVIDUAL: 1 GENERATION: 3700000
+SAT COUNT: 264 INDIVIDUAL: 0 GENERATION: 3750000
+SAT COUNT: 264 INDIVIDUAL: 3 GENERATION: 3800000
+SAT COUNT: 264 INDIVIDUAL: 4 GENERATION: 3850000
+SAT COUNT: 264 INDIVIDUAL: 0 GENERATION: 3900000
+SAT COUNT: 264 INDIVIDUAL: 4 GENERATION: 3950000
+SAT COUNT: 264 INDIVIDUAL: 0 GENERATION: 4000000
+SAT COUNT: 264 INDIVIDUAL: 0 GENERATION: 4050000
+SAT COUNT: 252 INDIVIDUAL: 2 GENERATION: 4100000
+SAT COUNT: 252 INDIVIDUAL: 0 GENERATION: 4150000
+SAT COUNT: 252 INDIVIDUAL: 0 GENERATION: 4200000
+SAT COUNT: 235 INDIVIDUAL: 0 GENERATION: 4250000
+SAT COUNT: 226 INDIVIDUAL: 1 GENERATION: 4300000
+SAT COUNT: 204 INDIVIDUAL: 0 GENERATION: 4350000
+SAT COUNT: 204 INDIVIDUAL: 0 GENERATION: 4400000
+SAT COUNT: 194 INDIVIDUAL: 3 GENERATION: 4450000
+SAT COUNT: 194 INDIVIDUAL: 3 GENERATION: 4500000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 4550000
+SAT COUNT: 194 INDIVIDUAL: 2 GENERATION: 4600000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 4650000
+SAT COUNT: 194 INDIVIDUAL: 2 GENERATION: 4700000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 4750000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 4800000
+SAT COUNT: 194 INDIVIDUAL: 1 GENERATION: 4850000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 4900000
+SAT COUNT: 194 INDIVIDUAL: 4 GENERATION: 4950000
+SAT COUNT: 194 INDIVIDUAL: 4 GENERATION: 5000000
+SAT COUNT: 194 INDIVIDUAL: 0 GENERATION: 5050000
+SAT COUNT: 191 INDIVIDUAL: 2 GENERATION: 5100000
+SAT COUNT: 191 INDIVIDUAL: 2 GENERATION: 5150000
+SAT COUNT: 191 INDIVIDUAL: 1 GENERATION: 5200000
+SAT COUNT: 191 INDIVIDUAL: 2 GENERATION: 5250000
+SAT COUNT: 191 INDIVIDUAL: 2 GENERATION: 5300000
+SAT COUNT: 175 INDIVIDUAL: 0 GENERATION: 5350000
+SAT COUNT: 175 INDIVIDUAL: 0 GENERATION: 5400000
+SAT COUNT: 175 INDIVIDUAL: 2 GENERATION: 5450000
+SAT COUNT: 109 INDIVIDUAL: 2 GENERATION: 5500000
+SAT COUNT: 56 INDIVIDUAL: 1 GENERATION: 5550000
+SAT COUNT: 56 INDIVIDUAL: 2 GENERATION: 5600000
+SAT COUNT: 0 INDIVIDUAL: 2 GENERATION: 5607615
+--------------------------
+Circuit max depth: 18
+AND: 32
+OR: 25
+NOT: 34
+NAND: 29
+NOR: 23
+XOR: 25
+XNOR: 25
+TOTAL GATES: 193
+Num transistors: 404
+((((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) AND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1)))) AND ((NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) NOR ((i7 AND i2) AND (NOT (NOT i9))))) NAND ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0)))
+
+((i3 NOR ((NOT i12) NOR (i8 NOR i3))) XNOR ((((i8 XNOR (i8 NOR i3)) NAND i10) NAND (i11 AND (i8 NOR i3))) XOR (((NOT i13) NAND i4) XNOR (NOT (((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10))))))
+
+((NOT ((((((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) AND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1)))) AND ((NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) NOR ((i7 AND i2) AND (NOT (NOT i9))))) NAND ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) XOR ((((NOT i12) NAND (i2 OR i7)) OR i2) XOR i4)))) AND (((NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) NAND (i0 OR (i5 NOR i11))) NAND ((((i0 OR (i5 NOR i11)) XNOR (i0 OR (i5 AND (NOT i12)))) NAND ((NOT ((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11))) NAND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))))) OR (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11))))))) NAND ((((((i0 OR (i5 NOR i11)) XNOR (i0 OR (i5 AND (NOT i12)))) NAND ((NOT ((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11))) NAND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))))) OR (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))) NOR (NOT ((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))))) NOR ((((((NOT i9) NAND i5) NAND i0) NAND (NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4)))) AND (((((i1 NAND i1) XOR (i6 AND i1)) XOR ((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) XOR ((((NOT i12) NAND (i2 OR i7)) OR i2) XOR i4))) NAND ((NOT i9) OR (i8 XNOR (i8 NOR i3))))) NOR (NOT (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) XOR ((((NOT i12) NAND (i2 OR i7)) OR i2) XOR i4)))) AND (((NOT i0) XOR (i8 XNOR (i8 NOR i3))) AND ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR (i7 NAND (((NOT i9) NAND i5) NAND i0)))))) AND ((((i3 NOR ((NOT i12) NOR (i8 NOR i3))) AND (((NOT i0) XOR (i8 XNOR (i8 NOR i3))) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3))))) NAND ((NOT (NOT i9)) XNOR ((NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))) OR (NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4)))))) NOR ((((NOT i9) NAND i5) NAND i0) NAND (NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))))))))
+
+(NOT ((((((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) AND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1)))) AND ((NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) NOR ((i7 AND i2) AND (NOT (NOT i9))))) NAND ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) XOR ((((NOT i12) NAND (i2 OR i7)) OR i2) XOR i4)))) AND (((NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) NAND (i0 OR (i5 NOR i11))) NAND ((((i0 OR (i5 NOR i11)) XNOR (i0 OR (i5 AND (NOT i12)))) NAND ((NOT ((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11))) NAND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))))) OR (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))))))
+
+(((((((i0 OR (i5 NOR i11)) XNOR (i0 OR (i5 AND (NOT i12)))) NAND ((NOT ((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11))) NAND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))))) OR (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))) OR (((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) NOR ((NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) NAND (i0 OR (i5 NOR i11)))) XOR ((((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) XOR (NOT i13))) XOR (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR (NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4)))) AND (((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) AND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1)))) AND ((NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) NOR ((i7 AND i2) AND (NOT (NOT i9)))))))) XOR (NOT ((NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) NAND (((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13))))) AND (((((((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) AND ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1)))) AND ((NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) NOR ((i7 AND i2) AND (NOT (NOT i9))))) NAND ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) XOR ((((NOT i12) NAND (i2 OR i7)) OR i2) XOR i4)))) AND (((i4 XNOR (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))) NOR (NOT (NOT i13))) AND (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))) OR ((((((((NOT i13) NAND i4) NAND ((NOT i13) NAND i4)) AND (i0 XNOR ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13))))) OR ((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) OR (NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))))) OR (((NOT ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13)))) NAND (i1 AND (i1 OR (i8 XNOR (i8 NOR i3))))) NOR (((((NOT i12) NAND (i2 OR i7)) OR i2) OR (NOT i13)) XOR i4))) XNOR ((i0 XNOR ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13)))) AND (((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) OR (NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0)))) OR ((((i2 OR i7) XNOR i7) OR (NOT i10)) NAND (NOT ((NOT i13) NAND i4)))))) AND (((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1))) OR ((NOT ((NOT i13) NAND i4)) XOR ((NOT i13) NAND i4))))))
+
+((((NOT (((i2 OR i7) NOR i11) OR (((NOT i13) NAND i4) XOR (NOT i13)))) XNOR (NOT (((NOT i12) NAND (i2 OR i7)) OR i2))) XOR (((((NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR (NOT (((NOT ((NOT i13) NAND i4)) XOR ((NOT i13) NAND i4)) XNOR (((i2 OR i7) XNOR i7) OR (NOT i10))))) XOR ((i7 AND i2) AND (NOT (NOT i9)))) NAND ((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) OR ((NOT i13) NAND i4))) NAND (((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) XOR (NOT i13))) XOR (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR (NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4)))))) XOR (NOT ((NOT (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))) XNOR ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XNOR (NOT ((i9 AND (i6 AND i1)) XNOR (((((NOT i12) NAND (i2 OR i7)) OR i2) OR (NOT i13)) AND (NOT (NOT i13)))))))))
+
+(((NOT (NOT ((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) XOR (NOT i13))) XOR (((NOT i12) NAND (i2 OR i7)) OR i2)))) XNOR (NOT ((((i2 OR i7) XNOR i7) OR (NOT i10)) AND (((i2 OR i7) XNOR i7) OR (NOT i10))))) XNOR (((((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)) OR ((NOT i13) NAND i4)) XOR ((NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR ((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR (NOT ((i7 AND i2) AND (NOT (NOT i9))))))))
+
+(((NOT (((NOT (NOT (((i6 AND (NOT (i6 AND i1))) AND (i12 XOR ((i1 NAND i1) AND i11))) XNOR ((i1 AND (i1 OR (i8 XNOR (i8 NOR i3)))) NOR i11)))) XNOR ((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XNOR (NOT ((i9 AND (i6 AND i1)) XNOR (((((NOT i12) NAND (i2 OR i7)) OR i2) OR (NOT i13)) AND (NOT (NOT i13))))))) XOR ((((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0)) NOR (((((NOT i13) NAND i4) NAND ((NOT i13) NAND i4)) AND (i0 XNOR ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13))))) OR ((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) OR (NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0)))))) OR ((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) XOR (NOT i13))) XOR (((NOT i12) NAND (i2 OR i7)) OR i2))))) XOR (((i2 OR i7) NOR i11) OR (((NOT i13) NAND i4) XOR (NOT i13)))) AND (((((NOT (((NOT (((NOT i12) NAND (i2 OR i7)) OR i2)) XNOR ((i2 OR i7) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR (NOT (((NOT ((NOT i13) NAND i4)) XOR ((NOT i13) NAND i4)) XNOR (((i2 OR i7) XNOR i7) OR (NOT i10))))) XOR ((i7 AND i2) AND (NOT (NOT i9)))) XOR (((((NOT i0) XOR (i8 XNOR (i8 NOR i3))) NOR ((((NOT i9) NAND i5) NAND i0) NAND (i11 AND (i8 NOR i3)))) NAND (i10 NOR i5)) XOR ((NOT ((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) XOR (NOT i13))) XOR (((NOT i12) NAND (i2 OR i7)) OR i2))) XNOR (((NOT i12) NAND (i2 OR i7)) OR i2)))) NOR (NOT ((NOT ((NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))) NAND (((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)))) NOR (((i3 NOR ((NOT i12) NOR (i8 NOR i3))) XNOR ((((i8 XNOR (i8 NOR i3)) NAND i10) NAND (i11 AND (i8 NOR i3))) XOR (((NOT i13) NAND i4) XNOR (NOT (((NOT (NOT i9)) NAND (i8 AND i3)) AND ((i8 XNOR (i8 NOR i3)) NAND i10)))))) NAND (((((((NOT i13) NAND i4) NAND ((NOT i13) NAND i4)) AND (i0 XNOR ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13))))) OR ((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) OR (NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0))))) OR (((NOT ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13)))) NAND (i1 AND (i1 OR (i8 XNOR (i8 NOR i3))))) NOR (((((NOT i12) NAND (i2 OR i7)) OR i2) OR (NOT i13)) XOR i4))) XNOR ((i0 XNOR ((i0 OR (i5 NOR i11)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13)))) AND (((((((NOT ((NOT i10) NOR ((i1 NAND i1) XOR (i6 AND i1)))) XOR (i9 AND (i6 AND i1))) NAND ((i13 NOR ((i7 AND i2) AND (NOT (NOT i9)))) AND (((i2 OR i7) XNOR i7) OR (NOT i10)))) XNOR (i0 OR (i5 NOR i11))) NAND (i1 OR i13)) OR (NOT ((i10 NOR i5) OR (((NOT i9) NAND i5) NAND i0)))) OR ((((i2 OR i7) XNOR i7) OR (NOT i10)) NAND (NOT ((NOT i13) NAND i4)))))))))))
+
+--------------------------
+NUM TRANSISTORS: 404 INDIVIDUAL: 0 GENERATION: 0
+NUM TRANSISTORS: 279 INDIVIDUAL: 0 GENERATION: 50000
+NUM TRANSISTORS: 273 INDIVIDUAL: 0 GENERATION: 100000
+NUM TRANSISTORS: 273 INDIVIDUAL: 4 GENERATION: 150000
+NUM TRANSISTORS: 269 INDIVIDUAL: 0 GENERATION: 200000
+NUM TRANSISTORS: 267 INDIVIDUAL: 1 GENERATION: 250000
+NUM TRANSISTORS: 267 INDIVIDUAL: 1 GENERATION: 300000
+NUM TRANSISTORS: 266 INDIVIDUAL: 0 GENERATION: 350000
+NUM TRANSISTORS: 264 INDIVIDUAL: 4 GENERATION: 400000
+NUM TRANSISTORS: 264 INDIVIDUAL: 4 GENERATION: 450000
+NUM TRANSISTORS: 264 INDIVIDUAL: 0 GENERATION: 500000
+NUM TRANSISTORS: 264 INDIVIDUAL: 0 GENERATION: 550000
+NUM TRANSISTORS: 264 INDIVIDUAL: 0 GENERATION: 600000
+NUM TRANSISTORS: 264 INDIVIDUAL: 3 GENERATION: 650000
+NUM TRANSISTORS: 264 INDIVIDUAL: 4 GENERATION: 700000
+NUM TRANSISTORS: 264 INDIVIDUAL: 1 GENERATION: 750000
+NUM TRANSISTORS: 264 INDIVIDUAL: 0 GENERATION: 800000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 850000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 900000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 950000
+NUM TRANSISTORS: 258 INDIVIDUAL: 1 GENERATION: 1000000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 1050000
+NUM TRANSISTORS: 258 INDIVIDUAL: 2 GENERATION: 1100000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 1150000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 1200000
+NUM TRANSISTORS: 258 INDIVIDUAL: 0 GENERATION: 1250000
+NUM TRANSISTORS: 256 INDIVIDUAL: 4 GENERATION: 1300000
+NUM TRANSISTORS: 256 INDIVIDUAL: 4 GENERATION: 1350000
+NUM TRANSISTORS: 255 INDIVIDUAL: 3 GENERATION: 1400000
+NUM TRANSISTORS: 255 INDIVIDUAL: 0 GENERATION: 1450000
+NUM TRANSISTORS: 255 INDIVIDUAL: 0 GENERATION: 1500000
+NUM TRANSISTORS: 251 INDIVIDUAL: 0 GENERATION: 1550000
+NUM TRANSISTORS: 249 INDIVIDUAL: 4 GENERATION: 1600000
+NUM TRANSISTORS: 247 INDIVIDUAL: 0 GENERATION: 1650000
+NUM TRANSISTORS: 243 INDIVIDUAL: 3 GENERATION: 1700000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 1750000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 1800000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 1850000
+NUM TRANSISTORS: 243 INDIVIDUAL: 4 GENERATION: 1900000
+NUM TRANSISTORS: 243 INDIVIDUAL: 4 GENERATION: 1950000
+NUM TRANSISTORS: 243 INDIVIDUAL: 2 GENERATION: 2000000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2050000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2100000
+NUM TRANSISTORS: 243 INDIVIDUAL: 1 GENERATION: 2150000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2200000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2250000
+NUM TRANSISTORS: 243 INDIVIDUAL: 3 GENERATION: 2300000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2350000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2400000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2450000
+NUM TRANSISTORS: 243 INDIVIDUAL: 2 GENERATION: 2500000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2550000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2600000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2650000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2700000
+NUM TRANSISTORS: 243 INDIVIDUAL: 4 GENERATION: 2750000
+NUM TRANSISTORS: 243 INDIVIDUAL: 0 GENERATION: 2792385
+--------------------------
+Circuit max depth: 15
+AND: 19
+OR: 16
+NOT: 19
+NAND: 16
+NOR: 24
+XOR: 14
+XNOR: 14
+TOTAL GATES: 122
+Num transistors: 243
+((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) AND ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))) AND (((i10 NAND i2) NOR i7) NOR ((i7 AND i2) AND i9))) NAND ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))))
+
+((i3 NOR ((NOT i12) NOR (i8 NOR i3))) XNOR ((NOT (i11 AND (i8 NOR i3))) XOR (((NOT i13) NAND i4) XNOR (NOT ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))))))
+
+((NOT ((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) AND ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))) AND (((i10 NAND i2) NOR i7) NOR ((i7 AND i2) AND i9))) NAND ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5)))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (NOT i4))) AND (((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))) NAND ((((i5 AND (NOT i12)) NOR (i11 NOR i5)) NOR i0) OR ((((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) AND (((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1))) NOR ((i10 NOR i6) NOR ((NOT i1) OR (i6 AND (i9 NOR i9))))))))) NAND (NOT (((((i5 AND (NOT i12)) NOR (i11 NOR i5)) NOR i0) OR ((((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) AND (((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1))) NOR ((i10 NOR i6) NOR ((NOT i1) OR (i6 AND (i9 NOR i9)))))) NOR (NOT ((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3))))))))
+
+(NOT ((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) AND ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))) AND (((i10 NAND i2) NOR i7) NOR ((i7 AND i2) AND i9))) NAND ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5)))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (NOT i4))) AND (((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))) NAND ((((i5 AND (NOT i12)) NOR (i11 NOR i5)) NOR i0) OR ((((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) AND (((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1))) NOR ((i10 NOR i6) NOR ((NOT i1) OR (i6 AND (i9 NOR i9)))))))))
+
+(((((((i5 AND (NOT i12)) NOR (i11 NOR i5)) NOR i0) OR ((((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) AND (((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1))) NOR ((i10 NOR i6) NOR ((NOT i1) OR (i6 AND (i9 NOR i9)))))) OR ((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) NAND (NOT i13)) XNOR (i0 OR (i11 NOR i5))) NAND (i1 OR i13)) NOR ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5)))) OR ((((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) NAND (NOT i13))) XOR ((i7 NAND (NOT i12)) OR (i7 AND i2))) XNOR (NOT (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) XNOR ((NOT i13) NAND i4)))) AND (((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) AND ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))) AND (((i10 NAND i2) NOR i7) NOR ((i7 AND i2) AND i9)))))) XOR (((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))) NOR (((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) NAND (NOT i13)) XNOR (i0 OR (i11 NOR i5))))) AND (((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) AND ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))) AND (((i10 NAND i2) NOR i7) NOR ((i7 AND i2) AND i9))) NAND ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5)))) OR (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) AND (NOT i4))) AND (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) AND (((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1)))) OR ((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) NAND (NOT i13)) XNOR (i0 OR (i11 NOR i5))) NAND (i1 OR i13)) OR (NOT ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))))) XNOR (i0 XNOR ((i0 OR (i11 NOR i5)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13)))))))
+
+((((NOT (((i7 OR i2) NOR i11) OR (((NOT i13) NAND i4) NAND (NOT i13)))) XNOR (NOT ((i7 NAND (NOT i12)) OR (i7 AND i2)))) XOR (((((NOT (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR ((i10 NAND i2) NOR i7)) XOR ((i7 AND i2) AND i9)) NAND (((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10)) OR (((NOT i13) NAND i4) XNOR (NOT ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10)))))) NAND (((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) NAND (NOT i13))) XOR ((i7 NAND (NOT i12)) OR (i7 AND i2))) XNOR (NOT (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) XNOR ((NOT i13) NAND i4)))))) XOR (NOT ((((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1)) XNOR ((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) XNOR (((i7 NAND (NOT i12)) OR (i7 AND i2)) AND i13)))))
+
+((((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) NAND (NOT i13))) XOR ((i7 NAND (NOT i12)) OR (i7 AND i2))) XNOR ((i10 NAND i2) NOR i7)) XNOR ((((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10)) OR (((NOT i13) NAND i4) XNOR (NOT ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10))))) XOR ((NOT (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR (NOT (((i7 AND i2) AND i9) NOR (NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))))))))
+
+(((NOT (((((i6 AND (NOT i1)) AND (i11 XOR i12)) XNOR (i11 NOR i1)) XNOR ((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) XNOR (((i7 NAND (NOT i12)) OR (i7 AND i2)) AND i13))) XOR ((((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) NAND (NOT i13))) XOR ((i7 NAND (NOT i12)) OR (i7 AND i2))))) XOR (((i7 OR i2) NOR i11) OR (((NOT i13) NAND i4) NAND (NOT i13)))) AND (((((NOT (((NOT ((i7 NAND (NOT i12)) OR (i7 AND i2))) NOR ((i7 OR i2) NOR i11)) XNOR ((NOT i13) NAND i4))) XOR ((i10 NAND i2) NOR i7)) XOR ((i7 AND i2) AND i9)) XOR (NOT (((i11 AND (i8 NOR i3)) XNOR (i3 NOR ((NOT i12) NOR (i8 NOR i3)))) NOR (((NOT i13) NAND i4) NAND (NOT i13))))) NOR (NOT ((((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))) NOR (((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) NAND (NOT i13)) XNOR (i0 OR (i11 NOR i5)))) NOR (((i3 NOR ((NOT i12) NOR (i8 NOR i3))) XNOR ((NOT (i11 AND (i8 NOR i3))) XOR (((NOT i13) NAND i4) XNOR (NOT ((i9 NAND (i8 AND i3)) AND (((i8 NOR i3) NOR i8) NAND i10)))))) NAND ((((((((NOT i1) OR (i6 AND (i9 NOR i9))) OR (i10 NOR i6)) NAND (NOT i13)) XNOR (i0 OR (i11 NOR i5))) NAND (i1 OR i13)) OR (NOT ((i5 NOR i10) OR (i0 NAND ((i9 NOR i9) NAND i5))))) XNOR (i0 XNOR ((i0 OR (i11 NOR i5)) OR ((i5 AND (NOT i12)) XOR (i1 OR i13))))))))))
+
+TOTAL TIME: 38996.695731 seconds

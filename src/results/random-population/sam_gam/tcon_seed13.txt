@@ -1,0 +1,316 @@
+SAM+GAM
+.p 131072
+.i 17
+.o 16
+i9
+i10
+i11
+i12
+i13
+i14
+i15
+i16
+i0*i8+~i8*i9
+i1*i8+~i8*i10
+i2*i8+~i8*i11
+i3*i8+~i8*i12
+i4*i8+~i8*i13
+i5*i8+~i8*i14
+i6*i8+~i8*i15
+i7*i8+~i8*i16
+--------------------------
+SAT COUNT: 985736 INDIVIDUAL: 2 GENERATION: 0
+SAT COUNT: 0 INDIVIDUAL: 3 GENERATION: 30557
+--------------------------
+Circuit max depth: 20
+AND: 45
+OR: 41
+NOT: 31
+NAND: 42
+NOR: 59
+XOR: 35
+XNOR: 47
+TOTAL GATES: 300
+Num transistors: 639
+(((i9 XNOR (((NOT (NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16) AND (NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))))) NAND ((((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) XOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16))) NAND ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND i0) NAND i0) OR ((NOT (i8 AND (i8 OR i8))) NAND (((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NAND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XNOR (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))) XOR i12))))
+
+(((((((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) NOR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) OR ((NOT i10) NOR ((((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) XOR (((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))) XNOR ((((((((i8 OR i8) XNOR (i8 OR i8)) OR i2) XNOR (NOT i2)) NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NAND ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10) OR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) OR i7) NOR (((((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8)))) NOR (((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) XOR i3) OR (NOT ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XNOR (NOT ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))))) OR (i1 XNOR (((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NAND (NOT i10)))) XNOR (((NOT (NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16) AND (NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))))))) XNOR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) NOR (i15 XOR ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15))))
+
+i11
+
+(((NOT ((i11 XNOR i13) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) NAND ((((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) XOR (((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NAND (((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR ((((((i8 OR i8) XNOR (i8 OR i8)) OR i2) XNOR (NOT i2)) NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NAND ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10) OR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) XNOR ((i14 OR ((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) AND i12)))
+
+(((((NOT i13) OR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) XOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)))) OR (((i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))) OR ((NOT i2) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NOR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) NOR (NOT ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16) NOR (((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))))))))) XNOR (((((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND i0) NAND i0) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) AND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NOR ((i12 OR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) OR (((((i8 OR i8) XNOR (i8 OR i8)) OR i2) XNOR (NOT i2)) NAND i8))) NAND (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))))) XNOR ((((((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) XOR (((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) XOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) NAND (((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) AND (i6 OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) NAND (((NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) OR (i13 OR ((i8 OR i8) XOR i8)))) NOR (((((((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) XOR i8))) XNOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16))) AND (NOT ((i15 XOR ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15)) NOR (i15 OR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND i16))))) NAND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NOR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11))) XNOR (((((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10)) NOR ((NOT i13) XOR i4)) NOR ((((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) XOR (((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) XOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) XNOR (((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i8 OR i8)))))))
+
+(NOT ((((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) AND (i14 XOR (i15 XOR ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15)))) XOR (((i11 XNOR i13) AND ((NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) OR ((((NOT i10) XNOR i10) AND (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) XOR ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) XOR i3) NOR (i15 XOR ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15)))))))
+
+((((((((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) AND ((((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) OR ((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))))) NOR ((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) XNOR ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10) XOR ((i14 OR ((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))) XOR (((((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND i0) NAND i0) OR ((NOT (i8 AND (i8 OR i8))) NAND (((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NAND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XNOR (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))) XOR i12))) AND (NOT i15))) NAND ((NOT ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) OR (i13 OR ((i8 OR i8) XOR i8)))) XNOR (((((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))))) XOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) AND ((((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i8 OR i8)) OR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR ((i12 OR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) OR (((((i8 OR i8) XNOR (i8 OR i8)) OR i2) XNOR (NOT i2)) NAND i8))) NAND (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))))))))
+
+((((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) XNOR i16) XOR ((((i11 XNOR i13) AND ((NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR ((NOT i13) XOR i4)) OR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NOR ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) OR (((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))))
+
+(NOT (NOT ((i9 NOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) XNOR (((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND i0) AND ((i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))) NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))))
+
+(((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) XOR i8)) NOR (NOT ((NOT (i14 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16))) NAND ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8))) NOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) AND (i12 XNOR (NOT i2)))))) XOR ((((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8)))) NOR (((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) XOR i3) OR (NOT ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XNOR (NOT ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))))) OR (i1 XNOR (((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NAND (NOT i10))))) XOR (((((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XOR (NOT i10)) OR (NOT ((NOT (i14 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16))) NAND ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8))) NOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) AND (i12 XNOR (NOT i2)))))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NOR ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) OR (((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))))))
+
+(((((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) AND ((((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) OR ((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))))) OR ((((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) XOR i3) NOR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) NAND (i14 OR ((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))))) AND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) OR (((((i8 OR i8) XNOR (i8 OR i8)) OR i2) XNOR (NOT i2)) NAND i8)) XOR (((i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) XOR (((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) XOR i8)))))))
+
+((((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) XOR i3) OR (NOT ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XNOR (((((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) AND ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (NOT ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) XNOR ((((i11 XNOR i13) AND ((NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR ((NOT i13) XOR i4)) OR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NOR ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) OR (((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))))) AND ((((((((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND i0) AND ((i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))) NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) NOR (((NOT i10) XNOR i10) AND (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))))) XOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND ((((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NAND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XNOR (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))) XOR i12) XOR (NOT ((i11 XNOR i13) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))))))) OR ((((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i8 OR i8)) NOR (((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10) OR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NOR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))))))
+
+((((i15 XOR ((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15)) NOR (i15 OR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND i16))) XNOR ((((i11 XNOR i13) AND ((NOT ((((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR (NOT (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NOR ((NOT i13) XOR i4)) NAND ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XOR i13) XOR ((((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NOR ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) OR (((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND (NOT (i8 OR i8))) XOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))))))))
+
+(((((((i7 XNOR ((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) NAND ((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4))) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8)))) AND (((((i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) AND ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XNOR (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))) AND ((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8))))) AND (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))))) XNOR ((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NOR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND i16)) AND (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) XNOR ((NOT ((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) OR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) NOR (i6 AND i8)))))) NAND ((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NOR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND i16)) XOR ((i14 NAND ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) NOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR ((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) XNOR ((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (i8 OR i8))))))) XNOR (NOT ((i5 AND i8) XOR (((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10)) XOR ((i14 OR ((((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))))))
+
+(((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) NOR (i6 AND i8)) NAND (((i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XNOR i15) OR ((((((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) NAND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XNOR (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10))) XNOR ((i8 OR i8) XOR i8)) AND (((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR (i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8))))) NOR (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) XOR ((((((NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) XOR i13) NAND ((((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10) OR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) OR (NOT (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) XOR (((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) OR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND i16))) NOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) NAND i0))) OR ((((((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10)) NOR ((NOT i13) XOR i4)) OR ((NOT (i16 AND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NAND (NOT (NOT ((NOT (i11 XNOR i13)) AND ((i11 XNOR i13) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))))))) XNOR ((((i8 OR i8) NOR i16) NOR (((i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))) OR ((NOT i2) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NOR (((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XNOR i7))) XOR (((((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) XOR i8))) XNOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16))) NOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) NOR (((((i6 AND i8) XNOR ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))) OR (NOT (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((NOT i13) XOR i4)) NAND (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR (i11 OR (((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))) XNOR (((i8 OR i8) XNOR (i8 OR i8)) AND (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))))) NOR (NOT ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XOR i16) NOR (((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NAND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) XNOR ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) OR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NAND (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))))))))))
+
+((((i6 AND i8) OR ((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))) NOR (((((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NAND (((((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR (((i8 OR i8) XNOR (i8 OR i8)) XNOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) NOR i16)) NOR (NOT (i11 XNOR i13))) AND i10)) NOR ((NOT i13) XOR i4)) OR ((NOT (i16 AND (((i0 NOR ((i8 OR i8) XNOR (i8 OR i8))) XOR i11) NAND (i5 AND (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))))) NAND (NOT (NOT ((NOT (i11 XNOR i13)) AND ((i11 XNOR i13) AND ((i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)) NOR ((i8 OR i8) XNOR (i8 OR i8))))))))) XNOR ((((i8 OR i8) NOR i16) NOR (((i8 XNOR (i0 NOR ((i8 OR i8) XNOR (i8 OR i8)))) OR ((NOT i2) NOR (((i8 AND (i8 OR i8)) AND (NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))))) NAND ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8)))))) NOR (((((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND (NOT ((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))))) XNOR (i11 NOR (((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16)) NAND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8)))))) XNOR i7))) XOR (((((((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) AND (i8 AND (i8 OR i8))) NOR ((i11 AND (i4 NOR (((i8 OR i8) XNOR (i8 OR i8)) OR i2))) OR ((i8 OR i8) XOR i8))) XNOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) NOR ((i8 OR i8) NOR i16))) NOR ((NOT (((i8 OR i8) XNOR (i8 OR i8)) NOR (i11 OR (((i8 OR i8) XNOR (i8 OR i8)) OR i2)))) AND ((i8 AND (i8 OR i8)) AND (i8 AND (i8 OR i8))))))))
+
+--------------------------
+NUM TRANSISTORS: 639 INDIVIDUAL: 3 GENERATION: 0
+NUM TRANSISTORS: 84 INDIVIDUAL: 0 GENERATION: 50000
+NUM TRANSISTORS: 68 INDIVIDUAL: 0 GENERATION: 100000
+NUM TRANSISTORS: 64 INDIVIDUAL: 0 GENERATION: 150000
+NUM TRANSISTORS: 64 INDIVIDUAL: 2 GENERATION: 200000
+NUM TRANSISTORS: 64 INDIVIDUAL: 1 GENERATION: 250000
+NUM TRANSISTORS: 62 INDIVIDUAL: 2 GENERATION: 300000
+NUM TRANSISTORS: 62 INDIVIDUAL: 0 GENERATION: 350000
+NUM TRANSISTORS: 62 INDIVIDUAL: 2 GENERATION: 400000
+NUM TRANSISTORS: 62 INDIVIDUAL: 0 GENERATION: 450000
+NUM TRANSISTORS: 62 INDIVIDUAL: 3 GENERATION: 500000
+NUM TRANSISTORS: 62 INDIVIDUAL: 3 GENERATION: 550000
+NUM TRANSISTORS: 62 INDIVIDUAL: 0 GENERATION: 600000
+NUM TRANSISTORS: 62 INDIVIDUAL: 2 GENERATION: 650000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 700000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 750000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 800000
+NUM TRANSISTORS: 60 INDIVIDUAL: 2 GENERATION: 850000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 900000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 950000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1000000
+NUM TRANSISTORS: 60 INDIVIDUAL: 4 GENERATION: 1050000
+NUM TRANSISTORS: 60 INDIVIDUAL: 3 GENERATION: 1100000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1150000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1200000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1250000
+NUM TRANSISTORS: 60 INDIVIDUAL: 4 GENERATION: 1300000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1350000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1400000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1450000
+NUM TRANSISTORS: 60 INDIVIDUAL: 0 GENERATION: 1500000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1550000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1600000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1650000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1700000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1750000
+NUM TRANSISTORS: 58 INDIVIDUAL: 0 GENERATION: 1800000
+NUM TRANSISTORS: 57 INDIVIDUAL: 1 GENERATION: 1850000
+NUM TRANSISTORS: 57 INDIVIDUAL: 0 GENERATION: 1900000
+NUM TRANSISTORS: 57 INDIVIDUAL: 0 GENERATION: 1950000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2000000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2050000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2100000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2150000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2200000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2250000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2300000
+NUM TRANSISTORS: 56 INDIVIDUAL: 2 GENERATION: 2350000
+NUM TRANSISTORS: 56 INDIVIDUAL: 3 GENERATION: 2400000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2450000
+NUM TRANSISTORS: 56 INDIVIDUAL: 1 GENERATION: 2500000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2550000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2600000
+NUM TRANSISTORS: 56 INDIVIDUAL: 3 GENERATION: 2650000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2700000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2750000
+NUM TRANSISTORS: 56 INDIVIDUAL: 2 GENERATION: 2800000
+NUM TRANSISTORS: 56 INDIVIDUAL: 1 GENERATION: 2850000
+NUM TRANSISTORS: 56 INDIVIDUAL: 0 GENERATION: 2900000
+NUM TRANSISTORS: 56 INDIVIDUAL: 2 GENERATION: 2950000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3000000
+NUM TRANSISTORS: 55 INDIVIDUAL: 2 GENERATION: 3050000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3100000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3150000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3200000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3250000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3300000
+NUM TRANSISTORS: 55 INDIVIDUAL: 4 GENERATION: 3350000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3400000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3450000
+NUM TRANSISTORS: 55 INDIVIDUAL: 2 GENERATION: 3500000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3550000
+NUM TRANSISTORS: 55 INDIVIDUAL: 1 GENERATION: 3600000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3650000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3700000
+NUM TRANSISTORS: 55 INDIVIDUAL: 4 GENERATION: 3750000
+NUM TRANSISTORS: 55 INDIVIDUAL: 3 GENERATION: 3800000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3850000
+NUM TRANSISTORS: 55 INDIVIDUAL: 3 GENERATION: 3900000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 3950000
+NUM TRANSISTORS: 55 INDIVIDUAL: 1 GENERATION: 4000000
+NUM TRANSISTORS: 55 INDIVIDUAL: 4 GENERATION: 4050000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4100000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4150000
+NUM TRANSISTORS: 55 INDIVIDUAL: 4 GENERATION: 4200000
+NUM TRANSISTORS: 55 INDIVIDUAL: 1 GENERATION: 4250000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4300000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4350000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4400000
+NUM TRANSISTORS: 55 INDIVIDUAL: 3 GENERATION: 4450000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4500000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4550000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4600000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4650000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4700000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4750000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4800000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4850000
+NUM TRANSISTORS: 55 INDIVIDUAL: 1 GENERATION: 4900000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 4950000
+NUM TRANSISTORS: 55 INDIVIDUAL: 0 GENERATION: 5000000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5050000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5100000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5150000
+NUM TRANSISTORS: 54 INDIVIDUAL: 4 GENERATION: 5200000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5250000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5300000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5350000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5400000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 5450000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5500000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5550000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 5600000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5650000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5700000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5750000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5800000
+NUM TRANSISTORS: 54 INDIVIDUAL: 3 GENERATION: 5850000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5900000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 5950000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 6000000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6050000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6100000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6150000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6200000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6250000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6300000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6350000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6400000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6450000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6500000
+NUM TRANSISTORS: 54 INDIVIDUAL: 4 GENERATION: 6550000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 6600000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6650000
+NUM TRANSISTORS: 54 INDIVIDUAL: 2 GENERATION: 6700000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 6750000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6800000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6850000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6900000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 6950000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7000000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7050000
+NUM TRANSISTORS: 54 INDIVIDUAL: 1 GENERATION: 7100000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7150000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7200000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7250000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7300000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7350000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7400000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7450000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7500000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7550000
+NUM TRANSISTORS: 54 INDIVIDUAL: 3 GENERATION: 7600000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7650000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7700000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7750000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7800000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7850000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7900000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 7950000
+NUM TRANSISTORS: 54 INDIVIDUAL: 0 GENERATION: 8000000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8050000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8100000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8150000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8200000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8250000
+NUM TRANSISTORS: 53 INDIVIDUAL: 2 GENERATION: 8300000
+NUM TRANSISTORS: 53 INDIVIDUAL: 1 GENERATION: 8350000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8400000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8450000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8500000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8550000
+NUM TRANSISTORS: 53 INDIVIDUAL: 4 GENERATION: 8600000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8650000
+NUM TRANSISTORS: 53 INDIVIDUAL: 1 GENERATION: 8700000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8750000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8800000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8850000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8900000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 8950000
+NUM TRANSISTORS: 53 INDIVIDUAL: 2 GENERATION: 9000000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9050000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9100000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9150000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9200000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9250000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9300000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9350000
+NUM TRANSISTORS: 53 INDIVIDUAL: 0 GENERATION: 9400000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9450000
+NUM TRANSISTORS: 52 INDIVIDUAL: 4 GENERATION: 9500000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9550000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9600000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9650000
+NUM TRANSISTORS: 52 INDIVIDUAL: 2 GENERATION: 9700000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9750000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9800000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9850000
+NUM TRANSISTORS: 52 INDIVIDUAL: 3 GENERATION: 9900000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 9950000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 10000000
+NUM TRANSISTORS: 52 INDIVIDUAL: 2 GENERATION: 10050000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 10100000
+NUM TRANSISTORS: 52 INDIVIDUAL: 0 GENERATION: 10150000
+NUM TRANSISTORS: 52 INDIVIDUAL: 1 GENERATION: 10169443
+--------------------------
+Circuit max depth: 5
+AND: 2
+OR: 3
+NOT: 4
+NAND: 4
+NOR: 11
+XOR: 5
+XNOR: 1
+TOTAL GATES: 30
+Num transistors: 52
+i9
+
+i10
+
+i11
+
+i12
+
+i13
+
+i14
+
+i15
+
+i16
+
+((i8 NOR i9) NOR (i0 NOR (NOT i8)))
+
+((((NOT i8) NOR (i10 XOR i1)) NOR (NOT i8)) XOR i10)
+
+(((NOT i8) OR i2) XOR (i8 NOR i11))
+
+((NOT (i3 NOR (NOT i8))) AND (i12 OR i8))
+
+(((NOT i8) NOR i4) XOR (i13 OR i8))
+
+((i14 NAND (NOT i8)) XNOR ((NOT i5) NOR (NOT i8)))
+
+((i8 NAND i6) NAND ((NOT i8) NAND i15))
+
+(((i8 NOR i16) NOR (i8 AND i7)) XOR i8)
+
+TOTAL TIME: 9035.861677 seconds
