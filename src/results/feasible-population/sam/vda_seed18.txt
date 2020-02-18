@@ -1,0 +1,1642 @@
+SAM
+.p 131072
+.i 17
+.o 39
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+i6*i11*~i12*~i13*i14*i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i12*~i13*~i14*i15*i16+~i7*~i8*~i11*i12*i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+~i11*~i12*~i13*~i14*~i15*~i16+i11*~i12*i13*i14*i15*~i16+i11*~i12*~i13*~i14*i15*i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16
+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16
+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16
+~i10*~i11*~i12*~i13*i14*i15*i16+~i11*~i12*i13*~i14*~i15*i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16
+~i10*~i11*~i12*~i13*i14*i15*i16
+~i11*~i12*i13*~i14*~i15*i16
+~i1*i2*i5*i7*~i8*~i11*i12*i13*i14*i15*~i16+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i12*~i13*~i14*i15*i16+i10*~i11*~i12*~i13*i14*i15*i16+~i7*~i8*~i11*i12*i13*i14*~i16+i11*~i12*i13*~i14*~i15*~i16+~i0*i11*~i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+i11*i12*~i14*~i16+i11*~i12*~i13*~i14*~i15*i16+~i11*i12*~i13*i14*~i15*i16+i11*i12*~i13*~i14*~i15*i16+i11*i12*i13*i14*~i15*~i16+~i11*i12*i13*~i14*i15*~i16+i11*i12*~i13*i15*~i16+i11*~i12*i13*i14*i15*~i16+~i11*i12*~i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*i15*i16+i11*~i12*i13*i14*i15*i16+i11*~i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i16+i6*i11*~i12*~i13*i14*i15*i16+i11*i12*~i13*i14*~i15*i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+i11*~i12*~i13*i14*i15*~i16+i11*~i12*~i13*i14*~i15*i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+~i1*i2*i5*i7*~i8*~i11*i12*i13*i14*i15*~i16+~i2*i6*~i8*~i10*~i11*i12*~i13*i14*i15*~i16+i1*i4*i7*~i9*~i11*i12*i13*i14*i15+~i2*i4*i7*~i9*~i11*i12*i13*i14*i15+i4*~i5*i7*~i9*~i11*i12*i13*i14*i15+i10*~i11*~i12*~i13*i14*i15*i16+~i6*~i11*i12*~i13*i14*~i15*~i16+i7*~i11*i12*i13*i14*~i15*~i16+i11*~i12*i13*~i15*i16+i6*~i11*i12*i13*i15*i16+~i6*~i11*i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*~i16+i11*~i12*i13*~i14*i15*~i16+~i11*i12*~i14*~i15*i16+i8*~i11*i12*i13*i14*i15*~i16+i12*~i13*~i14*~i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*~i13*i15*~i16+~i12*i13*i14*~i15*~i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*i15*i16+i11*~i12*i13*i14*i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16
+~i1*i2*i5*i7*~i8*~i11*i12*i13*i14*i15*~i16+~i2*i6*~i8*~i10*~i11*i12*~i13*i14*i15*~i16+i1*~i4*i5*~i11*~i12*~i13*~i14*i15*i16+i0*~i4*i5*i11*~i13*i14*~i15*~i16+i1*i4*i7*~i9*~i11*i12*i13*i14*i15+~i2*i4*i7*~i9*~i11*i12*i13*i14*i15+i4*~i5*i7*~i9*~i11*i12*i13*i14*i15+~i6*~i11*i12*~i13*i14*~i15*~i16+i7*~i11*i12*i13*i14*~i15*~i16+i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*i13*i15*i16+~i6*~i11*i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*~i15*i16+i8*~i11*i12*i13*i14*i15*~i16+i11*~i12*i13*~i14*i15*i16+~i11*i12*i13*~i14*i15*~i16+~i10*~i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i12*i13*i14*~i15*~i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+i11*~i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+i11*i12*i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+~i2*i6*~i8*~i10*~i11*i12*~i13*i14*i15*~i16+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*i4*i7*~i9*~i11*i12*i13*i14*i15+~i2*i4*i7*~i9*~i11*i12*i13*i14*i15+i4*~i5*i7*~i9*~i11*i12*i13*i14*i15+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i12*~i13*~i14*i15*i16+~i6*~i11*i12*~i13*i14*~i15*~i16+i7*~i11*i12*i13*i14*~i15*~i16+~i7*~i8*~i11*i12*i13*i14*~i16+~i0*i11*~i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+i11*~i12*i13*~i15*i16+i6*~i11*i12*i13*i15*i16+~i6*~i11*i13*i14*i15*i16+i11*~i12*i13*~i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i11*i12*~i13*~i14*~i15*i16+i11*i12*i13*i14*~i15*~i16+i8*~i11*i12*i13*i14*i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*i13*~i14*i15*i16+~i11*i12*i13*~i14*i15*~i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*~i13*i15*~i16+i11*~i12*i13*i14*i15*~i16+~i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*i15+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*~i15*~i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*~i13*i14*~i15*i16+i11*i12*~i13*i14*~i15*i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*i15*~i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+~i2*i6*~i8*~i10*~i11*i12*~i13*i14*i15*~i16+~i2*~i6*~i8*~i11*i13*i14*i15*i16+i1*~i4*i5*~i11*~i12*~i13*~i14*i15*i16+i0*~i4*i5*i11*~i13*i14*~i15*~i16+i1*i4*i7*~i9*~i11*i12*i13*i14*i15+~i2*i4*i7*~i9*~i11*i12*i13*i14*i15+i4*~i5*i7*~i9*~i11*i12*i13*i14*i15+i7*i9*~i11*i12*i13*i14*~i15*~i16+i10*~i11*~i12*~i13*i14*i15*i16+i11*~i12*i13*~i14*i15*~i16+~i11*i12*~i14*~i15*i16+i11*~i12*~i13*~i14*~i15*i16+~i11*i12*~i13*i14*~i15*i16+i11*i12*~i13*~i14*~i15*i16+i8*~i11*i12*i13*i14*i15*~i16+i11*~i12*i13*~i14*i15*i16+~i11*i12*i13*i14*i15*i16+i11*i12*~i13*i14*i15+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+~i12*i13*i14*~i15*~i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*i13*~i14*~i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+i11*~i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*i12*~i13*~i14*i15*~i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i11*~i12*~i13*i14*i15*~i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*i14*~i15*~i16
+~i1*i2*i5*i7*~i8*~i11*i12*i13*i14*i15*~i16+i1*~i4*i5*~i11*~i12*~i13*~i14*i15*i16+i0*~i4*i5*i11*~i13*i14*~i15*~i16+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*~i11*~i12*~i13*~i14*~i15+i11*~i12*i13*~i14*~i15*~i16+~i11*~i12*~i13*~i14*~i15*~i16+~i11*i12*i13*~i14*~i15*~i16+i11*i12*~i13*~i14*~i15*i16+i8*~i11*i12*i13*i14*i15*~i16+i11*~i12*i13*~i14*i15*i16+i12*~i13*~i14*~i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*i15+~i12*i13*i14*~i15*~i16+i11*~i12*i13*~i14*~i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*i13*i14*~i16+~i11*~i12*~i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*i14*~i15*~i16
+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+~i7*~i8*~i11*i12*i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+~i11*~i12*~i13*~i14*~i15*~i16+i11*i12*i13*i14*~i15*~i16+i11*~i12*i13*i14*i15*~i16
+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+i7*i9*~i11*i12*i13*i14*~i15*~i16+~i7*~i8*~i11*i12*i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+~i11*~i12*~i13*~i14*~i15*~i16+i11*i12*i13*i14*~i15*~i16+~i11*i12*i13*i14*i15*i16+i11*~i12*i13*i14*i15*~i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*~i15*~i16+i6*i11*~i12*~i13*i14*i15*i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i7*i9*~i11*i12*i13*i14*~i15*~i16+i11*~i12*~i13*~i14*~i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*~i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i11*i12*i13*i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+i11*~i12*~i13*~i14*~i15*~i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*~i13*~i14*i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*i14*~i15*~i16
+i7*i9*~i11*i12*i13*i14*~i15*~i16+i11*~i12*~i13*~i14*~i15*i16+~i11*i12*i13*i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i11*i12*i13*~i14*~i15*i16+i11*~i12*~i13*~i14*i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+i11*~i12*~i13*~i14*~i15*~i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*~i4*~i5*i11*~i12*~i13*i14*~i15*~i16+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i1*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i2*~i4*~i8*~i11*i12*i13*i14*i15*~i16+~i4*~i5*~i8*~i11*i12*i13*i14*i15*~i16+i7*i9*~i11*i12*i13*i14*~i15*~i16+~i7*~i8*~i11*i12*i13*i14*~i16+~i7*~i11*i12*i13*i14*~i15*~i16+~i11*~i12*~i13*~i14*~i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i11*~i12*~i13*~i14*~i15*i16+i11*i12*i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*i13*i14*i15*~i16+~i10*~i11*~i12*~i13*i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i11*~i12*~i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+i11*i12*~i13*~i14*i15*i16
+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*~i12*~i13*i14*~i15*i16+i11*i12*~i13*i14*~i15*i16+~i11*~i12*i13*~i14*~i15*~i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*i14*~i15*~i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i10*~i11*~i12*~i13*i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i2*~i11*~i12*~i13*~i14*~i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+~i11*~i12*i13*~i14*~i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*i15*~i16+i11*~i12*~i13*i14*~i15*i16+i11*i12*~i13*~i14*i15*i16
+i1*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+~i2*i4*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i4*~i5*i7*~i8*i9*~i11*i12*i13*i14*i15*~i16+i2*~i11*~i12*~i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*~i13*~i14*i15*~i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i11*~i12*~i13*~i14*i15*~i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*i12*~i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+i11*~i12*~i13*i14*i15*~i16+~i11*i12*~i13*i14*i15*i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+i11*i12*~i13*i14*~i15*i16+i6*~i11*i12*~i13*i14*~i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+i6*~i11*~i12*i13*i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*~i13*i14*i15*~i16+~i11*~i12*~i13*i14*~i15*~i16+i11*i12*i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*i16+~i6*~i11*i12*i13*~i14*i15*i16+i11*i12*i13*~i14*i15*i16+i11*~i12*~i13*i14*~i15*i16+~i6*~i11*i12*~i13*i14*i15*~i16
+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i11*~i12*~i13*i14*~i15*i16+i11*i12*~i13*i14*~i15*i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i11*~i12*i13*i14*i15*i16+~i11*i12*i13*~i14*~i15*i16+~i11*i12*~i13*~i14*i15*~i16+~i11*~i12*~i13*i14*~i15*i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i0*i4*i11*~i12*~i13*i14*~i15*~i16+i1*i4*~i11*~i12*~i13*~i14*i15*i16+i4*~i5*~i11*~i12*~i13*~i14*i15*i16+~i3*~i8*~i11*~i12*i13*~i14*i15*i16+i3*~i8*~i11*~i12*i13*~i14*i15*i16+i6*i10*~i11*i12*~i13*i14*i15*~i16+i6*i8*~i11*i12*~i13*i14*i15*~i16+i2*i6*~i11*i12*~i13*i14*i15*~i16+i11*~i12*i13*~i14*~i15*i16+i5*~i11*~i12*i13*~i14*i15*~i16+~i11*i12*i13*~i14*~i15*i16+~i11*~i12*i13*~i14*~i15*i16+~i5*~i11*~i12*i13*~i14*i15*~i16+~i11*i12*~i13*~i14*i15*~i16+~i1*i5*~i11*~i12*~i13*~i14*i15*i16+~i6*i11*~i12*~i13*i14*i15*i16+~i11*~i12*~i13*i14*~i15*~i16+~i11*~i12*i13*i14*~i15*~i16+i8*~i11*~i12*i13*~i14*i15*i16+i11*i12*i13*~i14*~i15*~i16+~i11*~i12*i13*i14*~i15*i16+i11*i12*i13*~i14*i15*i16+i11*i12*~i13*~i14*i15*i16+i11*i12*~i13*i14*~i15*~i16
+i11*~i12*~i13*~i14*~i15*i16
+i11*~i12*~i13*~i14*i15*i16
+i7*i9*~i11*i12*i13*i14*~i15*~i16
+~i11*i12*i13*i14*i15*i16+i11*~i12*~i13*~i14*~i15*~i16
+i11*i12*i13*~i14*~i15*i16
+--------------------------
+NUM TRANSISTORS: 10829 INDIVIDUAL: 0 GENERATION: 0
+NUM TRANSISTORS: 10829 INDIVIDUAL: 0 GENERATION: 0
+Circuit max depth: 61
+AND: 4657
+OR: 749
+NOT: 17
+NAND: 0
+NOR: 0
+XOR: 0
+XNOR: 0
+TOTAL GATES: 5423
+Num transistors: 10829
+NUM TRANSISTORS: 10670 INDIVIDUAL: 4 GENERATION: 1000
+NUM TRANSISTORS: 10554 INDIVIDUAL: 3 GENERATION: 2000
+NUM TRANSISTORS: 10329 INDIVIDUAL: 0 GENERATION: 3000
+NUM TRANSISTORS: 10096 INDIVIDUAL: 0 GENERATION: 4000
+NUM TRANSISTORS: 9678 INDIVIDUAL: 4 GENERATION: 5000
+NUM TRANSISTORS: 9432 INDIVIDUAL: 0 GENERATION: 6000
+NUM TRANSISTORS: 9145 INDIVIDUAL: 0 GENERATION: 7000
+Circuit max depth: 229
+AND: 3674
+OR: 773
+NOT: 33
+NAND: 7
+NOR: 14
+XOR: 2
+XNOR: 8
+TOTAL GATES: 4511
+Num transistors: 8993
+NUM TRANSISTORS: 8927 INDIVIDUAL: 2 GENERATION: 8000
+Circuit max depth: 248
+AND: 3611
+OR: 773
+NOT: 33
+NAND: 6
+NOR: 19
+XOR: 3
+XNOR: 7
+TOTAL GATES: 4452
+Num transistors: 8869
+Circuit max depth: 263
+AND: 3566
+OR: 773
+NOT: 38
+NAND: 4
+NOR: 17
+XOR: 3
+XNOR: 4
+TOTAL GATES: 4405
+Num transistors: 8766
+NUM TRANSISTORS: 8730 INDIVIDUAL: 0 GENERATION: 9000
+Circuit max depth: 248
+AND: 3516
+OR: 771
+NOT: 39
+NAND: 3
+NOR: 20
+XOR: 3
+XNOR: 5
+TOTAL GATES: 4357
+Num transistors: 8668
+Circuit max depth: 234
+AND: 3472
+OR: 769
+NOT: 40
+NAND: 3
+NOR: 20
+XOR: 3
+XNOR: 5
+TOTAL GATES: 4312
+Num transistors: 8577
+NUM TRANSISTORS: 8534 INDIVIDUAL: 0 GENERATION: 10000
+Circuit max depth: 234
+AND: 3440
+OR: 773
+NOT: 36
+NAND: 5
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 4282
+Num transistors: 8518
+Circuit max depth: 234
+AND: 3396
+OR: 773
+NOT: 37
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 4
+TOTAL GATES: 4241
+Num transistors: 8436
+NUM TRANSISTORS: 8380 INDIVIDUAL: 0 GENERATION: 11000
+Circuit max depth: 245
+AND: 3364
+OR: 771
+NOT: 36
+NAND: 6
+NOR: 23
+XOR: 4
+XNOR: 4
+TOTAL GATES: 4208
+Num transistors: 8369
+Circuit max depth: 257
+AND: 3352
+OR: 771
+NOT: 34
+NAND: 5
+NOR: 22
+XOR: 4
+XNOR: 4
+TOTAL GATES: 4192
+Num transistors: 8340
+Circuit max depth: 257
+AND: 3341
+OR: 771
+NOT: 35
+NAND: 5
+NOR: 22
+XOR: 4
+XNOR: 4
+TOTAL GATES: 4182
+Num transistors: 8319
+Circuit max depth: 257
+AND: 3331
+OR: 769
+NOT: 34
+NAND: 4
+NOR: 22
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4167
+Num transistors: 8288
+Circuit max depth: 257
+AND: 3323
+OR: 768
+NOT: 34
+NAND: 4
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4156
+Num transistors: 8268
+Circuit max depth: 257
+AND: 3308
+OR: 769
+NOT: 33
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4142
+Num transistors: 8241
+Circuit max depth: 257
+AND: 3304
+OR: 768
+NOT: 33
+NAND: 5
+NOR: 22
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4139
+Num transistors: 8233
+Circuit max depth: 257
+AND: 3301
+OR: 768
+NOT: 33
+NAND: 5
+NOR: 23
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4137
+Num transistors: 8228
+Circuit max depth: 257
+AND: 3296
+OR: 768
+NOT: 32
+NAND: 5
+NOR: 22
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4130
+Num transistors: 8216
+Circuit max depth: 257
+AND: 3290
+OR: 766
+NOT: 35
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4123
+Num transistors: 8201
+NUM TRANSISTORS: 8199 INDIVIDUAL: 0 GENERATION: 12000
+Circuit max depth: 269
+AND: 3284
+OR: 765
+NOT: 35
+NAND: 6
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4117
+Num transistors: 8189
+Circuit max depth: 269
+AND: 3280
+OR: 766
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4113
+Num transistors: 8182
+Circuit max depth: 269
+AND: 3278
+OR: 766
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4111
+Num transistors: 8178
+Circuit max depth: 269
+AND: 3276
+OR: 767
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4110
+Num transistors: 8176
+Circuit max depth: 269
+AND: 3273
+OR: 767
+NOT: 36
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4108
+Num transistors: 8171
+Circuit max depth: 269
+AND: 3268
+OR: 766
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4101
+Num transistors: 8158
+Circuit max depth: 269
+AND: 3267
+OR: 766
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4100
+Num transistors: 8156
+Circuit max depth: 269
+AND: 3258
+OR: 768
+NOT: 35
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4093
+Num transistors: 8142
+Circuit max depth: 269
+AND: 3253
+OR: 768
+NOT: 33
+NAND: 6
+NOR: 19
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4086
+Num transistors: 8130
+Circuit max depth: 269
+AND: 3251
+OR: 768
+NOT: 34
+NAND: 6
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4086
+Num transistors: 8128
+Circuit max depth: 269
+AND: 3250
+OR: 768
+NOT: 34
+NAND: 6
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4085
+Num transistors: 8126
+Circuit max depth: 269
+AND: 3249
+OR: 768
+NOT: 35
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4084
+Num transistors: 8123
+Circuit max depth: 269
+AND: 3248
+OR: 768
+NOT: 35
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4083
+Num transistors: 8121
+Circuit max depth: 269
+AND: 3248
+OR: 768
+NOT: 35
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4083
+Num transistors: 8121
+Circuit max depth: 269
+AND: 3246
+OR: 768
+NOT: 35
+NAND: 5
+NOR: 20
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4081
+Num transistors: 8117
+Circuit max depth: 269
+AND: 3239
+OR: 766
+NOT: 34
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4073
+Num transistors: 8101
+Circuit max depth: 269
+AND: 3227
+OR: 766
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4060
+Num transistors: 8076
+NUM TRANSISTORS: 8076 INDIVIDUAL: 0 GENERATION: 13000
+Circuit max depth: 269
+AND: 3226
+OR: 767
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4060
+Num transistors: 8076
+Circuit max depth: 269
+AND: 3224
+OR: 767
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4058
+Num transistors: 8072
+Circuit max depth: 269
+AND: 3222
+OR: 767
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4056
+Num transistors: 8068
+Circuit max depth: 269
+AND: 3221
+OR: 766
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 4
+XNOR: 3
+TOTAL GATES: 4054
+Num transistors: 8064
+Circuit max depth: 269
+AND: 3213
+OR: 767
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4046
+Num transistors: 8047
+Circuit max depth: 269
+AND: 3210
+OR: 768
+NOT: 32
+NAND: 6
+NOR: 21
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4043
+Num transistors: 8042
+Circuit max depth: 269
+AND: 3208
+OR: 768
+NOT: 32
+NAND: 6
+NOR: 21
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4041
+Num transistors: 8038
+Circuit max depth: 269
+AND: 3204
+OR: 768
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4038
+Num transistors: 8031
+Circuit max depth: 269
+AND: 3200
+OR: 769
+NOT: 33
+NAND: 6
+NOR: 21
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4035
+Num transistors: 8025
+Circuit max depth: 269
+AND: 3198
+OR: 769
+NOT: 33
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4032
+Num transistors: 8020
+Circuit max depth: 269
+AND: 3193
+OR: 770
+NOT: 33
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4028
+Num transistors: 8012
+Circuit max depth: 272
+AND: 3188
+OR: 770
+NOT: 33
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4023
+Num transistors: 8002
+Circuit max depth: 272
+AND: 3184
+OR: 770
+NOT: 33
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4019
+Num transistors: 7994
+Circuit max depth: 272
+AND: 3181
+OR: 770
+NOT: 32
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4015
+Num transistors: 7987
+Circuit max depth: 272
+AND: 3176
+OR: 771
+NOT: 32
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4011
+Num transistors: 7979
+Circuit max depth: 272
+AND: 3175
+OR: 772
+NOT: 32
+NAND: 6
+NOR: 20
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4011
+Num transistors: 7979
+Circuit max depth: 272
+AND: 3167
+OR: 772
+NOT: 34
+NAND: 6
+NOR: 19
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4004
+Num transistors: 7964
+Circuit max depth: 272
+AND: 3165
+OR: 772
+NOT: 35
+NAND: 6
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4002
+Num transistors: 7960
+Circuit max depth: 272
+AND: 3162
+OR: 772
+NOT: 35
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 4000
+Num transistors: 7956
+Circuit max depth: 272
+AND: 3156
+OR: 772
+NOT: 36
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3995
+Num transistors: 7945
+NUM TRANSISTORS: 7945 INDIVIDUAL: 0 GENERATION: 14000
+Circuit max depth: 272
+AND: 3156
+OR: 772
+NOT: 36
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3995
+Num transistors: 7945
+Circuit max depth: 272
+AND: 3151
+OR: 772
+NOT: 36
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3990
+Num transistors: 7935
+Circuit max depth: 272
+AND: 3148
+OR: 772
+NOT: 37
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3988
+Num transistors: 7930
+Circuit max depth: 272
+AND: 3147
+OR: 772
+NOT: 38
+NAND: 7
+NOR: 18
+XOR: 3
+XNOR: 2
+TOTAL GATES: 3987
+Num transistors: 7925
+Circuit max depth: 272
+AND: 3146
+OR: 772
+NOT: 38
+NAND: 8
+NOR: 18
+XOR: 3
+XNOR: 2
+TOTAL GATES: 3987
+Num transistors: 7925
+Circuit max depth: 267
+AND: 3140
+OR: 773
+NOT: 38
+NAND: 8
+NOR: 18
+XOR: 3
+XNOR: 2
+TOTAL GATES: 3982
+Num transistors: 7915
+Circuit max depth: 267
+AND: 3135
+OR: 773
+NOT: 39
+NAND: 8
+NOR: 18
+XOR: 4
+XNOR: 2
+TOTAL GATES: 3979
+Num transistors: 7909
+Circuit max depth: 267
+AND: 3132
+OR: 773
+NOT: 39
+NAND: 9
+NOR: 18
+XOR: 4
+XNOR: 3
+TOTAL GATES: 3978
+Num transistors: 7909
+Circuit max depth: 267
+AND: 3128
+OR: 774
+NOT: 39
+NAND: 9
+NOR: 17
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3973
+Num transistors: 7899
+Circuit max depth: 267
+AND: 3116
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 17
+XOR: 3
+XNOR: 3
+TOTAL GATES: 3962
+Num transistors: 7876
+Circuit max depth: 269
+AND: 3111
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 17
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3958
+Num transistors: 7870
+Circuit max depth: 269
+AND: 3110
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 18
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3959
+Num transistors: 7870
+Circuit max depth: 269
+AND: 3110
+OR: 773
+NOT: 40
+NAND: 9
+NOR: 18
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3957
+Num transistors: 7867
+Circuit max depth: 269
+AND: 3109
+OR: 773
+NOT: 40
+NAND: 9
+NOR: 18
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3956
+Num transistors: 7865
+Circuit max depth: 269
+AND: 3106
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3955
+Num transistors: 7862
+Circuit max depth: 269
+AND: 3103
+OR: 775
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3953
+Num transistors: 7858
+Circuit max depth: 308
+AND: 3103
+OR: 775
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3953
+Num transistors: 7858
+Circuit max depth: 308
+AND: 3098
+OR: 775
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3948
+Num transistors: 7848
+Circuit max depth: 308
+AND: 3098
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3948
+Num transistors: 7847
+Circuit max depth: 308
+AND: 3098
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3948
+Num transistors: 7847
+Circuit max depth: 308
+AND: 3098
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3948
+Num transistors: 7847
+Circuit max depth: 308
+AND: 3098
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3948
+Num transistors: 7847
+Circuit max depth: 308
+AND: 3097
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3947
+Num transistors: 7845
+Circuit max depth: 308
+AND: 3097
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3947
+Num transistors: 7845
+Circuit max depth: 308
+AND: 3092
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3941
+Num transistors: 7833
+Circuit max depth: 308
+AND: 3092
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3941
+Num transistors: 7833
+Circuit max depth: 308
+AND: 3090
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3939
+Num transistors: 7829
+Circuit max depth: 308
+AND: 3088
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3938
+Num transistors: 7827
+Circuit max depth: 308
+AND: 3088
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3938
+Num transistors: 7827
+Circuit max depth: 308
+AND: 3088
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3938
+Num transistors: 7827
+Circuit max depth: 308
+AND: 3088
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3938
+Num transistors: 7827
+Circuit max depth: 308
+AND: 3087
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3937
+Num transistors: 7825
+Circuit max depth: 308
+AND: 3085
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3935
+Num transistors: 7821
+NUM TRANSISTORS: 7817 INDIVIDUAL: 0 GENERATION: 15000
+Circuit max depth: 308
+AND: 3083
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3933
+Num transistors: 7817
+Circuit max depth: 308
+AND: 3083
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3933
+Num transistors: 7817
+Circuit max depth: 308
+AND: 3079
+OR: 774
+NOT: 41
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3929
+Num transistors: 7809
+Circuit max depth: 308
+AND: 3078
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3927
+Num transistors: 7806
+Circuit max depth: 308
+AND: 3072
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3921
+Num transistors: 7794
+Circuit max depth: 308
+AND: 3070
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3919
+Num transistors: 7790
+Circuit max depth: 308
+AND: 3070
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3919
+Num transistors: 7790
+Circuit max depth: 308
+AND: 3068
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3917
+Num transistors: 7786
+Circuit max depth: 308
+AND: 3068
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3917
+Num transistors: 7786
+Circuit max depth: 308
+AND: 3067
+OR: 774
+NOT: 40
+NAND: 9
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3916
+Num transistors: 7784
+Circuit max depth: 308
+AND: 3066
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3915
+Num transistors: 7781
+Circuit max depth: 308
+AND: 3066
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3915
+Num transistors: 7781
+Circuit max depth: 308
+AND: 3065
+OR: 774
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3914
+Num transistors: 7779
+Circuit max depth: 308
+AND: 3063
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 19
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3913
+Num transistors: 7777
+Circuit max depth: 308
+AND: 3062
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 20
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3913
+Num transistors: 7776
+Circuit max depth: 308
+AND: 3062
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 20
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3913
+Num transistors: 7776
+Circuit max depth: 308
+AND: 3061
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3913
+Num transistors: 7775
+Circuit max depth: 308
+AND: 3061
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3913
+Num transistors: 7775
+Circuit max depth: 308
+AND: 3060
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3912
+Num transistors: 7773
+Circuit max depth: 308
+AND: 3060
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3912
+Num transistors: 7773
+Circuit max depth: 308
+AND: 3060
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3912
+Num transistors: 7773
+Circuit max depth: 308
+AND: 3060
+OR: 775
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3912
+Num transistors: 7773
+Circuit max depth: 308
+AND: 3059
+OR: 776
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3912
+Num transistors: 7773
+Circuit max depth: 296
+AND: 3056
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3910
+Num transistors: 7769
+Circuit max depth: 296
+AND: 3054
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3908
+Num transistors: 7765
+Circuit max depth: 296
+AND: 3054
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3908
+Num transistors: 7765
+Circuit max depth: 296
+AND: 3048
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 21
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3902
+Num transistors: 7753
+Circuit max depth: 296
+AND: 3048
+OR: 776
+NOT: 40
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3901
+Num transistors: 7751
+Circuit max depth: 274
+AND: 3047
+OR: 776
+NOT: 40
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3900
+Num transistors: 7749
+Circuit max depth: 274
+AND: 3045
+OR: 776
+NOT: 40
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3898
+Num transistors: 7745
+Circuit max depth: 274
+AND: 3043
+OR: 777
+NOT: 40
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3897
+Num transistors: 7743
+Circuit max depth: 274
+AND: 3042
+OR: 777
+NOT: 39
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3895
+Num transistors: 7740
+Circuit max depth: 274
+AND: 3039
+OR: 779
+NOT: 39
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3894
+Num transistors: 7738
+Circuit max depth: 274
+AND: 3038
+OR: 779
+NOT: 38
+NAND: 8
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3892
+Num transistors: 7735
+Circuit max depth: 274
+AND: 3038
+OR: 778
+NOT: 38
+NAND: 9
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3892
+Num transistors: 7735
+Circuit max depth: 274
+AND: 3038
+OR: 778
+NOT: 38
+NAND: 9
+NOR: 22
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3892
+Num transistors: 7735
+Circuit max depth: 274
+AND: 3033
+OR: 780
+NOT: 38
+NAND: 9
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3890
+Num transistors: 7730
+Circuit max depth: 274
+AND: 3031
+OR: 780
+NOT: 38
+NAND: 9
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3888
+Num transistors: 7726
+Circuit max depth: 278
+AND: 3027
+OR: 781
+NOT: 39
+NAND: 9
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3886
+Num transistors: 7721
+Circuit max depth: 278
+AND: 3027
+OR: 781
+NOT: 39
+NAND: 9
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3886
+Num transistors: 7721
+Circuit max depth: 278
+AND: 3026
+OR: 781
+NOT: 39
+NAND: 9
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3885
+Num transistors: 7719
+Circuit max depth: 278
+AND: 3022
+OR: 781
+NOT: 39
+NAND: 9
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3882
+Num transistors: 7712
+Circuit max depth: 278
+AND: 3020
+OR: 781
+NOT: 39
+NAND: 9
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3880
+Num transistors: 7708
+Circuit max depth: 278
+AND: 3013
+OR: 782
+NOT: 40
+NAND: 9
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3875
+Num transistors: 7697
+Circuit max depth: 278
+AND: 3013
+OR: 782
+NOT: 40
+NAND: 9
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3875
+Num transistors: 7697
+Circuit max depth: 278
+AND: 3012
+OR: 781
+NOT: 41
+NAND: 9
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3874
+Num transistors: 7694
+Circuit max depth: 278
+AND: 3010
+OR: 781
+NOT: 42
+NAND: 8
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3872
+Num transistors: 7689
+Circuit max depth: 278
+AND: 3008
+OR: 781
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3868
+Num transistors: 7683
+Circuit max depth: 278
+AND: 3002
+OR: 781
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3862
+Num transistors: 7671
+Circuit max depth: 278
+AND: 2998
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3855
+Num transistors: 7657
+Circuit max depth: 278
+AND: 2997
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3854
+Num transistors: 7655
+Circuit max depth: 278
+AND: 2994
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7649
+Circuit max depth: 278
+AND: 2994
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7649
+Circuit max depth: 278
+AND: 2994
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 23
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7649
+Circuit max depth: 278
+AND: 2993
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7648
+Circuit max depth: 278
+AND: 2993
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7648
+Circuit max depth: 279
+AND: 2993
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3851
+Num transistors: 7648
+Circuit max depth: 279
+AND: 2992
+OR: 778
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 3
+XNOR: 4
+TOTAL GATES: 3850
+Num transistors: 7646
+Circuit max depth: 279
+AND: 2991
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2991
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2991
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2991
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2991
+OR: 777
+NOT: 41
+NAND: 8
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2992
+OR: 777
+NOT: 41
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3849
+Num transistors: 7645
+Circuit max depth: 279
+AND: 2984
+OR: 777
+NOT: 41
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3841
+Num transistors: 7629
+Circuit max depth: 279
+AND: 2983
+OR: 777
+NOT: 41
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3840
+Num transistors: 7627
+Circuit max depth: 279
+AND: 2983
+OR: 777
+NOT: 41
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3840
+Num transistors: 7627
+NUM TRANSISTORS: 7625 INDIVIDUAL: 0 GENERATION: 16000
+Circuit max depth: 279
+AND: 2982
+OR: 776
+NOT: 43
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3840
+Num transistors: 7625
+Circuit max depth: 279
+AND: 2982
+OR: 776
+NOT: 43
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3840
+Num transistors: 7625
+Circuit max depth: 279
+AND: 2982
+OR: 776
+NOT: 43
+NAND: 7
+NOR: 24
+XOR: 4
+XNOR: 4
+TOTAL GATES: 3840
+Num transistors: 7625
