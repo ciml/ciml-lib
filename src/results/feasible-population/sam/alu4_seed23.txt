@@ -681,3 +681,998 @@ XOR: 0
 XNOR: 3
 TOTAL GATES: 4251
 Num transistors: 8472
+Circuit max depth: 423
+AND: 3550
+OR: 654
+NOT: 26
+NAND: 8
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4251
+Num transistors: 8472
+Circuit max depth: 423
+AND: 3549
+OR: 655
+NOT: 26
+NAND: 8
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4251
+Num transistors: 8472
+Circuit max depth: 423
+AND: 3549
+OR: 655
+NOT: 26
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4250
+Num transistors: 8470
+Circuit max depth: 423
+AND: 3545
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4247
+Num transistors: 8463
+Circuit max depth: 423
+AND: 3545
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4247
+Num transistors: 8463
+Circuit max depth: 423
+AND: 3544
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4246
+Num transistors: 8461
+Circuit max depth: 423
+AND: 3544
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4246
+Num transistors: 8461
+NUM TRANSISTORS: 8461 INDIVIDUAL: 0 GENERATION: 30000
+Circuit max depth: 423
+AND: 3544
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4246
+Num transistors: 8461
+Circuit max depth: 423
+AND: 3544
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4246
+Num transistors: 8461
+Circuit max depth: 423
+AND: 3541
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4243
+Num transistors: 8455
+Circuit max depth: 423
+AND: 3541
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4243
+Num transistors: 8455
+Circuit max depth: 423
+AND: 3541
+OR: 655
+NOT: 26
+NAND: 7
+NOR: 11
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4243
+Num transistors: 8455
+Circuit max depth: 423
+AND: 3540
+OR: 655
+NOT: 26
+NAND: 7
+NOR: 11
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4242
+Num transistors: 8453
+Circuit max depth: 423
+AND: 3540
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4242
+Num transistors: 8453
+Circuit max depth: 423
+AND: 3539
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4241
+Num transistors: 8451
+Circuit max depth: 423
+AND: 3538
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4240
+Num transistors: 8449
+Circuit max depth: 423
+AND: 3537
+OR: 656
+NOT: 27
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4239
+Num transistors: 8447
+Circuit max depth: 423
+AND: 3536
+OR: 656
+NOT: 27
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4238
+Num transistors: 8445
+Circuit max depth: 423
+AND: 3536
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4238
+Num transistors: 8445
+NUM TRANSISTORS: 8445 INDIVIDUAL: 0 GENERATION: 31000
+Circuit max depth: 423
+AND: 3536
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4238
+Num transistors: 8445
+Circuit max depth: 423
+AND: 3536
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4238
+Num transistors: 8445
+Circuit max depth: 423
+AND: 3536
+OR: 655
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4238
+Num transistors: 8445
+Circuit max depth: 423
+AND: 3534
+OR: 656
+NOT: 27
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4237
+Num transistors: 8443
+Circuit max depth: 423
+AND: 3531
+OR: 656
+NOT: 26
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4233
+Num transistors: 8436
+Circuit max depth: 423
+AND: 3530
+OR: 656
+NOT: 26
+NAND: 7
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4232
+Num transistors: 8434
+Circuit max depth: 423
+AND: 3528
+OR: 656
+NOT: 27
+NAND: 6
+NOR: 9
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4229
+Num transistors: 8428
+Circuit max depth: 423
+AND: 3525
+OR: 656
+NOT: 27
+NAND: 6
+NOR: 9
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4226
+Num transistors: 8422
+Circuit max depth: 423
+AND: 3523
+OR: 657
+NOT: 27
+NAND: 6
+NOR: 9
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4225
+Num transistors: 8420
+Circuit max depth: 423
+AND: 3523
+OR: 657
+NOT: 27
+NAND: 6
+NOR: 9
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4225
+Num transistors: 8420
+Circuit max depth: 423
+AND: 3523
+OR: 657
+NOT: 26
+NAND: 6
+NOR: 9
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3522
+OR: 658
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3522
+OR: 658
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3522
+OR: 658
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3522
+OR: 658
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+NUM TRANSISTORS: 8419 INDIVIDUAL: 0 GENERATION: 32000
+Circuit max depth: 423
+AND: 3521
+OR: 659
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3521
+OR: 659
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4224
+Num transistors: 8419
+Circuit max depth: 423
+AND: 3518
+OR: 659
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4221
+Num transistors: 8413
+Circuit max depth: 423
+AND: 3517
+OR: 659
+NOT: 25
+NAND: 6
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4220
+Num transistors: 8411
+Circuit max depth: 423
+AND: 3515
+OR: 658
+NOT: 25
+NAND: 6
+NOR: 11
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4218
+Num transistors: 8406
+Circuit max depth: 423
+AND: 3515
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4218
+Num transistors: 8405
+Circuit max depth: 423
+AND: 3515
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4217
+Num transistors: 8404
+Circuit max depth: 423
+AND: 3512
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4214
+Num transistors: 8398
+Circuit max depth: 423
+AND: 3512
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4214
+Num transistors: 8398
+Circuit max depth: 423
+AND: 3512
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4214
+Num transistors: 8398
+Circuit max depth: 423
+AND: 3512
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4214
+Num transistors: 8398
+Circuit max depth: 423
+AND: 3512
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4214
+Num transistors: 8398
+Circuit max depth: 425
+AND: 3511
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4213
+Num transistors: 8396
+Circuit max depth: 425
+AND: 3511
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4213
+Num transistors: 8396
+Circuit max depth: 425
+AND: 3510
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 10
+XOR: 0
+XNOR: 3
+TOTAL GATES: 4212
+Num transistors: 8394
+Circuit max depth: 425
+AND: 3510
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4212
+Num transistors: 8391
+Circuit max depth: 425
+AND: 3509
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4212
+Num transistors: 8390
+Circuit max depth: 425
+AND: 3508
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4211
+Num transistors: 8389
+Circuit max depth: 425
+AND: 3508
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4211
+Num transistors: 8389
+Circuit max depth: 425
+AND: 3507
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4210
+Num transistors: 8387
+Circuit max depth: 425
+AND: 3507
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4210
+Num transistors: 8387
+NUM TRANSISTORS: 8387 INDIVIDUAL: 0 GENERATION: 33000
+Circuit max depth: 425
+AND: 3504
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4208
+Num transistors: 8383
+Circuit max depth: 425
+AND: 3504
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4208
+Num transistors: 8383
+Circuit max depth: 425
+AND: 3501
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4205
+Num transistors: 8377
+Circuit max depth: 425
+AND: 3501
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 2
+TOTAL GATES: 4205
+Num transistors: 8377
+Circuit max depth: 425
+AND: 3501
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 11
+XOR: 0
+XNOR: 1
+TOTAL GATES: 4204
+Num transistors: 8373
+Circuit max depth: 425
+AND: 3498
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4203
+Num transistors: 8371
+Circuit max depth: 425
+AND: 3498
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4202
+Num transistors: 8369
+Circuit max depth: 425
+AND: 3498
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4202
+Num transistors: 8369
+Circuit max depth: 425
+AND: 3498
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4202
+Num transistors: 8369
+Circuit max depth: 425
+AND: 3498
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4202
+Num transistors: 8369
+Circuit max depth: 425
+AND: 3494
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3494
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3494
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3493
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8361
+Circuit max depth: 425
+AND: 3492
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8360
+Circuit max depth: 425
+AND: 3492
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4198
+Num transistors: 8360
+Circuit max depth: 425
+AND: 3491
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4197
+Num transistors: 8358
+Circuit max depth: 425
+AND: 3491
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4197
+Num transistors: 8358
+Circuit max depth: 425
+AND: 3491
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 12
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4197
+Num transistors: 8358
+Circuit max depth: 425
+AND: 3490
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4197
+Num transistors: 8357
+Circuit max depth: 425
+AND: 3490
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4197
+Num transistors: 8357
+Circuit max depth: 425
+AND: 3488
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4195
+Num transistors: 8353
+Circuit max depth: 425
+AND: 3488
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4195
+Num transistors: 8353
+Circuit max depth: 425
+AND: 3483
+OR: 660
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4190
+Num transistors: 8343
+Circuit max depth: 425
+AND: 3483
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4189
+Num transistors: 8342
+Circuit max depth: 425
+AND: 3483
+OR: 660
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4189
+Num transistors: 8342
+Circuit max depth: 425
+AND: 3484
+OR: 659
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4189
+Num transistors: 8342
+NUM TRANSISTORS: 8342 INDIVIDUAL: 0 GENERATION: 34000
+Circuit max depth: 425
+AND: 3484
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8340
+Circuit max depth: 425
+AND: 3484
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8340
+Circuit max depth: 425
+AND: 3484
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8340
+Circuit max depth: 425
+AND: 3484
+OR: 658
+NOT: 26
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8340
+Circuit max depth: 422
+AND: 3484
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8339
+Circuit max depth: 422
+AND: 3484
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4188
+Num transistors: 8339
+Circuit max depth: 422
+AND: 3483
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4187
+Num transistors: 8337
+Circuit max depth: 422
+AND: 3481
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4185
+Num transistors: 8333
+Circuit max depth: 422
+AND: 3481
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4185
+Num transistors: 8333
+Circuit max depth: 422
+AND: 3481
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4185
+Num transistors: 8333
+Circuit max depth: 422
+AND: 3481
+OR: 657
+NOT: 26
+NAND: 5
+NOR: 14
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4185
+Num transistors: 8333
+Circuit max depth: 422
+AND: 3481
+OR: 657
+NOT: 27
+NAND: 5
+NOR: 13
+XOR: 1
+XNOR: 1
+TOTAL GATES: 4185
+Num transistors: 8333
