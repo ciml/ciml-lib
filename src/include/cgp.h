@@ -1399,23 +1399,7 @@ void sam(Individual *individual, int *gates, int num_inputs_table)
             mutate_individual(individual, gates, num_inputs_table, temp);
             break;
         }
-        #ifdef MSAM
-            if(count > (int)(MUTATIONRATE*NROW*NCOL))
-            {
-                fprintf(out_file, "Entrou no MSAM com contador: %d\n", count);
-                int sort = randomize(0, NROW*NCOL);
-                for(int i = sort; i < NROW*NCOL; i++)
-                {
-                    if(individual->genotype[i].active == 1)
-                    {
-                        mutate_gene(individual, gates, i, num_inputs_table);
-                    }
-                }
-                sort = randomize(0, individual->output_size);
-                mutate_output(individual, sort, num_inputs_table);
-                break;
-            }
-        #endif
+
         mutate_individual(individual, gates, num_inputs_table, temp);
         count++;
     }
