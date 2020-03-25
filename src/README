@@ -1,9 +1,10 @@
 Readme
 ----------------------------------------------------------------------------------------
 	This branch contains a Cartesian Genetic Programming (CGP) implementation to design 
-  Combinational Logic Circuits (CLC's). This source code was used at the submitted 
-  paper named "A Benchmark Suite for Designing Combinational Logic Circuits via 
-  Metaheuristics", and made available in order to increase the reproducibility.
+  Combinational Logic Circuits (CLC's). This source code was used at the article 
+  "A Benchmark Suite for Designing Combinational Logic Circuits via 
+  Metaheuristics". The article and the supplementary material are available at 
+  https://doi.org/10.1016/j.asoc.2020.106246
 
 Structure of files
 ----------------------------------------------------------------------------------------
