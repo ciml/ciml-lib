@@ -12,32 +12,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1571f3ef-696f-4b98-a451-64d7c2aae2cf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/arvore.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/arvore.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/GPTime.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/GPTime.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/arvore.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/arvore.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/bitwise.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/bitwise.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/depend.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/flags.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/genetica.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/genetica.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/includes_CXX.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/includes_CXX.rsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/linklibs.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/linklibs.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/main.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/objects.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/oclConfig.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/oclConfig.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/pilha.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/pilha.cpp.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/utilitarios.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/GeneticOpenCL.dir/utilitarios.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/GeneticOpenCL.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/GeneticOpenCL.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/resultFiles_512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/resultFiles_512.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/constantes.h" beforeDir="false" afterPath="$PROJECT_DIR$/constantes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resultFiles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resultFiles.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run-tests.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run-tests.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f1-4096.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f11-4096.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f2-4096.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f6-4096.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f7-4096.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-data/f9-4096.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-data/f5-4096.dat" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,31 +68,24 @@
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectId" id="1TE6p6Cs9lKwHsY1uOk7YWXfF9V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="TWODEVICES&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../../../Program Files/Git/bin/git.exe" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="CMake Application.GeneticOpenCL">
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="dados/dadosTreinamento.txt" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GeneticOpenCL" TARGET_NAME="GeneticOpenCL" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GeneticOpenCL" RUN_TARGET_NAME="GeneticOpenCL">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="dados/dadosTreinamento.txt" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GeneticOpenCL" TARGET_NAME="GeneticOpenCL" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GeneticOpenCL" RUN_TARGET_NAME="GeneticOpenCL">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GeneticOpenCL" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS=".\dados\dadosSenCos1000.txt" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GeneticOpenCL" TARGET_NAME="GeneticOpenCL" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GeneticOpenCL" RUN_TARGET_NAME="GeneticOpenCL">
+    <configuration name="GeneticOpenCL" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS=".\dados\dadosSenCos1000.txt" REDIRECT_INPUT="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="GeneticOpenCL" TARGET_NAME="GeneticOpenCL" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="GeneticOpenCL" RUN_TARGET_NAME="GeneticOpenCL">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -151,6 +158,22 @@
       <workItem from="1575470923889" duration="1756000" />
       <workItem from="1575486994204" duration="4206000" />
       <workItem from="1575519742570" duration="3941000" />
+      <workItem from="1579788042403" duration="672000" />
+      <workItem from="1580413508860" duration="4000" />
+      <workItem from="1580420617183" duration="207000" />
+      <workItem from="1580436383496" duration="65000" />
+      <workItem from="1580675409067" duration="16000" />
+      <workItem from="1580783270318" duration="1243000" />
+      <workItem from="1580818541060" duration="1425000" />
+      <workItem from="1580850561862" duration="4402000" />
+      <workItem from="1581978037014" duration="2708000" />
+      <workItem from="1583791530218" duration="2486000" />
+      <workItem from="1584566584814" duration="13000" />
+      <workItem from="1588007215114" duration="1275000" />
+      <workItem from="1588015537738" duration="913000" />
+      <workItem from="1589638626672" duration="831000" />
+      <workItem from="1589895265594" duration="1257000" />
+      <workItem from="1590516024160" duration="1479000" />
     </task>
     <servers />
   </component>
@@ -159,13 +182,34 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1877" height="306" key="GridCell.Tab.0.bottom" timestamp="1581985725882">
+      <screen x="-1920" y="7" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="306" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.7.1920.1040@-1920.7.1920.1040" timestamp="1581985725882" />
+    <state width="1877" height="306" key="GridCell.Tab.0.center" timestamp="1581985725882">
+      <screen x="-1920" y="7" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="306" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.7.1920.1040@-1920.7.1920.1040" timestamp="1581985725882" />
+    <state width="1877" height="306" key="GridCell.Tab.0.left" timestamp="1581985725882">
+      <screen x="-1920" y="7" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="306" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.7.1920.1040@-1920.7.1920.1040" timestamp="1581985725882" />
+    <state width="1877" height="306" key="GridCell.Tab.0.right" timestamp="1581985725882">
+      <screen x="-1920" y="7" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="306" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.7.1920.1040@-1920.7.1920.1040" timestamp="1581985725882" />
+    <state x="-1264" y="125" width="607" height="804" key="find.popup" timestamp="1581984074308">
+      <screen x="-1920" y="7" width="1920" height="1040" />
+    </state>
+    <state x="-1264" y="125" width="607" height="804" key="find.popup/0.0.1920.1040/-1920.7.1920.1040@-1920.7.1920.1040" timestamp="1581984074308" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

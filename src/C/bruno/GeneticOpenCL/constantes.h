@@ -56,11 +56,11 @@
 #endif // TWODEVICES
 
 #ifndef EVOLOCL
-    #define EVOLOCL 0
+    #define EVOLOCL 1
 #endif // EVOLOCL
 
 #ifndef AVALOCL
-    #define AVALOCL 0
+    #define AVALOCL 1
 #endif // AVALOCL
 
 #ifndef EVOLOMP

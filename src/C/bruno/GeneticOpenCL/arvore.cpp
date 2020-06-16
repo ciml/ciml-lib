@@ -491,8 +491,6 @@ float executa(Arvore* arv, float dados[], int N){
                 break;
             case CTE:
                 {
-
-
                 float valorF = unpackFloat(arv->informacao[j]);
                 empilhaF(&pilhaEx, valorF);
                 break;

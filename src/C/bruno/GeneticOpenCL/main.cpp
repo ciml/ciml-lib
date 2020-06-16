@@ -319,14 +319,14 @@ int main(int argc, char** argv){
      * Para utilizar Map/Unmap devidamente, tenho que alocar as árvores após criar seus buffers. Por isso, tenho que separar esta alocação para quando uso o opencl e quando não uso
      */
 
-    imprimePopulacao(popAtual, LABELS);
+    //imprimePopulacao(popAtual, LABELS);
 
     while(criterioDeParada(iteracoes) /*qual o criterio de parada?*/){
         //imprimePopulacao(popAtual, LABELS);
         printf("\n-----------\nGERACAO %d: \n", iteracoes);
 
         timeManager.getStartTime(Iteracao_T);
-        int novosIndividuos = 0;//selecionaElite(popAtual, popFutura);
+        int novosIndividuos = selecionaElite(popAtual, popFutura);
 
         timeManager.getStartTime(Evolucao_T);
 
@@ -533,8 +533,8 @@ int main(int argc, char** argv){
     }
     timeManager.getEndTime(Total_T);
 
-    std::cout << "\n\nPOPULACAO FINAL" << std::endl;
-    imprimePopulacao(popAtual, LABELS);
+    //std::cout << "\n\nPOPULACAO FINAL" << std::endl;
+    //imprimePopulacao(popAtual, LABELS);
     std::cout << "\n*";
     imprimeMelhor(popAtual, LABELS);
     std::cout << std::endl << std::endl;
@@ -864,7 +864,7 @@ int main(int argc, char** argv){
     }
     timeManager.getEndTime(Total_T);
 
-    std::cout << "\n\nPOPULACAO FINAL" << std::endl;
+    //std::cout << "\n\nPOPULACAO FINAL" << std::endl;
     //imprimePopulacao(popAtual, LABELS);
     std::cout << "\n*";
     imprimeMelhor(popAtual, LABELS);

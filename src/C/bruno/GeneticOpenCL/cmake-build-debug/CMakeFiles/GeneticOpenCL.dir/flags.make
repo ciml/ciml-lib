@@ -4,7 +4,7 @@
 # compile CXX with C:/mingw64/bin/g++.exe
 CXX_FLAGS = -g   -std=gnu++1z
 
-CXX_DEFINES = -DAVALGPU=0 -DAVALOCL=1 -DDIF_CONTEXT=0 -DEVOLOCL=1 -DEVOLOMP=0 -DNUM_INDIV=1024 -DSEED=11 -DTWODEVICES=0
+CXX_DEFINES = 
 
 CXX_INCLUDES = @CMakeFiles/GeneticOpenCL.dir/includes_CXX.rsp
 
