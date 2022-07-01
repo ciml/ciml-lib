@@ -1446,9 +1446,10 @@ void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutatio
         {
             mutate_individual(individual, gates, num_inputs_table, temp);
             count_mutation++;
-            if(count_mutation == n_mutations) {
+            /*if(count_mutation == n_mutations) {
                 break;
-            }
+            }*/
+            break;
         }
 
         mutate_individual(individual, gates, num_inputs_table, temp);

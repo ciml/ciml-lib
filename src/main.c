@@ -134,9 +134,29 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         }
         printf("\n");*/
 
+        printf("---------------------------------------\n");
+        for(int i = 0; i < NPOP; i++) {
+            printf("%ld ", population[i].score);
+        }
+        printf("\n");
+        for(int i = 0; i < NPOP; i++) {
+            printf("%ld ", population_children[i].score);
+        }
+        printf("\n");
         compare_pops(population, population_children);
+        for(int i = 0; i < NPOP; i++) {
+            printf("%ld ", population[i].score);
+        }
+        printf("\n");
+        printf("---------------------------------------\n");
 
+        printf("--------------sort----------------------\n");
         sort_pop(population);
+        for(int i = 0; i < NPOP; i++) {
+            printf("%ld ", population[i].score);
+        }
+        printf("\n");
+        printf("---------------------------------------\n");
         //best_individual = find_best_individual_sat_count(population);
         //set_parent(population, best_individual);
 
