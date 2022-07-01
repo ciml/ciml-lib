@@ -370,6 +370,16 @@ int find_worst_subgraph(Individual *individual);
 void sam(Individual *individual, int *gates, int num_inputs_table);
 
 /**
+* @brief Function to apply Multiple Active Mutation at the individual
+* @param individual - the individual struct
+* @param gates - the array containing the gates codes that will be used
+* @param num_inputs_table - the number of inputs in truth table
+* @param n_mutations - the number of nodes to be mutated
+* @return none
+*/
+void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutations);
+
+/**
 * @brief Function to apply Guided Active Mutation at the individual
 * @param individual - the individual struct
 * @param gates - the array containing the gates codes that will be used
@@ -592,6 +602,15 @@ void apply_PM(Individual *population, int *gates, int num_inputs_table);
 void apply_SAM(Individual *population, int *gates, int num_inputs_table);
 
 /**
+* @brief Function to apply MULTIPLE ACTIVE MUTATION in all childs
+* @param population - individual array struct
+* @param gates - the array containing the gates codes that will be used
+* @param num_inputs_table - the number of inputs in truth table
+* @return none
+*/
+void apply_MAM(Individual *population, int *gates, int num_inputs_table);
+
+/**
 * @brief Function to apply SINGLE ACTIVE MUTATION in the first 2 individuals (excluding the parent) and
     apply G ACTIVE MUTATION in the others 2
 * @param population - individual array struct
@@ -608,6 +627,13 @@ void apply_SAM_plus_GAM(Individual *population, int *gates, int num_inputs_table
 * @return none
 */
 void evaluate_population_sat_count(Individual *population, Table *table);
+
+/**
+ * @brief Function to evaluate all individuals's score, using the bdd with sat count method
+ * @param population - individual array struct
+ * @param table - table struct
+ */
+void evaluate_all_pop(Individual *population, Table *table);
 
 /**
 * @brief Function to evaluate parent's score, using the bdd with sat count method
@@ -1405,6 +1431,31 @@ void sam(Individual *individual, int *gates, int num_inputs_table)
     }
 }
 
+void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutations)
+{
+    int count = 0;
+    int count_mutation = 0;
+    while (1)
+    {
+        int temp = randomize(num_inputs_table, num_inputs_table + individual->genotype_size + individual->output_size);
+        int row = get_gene_row(temp, num_inputs_table);
+        int col = get_gene_col(temp, num_inputs_table);
+        int pos = get_gene_position(row, col);
+
+        if (individual->genotype[pos].active == 1 || temp >= num_inputs_table + individual->genotype_size)
+        {
+            mutate_individual(individual, gates, num_inputs_table, temp);
+            count_mutation++;
+            if(count_mutation == n_mutations) {
+                break;
+            }
+        }
+
+        mutate_individual(individual, gates, num_inputs_table, temp);
+        count++;
+    }
+}
+
 void gam(Individual *individual, int *gates, int worst_subgraph, int num_inputs_table)
 {
     while (1)
@@ -1912,6 +1963,18 @@ void apply_SAM(Individual *population, int *gates, int num_inputs_table)
     }
 }
 
+void apply_MAM(Individual *population, int *gates, int num_inputs_table)
+{
+    clear_population_active_genes(population);
+
+    for(int i = 0; i < NPOP; i++)
+    {
+        clear_individiual_active_genes(&population[i]);
+        finds_individual_active_genes(&population[i], num_inputs_table);
+        mam(&population[i], gates, num_inputs_table, i+1);
+    }
+}
+
 void apply_SAM_plus_GAM(Individual *population, int *gates, int num_inputs_table)
 {
     int worst_subgraph = find_worst_subgraph(&population[0]);
@@ -1934,6 +1997,15 @@ void apply_SAM_plus_GAM(Individual *population, int *gates, int num_inputs_table
 void evaluate_population_sat_count(Individual *population, Table *table)
 {
     for (int i = 1; i < NPOP; i++)
+    {
+        calculate_individual_sat_count(&population[i], table);
+    }
+}
+
+
+void evaluate_all_pop(Individual *population, Table *table)
+{
+    for (int i = 0; i < NPOP; i++)
     {
         calculate_individual_sat_count(&population[i], table);
     }

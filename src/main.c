@@ -40,6 +40,55 @@ int mutation;
 * @param gates - the logical gates used into the evolution
 * @return 1 if a factible ciruit is found and 0 otherwise
 */
+
+int getMax(Individual array[]) {
+    int max = array[0].score;
+    for(int i = 1; i < NPOP; i++) {
+        if(array[i].score > max)
+            max = array[i].score;
+    }
+    return max;
+}
+
+void sort_pop(Individual *population) {
+    long int output[NPOP];
+    Individual sorted_pop[NPOP];
+
+    int max = getMax(population);
+
+    int *count = malloc((max + 1)*sizeof(*count));
+
+    for(int i = 0; i <= max; i++) {
+        count[i] = 0;     //inicializa vetor de contagem com 0 em todas as posições
+    }
+
+    for(int i = 0; i < NPOP; i++) {
+        count[population[i].score]++;     //aumenta a contagem de cada elemento no vetor de contagem
+    }
+
+    for(int i = 1; i <= max; i++)
+        count[i] += count[i-1];     //encontra frequência acumulada
+
+    for(int i = NPOP - 1; i >= 0; i--) {
+        output[count[population[i].score] - 1] = population[i].score;
+        sorted_pop[(count[population[i].score] - 1)] = population[i];
+        count[population[i].score] -= 1; //diminui a contagem para os números do vetor
+    }
+
+    for(int i = 0; i < NPOP; ++i)
+        population[i] = sorted_pop[i];
+
+    free(count);
+}
+
+void compare_pops(Individual parent[], Individual children[]) {
+    for(int i = 0; i < NPOP; i++) {
+        if(parent[i].score >= children[i].score) {
+            parent[i] = children[i];
+        }
+    }
+}
+
 int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
 {
     long int generation = 0;
@@ -47,23 +96,49 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
     evaluate_parent_sat_count(population, table);
     evaluate_population_sat_count(population, table);
 
-    int best_individual = find_best_individual_sat_count(population);
-    set_parent(population, best_individual);
+    Individual population_children[NPOP];
+    int best_individual;
+    //int best_individual = find_best_individual_sat_count(population);
+    //set_parent(population, best_individual);
 
-    clone_parent(population);
+    //clone_parent(population);
     fprintf(out_file, "--------------------------\n");
     fflush(out_file);
     while (1)
     {
+
+        sort_pop(population);
+        // copy parent to child
+        best_individual = 0;
+
+        for(int i = 0; i < NPOP; i++) {
+            population_children[i] = population[i];
+        }
+
+
         if(mutation == 1)
-            apply_SAM(population, gates, table->num_inputs);
+            apply_SAM(population_children, gates, table->num_inputs);
         else if(mutation == 2)
             apply_SAM_plus_GAM(population, gates, table->num_inputs);
         else if(mutation == 3)
             apply_PM(population, gates, table->num_inputs);
-        evaluate_population_sat_count(population, table);
-        best_individual = find_best_individual_sat_count(population);
-        set_parent(population, best_individual);
+        else if(mutation == 4) {
+            apply_MAM(population_children, gates, table->num_inputs);
+        }
+
+        evaluate_all_pop(population_children, table);
+
+/*        for(int i = 0; i < NPOP; i++) {
+            printf("Father: %ld", population[i].score);
+            printf(" Child: %ld", population_children[i].score);
+        }
+        printf("\n");*/
+
+        compare_pops(population, population_children);
+
+        sort_pop(population);
+        //best_individual = find_best_individual_sat_count(population);
+        //set_parent(population, best_individual);
 
         if (population[0].score == 0)
         {
@@ -87,7 +162,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
             return 0;
         }
 
-        clone_parent(population);
+        //clone_parent(population);
         generation++;
     }
     fprintf(out_file, "--------------------------\n");
@@ -171,7 +246,7 @@ int main(int argc, char const *argv[])
     sscanf(argv[3], "ncol=%d", &NCOL);
     sscanf(argv[4], "maxgen=%ld", &maxgen);
     sscanf(argv[5], "mutation=%d", &mutation);
-    LB = NCOL/2;
+    LB = NCOL;
     srand(semente);
 
     if (argc == 7)
@@ -193,6 +268,8 @@ int main(int argc, char const *argv[])
         fprintf(out_file, "SAM+GAM\n");
     else if (mutation == 3)
         fprintf(out_file, "PM\n");
+    else if (mutation == 4)
+        fprintf(out_file, "MAM\n");
     else
     {
         fprintf(out_file, "Mutation value isnt valid!\n");
