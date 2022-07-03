@@ -50,7 +50,7 @@ int getMax(Individual array[]) {
     return max;
 }
 
-void sort_pop(Individual *population) {
+void sort_pop_aux(Individual *population) {
     long int output[NPOP];
     Individual sorted_pop[NPOP];
 
@@ -71,20 +71,41 @@ void sort_pop(Individual *population) {
 
     for(int i = NPOP - 1; i >= 0; i--) {
         output[count[population[i].score] - 1] = population[i].score;
-        sorted_pop[(count[population[i].score] - 1)] = population[i];
+        printf("Vem aq lu %d\n", i);
+        printf("sc %ld", population[i].score);
+        copy_individual_data(&sorted_pop[(count[population[i].score] - 1)], &population[i]);
+        printf("Vem aq lu %d\n", i);
         count[population[i].score] -= 1; //diminui a contagem para os números do vetor
     }
 
+
     for(int i = 0; i < NPOP; ++i)
-        population[i] = sorted_pop[i];
+        copy_individual_data(&population[i], &sorted_pop[i]);
 
     free(count);
+}
+
+void sort_pop(Individual *population) {
+    printf("Vem aq lu\n");
+    // TOFIX: segmentation fault
+    sort_pop_aux(population);
+    printf("Vem aq lu1\n");
+
+    Individual temp;
+
+    for(int i = 0; i < NPOP; ++i) {
+        temp = population[i];
+        population[i] = population[NPOP - i - 1];
+        population[NPOP - i - 1] = temp;
+    }
+
+    sort_pop_aux(population);
 }
 
 void compare_pops(Individual parent[], Individual children[]) {
     for(int i = 0; i < NPOP; i++) {
         if(parent[i].score >= children[i].score) {
-            parent[i] = children[i];
+            copy_individual_data(&parent[i], &children[i]);
         }
     }
 }
@@ -97,6 +118,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
     evaluate_population_sat_count(population, table);
 
     Individual population_children[NPOP];
+    initialize_population(population_children, gates, table->num_inputs, table->num_outputs);
     int best_individual;
     //int best_individual = find_best_individual_sat_count(population);
     //set_parent(population, best_individual);
@@ -107,12 +129,14 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
     while (1)
     {
 
+        printf("Antes primeiro sort\n");
         sort_pop(population);
+        printf("Depois primeiro sort\n");
         // copy parent to child
         best_individual = 0;
 
         for(int i = 0; i < NPOP; i++) {
-            population_children[i] = population[i];
+            copy_individual_data(&population_children[i], &population[i]);
         }
 
 
