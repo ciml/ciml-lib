@@ -26,10 +26,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include <bdd.h>
+#include <omp.h>
 
 #define NROW 1
-#define NPOP 5
+#define NPOP 4   
 #define MUTATIONRATE 0.05
 #define NGATES 7
 
@@ -361,6 +363,16 @@ int validate_worst(Individual *individual, int worst);
 int find_worst_subgraph(Individual *individual);
 
 /**
+* @brief Function to apply Multiple Active Mutation at the individual
+* @param individual - the individual struct
+* @param gates - the array containing the gates codes that will be used
+* @param num_inputs_table - the number of inputs in truth table
+* @return none
+*/
+void mam(Individual *individual, int *gates, int num_inputs_table, int num_mutations);
+
+
+/**
 * @brief Function to apply Single Active Mutation at the individual
 * @param individual - the individual struct
 * @param gates - the array containing the gates codes that will be used
@@ -368,16 +380,6 @@ int find_worst_subgraph(Individual *individual);
 * @return none
 */
 void sam(Individual *individual, int *gates, int num_inputs_table);
-
-/**
-* @brief Function to apply Multiple Active Mutation at the individual
-* @param individual - the individual struct
-* @param gates - the array containing the gates codes that will be used
-* @param num_inputs_table - the number of inputs in truth table
-* @param n_mutations - the number of nodes to be mutated
-* @return none
-*/
-void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutations);
 
 /**
 * @brief Function to apply Guided Active Mutation at the individual
@@ -593,15 +595,6 @@ void clear_population_active_genes(Individual *population);
 void apply_PM(Individual *population, int *gates, int num_inputs_table);
 
 /**
-* @brief Function to apply SINGLE ACTIVE MUTATION in all childs
-* @param population - individual array struct
-* @param gates - the array containing the gates codes that will be used
-* @param num_inputs_table - the number of inputs in truth table
-* @return none
-*/
-void apply_SAM(Individual *population, int *gates, int num_inputs_table);
-
-/**
 * @brief Function to apply MULTIPLE ACTIVE MUTATION in all childs
 * @param population - individual array struct
 * @param gates - the array containing the gates codes that will be used
@@ -609,6 +602,15 @@ void apply_SAM(Individual *population, int *gates, int num_inputs_table);
 * @return none
 */
 void apply_MAM(Individual *population, int *gates, int num_inputs_table);
+
+/**
+* @brief Function to apply SINGLE ACTIVE MUTATION in all childs
+* @param population - individual array struct
+* @param gates - the array containing the gates codes that will be used
+* @param num_inputs_table - the number of inputs in truth table
+* @return none
+*/
+void apply_SAM(Individual *population, int *gates, int num_inputs_table);
 
 /**
 * @brief Function to apply SINGLE ACTIVE MUTATION in the first 2 individuals (excluding the parent) and
@@ -626,14 +628,23 @@ void apply_SAM_plus_GAM(Individual *population, int *gates, int num_inputs_table
 * @param table - table struct
 * @return none
 */
-void evaluate_population_sat_count(Individual *population, Table *table);
+void evaluate_all_population_sat_count(Individual *population, Table *table);
 
 /**
- * @brief Function to evaluate all individuals's score, using the bdd with sat count method
- * @param population - individual array struct
- * @param table - table struct
- */
-void evaluate_all_pop(Individual *population, Table *table);
+* @brief Function to compare and substitute all individuals's based on score, using the bdd with sat count method
+* @param population - individual array struct
+* @param table - table struct
+* @return none
+*/
+void compare_pops(Individual *population, Individual *population_children);
+
+/**
+* @brief Function to evaluate all individuals's score, using the bdd with sat count method
+* @param population - individual array struct
+* @param table - table struct
+* @return none
+*/
+void evaluate_population_sat_count(Individual *population, Table *table);
 
 /**
 * @brief Function to evaluate parent's score, using the bdd with sat count method
@@ -689,6 +700,13 @@ void set_parent(Individual* population, int best_individual);
 void clone_parent(Individual* population);
 
 /**
+* @brief Function to copy one population to another
+* @param population - individual array struct
+* @return none
+*/
+void clone_population(Individual* origem, Individual* destino);
+
+/**
 * @brief Function to print all population's data
 * @param population - individual array struct
 * @param num_inputs_table - the number of inputs in truth table
@@ -696,6 +714,10 @@ void clone_parent(Individual* population);
 */
 void print_population(Individual *population, int num_inputs_table);
 
+
+void evaluate_all_population_otm(Individual *population, Table *table);
+
+void set_sat_OTM(Individual *individual, int finalScore);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////// IMPLEMENTATION ///////////////////////////////////////////////////////////
@@ -1431,10 +1453,10 @@ void sam(Individual *individual, int *gates, int num_inputs_table)
     }
 }
 
-void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutations)
+void mam(Individual *individual, int *gates, int num_inputs_table, int num_mutations)
 {
     int count = 0;
-    int count_mutation = 0;
+    int count_mutations = 0;
     while (1)
     {
         int temp = randomize(num_inputs_table, num_inputs_table + individual->genotype_size + individual->output_size);
@@ -1445,11 +1467,11 @@ void mam(Individual *individual, int *gates, int num_inputs_table, int n_mutatio
         if (individual->genotype[pos].active == 1 || temp >= num_inputs_table + individual->genotype_size)
         {
             mutate_individual(individual, gates, num_inputs_table, temp);
-            count_mutation++;
-            /*if(count_mutation == n_mutations) {
-                break;
-            }*/
-            break;
+            count_mutations++;
+            if(count_mutations == num_mutations)
+            {
+               break;
+            }
         }
 
         mutate_individual(individual, gates, num_inputs_table, temp);
@@ -1913,19 +1935,31 @@ void clear_bddref(Individual *individual, Table *table, int output)
 
 void calculate_individual_sat_count(Individual *individual, Table *table)
 {
-    bdd temp;
+    
     individual->score = 0;
+    long int soma = 0;
 
+    // printf("%d", individual->output_size);
+    # pragma omp parallel for reduction (+:soma)
     for (int i = 0; i < individual->output_size; i++)
     {
+        bdd temp;
         temp = get_individual_bdd_for_each_output(individual, table, individual->output[i]);
         temp = bdd_addref(bdd_apply(temp, table->outputs_bdd[i], bddop_xor));
         individual->score_per_output[i] = bdd_satcount(temp);
-        individual->score += individual->score_per_output[i];
+        soma += individual->score_per_output[i];
 
         bdd_delref(temp);
         clear_bddref(individual, table, individual->output[i]);
     }
+
+    individual->score = soma;
+}
+
+void set_sat_OTM(Individual *individual, int finalScore)
+{
+    individual->score = finalScore;
+
 }
 
 void initialize_population(Individual *population, int *gates, int num_inputs_table, int num_outputs_table)
@@ -1968,13 +2002,23 @@ void apply_MAM(Individual *population, int *gates, int num_inputs_table)
 {
     clear_population_active_genes(population);
 
+    // int relation = NPOP / 5;
+    int nMutations;
+    float calc;
+
+    # pragma omp parallel for
     for(int i = 0; i < NPOP; i++)
     {
+        // B = 1, n_clones artigo CLONALG
+        calc = (float) NPOP / (float) (i + 1);
+        nMutations = round(calc);
+        // nMutations = 1;
         clear_individiual_active_genes(&population[i]);
         finds_individual_active_genes(&population[i], num_inputs_table);
-        mam(&population[i], gates, num_inputs_table, i+1);
+        mam(&population[i], gates, num_inputs_table, nMutations);
     }
 }
+
 
 void apply_SAM_plus_GAM(Individual *population, int *gates, int num_inputs_table)
 {
@@ -2003,12 +2047,49 @@ void evaluate_population_sat_count(Individual *population, Table *table)
     }
 }
 
-
-void evaluate_all_pop(Individual *population, Table *table)
+void evaluate_all_population_sat_count(Individual *population, Table *table)
 {
+    // #pragma omp parallel for
     for (int i = 0; i < NPOP; i++)
     {
         calculate_individual_sat_count(&population[i], table);
+    }
+}
+
+void evaluate_all_population_otm(Individual *population, Table *table)
+{
+    int potencia = 2;
+    for(int k = 1; k < table->num_inputs; k++){
+        potencia = potencia * 2;
+    }
+
+    for (int i = 0; i < NPOP; i++)
+    {
+        long int currentScore = population[i].score;
+        int currentTransistors = population[i].num_transistors;
+        
+        // long int finalScore = currentTransistors + (4 * NCOL * currentScore); // (currentScore * potencia) + currentTransistors;
+        long int finalScore = currentTransistors;
+        if(currentScore != 0) {
+            finalScore = 4 * NCOL + currentScore;
+        }
+
+        set_sat_OTM(&population[i], finalScore);
+        
+        //printf("Individual %d - Score %ld - Trans %d - Final %ld\n", i, currentScore, currentTransistors, finalScore);        
+        //population[i]->score = finalScore;
+        //calculate_individual_sat_count(&population[i], table);
+    }
+}
+
+void compare_pops(Individual *population, Individual *population_children)
+{
+    for (int i = 0; i < NPOP; i++)
+    {
+        if(population[i].score >= population_children[i].score){
+           copy_individual_data(&population[i], &population_children[i]);
+        }
+        
     }
 }
 
@@ -2154,6 +2235,20 @@ void clone_parent(Individual *population)
             population[i].score_per_output[k] = 0;
         }
         population[i].score = 0;
+    }
+}
+
+void clone_population(Individual *origem, Individual *destino)
+{
+    //copy_individual_data(Individual *dest, Individual *src);
+    for (int i = 0; i < NPOP; i++)
+    {
+        copy_individual_data(&destino[i], &origem[i]);
+        for (int k = 0; k < origem[i].output_size; k++)
+        {
+            destino[i].score_per_output[k] = origem[i].score_per_output[k];
+        }
+        destino[i].score = origem[i].score;
     }
 }
 

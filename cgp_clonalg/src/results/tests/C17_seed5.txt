@@ -1,0 +1,22 @@
+SAM
+.p 32
+.i 5
+.o 2
+i0*i2+i1*~i2+i1*~i3
+~i2*i4+~i3*i4+i1*~i2+i1*~i3
+--------------------------
+SAT COUNT: 24 INDIVIDUAL: 0 GENERATION: 0
+SAT COUNT: 0 INDIVIDUAL: 0 GENERATION: 6681
+--------------------------
+Circuit max depth: 5
+AND: 0
+OR: 2
+NOT: 1
+NAND: 5
+NOR: 0
+XOR: 0
+XNOR: 0
+TOTAL GATES: 8
+Num transistors: 15
+--------------------------
+NUM TRANSISTORS: 15 INDIVIDUAL: 0 GENERATION: 0

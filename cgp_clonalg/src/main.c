@@ -31,15 +31,20 @@ long int maxgen;
 long int mediangen;
 int mutation;
 
-/**
-* @brief Function that implements the cartesian genetic programming evolutionary process to
-* evolve CLCs. The process start with a random population and ends with the first factible
-* circuit found.
-* @param population - the population struct that will be used into the evolution
-* @param table - the table struct that stores the circuits information
-* @param gates - the logical gates used into the evolution
-* @return 1 if a factible ciruit is found and 0 otherwise
-*/
+int getMinIndex(Individual *population)
+{
+    int best_indv = 0;
+    for (int i = 1; i < NPOP; i++)
+    {
+        if (population[i].score <= population[best_indv].score)
+        {
+            best_indv = i;
+        }
+    }
+    return best_indv;
+}
+
+
 
 int getMax(Individual array[]) {
     int max = array[0].score;
@@ -50,10 +55,14 @@ int getMax(Individual array[]) {
     return max;
 }
 
-void sort_pop_aux(Individual *population) {
+void sort_pop2(Individual *population, Individual *sorted_pop) {
     long int output[NPOP];
-    Individual sorted_pop[NPOP];
+    //Individual sorted_pop[NPOP];
 
+
+
+    
+    
     int max = getMax(population);
 
     int *count = malloc((max + 1)*sizeof(*count));
@@ -71,118 +80,137 @@ void sort_pop_aux(Individual *population) {
 
     for(int i = NPOP - 1; i >= 0; i--) {
         output[count[population[i].score] - 1] = population[i].score;
-        printf("Vem aq lu %d\n", i);
-        printf("sc %ld", population[i].score);
         copy_individual_data(&sorted_pop[(count[population[i].score] - 1)], &population[i]);
-        printf("Vem aq lu %d\n", i);
+        //sorted_pop[(count[population[i].score] - 1)] = population[i];
         count[population[i].score] -= 1; //diminui a contagem para os números do vetor
     }
 
 
+    int minIndex = getMinIndex(sorted_pop);
+    //printf("Min Index %d\n", minIndex);
+
+
     for(int i = 0; i < NPOP; ++i)
         copy_individual_data(&population[i], &sorted_pop[i]);
+        //population[i] = sorted_pop[i];
+
+
+
+    if(minIndex != 0){
+       //Individual temp = population[0];
+       //copy_individual_data(Individual *dest, Individual *src)
+       copy_individual_data(&population[0], &sorted_pop[minIndex]);
+       copy_individual_data(&population[minIndex], &sorted_pop[0]);
+       //population[1] = temp;
+    
+    }
+
+    /*if(minIndex == 1){
+    	Individual temp = population[0];
+    	population[0] = sorted_pop[1];
+    	population[1] = temp;
+    }*/
 
     free(count);
 }
 
+int compare(Individual *a, Individual *b) {
+    return a->score - b->score;
+}
+
 void sort_pop(Individual *population) {
-    printf("Vem aq lu\n");
-    // TOFIX: segmentation fault
-    sort_pop_aux(population);
-    printf("Vem aq lu1\n");
 
-    Individual temp;
+    // printf("\nBEFORE --------------------\n");
+    // for(int i = 0; i < NPOP; ++i)
+    //     printf("%ld ", population[i].score);
+    // printf("\n");
+    qsort(population, NPOP, sizeof(Individual), compare);
+    // printf("\n ----------------------------\n");
+    // printf("\nAFTER --------------------\n");
+    // for(int i = 0; i < NPOP; ++i)
+    //     printf("%ld ", population[i].score);
+    // printf("\n");
+    // printf("\n ----------------------------\n");
 
-    for(int i = 0; i < NPOP; ++i) {
-        temp = population[i];
-        population[i] = population[NPOP - i - 1];
-        population[NPOP - i - 1] = temp;
-    }
+    // int minIndex = getMinIndex(population);
+    // //printf("Min Index %d\n", minIndex);
 
-    sort_pop_aux(population);
+    // for(int i = 0; i < NPOP; ++i)
+    //     copy_individual_data(&population[i], &sorted_pop[i]);
+    //     //population[i] = sorted_pop[i];
+
+    // if(minIndex != 0){
+    //    //Individual temp = population[0];
+    //    //copy_individual_data(Individual *dest, Individual *src)
+    //    copy_individual_data(&population[0], &sorted_pop[minIndex]);
+    //    copy_individual_data(&population[minIndex], &sorted_pop[0]);
+    //    //population[1] = temp;
+    
+    // }
 }
 
-void compare_pops(Individual parent[], Individual children[]) {
-    for(int i = 0; i < NPOP; i++) {
-        if(parent[i].score >= children[i].score) {
-            copy_individual_data(&parent[i], &children[i]);
-        }
-    }
-}
 
-int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
+/**
+* @brief Function that implements the cartesian genetic programming evolutionary process to
+* evolve CLCs. The process start with a random population and ends with the first factible
+* circuit found.
+* @param population - the population struct that will be used into the evolution
+* @param table - the table struct that stores the circuits information
+* @param gates - the logical gates used into the evolution
+* @return 1 if a factible ciruit is found and 0 otherwise
+*/
+int evolves_cgp_bdd(Individual *population, Individual *population_children, Table *table, int *gates)
 {
     long int generation = 0;
 
     evaluate_parent_sat_count(population, table);
     evaluate_population_sat_count(population, table);
-
-    Individual population_children[NPOP];
-    initialize_population(population_children, gates, table->num_inputs, table->num_outputs);
-    int best_individual;
-    //int best_individual = find_best_individual_sat_count(population);
+    
+    
+    
+    int best_individual = find_best_individual_sat_count(population);
     //set_parent(population, best_individual);
+    sort_pop(population);
+    //copy_individual_data(&sorted_pop[0], &population[0]);
+    //copy_individual_data(&population[0], &population[best_individual]);
+    //copy_individual_data(&population[best_individual], &sorted_pop[0]);
+    clone_population(population, population_children);
+    
+    /*Individual *temp = (Individual *)malloc(sizeof(Individual));
+    
+    initialize_individual(temp, gates, table->num_inputs, table->num_outputs);
+    copy_individual_data(temp, &population[0]);
+
+    print_individual(temp, table->num_inputs);
+    print_individual(&population[0], table->num_inputs);
+    
+    temp->output[0] = 10;
+    
+    print_individual(temp, table->num_inputs);
+    print_individual(&population[0], table->num_inputs);*/
+        
 
     //clone_parent(population);
     fprintf(out_file, "--------------------------\n");
     fflush(out_file);
     while (1)
     {
-
-        printf("Antes primeiro sort\n");
-        sort_pop(population);
-        printf("Depois primeiro sort\n");
-        // copy parent to child
-        best_individual = 0;
-
-        for(int i = 0; i < NPOP; i++) {
-            copy_individual_data(&population_children[i], &population[i]);
-        }
-
-
         if(mutation == 1)
-            apply_SAM(population_children, gates, table->num_inputs);
+            apply_MAM(population_children, gates, table->num_inputs);
         else if(mutation == 2)
             apply_SAM_plus_GAM(population, gates, table->num_inputs);
         else if(mutation == 3)
             apply_PM(population, gates, table->num_inputs);
-        else if(mutation == 4) {
-            apply_MAM(population_children, gates, table->num_inputs);
-        }
-
-        evaluate_all_pop(population_children, table);
-
-/*        for(int i = 0; i < NPOP; i++) {
-            printf("Father: %ld", population[i].score);
-            printf(" Child: %ld", population_children[i].score);
-        }
-        printf("\n");*/
-
-        printf("---------------------------------------\n");
-        for(int i = 0; i < NPOP; i++) {
-            printf("%ld ", population[i].score);
-        }
-        printf("\n");
-        for(int i = 0; i < NPOP; i++) {
-            printf("%ld ", population_children[i].score);
-        }
-        printf("\n");
+        //evaluate_population_sat_count(population, table);
+        evaluate_all_population_sat_count(population_children, table);        
+        best_individual = find_best_individual_sat_count(population);
         compare_pops(population, population_children);
-        for(int i = 0; i < NPOP; i++) {
-            printf("%ld ", population[i].score);
-        }
-        printf("\n");
-        printf("---------------------------------------\n");
-
-        printf("--------------sort----------------------\n");
-        sort_pop(population);
-        for(int i = 0; i < NPOP; i++) {
-            printf("%ld ", population[i].score);
-        }
-        printf("\n");
-        printf("---------------------------------------\n");
-        //best_individual = find_best_individual_sat_count(population);
         //set_parent(population, best_individual);
+        sort_pop(population);
+        clone_population(population, population_children);
+    //copy_individual_data(&sorted_pop[0], &population[0]);
+    //copy_individual_data(&population[0], &population[best_individual]);
+    //copy_individual_data(&population[best_individual], &sorted_pop[0]);        
 
         if (population[0].score == 0)
         {
@@ -194,6 +222,7 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
         {
             fprintf(out_file, "SAT COUNT: %ld INDIVIDUAL: %d GENERATION: %ld\n", population[0].score, best_individual, generation);
             fflush(out_file);
+            //print_individual(&population_children[0], table->num_inputs);
         }
         if(bdd_getnodenum() >= (int) (0.75 * bdd_getallocnum()))
         {
@@ -227,29 +256,52 @@ int evolves_cgp_bdd(Individual *population, Table *table, int *gates)
 * @param gates - the logical gates used into the evolution
 * @return none
 */
-void optimize_circuit(Individual *population, Table *table, int *gates)
+void optimize_circuit(Individual *population, Individual *population_children, Table *table, int *gates)
 {
 
     fprintf(out_file,"--------------------------\n");
     fflush(out_file);
 
+    for(int j = 0; j < NPOP; j++){
+         count_num_transistors_individual(&population[j]);
+    }
+    evaluate_all_population_otm(population, table);
+
+    clone_population(population, population_children);
+    
+    
     int best_individual = 0;
     long int generation = 0;
     clock_t start = clock();
     while (1)
     {
         if (mutation == 1)
-            apply_SAM(population, gates, table->num_inputs);
+            apply_MAM(population_children, gates, table->num_inputs);
         else if (mutation == 2)
             apply_SAM_plus_GAM(population, gates, table->num_inputs);
         else if (mutation == 3)
             apply_PM(population, gates, table->num_inputs);
-        evaluate_population_sat_count(population, table);
-        clear_population_active_genes(population);
-        find_population_active_genes(population, table->num_inputs);
-        best_individual = find_optimized_individual(population);
-        set_parent(population, best_individual);
+        //evaluate_population_sat_count(population, table);
+        evaluate_all_population_sat_count(population_children, table);
+        clear_population_active_genes(population_children);
+        find_population_active_genes(population_children, table->num_inputs);
+        for(int j = 0; j < NPOP; j++){
+            count_num_transistors_individual(&population_children[j]);
+        }
+        
+        evaluate_all_population_otm(population_children, table);
+        compare_pops(population, population_children);
 
+        sort_pop(population);
+        clone_population(population, population_children);
+                
+        //best_individual = find_optimized_individual(population);
+        //set_parent(population, best_individual);
+
+
+
+        
+        
         if (generation % 50000 == 0)
         {
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
@@ -275,7 +327,7 @@ void optimize_circuit(Individual *population, Table *table, int *gates)
             fprintf(out_file,"NUM TRANSISTORS: %d INDIVIDUAL: %d GENERATION: %ld\n", population[0].num_transistors, best_individual, generation);
             print_post_optimization_data(&population[0], table->num_inputs);
         }
-        clone_parent(population);
+        //clone_parent(population);
         generation++;
     }
     fprintf(out_file,"--------------------------\n");
@@ -290,7 +342,7 @@ int main(int argc, char const *argv[])
     sscanf(argv[3], "ncol=%d", &NCOL);
     sscanf(argv[4], "maxgen=%ld", &maxgen);
     sscanf(argv[5], "mutation=%d", &mutation);
-    LB = NCOL;
+    LB = NCOL/2;
     srand(semente);
 
     if (argc == 7)
@@ -312,8 +364,6 @@ int main(int argc, char const *argv[])
         fprintf(out_file, "SAM+GAM\n");
     else if (mutation == 3)
         fprintf(out_file, "PM\n");
-    else if (mutation == 4)
-        fprintf(out_file, "MAM\n");
     else
     {
         fprintf(out_file, "Mutation value isnt valid!\n");
@@ -323,21 +373,23 @@ int main(int argc, char const *argv[])
     bdd_init(10000000, 100000);
 
     Individual *population = (Individual *)malloc(sizeof(Individual) * NPOP);
+    Individual *population_children = (Individual *)malloc(sizeof(Individual) * NPOP);
     int gates[NGATES] = {1, 2, 3, 4, 5, 6, 7};
 
     Table *table = (Table *)malloc(sizeof(Table));
     table_constructor(table, argv[1]);
 
     initialize_population(population, gates, table->num_inputs, table->num_outputs);
+    initialize_population(population_children, gates, table->num_inputs, table->num_outputs);
 
     clock_t begin, end;
     begin = clock();
 
     if(argc <= 7)
     {
-        if (evolves_cgp_bdd(population, table, gates))
+        if (evolves_cgp_bdd(population, population_children, table, gates))
         {
-            optimize_circuit(population, table, gates);
+            optimize_circuit(population, population_children, table, gates);
         }
     }
     else if(argc > 7)
@@ -356,7 +408,7 @@ int main(int argc, char const *argv[])
             exit(1);
         }
         clone_parent(population);
-        optimize_circuit(population, table, gates);
+        optimize_circuit(population, population_children, table, gates);
     }
 
     bdd_done();
