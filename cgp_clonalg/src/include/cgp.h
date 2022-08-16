@@ -1940,7 +1940,7 @@ void calculate_individual_sat_count(Individual *individual, Table *table)
     long int soma = 0;
 
     // printf("%d", individual->output_size);
-    # pragma omp parallel for reduction (+:soma)
+    #pragma omp parallel for reduction (+:soma)
     for (int i = 0; i < individual->output_size; i++)
     {
         bdd temp;
@@ -2003,12 +2003,14 @@ void apply_MAM(Individual *population, int *gates, int num_inputs_table)
     clear_population_active_genes(population);
 
     // int relation = NPOP / 5;
-    int nMutations;
-    float calc;
+    //int nMutations;
+    //float calc;
 
-    # pragma omp parallel for
+    #pragma omp parallel for
     for(int i = 0; i < NPOP; i++)
     {
+        int nMutations;
+        float calc;
         // B = 1, n_clones artigo CLONALG
         calc = (float) NPOP / (float) (i + 1);
         nMutations = round(calc);
